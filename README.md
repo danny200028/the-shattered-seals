@@ -9,8 +9,8 @@ A challenging single-player RPG modpack, featuring a six-chapter boss storyline,
 ## Install the development pack
 
 1. Open [GitHub Actions](https://github.com/danny200028/the-shattered-seals/actions/workflows/build.yml) and choose the latest successful **Build The Shattered Seals** run.
-2. Download the artifact named **Shattered-Seals-1.0.51-CurseForge-Modpack**.
-3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.51-CurseForge.zip`.
+2. Download the artifact named **Shattered-Seals-1.0.52-CurseForge-Modpack**.
+3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.52-CurseForge.zip`.
 4. Import the inner ZIP through the CurseForge Minecraft modpack importer. CurseForge resolves the pinned NeoForge map and shader dependencies; the custom Shattered Seals JAR lives in `overrides/mods`.
 5. Start Minecraft 1.21.1 with Java 21. Use **J** for the Adventurer's Codex, **K** for the skill tree and **L** to toggle the on-screen quest tracker.
 
@@ -22,7 +22,7 @@ The shaderpack is **referenced** as a CurseForge dependency rather than redistri
 - **K** Native four-class skill tree.
 - **L** Toggle the on-screen chapter tracker with live rune-ward and keeper side-quest progress. The overlay reads server-owned scores and never grants progress.
 - **Q / R / V / G** Four combat skill slots. **Important:** Minecraft also binds Drop to Q by default. Before combat, rebind either Drop or Ability 1 in Options > Controls > Key Binds so pressing Q does not drop your held item.
-- **Hold right-click with a sword** for 1.8-style frontal sword guarding. The server checks your held weapon, incoming attack direction and a short-lived hold signal. Damage from behind and environmental damage are not blocked; shields still use vanilla mechanics.
+- **Hold right-click with a sword** for 1.8-style frontal sword guarding. A defensive sword pose and temporary BLOCK indicator now show while you hold right-click. Successfully blocked frontal hits produce a shield-clink sound and take 40% less incoming damage. The server validates the weapon, attack direction and short-lived hold signal. Side/rear and environmental damage are unchanged; shields remain vanilla.
 - Complete the six dungeon chapters in order by defeating each boss. Summoning sigils spawn in the corresponding loot chest. Dungeon fortresses have six guardian spawners, magma and cobweb hazards, hidden caches and a ritual arena. Each of the six bosses now has distinct particle, audio and actionbar cues at both phase transitions. Dungeon locator uses Minecraft's `/locate structure` to find the current chapter.
 - Character level cap is **60**. Clearing the Hollow King and reaching level 60 unlocks New Game+. Later NG+ cycles increase boss Strength and Resistance (capped from cycle four) while repeat boss mastery XP rises from 150 to 300. Each NG+ cycle resets the six rune wards and keeper challenges; completing a chapter's keeper quest awards one new ritual sigil so previously looted fortresses remain replayable.
 - Dragon Egg skill resets require explicit confirmation and consume exactly one egg only on approval. Cancellation or closing the screen clears the server approval, and unused confirmations expire after 60 seconds.
@@ -33,13 +33,13 @@ The shaderpack is **referenced** as a CurseForge dependency rather than redistri
 Abilities **Q and R** are stacked on the left side of the default Minecraft
 hotbar, while **V and G** sit on its right. The class label aligns with the
 hearts, the resource count aligns with the hunger bar, and the resource meter
-spans the space above the vanilla status HUD. In v1.0.51, the class/resource
+spans the space above the vanilla status HUD. In v1.0.52, the class/resource
 label sits below Minecraft's action-bar level/XP/SP message and the meter ends
 before the hearts/hunger, rather than crowding the text above the hotbar. The panels automatically narrow
 for smaller GUI widths and keep server-provided cooldowns / ability names.
 **This is a visual client change that still needs an in-game screenshot check.**
 
-### Clearer native RPG menus (v1.0.51)
+### Clearer native RPG menus (v1.0.52)
 
 The four-class skill tree and the Codex now draw their labels after the
 vanilla screen widgets/background, with fully opaque text colours. The
@@ -50,6 +50,12 @@ Minecraft's action-bar class text: the active class resource
 (e.g. **GUARD 100/100**) is centered above the resource meter. Q/R and V/G
 remain on their two sides of the hotbar. These visual changes need a
 screenshot confirmation on the user's Minecraft client.
+
+### Responsive controls and sword guard (v1.0.52)
+
+- The ability boxes display **current keybinds from Minecraft's Controls menu**, not fixed Q/R/V/G labels. Changing keyboard or mouse bindings updates the combat HUD immediately, without restarting.
+- Right-click sword blocking now visibly raises the first-person sword and displays a temporary BLOCK label outside the vanilla hotbar. When a frontal hit is mitigated, an audible shield-clink confirms it. Damage reduction remains server-owned and requires a sword, an active hold, and an attacker in front.
+- The first-person visual is an approximation of classic combat, not an exact 1.8.9 animation. Please compare guarded and unguarded hits in your own client.
 
 ### Automated Minecraft testing suite
 
@@ -63,7 +69,7 @@ screenshot confirmation on the user's Minecraft client.
 - Review the report ZIP before sharing it; filtered logs may include usernames
   or computer paths. Nothing is transmitted automatically.
 - GitHub's **Real Minecraft GameTests** workflow spins up a headless
-  NeoForge server and runs **12 actual game tests**, covering six dungeon templates,
+  NeoForge server and runs **13 actual game tests**, covering six dungeon templates,
   NG+ sigil loot and all six bosses' phase transitions and minion cleanup.
 
 Read [the Windows testing guide](docs/AUTOMATED_TESTING.md) for exact steps.
@@ -76,6 +82,6 @@ See [the acceptance checklist](docs/PLAYTEST_CHECKLIST.md) before labeling this 
 
 ### Quality gates and limitations
 
-GitHub Actions automatically generates dungeon structures, runs structural/gameplay regression tests and 12 real NeoForge server GameTests, compiles the Java mod and assembles the release ZIP. **A successful build does not substitute for an in-game test.** Please test fresh-world generation, dungeon placement, monster spawners, server commands, boss encounters, visual UI, shader loading, CurseForge import and save/reload before treating this as a stable release.
+GitHub Actions automatically generates dungeon structures, runs structural/gameplay regression tests and 13 real NeoForge server GameTests, compiles the Java mod and assembles the release ZIP. **A successful build does not substitute for an in-game test.** Please test fresh-world generation, dungeon placement, monster spawners, server commands, boss encounters, visual UI, shader loading, CurseForge import and save/reload before treating this as a stable release.
 
 Third-party CurseForge projects are referenced by IDs. No proprietary mod/shader binaries are copied into this repository.

@@ -1,4 +1,4 @@
-# The Shattered Seals v1.0.51: In-game Acceptance Checklist
+# The Shattered Seals v1.0.52: In-game Acceptance Checklist
 
 This checklist is **not an automated test result**. The GitHub build compiles the
 NeoForge mod, generates six dungeon structures and validates CurseForge packaging.
@@ -14,8 +14,8 @@ Minecraft Java 1.21.1 (Java 21, NeoForge 21.1.238).
 - [ ] Review report ZIP before sharing; relevant log extracts may contain personal paths or usernames.
 
 ## Installation and graphics
-- [ ] Download the `Shattered-Seals-1.0.51-CurseForge-Modpack` GitHub Actions artifact.
-- [ ] Extract the outer Actions artifact once; import the inner `The-Shattered-Seals-1.0.51-CurseForge.zip` in CurseForge.
+- [ ] Download the `Shattered-Seals-1.0.52-CurseForge-Modpack` GitHub Actions artifact.
+- [ ] Extract the outer Actions artifact once; import the inner `The-Shattered-Seals-1.0.52-CurseForge.zip` in CurseForge.
 - [ ] Verify the mod loads without crash and the NeoForge mod list includes The Shattered Seals.
 - [ ] Verify Xaero's Minimap, Xaero's World Map, Iris and Sodium load on the selected game version.
 - [ ] Verify Complementary Reimagined is installed/selected (manual shader installation may be required).
@@ -25,7 +25,7 @@ Minecraft Java 1.21.1 (Java 21, NeoForge 21.1.238).
 - [ ] Verify the vanilla action-bar level/XP/SP line sits above the custom class/resource labels with no text overlap; the resource bar must still end before the hearts/hunger.
 - [ ] Verify ability cooldown timers, insufficient-resource tint, and different classes' ability labels remain visible.
 
-## Native UI clarity (v1.0.51)
+## Native UI clarity (v1.0.52)
 - [ ] Open the skill tree with K. The world behind the menu may be blurred,
       but branch labels, ranks, mastery descriptions and title should be sharp.
 - [ ] Open the Codex with J and verify all quest/forge/mastery descriptions are crisp.
@@ -40,7 +40,10 @@ Minecraft Java 1.21.1 (Java 21, NeoForge 21.1.238).
 - [ ] Check quest tracker against Codex chapter, current rune step and keeper side quest.
 - [ ] Rebind vanilla Drop or Ability 1 to resolve the default Q key conflict, then test each class and skills (Q / R / V / G as currently assigned).
 - [ ] Confirm cooldown/resource indicators reflect server state and persist after save and reload.
-- [ ] Test sword right-click guard: damage from straight ahead is reduced, side/rear and environmental damage are not.
+- [ ] Hold right-click with a sword: the first-person sword pose should visibly change and a temporary BLOCK label appear beside the hotbar.
+- [ ] Take a hit from a mob directly ahead while guarding: confirm the clink sound and reduced damage compared with an unguarded hit; rear/side attacks should not be reduced.
+- [ ] Rebind Ability 1 from Q to another free key in Options > Controls, and verify the HUD button displays the new key immediately.
+- [ ] Rebind a second ability to a mouse button, then restart Minecraft to verify that its HUD label persists.
 - [ ] Verify a normal skill respec requires confirmation and consumes **exactly one** Dragon Egg.
 - [ ] Cancel or close a reset confirmation and confirm no Dragon Egg is consumed and no approval remains; verify the 60-second expiry.
 - [ ] Verify refund of regular spent points and invested New Game+ mastery allocations.
@@ -66,12 +69,12 @@ Observatory, Sixfold Temple and Hollow King's Fortress:
 - [ ] Visit a previously looted dungeon in NG+, complete the keeper quest and receive a new matching sigil.
 - [ ] Replay all six bosses in the correct order without first-clear rewards being repeated.
 - [ ] Compare boss strength and mastery XP in NG+ cycles 1, 2 and 4: scaling must increase and then cap.
-- [ ] Test saving/loading, leaving/rejoining, and upgrading an existing pre-v1.0.51 world.
+- [ ] Test saving/loading, leaving/rejoining, and upgrading an existing pre-v1.0.52 world.
 
 ## Sign-off
 - Automated GitHub unit/static tests: see the latest successful Quick Development Test workflow.
 - Automated Java 21 compilation and package verification: see the latest successful Build workflow.
-- Six native in-game structure and loot checks: see the Real Minecraft GameTests workflow.
+- Thirteen native in-game structure, phase and guard-facing checks: see the Real Minecraft GameTests workflow.
 - Your Windows runtime audit and modpack diagnostics: **not verified until collected from your installation**.
 - CurseForge import: **not verified until manually checked**.
 - Real Minecraft combat, dungeons, shaders and save persistence: **not verified until manually checked**.

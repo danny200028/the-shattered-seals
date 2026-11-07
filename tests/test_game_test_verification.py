@@ -10,18 +10,19 @@ module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)
 
 class RunCountGateTests(unittest.TestCase):
-    def test_accepts_twelve_or_more_real_passes(self):
-        fake = "12 GAME TESTS COMPLETE IN 3.002 s\nAll 12 required tests passed :)"
+    def test_accepts_thirteen_or_more_real_passes(self):
+        fake = "13 GAME TESTS COMPLETE IN 3.002 s\nAll 13 required tests passed :)"
         count, result = module.summarize(fake)
-        self.assertEqual(count,12)
-        self.assertIn("PASS|12",result)
+        self.assertEqual(count,13)
+        self.assertIn("PASS|13",result)
 
     def test_rejects_skipped_or_partial_suites(self):
         samples = (
             "BUILD SUCCESSFUL in 2s",
             "All 12 required tests passed :)",
             "6 GAME TESTS COMPLETE IN 1s\nAll 6 required tests passed :)",
-            "12 GAME TESTS COMPLETE IN 1s\nAll 11 required tests passed :)",
+            "12 GAME TESTS COMPLETE IN 1s\nAll 12 required tests passed :)",
+            "13 GAME TESTS COMPLETE IN 1s\nAll 12 required tests passed :)",
             "12 GAME TESTS COMPLETE IN 1s\nSome tests failed",
         )
         for log in samples:
