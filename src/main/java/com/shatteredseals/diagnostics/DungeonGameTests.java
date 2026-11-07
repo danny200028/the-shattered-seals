@@ -57,14 +57,15 @@ public final class DungeonGameTests {
             helper.fail("Missing worldgen structure registry: " + chapter.structure);
             return;
         }
-        // These are actual blocks loaded from the generated NBT into the
-        // GameTest world, not a JSON/NBT text inspection.
-        helper.assertBlockPresent(Blocks.CRYING_OBSIDIAN, new BlockPos(21, 0, 36));
-        helper.assertBlockPresent(Blocks.CHEST, new BlockPos(21, 1, 38));
-        helper.assertBlockPresent(Blocks.CHEST, new BlockPos(21, 1, 24));
-        helper.assertBlockPresent(Blocks.SPAWNER, new BlockPos(7, 1, 7));
-        helper.assertBlockPresent(Blocks.SPAWNER, new BlockPos(35, 1, 35));
-        helper.assertBlockPresent(Blocks.GLOWSTONE, new BlockPos(21, 0, 21));
+        // The GameTest structure block sits one block BELOW the template's
+        // first block layer. The template Y=0 floor is helper relative Y=1.
+        // These assertions read real blocks placed in a fresh Minecraft world.
+        helper.assertBlockPresent(Blocks.CRYING_OBSIDIAN, new BlockPos(21, 1, 36));
+        helper.assertBlockPresent(Blocks.CHEST, new BlockPos(21, 2, 38));
+        helper.assertBlockPresent(Blocks.CHEST, new BlockPos(21, 2, 24));
+        helper.assertBlockPresent(Blocks.SPAWNER, new BlockPos(7, 2, 7));
+        helper.assertBlockPresent(Blocks.SPAWNER, new BlockPos(35, 2, 35));
+        helper.assertBlockPresent(Blocks.GLOWSTONE, new BlockPos(21, 1, 21));
 
         String boss = chapter.boss.toLowerCase(java.util.Locale.ROOT).replace(' ', '_');
         if (!RuntimeAudit.replaySigilRolls(level, boss)) {
