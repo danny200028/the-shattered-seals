@@ -83,6 +83,8 @@ execute as @a[scores={ss_ability_cd=1..}] run scoreboard players remove @s ss_ab
 
 # 1.0.5: keep boss reward tracking independent of advancement credit.
 function shatteredseals:reward/watch_tick
+# Reap orphaned boss adds after victory and restore old saves.
+function shatteredseals:boss/minion_cleanup
 
 # Interactive chat menus (safe for single-player, no cheats required after load)
 scoreboard players enable @a ss_menu
