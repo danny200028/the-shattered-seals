@@ -75,6 +75,16 @@ public final class DungeonAdventure {
                     player.createCommandSourceStack().withPermission(2).withSuppressedOutput(),
                     "loot give @s loot shatteredseals:repeat/" + tier);
                 player.giveExperiencePoints(15 + chapter.number() * 10);
+                // A replayed chest has already been opened. Award exactly one new
+                // ritual sigil for completing this chapter's keeper challenge.
+                if (DungeonChapter.score(player, "ss_ng") >= 1
+                    && DungeonChapter.score(player, "ss_ngchapter") == chapter.number()) {
+                    player.getServer().getCommands().performPrefixedCommand(
+                        player.createCommandSourceStack().withPermission(2).withSuppressedOutput(),
+                        "loot give @s loot " + chapter.replaySigilLoot());
+                    message(player, "The keeper renews your summoning sigil for this New Game+ chapter.",
+                        ChatFormatting.GOLD);
+                }
                 message(player, chapter.sideQuest + " completed. The keeper rewards you with Warden's Spoils.",
                     ChatFormatting.GREEN);
             }

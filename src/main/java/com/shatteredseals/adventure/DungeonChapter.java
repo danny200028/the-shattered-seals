@@ -63,6 +63,9 @@ public enum DungeonChapter {
     public int number() { return ordinal() + 1; }
     public String tag() { return "ss_chapter_" + number(); }
     public String puzzleScore() { return "ss_rune" + number(); }
+    public String replaySigilLoot() {
+        return "shatteredseals:ritual_replay/" + boss.toLowerCase(java.util.Locale.ROOT).replace(' ', '_');
+    }
     public String sideScore() { return "ss_side" + number(); }
     public int runeAt(int step) { return runeOrder[step]; }
 

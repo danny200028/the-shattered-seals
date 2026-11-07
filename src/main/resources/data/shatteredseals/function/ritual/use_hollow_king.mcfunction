@@ -3,6 +3,6 @@ execute unless score @s ss_vk_six matches 1.. run return run tellraw @s {"text":
 execute if score @s ss_ngchapter matches 1..6 unless score @s ss_ngchapter matches 6 run return run tellraw @s {"text":"Follow the current New Game+ chapter in your Codex.","color":"red"}
 execute unless predicate shatteredseals:arena/hollow_kings_fortress run return run tellraw @s {"text":"Take the Hollow King sigil to the crying obsidian ritual pad in its dungeon.","color":"red"}
 execute unless block ~ ~-1 ~ minecraft:crying_obsidian run return run tellraw @s {"text":"Stand on the crying obsidian pad in the boss arena and use the sigil.","color":"yellow"}
-execute if entity @e[type=minecraft:marker,tag=ss_runed_arena,tag=ss_chapter_6,distance=..2] unless score @s ss_rune6 matches 3 run return run tellraw @s {"text":"The arena is warded. Read the keeper’s clue and attune the Sun, Tide and Ash runes in order.","color":"light_purple"}
+execute unless score @s ss_rune6 matches 3 run return run tellraw @s {"text":"The rune ward is locked. Ask the keeper and attune all three runes in order.","color":"light_purple"}
 execute if entity @e[tag=ss_boss,distance=..80] run return run tellraw @s {"text":"A Shattered Seals boss is already nearby.","color":"red"}
 function shatteredseals:ritual/activate_hollow_king
