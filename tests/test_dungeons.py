@@ -78,7 +78,7 @@ class DungeonTests(unittest.TestCase):
                 summon = (functions / f"boss/summon_{boss}.mcfunction").read_text()
                 self.assertNotIn("positioned over", summon)
                 self.assertIn("store success score @s ss_spawnok run summon", summon)
-                self.assertIn(f"ss_runed_arena,tag=ss_chapter_{chapter}", use)
+                self.assertIn(f"execute unless score @s ss_rune{chapter} matches 3 run return", use)
                 self.assertIn(f"unless score @s ss_rune{chapter} matches 3", use)
 
     def test_dungeon_routes_are_distinct_and_every_room_is_reachable(self):
