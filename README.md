@@ -9,8 +9,8 @@ A challenging single-player RPG modpack, featuring a six-chapter boss storyline,
 ## Install the development pack
 
 1. Open [GitHub Actions](https://github.com/danny200028/the-shattered-seals/actions/workflows/build.yml) and choose the latest successful **Build The Shattered Seals** run.
-2. Download the artifact named **Shattered-Seals-1.0.48-CurseForge-Modpack**.
-3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.48-CurseForge.zip`.
+2. Download the artifact named **Shattered-Seals-1.0.49-CurseForge-Modpack**.
+3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.49-CurseForge.zip`.
 4. Import the inner ZIP through the CurseForge Minecraft modpack importer. CurseForge resolves the pinned NeoForge map and shader dependencies; the custom Shattered Seals JAR lives in `overrides/mods`.
 5. Start Minecraft 1.21.1 with Java 21. Use **J** for the Adventurer's Codex, **K** for the skill tree and **L** to toggle the on-screen quest tracker.
 
@@ -27,6 +27,15 @@ The shaderpack is **referenced** as a CurseForge dependency rather than redistri
 - Character level cap is **60**. Clearing the Hollow King and reaching level 60 unlocks New Game+. Later NG+ cycles increase boss Strength and Resistance (capped from cycle four) while repeat boss mastery XP rises from 150 to 300. Each NG+ cycle resets the six rune wards and keeper challenges; completing a chapter's keeper quest awards one new ritual sigil so previously looted fortresses remain replayable.
 - Dragon Egg skill resets require explicit confirmation and consume exactly one egg only on approval. Cancellation or closing the screen clears the server approval, and unused confirmations expire after 60 seconds.
 - Summoned boss minions are encounter-owned and automatically removed after their associated boss is defeated or disappears, including cleanup of legacy minions in upgraded saves.
+
+### Cleaner survival combat HUD
+
+Abilities **Q and R** are now stacked on the left side of the default Minecraft
+hotbar, while **V and G** sit on its right. The class label aligns with the
+hearts, the resource count aligns with the hunger bar, and the resource meter
+spans the space above the vanilla status HUD. The panels automatically narrow
+for smaller GUI widths and keep server-provided cooldowns / ability names.
+**This is a visual client change that still needs an in-game screenshot check.**
 
 ### Automated Minecraft testing suite
 

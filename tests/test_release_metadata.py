@@ -3,7 +3,7 @@ from pathlib import Path
 import unittest
 
 ROOT=Path(__file__).resolve().parents[1]
-VERSION="1.0.48"
+VERSION="1.0.49"
 
 class ReleaseMetadataTests(unittest.TestCase):
     def test_release_version_consistency(self):
