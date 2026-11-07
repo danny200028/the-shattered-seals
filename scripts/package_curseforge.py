@@ -12,7 +12,7 @@ from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "1.0.45"
+VERSION = "1.0.46"
 MC_VERSION = "1.21.1"
 LOADER = "neoforge-21.1.238"
 OUT_DIR = ROOT / "build/distributions"
@@ -28,7 +28,7 @@ DEPENDENCIES = (
     (627557, 8884654, "Complementary Reimagined r5.9.3 (shader pack)", "EminGT"),
 )
 
-README = """THE SHATTERED SEALS v1.0.45
+README = """THE SHATTERED SEALS v1.0.46
 Minecraft Java 1.21.1 / NeoForge 21.1.238 / Java 21
 
 CURSEFORGE IMPORT:

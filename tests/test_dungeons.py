@@ -24,6 +24,18 @@ class DungeonTests(unittest.TestCase):
                 self.assertEqual(data[:3],bytes.fromhex("0a0000"))
                 self.assertIn(b"minecraft:chest",data)
                 self.assertIn(b"minecraft:spawner",data)
+                self.assertGreater(len(data),500000,"Dungeon is not the full nine-room template")
+                self.assertIn(b"minecraft:magma_block",data)
+                self.assertIn(b"minecraft:cobweb",data)
+                self.assertIn(b"minecraft:crying_obsidian",data)
+                self.assertIn(b"shatteredseals:chests/dungeon_cache",data)
+                self.assertIn(b"minecraft:polished_blackstone",data)
+                self.assertIn(b"minecraft:soul_lantern",data)
+                # Six guardian spawner blocks with full SpawnData compounds.
+                self.assertEqual(data.count(b"SpawnData"),6)
+                # One chapter sigil chest and two optional treasure caches.
+                self.assertEqual(data.count(b"LootTable"),3)
+
                 self.assertIn(f"shatteredseals:chests/{dungeon}".encode(),data)
                 pool=json.loads((DATA/f"worldgen/template_pool/{dungeon}.json").read_text())
                 entry=pool["elements"][0]["element"]

@@ -1,4 +1,4 @@
-name: Build The Shattered Seals 1.0.45
+name: Build The Shattered Seals 1.0.46
 on:
   push:
     branches: [main]
@@ -49,7 +49,7 @@ jobs:
       - name: Upload CurseForge modpack
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.45-CurseForge-Modpack
+          name: Shattered-Seals-1.0.46-CurseForge-Modpack
           path: |
             build/distributions/*.zip
             build/distributions/*.sha256
@@ -61,7 +61,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.45-NeoForge-JAR
+          name: Shattered-Seals-1.0.46-NeoForge-JAR
           path: |
             build/libs/*.jar
             SHA256SUMS.txt
@@ -70,6 +70,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.45-Build-Log
+          name: Shattered-Seals-1.0.46-Build-Log
           path: compile-log.txt
           if-no-files-found: ignore
