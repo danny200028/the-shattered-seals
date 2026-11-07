@@ -1,4 +1,4 @@
-name: Build The Shattered Seals 1.0.40
+name: Build The Shattered Seals 1.0.41
 on:
   push:
     branches: [main]
@@ -13,19 +13,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Extract source archive
+      - name: Verify tracked NeoForge source
         run: |
-          unzip -oq Shattered_Seals_1.0.36_Combat_Polish_Source.zip -d .
           test -f build.gradle
           test -f scripts/preflight.py
-      - name: Apply level 60 progression patch
-        run: python3 patches/v1_0_37_level_cap.py
-      - name: Add confirmed Dragon Egg skill reset
-        run: python3 patches/v1_0_38_respec_confirm.py
-      - name: Refund mastery allocations on confirmed respec
-        run: python3 patches/v1_0_39_mastery_refund.py
-      - name: Implement New Game Plus mastery perks
-        run: python3 patches/v1_0_40_ng_mastery_shop.py
+          test -f src/main/java/com/shatteredseals/client/SkillTreeScreen.java
+          test -f src/main/resources/data/shatteredseals/function/mastery/shop.mcfunction
       - name: Install Java 21
         uses: actions/setup-java@v4
         with:
@@ -51,7 +44,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.40-NeoForge-JAR
+          name: Shattered-Seals-1.0.41-NeoForge-JAR
           path: |
             build/libs/*.jar
             SHA256SUMS.txt
@@ -60,6 +53,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.40-Build-Log
+          name: Shattered-Seals-1.0.41-Build-Log
           path: compile-log.txt
           if-no-files-found: ignore
