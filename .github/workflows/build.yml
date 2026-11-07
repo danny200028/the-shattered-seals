@@ -1,0 +1,55 @@
+name: Build The Shattered Seals 1.0.31
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    name: NeoForge 1.21.1 Java 21
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Extract source archive
+        run: |
+          unzip -oq Shattered_Seals_1.0.31_Source.zip -d .
+          test -f build.gradle
+          test -f scripts/preflight.py
+      - name: Install Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.14'
+      - name: Preflight validation
+        run: python3 scripts/preflight.py
+      - name: Compile official NeoForge mod
+        shell: bash
+        run: |
+          set -o pipefail
+          gradle --no-daemon build --stacktrace 2>&1 | tee compile-log.txt
+      - name: Record output hashes
+        if: success()
+        run: sha256sum build/libs/*.jar > SHA256SUMS.txt
+      - name: Upload compiled JAR
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Shattered-Seals-1.0.31-NeoForge-JAR
+          path: |
+            build/libs/*.jar
+            SHA256SUMS.txt
+          if-no-files-found: error
+      - name: Upload compilation log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Shattered-Seals-1.0.31-Build-Log
+          path: compile-log.txt
+          if-no-files-found: ignore
