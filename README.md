@@ -2,13 +2,15 @@
 
 Minecraft Java **1.21.1** | **NeoForge 21.1.238** | **Java 21**
 
-The world defaults to Hard difficulty, with high attack speed for an approximation of classic 1.8.9 full-strength combat. Holding right-click with a sword now blocks 40% of frontal, positioned incoming damage while the guard is active. This is not a byte-for-byte recreation of the old combat engine.\n\nA challenging single-player RPG modpack, featuring a six-chapter boss storyline, nine-room natural jigsaw fortresses, class skill trees, powerful relics, rarity-based loot, and New Game+ mastery and repeatable chapter quests.
+The world defaults to Hard difficulty, with high attack speed for an approximation of classic 1.8.9 full-strength combat. Holding right-click with a sword now blocks 40% of frontal, positioned incoming damage while the guard is active. This is not a byte-for-byte recreation of the old combat engine.
+
+A challenging single-player RPG modpack, featuring a six-chapter boss storyline, nine-room natural jigsaw fortresses, class skill trees, powerful relics, rarity-based loot, and New Game+ mastery and repeatable chapter quests.
 
 ## Install the development pack
 
 1. Open [GitHub Actions](https://github.com/danny200028/the-shattered-seals/actions/workflows/build.yml) and choose the latest successful **Build The Shattered Seals** run.
-2. Download the artifact named **Shattered-Seals-1.0.46-CurseForge-Modpack**.
-3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.46-CurseForge.zip`.
+2. Download the artifact named **Shattered-Seals-1.0.47-CurseForge-Modpack**.
+3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.47-CurseForge.zip`.
 4. Import the inner ZIP through the CurseForge Minecraft modpack importer. CurseForge resolves the pinned NeoForge map and shader dependencies; the custom Shattered Seals JAR lives in `overrides/mods`.
 5. Start Minecraft 1.21.1 with Java 21. Use **J** for the Adventurer's Codex, **K** for the skill tree and **L** to toggle the on-screen quest tracker.
 
@@ -24,6 +26,10 @@ The shaderpack is **referenced** as a CurseForge dependency rather than redistri
 - Complete the six dungeon chapters in order by defeating each boss. Summoning sigils spawn in the corresponding loot chest. Dungeon fortresses have six guardian spawners, magma and cobweb hazards, hidden caches and a ritual arena. Each of the six bosses now has distinct particle, audio and actionbar cues at both phase transitions. Dungeon locator uses Minecraft's `/locate structure` to find the current chapter.
 - Character level cap is **60**. Clearing the Hollow King and reaching level 60 unlocks New Game+. Later NG+ cycles increase boss Strength and Resistance (capped from cycle four) while repeat boss mastery XP rises from 150 to 300. Each NG+ cycle resets the six rune wards and keeper challenges; completing a chapter's keeper quest awards one new ritual sigil so previously looted fortresses remain replayable.
 - Dragon Egg skill resets require explicit confirmation, consume one egg, refund normal and invested NG+ mastery allocations.
+
+### Release testing
+
+See [the acceptance checklist](docs/PLAYTEST_CHECKLIST.md) before labeling this version stable. It separates automated GitHub build success from actual Minecraft and CurseForge import testing.
 
 ### Quality gates and limitations
 

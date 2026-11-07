@@ -12,7 +12,7 @@ from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "1.0.46"
+VERSION = "1.0.47"
 MC_VERSION = "1.21.1"
 LOADER = "neoforge-21.1.238"
 OUT_DIR = ROOT / "build/distributions"
@@ -28,7 +28,7 @@ DEPENDENCIES = (
     (627557, 8884654, "Complementary Reimagined r5.9.3 (shader pack)", "EminGT"),
 )
 
-README = """THE SHATTERED SEALS v1.0.46
+README = """THE SHATTERED SEALS v1.0.47
 Minecraft Java 1.21.1 / NeoForge 21.1.238 / Java 21
 
 CURSEFORGE IMPORT:
@@ -48,9 +48,12 @@ FIRST PLAY:
 - K opens the native 4-class skill tree.
 - J opens the native Adventurer's Codex: journal, relics, forge and NG+ mastery.
 - Q/R/V/G cast your four class ability slots.
+- L toggles the chapter quest tracker (including keeper quests and rune wards).
+- Hold right-click with a sword to guard against frontal attacks.
 - The in-game journal includes Locate Next Dungeon. Boss sigils are guaranteed
   in the matching chapter dungeon loot chest.
 - Defeat all six bosses in order. Hollow King unlocks NG+ after level 60.
+- New Game+ renews sigils through chapter keepers and increases boss difficulty.
 - A full skill-tree respec consumes exactly one Dragon Egg *after confirmation*.
 
 WARNING: This is a development/acceptance build. GitHub validates source, generated
@@ -75,6 +78,20 @@ def select_jar() -> Path:
             raise SystemExit("The first-party JAR lacks NeoForge mod metadata")
         if "com/shatteredseals/client/AdventureScreen.class" not in names:
             raise SystemExit("The first-party JAR is missing the Adventure Codex GUI")
+        # Never ship a release that silently drops the latest integration systems.
+        required_classes = (
+            "com/shatteredseals/client/QuestTrackerOverlay.class",
+            "com/shatteredseals/combat/ClassicSwordGuard.class",
+            "com/shatteredseals/net/SwordGuard.class",
+        )
+        for required in required_classes:
+            if required not in names:
+                raise SystemExit(f"The first-party JAR is missing required feature: {required}")
+        for boss in ("smuggler_king", "cinder_warden", "hollow_knight",
+                     "arcane_seer", "sixfold_guardian", "hollow_king"):
+            sigil = f"data/shatteredseals/loot_table/ritual_replay/{boss}.json"
+            if sigil not in names:
+                raise SystemExit(f"The first-party JAR is missing NG+ sigil table: {boss}")
         for name in ("smugglers_den", "cinder_citadel", "hollow_crypt",
                      "arcane_observatory", "sixfold_temple", "hollow_kings_fortress"):
             if f"data/shatteredseals/structure/{name}.nbt" not in names:
