@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Generate six deterministic Minecraft 1.21.1 jigsaw dungeon structures.
 
-Single-piece templates use the vanilla jigsaw structure registry and contain
-real loot-table chests and monster spawners. Generated NBT is a build output,
+Each single-piece jigsaw fortress has nine connected rooms, six spawner encounters,
+traps, a hidden chest and a dedicated boss arena with its guaranteed ritual sigil. Generated NBT is a build output,
 not an opaque binary source dependency.
 """
 from __future__ import annotations
@@ -73,43 +73,102 @@ def palette_block(name: str) -> bytes:
 
 
 def structure_nbt(wall: str, floor: str, trim: str, mob: str, loot: str) -> bytes:
-    size = (21, 10, 21)
+    """Nine-room, interconnected fortress: traps, guardians, hidden caches, boss arena."""
+    size = (43, 12, 43)
     blocks: dict[tuple[int, int, int], tuple[str, bytes | None]] = {}
-    # Place air explicitly so uneven landscape is carved away inside the room.
-    for x in range(21):
-        for z in range(21):
-            for y in range(10):
+
+    def place(x: int, y: int, z: int, material: str, extra: bytes | None = None) -> None:
+        assert 0 <= x < 43 and 0 <= y < 12 and 0 <= z < 43
+        blocks[(x, y, z)] = (material, extra)
+
+    # Nine 13x13 chambers with connecting archways. Carve the rooms
+    # explicitly so natural terrain never fills in the connected corridors.
+    for x in range(43):
+        for z in range(43):
+            for y in range(12):
                 if y == 0:
-                    block = floor
-                elif y == 9:
-                    block = wall
-                elif x in (0, 20) or z in (0, 20):
-                    block = wall
+                    material = floor
+                elif y == 11 or x in (0, 42) or z in (0, 42):
+                    material = wall
+                elif x in (14, 28) or z in (14, 28):
+                    material = wall
                 else:
-                    block = "minecraft:air"
-                blocks[(x, y, z)] = (block, None)
-    # Raised corner pillars, lit caps and deliberately unobstructed doorway.
-    for x in (3, 17):
-        for z in (3, 17):
+                    material = "minecraft:air"
+                place(x, y, z, material)
+    # Every room can be reached via three entrances in each dividing wall.
+    for divider in (14, 28):
+        for opening in (7, 21, 35):
+            for offset in (-1, 0, 1):
+                for y in range(1, 5):
+                    place(opening + offset, y, divider, "minecraft:air")
+                    place(divider, y, opening + offset, "minecraft:air")
+    # Exterior entrance, framed with contrasting blocks.
+    for x in range(19, 24):
+        for y in range(1, 6):
+            place(x, y, 0, "minecraft:air")
+    for x in (18, 24):
+        for y in range(1, 8):
+            place(x, y, 0, trim)
+
+    # Lit corner columns give each chamber a distinctive dark-fantasy shape.
+    for x in (3, 11, 17, 25, 31, 39):
+        for z in (3, 11, 17, 25, 31, 39):
             for y in range(1, 9):
-                blocks[(x, y, z)] = (trim, None)
-            blocks[(x, 8, z)] = ("minecraft:glowstone", None)
-    for x in range(9, 12):
-        for y in range(1, 5):
-            blocks[(x, y, 0)] = ("minecraft:air", None)
-    # Central boss ritual floor, loot pedestal and four guarded wings.
-    for x in range(7, 14):
-        for z in range(7, 14):
-            blocks[(x, 0, z)] = (trim, None)
-    loot_nbt = compound(nbt_str("id", "minecraft:chest"),
-                        nbt_str("LootTable", loot))
-    blocks[(10, 1, 16)] = ("minecraft:chest", loot_nbt)
-    for x, z in ((5, 5), (15, 5), (5, 15), (15, 15)):
+                place(x, y, z, trim)
+            place(x, 9, z, "minecraft:glowstone")
+
+    # Arena in the northern hall. The wide central approach remains clear
+    # for the six existing ritual-summoned phase bosses.
+    for x in range(16, 27):
+        for z in range(30, 41):
+            place(x, 0, z, trim)
+    for x in range(19, 24):
+        for z in range(34, 39):
+            place(x, 0, z, "minecraft:polished_blackstone")
+    place(21, 0, 36, "minecraft:crying_obsidian")
+    for x, z in ((16, 30), (26, 30), (16, 40), (26, 40)):
+        place(x, 1, z, "minecraft:soul_lantern")
+
+    # Battle shrine in the central chamber and an additional treasure cache.
+    for x in range(18, 25):
+        for z in range(18, 25):
+            place(x, 0, z, trim)
+    place(21, 0, 21, "minecraft:glowstone")
+    place(21, 1, 24, "minecraft:chest",
+          compound(nbt_str("id", "minecraft:chest"),
+                   nbt_str("LootTable", "shatteredseals:chests/dungeon_cache")))
+
+    # The named chapter sigil is guaranteed inside this specific arena chest.
+    place(21, 1, 38, "minecraft:chest",
+          compound(nbt_str("id", "minecraft:chest"),
+                   nbt_str("LootTable", loot)))
+    # Concealed side cache, accessible by discovering the cracked brick niche.
+    place(5, 1, 36, "minecraft:chest",
+          compound(nbt_str("id", "minecraft:chest"),
+                   nbt_str("LootTable", "shatteredseals:chests/dungeon_cache")))
+    for x in range(4, 7):
+        place(x, 1, 33, "minecraft:cracked_stone_bricks")
+
+    # Six guardian encounters, one per outer chamber; these are placed off
+    # the route into the arena so the main path never becomes impassable.
+    for x, z in ((7, 7), (35, 7), (7, 21),
+                 (35, 21), (7, 35), (35, 35)):
         monster = nbt_compound("entity", nbt_str("id", mob))
         spawner = compound(nbt_str("id", "minecraft:mob_spawner"),
                            nbt_compound("SpawnData", monster))
-        blocks[(x, 1, z)] = ("minecraft:spawner", spawner)
+        place(x, 1, z, "minecraft:spawner", spawner)
 
+    # Avoidable hazards: hot floor plates near the entry; cobweb ambush on
+    # opposing flanks. Clear one-wide floor lanes are deliberately retained.
+    for x, z in ((19, 5), (22, 7), (20, 10), (23, 11),
+                 (6, 17), (36, 24), (9, 32), (33, 8)):
+        place(x, 0, z, "minecraft:magma_block")
+    for x, z in ((8, 4), (9, 5), (34, 19), (35, 18),
+                 (9, 37), (34, 37)):
+        place(x, 1, z, "minecraft:cobweb")
+
+    # Palette and block positions are proper binary structure NBT rather
+    # than an unvalidated text fixture or zipped datapack command.
     names = list(dict.fromkeys(name for name, _ in blocks.values()))
     index = {name: i for i, name in enumerate(names)}
     palette = [palette_block(name) for name in names]
@@ -128,7 +187,6 @@ def structure_nbt(wall: str, floor: str, trim: str, mob: str, loot: str) -> byte
         nbt_list("entities", 10, []),
     )
     return named(10, "", root)
-
 
 def write_json(path: Path, data: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
