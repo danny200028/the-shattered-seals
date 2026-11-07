@@ -43,7 +43,7 @@ jobs:
           from pathlib import Path
           root=Path('source-inspection/unpacked')
           names=('src/main/java/com/shatteredseals/ShatteredSeals.java','src/main/java/com/shatteredseals/net/SkillNetworking.java','src/main/java/com/shatteredseals/net/SkillRequest.java','src/main/java/com/shatteredseals/net/SkillSnapshot.java','src/main/resources/data/shatteredseals/function/progression/level_up.mcfunction','src/main/resources/data/shatteredseals/function/progression/kill_xp.mcfunction')
-          names = list(names) + [str(p.relative_to(root)) for p in root.rglob('*.mcfunction') if any(x in str(p).lower() for x in ('respec','reset','skills/','progression/recalculate','progression/tick','skilltree','talents/buy','talents/master_buy','progression/master_up','progression/init','progression/buy'))]
+          names = list(names) + [str(p.relative_to(root)) for p in root.rglob('*.mcfunction') if any(x in str(p).lower() for x in ('respec','reset','skills/','progression/recalculate','progression/tick','skilltree','talents/buy','talents/master_buy','progression/master_up','progression/init','progression/buy','talents/master_','talents/ascend_','talents/apply_'))]
           for name in dict.fromkeys(names):
               p=root/name
               if p.exists():
