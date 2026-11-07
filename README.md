@@ -10,7 +10,7 @@ The world defaults to Hard difficulty, with high attack speed for an approximati
 2. Download the artifact named **Shattered-Seals-1.0.46-CurseForge-Modpack**.
 3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.46-CurseForge.zip`.
 4. Import the inner ZIP through the CurseForge Minecraft modpack importer. CurseForge resolves the pinned NeoForge map and shader dependencies; the custom Shattered Seals JAR lives in `overrides/mods`.
-5. Start Minecraft 1.21.1 with Java 21. Use **J** for the Adventurer's Codex and **K** for the skill tree.
+5. Start Minecraft 1.21.1 with Java 21. Use **J** for the Adventurer's Codex, **K** for the skill tree and **L** to toggle the on-screen quest tracker.
 
 The shaderpack is **referenced** as a CurseForge dependency rather than redistributing its proprietary files. If CurseForge does not install it into `shaderpacks`, manually install [Complementary Reimagined](https://www.curseforge.com/minecraft/shaders/complementary-reimagined) and select it in the Iris shader menu. The mod's **own RPG textures** are in the compiled JAR.
 
@@ -18,6 +18,7 @@ The shaderpack is **referenced** as a CurseForge dependency rather than redistri
 
 - **J** Adventurer's Codex: six-chapter journal, next dungeon locator, relic arsenal, Relic Forge, and NG+ mastery.
 - **K** Native four-class skill tree.
+- **L** Toggle the on-screen chapter tracker with live rune-ward and keeper side-quest progress. The overlay reads server-owned scores and never grants progress.
 - **Q / R / V / G** Four combat skill slots.
 - Complete the six dungeon chapters in order by defeating each boss. Summoning sigils spawn in the corresponding loot chest. Dungeon fortresses have six guardian spawners, magma and cobweb hazards, hidden caches and a ritual arena. Dungeon locator uses Minecraft's `/locate structure` to find the current chapter.
 - Character level cap is **60**. Clearing the Hollow King and reaching level 60 unlocks New Game+.
