@@ -19,6 +19,9 @@ class PackageTests(unittest.TestCase):
             names=archive.namelist()
             self.assertIn("manifest.json",names)
             self.assertIn("overrides/README_THE_SHATTERED_SEALS.txt",names)
+            self.assertIn("overrides/TEST_THE_SHATTERED_SEALS.cmd",names)
+            self.assertIn("overrides/tools/ShatteredSeals-TestReport.ps1",names)
+            self.assertIn("shatteredseals audit",archive.read("overrides/tools/ShatteredSeals-TestReport.ps1").decode("utf-8"))
             self.assertTrue(all(".." not in Path(name).parts and not name.startswith("/") for name in names))
             mods=[name for name in names if name.startswith("overrides/mods/") and name.endswith(".jar")]
             self.assertEqual(len(mods),1)

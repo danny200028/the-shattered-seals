@@ -44,6 +44,16 @@ CURSEFORGE IMPORT:
 5. Xaero's Minimap and World Map should be installed by the importer; use the
    minimap and waypoint settings to mark discovered dungeons.
 
+AUTOMATED TESTING:
+- Inside a new test world, type /shatteredseals audit in chat (no cheats required).
+- Quit Minecraft and double-click TEST_THE_SHATTERED_SEALS.cmd in your
+  CurseForge instance folder (the same folder as mods and saves).
+- It creates ShatteredSeals-TestReports with a summary and ZIP to share.
+- The in-world audit checks live server registries, functions, loot,
+  progression data and installed-mod presence WITHOUT changing progress.
+- Visual shaders, actual boss combat, terrain placement and save/reload still
+  need human verification. The report marks these NOT_TESTED.
+
 FIRST PLAY:
 - K opens the native 4-class skill tree.
 - J opens the native Adventurer's Codex: journal, relics, forge and NG+ mastery.
@@ -83,6 +93,7 @@ def select_jar() -> Path:
             "com/shatteredseals/client/QuestTrackerOverlay.class",
             "com/shatteredseals/combat/ClassicSwordGuard.class",
             "com/shatteredseals/net/SwordGuard.class",
+            "com/shatteredseals/diagnostics/RuntimeAudit.class",
         )
         for required in required_classes:
             if required not in names:
@@ -122,6 +133,15 @@ def main() -> None:
         pack.writestr("manifest.json", json.dumps(manifest, indent=2) + "\n")
         pack.writestr(f"overrides/mods/{mod.name}", mod_bytes)
         pack.writestr("overrides/README_THE_SHATTERED_SEALS.txt", README)
+        # Double-clickable Windows report collector, installed into the profile root.
+        for source, target in (
+            ("tools/windows/TEST_THE_SHATTERED_SEALS.cmd", "overrides/TEST_THE_SHATTERED_SEALS.cmd"),
+            ("tools/windows/ShatteredSeals-TestReport.ps1", "overrides/tools/ShatteredSeals-TestReport.ps1"),
+        ):
+            path = ROOT / source
+            if not path.is_file():
+                raise SystemExit(f"Missing Windows testing tool: {source}")
+            pack.write(path, target)
         pack.writestr("overrides/third_party_credits.json",
                       json.dumps([{"projectID": project, "fileID": file,
                                    "name": label, "author": author}
