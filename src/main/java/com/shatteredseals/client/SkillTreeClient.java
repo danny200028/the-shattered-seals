@@ -43,6 +43,23 @@ public final class SkillTreeClient {
         "key.shatteredseals.cast_4", InputConstants.Type.KEYSYM,
         GLFW.GLFW_KEY_G, "key.categories.shatteredseals");
 
+    /** Exposes live Minecraft Controls bindings for all ability HUD labels. */
+    public static KeyMapping abilityKey(int slot) {
+        return switch (slot) {
+            case 0 -> CAST_ABILITY;
+            case 1 -> CAST_2;
+            case 2 -> CAST_3;
+            case 3 -> CAST_4;
+            default -> throw new IllegalArgumentException("Ability slot: " + slot);
+        };
+    }
+
+    /** Client-side holding indicator only; damage authority stays server-side. */
+    public static boolean isSwordGuardHeld(Minecraft mc) {
+        return mc.player != null && mc.screen == null && mc.options.keyUse.isDown()
+            && mc.player.getMainHandItem().is(ItemTags.SWORDS) && !mc.player.isSpectator();
+    }
+
     @EventBusSubscriber(modid = "shatteredseals", value = Dist.CLIENT,
         bus = EventBusSubscriber.Bus.MOD)
     public static final class ModEvents {
@@ -91,8 +108,7 @@ public final class SkillTreeClient {
         private static void updateSwordGuard(Minecraft mc) {
             // A held-use intent is refreshed while blocking and expires server-side.
             // Opening a menu or switching weapons instantly releases the guard.
-            boolean holding = mc.screen == null && mc.options.keyUse.isDown()
-                && mc.player.getMainHandItem().is(ItemTags.SWORDS) && !mc.player.isSpectator();
+            boolean holding = isSwordGuardHeld(mc);
             if (holding != guardingLastTick || (holding && ++guardTicker >= 4)) {
                 guardingLastTick = holding;
                 guardTicker = 0;

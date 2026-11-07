@@ -42,6 +42,8 @@ class CombatHudTests(unittest.TestCase):
         self.assertNotIn("CLASS_NAMES[classIndex]",overlay)
         self.assertIn("g.fill(left, barY, right, barY + 5",overlay)
         self.assertIn("mc.font.plainSubstrByWidth",overlay)
+        self.assertNotIn('private static final String[] KEYS',overlay)
+        self.assertIn('SkillTreeClient.abilityKey(slot).getTranslatedKeyMessage().getString()',overlay)
         self.assertIn("mc.options.hideGui",overlay)
 
     def test_action_bar_and_survival_status_have_breathing_room(self):

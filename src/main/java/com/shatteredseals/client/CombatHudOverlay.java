@@ -25,7 +25,6 @@ public final class CombatHudOverlay {
     };
     private static final String[] RESOURCES = {"FURY", "GUARD", "FOCUS", "ARCANE"};
     private static final int[] COSTS = {12, 20, 28, 45};
-    private static final String[] KEYS = {"Q", "R", "V", "G"};
     private static final int[] ACCENTS = {0xFFE26A56, 0xFF7DB4E8, 0xFF82D79B, 0xFFC68BE9};
 
     @SubscribeEvent
@@ -93,7 +92,10 @@ public final class CombatHudOverlay {
             g.fill(x + 1, y + 11, x + width - 1, y + height - 1, 0xAA421B21);
         }
 
-        g.drawString(mc.font, KEYS[slot], x + 4, y + 2, 0xFFFFFFFF, true);
+        // Read the Controls menu each frame; a rebind updates immediately.
+        String assigned = SkillTreeClient.abilityKey(slot).getTranslatedKeyMessage().getString();
+        String key = mc.font.plainSubstrByWidth(assigned, width - 8);
+        g.drawString(mc.font, key, x + 4, y + 2, 0xFFFFFFFF, true);
         if (cooling) {
             String remaining = String.format(java.util.Locale.ROOT, "%.1fs", ticks / 20.0);
             int rightAligned = x + width - 3 - mc.font.width(remaining);
