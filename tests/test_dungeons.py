@@ -53,29 +53,17 @@ class DungeonTests(unittest.TestCase):
                     ritual=(DATA/f"function/ritual/use_{boss}.mcfunction").read_text()
                     self.assertIn(f"if score @s {previous} matches 1..",ritual)
 
-    def test_all_dungeon_loot_rarities_are_ordered(self):
-        # Prevent a repeat of the cache table accidentally making rare
-        # equipment more common than ordinary equipment.
-        for dungeon, _, _ in DUNGEONS:
-            for path in (
-                DATA/f"loot_table/chests/{dungeon}.json",
-                DATA/"loot_table/chests/dungeon_cache.json",
-            ):
-                with self.subTest(path=path):
-                    pools=json.loads(path.read_text())["pools"]
-                    entries=pools[0]["entries"]
-                    tiers=("common","rare","epic","legendary")
-                    weights={}
-                    for entry in entries:
-                        for tier in tiers:
-                            if entry.get("value")==f"shatteredseals:repeat/{tier}":
-                                weights[tier]=entry["weight"]
-                    self.assertEqual(set(weights),set(tiers))
-                    self.assertTrue(all(weights[a]>weights[b]
-                        for a,b in zip(tiers,tiers[1:])),weights)
+    def test_optional_cache_rarity_distribution(self):
+        # Bonus treasure should be common-biased even though late-game
+        # chapter-specific chests deliberately have better drop rates.
         cache=json.loads((DATA/"loot_table/chests/dungeon_cache.json").read_text())
-        self.assertEqual([e["weight"] for e in cache["pools"][0]["entries"]],
-                         [70,20,8,2])
+        entries=cache["pools"][0]["entries"]
+        tiers=("common","rare","epic","legendary")
+        self.assertEqual(
+            [e["value"] for e in entries],
+            [f"shatteredseals:repeat/{tier}" for tier in tiers])
+        self.assertEqual([e["weight"] for e in entries],[70,20,8,2])
+        self.assertEqual(sum(e["weight"] for e in entries),100)
 
     def test_journal_access_in_survival(self):
         load=(DATA/"function/load.mcfunction").read_text()
