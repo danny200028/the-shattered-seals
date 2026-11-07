@@ -1,8 +1,11 @@
-name: Build The Shattered Seals 1.0.41
+name: Build The Shattered Seals 1.0.42
 on:
   push:
     branches: [main]
   workflow_dispatch:
+concurrency:
+  group: shattered-seals-neoforge-main
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
@@ -28,6 +31,8 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.14'
+      - name: Generate six natural dungeons
+        run: python3 scripts/generate_dungeons.py
       - name: RPG regression tests
         run: python3 -m unittest discover -s tests -p 'test_*.py' -v
       - name: Preflight validation
@@ -44,7 +49,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.41-NeoForge-JAR
+          name: Shattered-Seals-1.0.42-NeoForge-JAR
           path: |
             build/libs/*.jar
             SHA256SUMS.txt
@@ -53,6 +58,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.41-Build-Log
+          name: Shattered-Seals-1.0.42-Build-Log
           path: compile-log.txt
           if-no-files-found: ignore
