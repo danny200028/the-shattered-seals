@@ -36,6 +36,19 @@ jobs:
           Path('source-inspection/report.json').write_text(json.dumps(report,indent=2))
           print(json.dumps(report,indent=2))
           PY
+      - name: Print progression implementation for review
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          root=Path('source-inspection/unpacked')
+          names=('src/main/java/com/shatteredseals/ShatteredSeals.java','src/main/java/com/shatteredseals/net/SkillNetworking.java','src/main/java/com/shatteredseals/net/SkillRequest.java','src/main/java/com/shatteredseals/net/SkillSnapshot.java','src/main/resources/data/shatteredseals/function/progression/level_up.mcfunction','src/main/resources/data/shatteredseals/function/progression/kill_xp.mcfunction')
+          for name in names:
+              p=root/name
+              if p.exists():
+                  print('===== '+name+' =====')
+                  print(p.read_text()[:35000])
+          PY
       - name: Upload inspection report
         uses: actions/upload-artifact@v4
         with:
