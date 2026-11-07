@@ -1,4 +1,4 @@
-name: Build The Shattered Seals 1.0.32
+name: Build The Shattered Seals 1.0.33
 on:
   push:
     branches: [main]
@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Extract source archive
         run: |
-          unzip -oq Shattered_Seals_1.0.32_Combat_Source.zip -d .
+          unzip -oq Shattered_Seals_1.0.33_Four_Slot_Combat_Source.zip -d .
           test -f build.gradle
           test -f scripts/preflight.py
       - name: Install Java 21
@@ -41,7 +41,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.32-NeoForge-JAR
+          name: Shattered-Seals-1.0.33-NeoForge-JAR
           path: |
             build/libs/*.jar
             SHA256SUMS.txt
@@ -50,6 +50,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.32-Build-Log
+          name: Shattered-Seals-1.0.33-Build-Log
           path: compile-log.txt
           if-no-files-found: ignore
