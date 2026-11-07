@@ -106,6 +106,13 @@ class ReleaseTests(unittest.TestCase):
         self.assertIn('confirmingReset = true; perform("ss_respec", 1);',gui)
         self.assertIn('perform("ss_respec", 2);',gui)
 
+    def test_classic_attack_speed_and_hard_world(self):
+        world_tick=source("tick")
+        load=source("load")
+        self.assertIn("minecraft:generic.attack_speed base set 64",world_tick)
+        self.assertIn("execute if score #clock ss_clock matches 0 as @a",world_tick)
+        self.assertIn("difficulty hard",load)
+
     def test_internal_function_references(self):
         files=list(FUNCTIONS.rglob("*.mcfunction"))
         self.assertGreater(len(files),50)

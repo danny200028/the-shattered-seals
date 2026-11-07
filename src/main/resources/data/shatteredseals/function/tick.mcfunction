@@ -128,3 +128,7 @@ scoreboard players set @a[scores={ss_burst=1..}] ss_burst 0
 # Player-accessible combat diagnostic: /trigger ss_combat_test set 1
 execute as @a[scores={ss_combat_test=1..}] run function shatteredseals:combat/test_status
 scoreboard players set @a[scores={ss_combat_test=1..}] ss_combat_test 0
+
+# 1.8.9-style full-strength clicks: short recharge rather than post-1.9 timed sword cooldown.
+# Refresh every four seconds to persist through death, dimension changes and equipment swaps.
+execute if score #clock ss_clock matches 0 as @a run attribute @s minecraft:generic.attack_speed base set 64

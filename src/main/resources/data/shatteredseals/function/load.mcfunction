@@ -165,3 +165,6 @@ scoreboard objectives add ss_story trigger
 
 # Per-player server-side reset confirmation state; never accept an unprompted reset
 scoreboard objectives add ss_reset_confirm dummy
+
+# The requested very difficult Vanilla+ experience defaults to Hard.
+difficulty hard

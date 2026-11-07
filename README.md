@@ -2,13 +2,13 @@
 
 Minecraft Java **1.21.1** | **NeoForge 21.1.238** | **Java 21**
 
-A challenging single-player RPG modpack, featuring a six-chapter boss storyline, natural jigsaw dungeons, class skill trees, powerful relics, rarity-based loot, and New Game+ mastery.
+The world defaults to Hard difficulty, with high attack speed for an approximation of classic 1.8.9 full-strength combat. This is not a byte-for-byte recreation of the old combat engine.\n\nA challenging single-player RPG modpack, featuring a six-chapter boss storyline, natural jigsaw dungeons, class skill trees, powerful relics, rarity-based loot, and New Game+ mastery.
 
 ## Install the development pack
 
 1. Open [GitHub Actions](https://github.com/danny200028/the-shattered-seals/actions/workflows/build.yml) and choose the latest successful **Build The Shattered Seals** run.
-2. Download the artifact named **Shattered-Seals-1.0.44-CurseForge-Modpack**.
-3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.44-CurseForge.zip`.
+2. Download the artifact named **Shattered-Seals-1.0.45-CurseForge-Modpack**.
+3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.45-CurseForge.zip`.
 4. Import the inner ZIP through the CurseForge Minecraft modpack importer. CurseForge resolves the pinned NeoForge map and shader dependencies; the custom Shattered Seals JAR lives in `overrides/mods`.
 5. Start Minecraft 1.21.1 with Java 21. Use **J** for the Adventurer's Codex and **K** for the skill tree.
 
