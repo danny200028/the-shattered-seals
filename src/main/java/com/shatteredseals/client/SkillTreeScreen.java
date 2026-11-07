@@ -108,34 +108,36 @@ public final class SkillTreeScreen extends Screen {
         renderBackground(graphics, mouseX, mouseY, delta);
         int x = width / 2 - 173, y = height / 2 - 123;
         graphics.fill(x - 9, y - 32, x + 353, y + 265, 0xE9181824);
-        graphics.drawCenteredString(font, title, width/2, y-22, 0xFFD797);
+        // Render base widgets before text: the labels must always be drawn
+        // after any vanilla/NeoForge screen background and blur passes.
+        super.render(graphics, mouseX, mouseY, delta);
+        graphics.drawCenteredString(font, title, width/2, y-22, 0xFFFFD797);
         SkillSnapshot data = ClientSkillState.current();
         if (data == null) {
-            graphics.drawString(font, "Loading progression from server...", x, y+33, 0xDDDDDD);
+            graphics.drawString(font, "Loading progression from server...", x, y+33, 0xFFDDDDDD);
         } else {
             graphics.drawString(font,
                 "Level " + data.level() + "   XP " + data.xp() + "/" + data.requiredXp()
-                + "   Skill Points " + data.points(), x, y+31, 0xE9CF93);
+                + "   Skill Points " + data.points(), x, y+31, 0xFFE9CF93);
             graphics.drawString(font,
                 "Kills " + data.kills() + "  |  NG+ Mastery " + data.masteryRank()
                 + "  |  Active: " + (data.activeClass() > 0 && data.activeClass() <= 4
                      ? CLASSES[data.activeClass()-1] : "Unselected"),
-                x, y+44, 0xBBC3D6);
+                x, y+44, 0xFFBBC3D6);
             for (int i = 0; i < 3; i++) {
                 int idx = selectedClass*3 + i;
                 int by = y+66+i*47;
                 graphics.drawString(font,
                     BRANCHES[selectedClass][i] + "  " + data.branchRanks()[idx] + "/5",
-                    x+3, by+1, 0xFFFFFF);
+                    x+3, by+1, 0xFFFFFFFF);
                 boolean unlocked = data.branchMasteries()[idx] > 0;
                 graphics.drawString(font,
                     MASTERIES[selectedClass][i] + (unlocked ? " [UNLOCKED]" : " [LOCKED]"),
-                    x+3, by+14, unlocked ? 0xB4F2C5 : 0xC7B1E6);
+                    x+3, by+14, unlocked ? 0xFFB4F2C5 : 0xFFC7B1E6);
             }
         }
         graphics.drawString(font, "Masteries: Level 50 | 100 kills | Rank 5/5 | 8 SP",
-            x, y+202, 0xAAB2C2);
-        super.render(graphics, mouseX, mouseY, delta);
+            x, y+202, 0xFFAAB2C2);
     }
 
     @Override public void onClose() {

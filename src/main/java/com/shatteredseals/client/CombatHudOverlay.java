@@ -17,7 +17,6 @@ import net.neoforged.neoforge.client.event.RenderGuiEvent;
  */
 @EventBusSubscriber(modid = "shatteredseals", value = Dist.CLIENT)
 public final class CombatHudOverlay {
-    private static final String[] CLASS_NAMES = {"VANGUARD", "WARDEN", "PATHFINDER", "ARCANIST"};
     private static final String[][] ABILITIES = {
         {"Cleave", "Rally", "Quake", "Last Stand"},
         {"Bastion", "Guardian", "Rebuke", "Oath"},
@@ -64,9 +63,12 @@ public final class CombatHudOverlay {
         // Slight translucent backing maintains legibility on bright sand/snow
         // without covering any vanilla hearts, hunger or experience.
         g.fill(left - 3, labelY - 3, right + 3, barY + 7, 0xA91B2030);
-        g.drawString(mc.font, CLASS_NAMES[classIndex], left, labelY, accent, true);
+        // The vanilla action bar already names the selected class.
+        // A single centered resource readout avoids repeating it and keeps
+        // all four classes consistent (GUARD, FURY, FOCUS and ARCANE).
         String amount = RESOURCES[classIndex] + " " + resource + "/100";
-        g.drawString(mc.font, amount, right - mc.font.width(amount), labelY, accent, true);
+        g.drawString(mc.font, amount, (left + right - mc.font.width(amount)) / 2,
+                     labelY, accent, true);
         int fullWidth = right - left;
         g.fill(left, barY, right, barY + 5, 0xDD222633);
         g.fill(left, barY, left + fullWidth * resource / 100, barY + 5, accent);

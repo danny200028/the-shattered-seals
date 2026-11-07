@@ -123,6 +123,9 @@ public final class AdventureScreen extends Screen {
         int x = width / 2 - 205, y = height / 2 - 143;
         graphics.fill(x - 8, y - 20, x + 415, y + 293, 0xED121A2A);
         graphics.fill(x - 8, y - 20, x + 415, y - 17, 0xFFD1A35D);
+        // Keep all custom label text above vanilla/NeoForge screen rendering.
+        // The widgets do not overlap the Codex text regions.
+        super.render(graphics, mouseX, mouseY, delta);
         graphics.drawCenteredString(font, title, width / 2, y - 11, 0xFFF5DBA2);
         SkillSnapshot data = ClientSkillState.current();
         if (data == null) {
@@ -138,7 +141,6 @@ public final class AdventureScreen extends Screen {
                 case MASTERY -> renderMastery(graphics, data, x, y);
             }
         }
-        super.render(graphics, mouseX, mouseY, delta);
     }
 
     private void renderJournal(GuiGraphics graphics, SkillSnapshot data, int x, int y) {
