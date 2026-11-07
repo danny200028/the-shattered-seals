@@ -26,6 +26,10 @@ class AutomatedTestingSuite(unittest.TestCase):
         self.assertNotIn('Invoke-WebRequest',ps)
         self.assertNotIn('Invoke-RestMethod',ps)
         self.assertNotIn('Remove-Item',ps)
+        self.assertIn('ModLauncher running: args',ps)
+        self.assertIn('Launching target .*arguments',ps)
+        self.assertIn('[REDACTED_IDENTIFIER]',ps)
+        self.assertIn('[USER_PROFILE]',ps)
         self.assertNotIn('Set-ExecutionPolicy',ps)
         self.assertNotIn('Copy-Item -Destination $world',ps)
 

@@ -38,6 +38,9 @@ The in-world audit runs on Minecraft's **real integrated server** and verifies:
 
 The Windows collector additionally checks the **installed JAR itself**,
 optional dependencies, shaderpack ZIP presence, logs and crash-report filenames.
+It excludes launcher command lines (which can contain account IDs), redacts
+Windows user-profile paths and known credential markers before exporting
+relevant log excerpts. Always review exported reports before sharing them.
 
 `NOT_TESTED` is **not a pass**. Automated diagnostics do not exercise the
 six bosses' full attack AI, the physical nine-room dungeon traversal, actual

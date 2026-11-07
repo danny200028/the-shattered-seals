@@ -107,7 +107,19 @@ try {
     $latestLog = Join-Path $profileDir 'logs\latest.log'
     if (Test-Path -LiteralPath $latestLog -PathType Leaf) {
         $lines = @(Get-Content -LiteralPath $latestLog -Tail 5000 -ErrorAction SilentlyContinue |
-            Where-Object { $_ -match '(?i)shatteredseals|shattered.seals|exception|\berror\b|fatal' } |
+            Where-Object {
+                # Launcher command lines can expose Minecraft usernames, account IDs,
+                # filesystem paths and other auth arguments. Never package them.
+                $_ -match '(?i)shatteredseals|shattered.seals|exception|\berror\b|fatal' -and
+                $_ -notmatch '(?i)(--(?:accessToken|username|uuid|clientId|xuid|gameDir|assetsDir|quickPlayPath)|ModLauncher running: args|Launching target .*arguments)'
+            } |
+            ForEach-Object {
+                # Redact user profile paths from otherwise useful diagnostic lines.
+                $safe = $_ -replace '(?i)[a-z]:\\Users\\[^\\\s,\]]+', '[USER_PROFILE]'
+                # IDs/tokens occasionally surface outside normal launcher arguments.
+                $safe = $safe -replace '(?i)(?:access.?token|client.?id|xuid|uuid)\s*[:=]\s*[^,\s\]]+', '[REDACTED_IDENTIFIER]'
+                $safe
+            } |
             Select-Object -Last 100)
         if ($lines.Count -gt 0) {
             $lines | Set-Content -LiteralPath (Join-Path $bundleDir 'filtered-log-excerpts.txt') -Encoding UTF8
