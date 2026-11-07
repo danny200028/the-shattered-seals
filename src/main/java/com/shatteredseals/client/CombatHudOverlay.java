@@ -59,6 +59,8 @@ public final class CombatHudOverlay {
         int labelY = p.titleY();
         int barY = p.barY();
 
+        // Keep the label below Minecraft's action-bar level/SP line and
+        // keep the resource bar above hearts/hunger (see CombatHudLayout).
         // Slight translucent backing maintains legibility on bright sand/snow
         // without covering any vanilla hearts, hunger or experience.
         g.fill(left - 3, labelY - 3, right + 3, barY + 7, 0xA91B2030);

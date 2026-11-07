@@ -36,12 +36,26 @@ class CombatHudTests(unittest.TestCase):
     def test_status_is_aligned_above_survival_hearts_hunger(self):
         java=(CLIENT/"CombatHudLayout.java").read_text()
         overlay=(CLIENT/"CombatHudOverlay.java").read_text()
-        self.assertIn("viewportHeight - 66",java)
-        self.assertIn("viewportHeight - 52",java)
+        self.assertIn("viewportHeight - 58",java)
+        self.assertIn("viewportHeight - 47",java)
         self.assertIn("right - mc.font.width(amount)",overlay)
         self.assertIn("g.fill(left, barY, right, barY + 5",overlay)
         self.assertIn("mc.font.plainSubstrByWidth",overlay)
         self.assertIn("mc.options.hideGui",overlay)
+
+    def test_action_bar_and_survival_status_have_breathing_room(self):
+        # Minecraft's standard actionbar message starts at H-68 with a 9px font.
+        # The native class/resource label starts at H-58 and is also 9px tall.
+        # The five-pixel resource bar ends at H-42; vanilla hearts begin at H-39.
+        gui_height=210
+        actionbar_y=gui_height-68
+        title_y=gui_height-58
+        bar_y=gui_height-47
+        hearts_y=gui_height-39
+        self.assertGreaterEqual(title_y, actionbar_y+9+1)
+        self.assertGreaterEqual(bar_y, title_y+9+2)
+        self.assertLessEqual(bar_y+5, hearts_y-3)
+
 
 if __name__ == "__main__":
     unittest.main()

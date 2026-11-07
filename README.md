@@ -9,8 +9,8 @@ A challenging single-player RPG modpack, featuring a six-chapter boss storyline,
 ## Install the development pack
 
 1. Open [GitHub Actions](https://github.com/danny200028/the-shattered-seals/actions/workflows/build.yml) and choose the latest successful **Build The Shattered Seals** run.
-2. Download the artifact named **Shattered-Seals-1.0.49-CurseForge-Modpack**.
-3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.49-CurseForge.zip`.
+2. Download the artifact named **Shattered-Seals-1.0.50-CurseForge-Modpack**.
+3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.50-CurseForge.zip`.
 4. Import the inner ZIP through the CurseForge Minecraft modpack importer. CurseForge resolves the pinned NeoForge map and shader dependencies; the custom Shattered Seals JAR lives in `overrides/mods`.
 5. Start Minecraft 1.21.1 with Java 21. Use **J** for the Adventurer's Codex, **K** for the skill tree and **L** to toggle the on-screen quest tracker.
 
@@ -30,10 +30,12 @@ The shaderpack is **referenced** as a CurseForge dependency rather than redistri
 
 ### Cleaner survival combat HUD
 
-Abilities **Q and R** are now stacked on the left side of the default Minecraft
+Abilities **Q and R** are stacked on the left side of the default Minecraft
 hotbar, while **V and G** sit on its right. The class label aligns with the
 hearts, the resource count aligns with the hunger bar, and the resource meter
-spans the space above the vanilla status HUD. The panels automatically narrow
+spans the space above the vanilla status HUD. In v1.0.50, the class/resource
+label sits below Minecraft's action-bar level/XP/SP message and the meter ends
+before the hearts/hunger, rather than crowding the text above the hotbar. The panels automatically narrow
 for smaller GUI widths and keep server-provided cooldowns / ability names.
 **This is a visual client change that still needs an in-game screenshot check.**
 

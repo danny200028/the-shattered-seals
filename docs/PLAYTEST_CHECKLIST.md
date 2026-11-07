@@ -1,4 +1,4 @@
-# The Shattered Seals v1.0.49: In-game Acceptance Checklist
+# The Shattered Seals v1.0.50: In-game Acceptance Checklist
 
 This checklist is **not an automated test result**. The GitHub build compiles the
 NeoForge mod, generates six dungeon structures and validates CurseForge packaging.
@@ -14,14 +14,15 @@ Minecraft Java 1.21.1 (Java 21, NeoForge 21.1.238).
 - [ ] Review report ZIP before sharing; relevant log extracts may contain personal paths or usernames.
 
 ## Installation and graphics
-- [ ] Download the `Shattered-Seals-1.0.49-CurseForge-Modpack` GitHub Actions artifact.
-- [ ] Extract the outer Actions artifact once; import the inner `The-Shattered-Seals-1.0.49-CurseForge.zip` in CurseForge.
+- [ ] Download the `Shattered-Seals-1.0.50-CurseForge-Modpack` GitHub Actions artifact.
+- [ ] Extract the outer Actions artifact once; import the inner `The-Shattered-Seals-1.0.50-CurseForge.zip` in CurseForge.
 - [ ] Verify the mod loads without crash and the NeoForge mod list includes The Shattered Seals.
 - [ ] Verify Xaero's Minimap, Xaero's World Map, Iris and Sodium load on the selected game version.
 - [ ] Verify Complementary Reimagined is installed/selected (manual shader installation may be required).
 - [ ] Verify custom relic textures and HUD do not show missing textures or collide at smaller GUI scales.
 - [ ] Verify Q/R ability cards stack to the **left** and V/G to the **right** of the vanilla hotbar; none may cover a hotbar slot.
 - [ ] Verify the class name and resource meter align with and sit **above** the hearts/hunger; test 2x and 3x GUI scale and a narrow window.
+- [ ] Verify the vanilla action-bar level/XP/SP line sits above the custom class/resource labels with no text overlap; the resource bar must still end before the hearts/hunger.
 - [ ] Verify ability cooldown timers, insufficient-resource tint, and different classes' ability labels remain visible.
 
 ## Core gameplay
@@ -56,7 +57,7 @@ Observatory, Sixfold Temple and Hollow King's Fortress:
 - [ ] Visit a previously looted dungeon in NG+, complete the keeper quest and receive a new matching sigil.
 - [ ] Replay all six bosses in the correct order without first-clear rewards being repeated.
 - [ ] Compare boss strength and mastery XP in NG+ cycles 1, 2 and 4: scaling must increase and then cap.
-- [ ] Test saving/loading, leaving/rejoining, and upgrading an existing pre-v1.0.49 world.
+- [ ] Test saving/loading, leaving/rejoining, and upgrading an existing pre-v1.0.50 world.
 
 ## Sign-off
 - Automated GitHub unit/static tests: see the latest successful Quick Development Test workflow.

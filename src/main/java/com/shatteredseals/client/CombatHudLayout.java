@@ -6,6 +6,10 @@ package com.shatteredseals.client;
  * Minecraft 1.21.1's default survival hotbar spans 182 GUI pixels around the
  * viewport midpoint. The class/resource line sits directly above the
  * vanilla hearts and hunger, and no ability panel intersects the hotbar.
+ * The vanilla action-bar progress line renders at roughly height - 68.
+ * Our nine-pixel class/resource label begins at height - 58 to leave
+ * a small gap below it, with the 5px resource bar ending at height - 42,
+ * three pixels above the topmost normal hearts/hunger row.
  */
 public final class CombatHudLayout {
     private static final int HOTBAR_HALF_WIDTH = 91;
@@ -28,7 +32,7 @@ public final class CombatHudLayout {
         int firstY = viewportHeight - 50;
         int secondY = firstY + PANEL_HEIGHT + PANEL_VERTICAL_GAP;
         return new Positions(hotbarLeft, hotbarRight, leftX, rightX,
-            panelWidth, firstY, secondY, viewportHeight - 66, viewportHeight - 52);
+            panelWidth, firstY, secondY, viewportHeight - 58, viewportHeight - 47);
     }
 
     public record Positions(int hotbarLeft, int hotbarRight,
