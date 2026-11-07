@@ -167,7 +167,7 @@ public final class RuntimeAudit {
         return level.getServer().reloadableRegistries().getLootTable(id) != LootTable.EMPTY;
     }
 
-    private static boolean replaySigilRolls(ServerLevel level, String boss) {
+    static boolean replaySigilRolls(ServerLevel level, String boss) {
         ResourceKey<LootTable> id = ResourceKey.create(Registries.LOOT_TABLE,
             ResourceLocation.fromNamespaceAndPath(ShatteredSeals.MOD_ID, "ritual_replay/" + boss));
         LootTable table = level.getServer().reloadableRegistries().getLootTable(id);

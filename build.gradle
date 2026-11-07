@@ -13,4 +13,10 @@ tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
 neoForge {
     version = '21.1.238'
     mods { shatteredseals { sourceSet(sourceSets.main) } }
+    runs {
+        gameTestServer {
+            type = 'gameTestServer'
+            systemProperty 'neoforge.enabledGameTestNamespaces', 'shatteredseals'
+        }
+    }
 }
