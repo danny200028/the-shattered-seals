@@ -1,0 +1,46 @@
+name: Inspect Shattered Seals Source
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'Shattered_Seals_1.0.36_Combat_Polish_Source.zip'
+      - '.github/workflows/source-inspection.yml'
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect archived source without changing release
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p source-inspection
+          unzip -Z1 Shattered_Seals_1.0.36_Combat_Polish_Source.zip > source-inspection/file-list.txt
+          unzip -oq Shattered_Seals_1.0.36_Combat_Polish_Source.zip -d source-inspection/unpacked
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          root = Path('source-inspection/unpacked')
+          files = sorted(p for p in root.rglob('*') if p.is_file())
+          java = [p for p in files if p.suffix == '.java']
+          report = {
+              'source_archive': 'Shattered_Seals_1.0.36_Combat_Polish_Source.zip',
+              'file_count': len(files),
+              'java_file_count': len(java),
+              'java_sources': [str(p.relative_to(root)) for p in java],
+              'build_files': [str(p.relative_to(root)) for p in files if p.name in ('build.gradle','settings.gradle','gradle.properties','neoforge.mods.toml')],
+              'progression_candidates': [str(p.relative_to(root)) for p in files if any(s in p.name.lower() for s in ('skill','level','xp','class','player','progress','menu','quest','dragon'))],
+          }
+          Path('source-inspection/report.json').write_text(json.dumps(report,indent=2))
+          print(json.dumps(report,indent=2))
+          PY
+      - name: Upload inspection report
+        uses: actions/upload-artifact@v4
+        with:
+          name: Shattered-Seals-1.0.36-Source-Inspection
+          path: |
+            source-inspection/report.json
+            source-inspection/file-list.txt
+          if-no-files-found: error
