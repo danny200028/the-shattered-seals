@@ -79,7 +79,7 @@ public final class SkillTreeScreen extends Screen {
             else { confirmingReset = false; perform("ss_respec", 2); }
         }).bounds(x,y+235,245,20).build());
         if (confirmingReset) addRenderableWidget(Button.builder(Component.literal("Cancel"), b -> {
-            confirmingReset = false; rebuildWidgets();
+            confirmingReset = false; perform("ss_respec", 3); rebuildWidgets();
         }).bounds(x+249,y+235,95,20).build());
         else addRenderableWidget(Button.builder(Component.literal("RPG Hub"),
             b -> Minecraft.getInstance().setScreen(new AdventureScreen()))
@@ -138,6 +138,13 @@ public final class SkillTreeScreen extends Screen {
         super.render(graphics, mouseX, mouseY, delta);
     }
 
-    @Override public void onClose() { super.onClose(); ClientSkillState.clear(); }
+    @Override public void onClose() {
+        if (confirmingReset) {
+            confirmingReset = false;
+            perform("ss_respec", 3);
+        }
+        super.onClose();
+        ClientSkillState.clear();
+    }
     @Override public boolean isPauseScreen() { return false; }
 }

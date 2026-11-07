@@ -36,3 +36,8 @@ scoreboard players add @a ss_mp_guard 0
 scoreboard players add @a ss_mp_haste 0
 scoreboard players add @a ss_mp_fury 0
 scoreboard players add @a ss_reset_confirm 0
+# Clear stale skill-reset consent automatically after 60 seconds.
+scoreboard players add @a ss_reset_timer 0
+execute as @a[scores={ss_reset_timer=1..}] run scoreboard players remove @s ss_reset_timer 1
+execute as @a[scores={ss_reset_timer=0,ss_reset_confirm=1..}] run tellraw @s {"text":"Your Dragon Egg reset confirmation has expired.","color":"yellow"}
+scoreboard players set @a[scores={ss_reset_timer=0,ss_reset_confirm=1..}] ss_reset_confirm 0

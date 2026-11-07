@@ -41,3 +41,4 @@ scoreboard players set @s ss_mp_guard 0
 scoreboard players set @s ss_mp_haste 0
 scoreboard players set @s ss_mp_fury 0
 scoreboard players set @s ss_reset_confirm 0
+scoreboard players set @s ss_reset_timer 0
