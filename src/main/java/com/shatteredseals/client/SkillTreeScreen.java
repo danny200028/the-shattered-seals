@@ -76,11 +76,14 @@ public final class SkillTreeScreen extends Screen {
         addRenderableWidget(Button.builder(Component.literal(
             confirmingReset ? "CONFIRM: Use Dragon Egg" : "Reset skill points (Dragon Egg)"), b -> {
             if (!confirmingReset) { confirmingReset = true; rebuildWidgets(); }
-            else { confirmingReset = false; perform("ss_respec", 1); }
+            else { confirmingReset = false; perform("ss_respec", 2); }
         }).bounds(x,y+235,245,20).build());
         if (confirmingReset) addRenderableWidget(Button.builder(Component.literal("Cancel"), b -> {
             confirmingReset = false; rebuildWidgets();
         }).bounds(x+249,y+235,95,20).build());
+        else addRenderableWidget(Button.builder(Component.literal("RPG Hub"),
+            b -> Minecraft.getInstance().setScreen(new AdventureScreen()))
+            .bounds(x+249,y+235,95,20).build());
     }
 
     private static void perform(String objective, int value) {
