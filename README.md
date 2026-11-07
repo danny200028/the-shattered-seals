@@ -21,7 +21,7 @@ The shaderpack is **referenced** as a CurseForge dependency rather than redistri
 - **L** Toggle the on-screen chapter tracker with live rune-ward and keeper side-quest progress. The overlay reads server-owned scores and never grants progress.
 - **Q / R / V / G** Four combat skill slots.
 - **Hold right-click with a sword** for 1.8-style frontal sword guarding. The server checks your held weapon, incoming attack direction and a short-lived hold signal. Damage from behind and environmental damage are not blocked; shields still use vanilla mechanics.
-- Complete the six dungeon chapters in order by defeating each boss. Summoning sigils spawn in the corresponding loot chest. Dungeon fortresses have six guardian spawners, magma and cobweb hazards, hidden caches and a ritual arena. Dungeon locator uses Minecraft's `/locate structure` to find the current chapter.
+- Complete the six dungeon chapters in order by defeating each boss. Summoning sigils spawn in the corresponding loot chest. Dungeon fortresses have six guardian spawners, magma and cobweb hazards, hidden caches and a ritual arena. Each of the six bosses now has distinct particle, audio and actionbar cues at both phase transitions. Dungeon locator uses Minecraft's `/locate structure` to find the current chapter.
 - Character level cap is **60**. Clearing the Hollow King and reaching level 60 unlocks New Game+.
 - Dragon Egg skill resets require explicit confirmation, consume one egg, refund normal and invested NG+ mastery allocations.
 
