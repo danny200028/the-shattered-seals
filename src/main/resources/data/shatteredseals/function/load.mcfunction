@@ -159,3 +159,6 @@ scoreboard objectives add ss_mperk trigger
 scoreboard objectives add ss_mp_guard dummy
 scoreboard objectives add ss_mp_haste dummy
 scoreboard objectives add ss_mp_fury dummy
+
+# Main story: survival-accessible quest journal and dungeon locator
+scoreboard objectives add ss_story trigger

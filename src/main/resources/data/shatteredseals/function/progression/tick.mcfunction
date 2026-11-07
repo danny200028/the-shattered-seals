@@ -23,3 +23,10 @@ scoreboard players enable @a ss_mperk
 execute as @a[scores={ss_mperk=1..}] run function shatteredseals:mastery/shop
 scoreboard players set @a[scores={ss_mperk=1..}] ss_mperk 0
 execute if score #clock ss_clock matches 0 as @a[scores={ss_ng=1..}] run function shatteredseals:mastery/passives
+
+# Chapter journal, dungeon locator and NG+ activation
+scoreboard players enable @a ss_story
+execute as @a[scores={ss_story=1}] run function shatteredseals:story/journal
+execute as @a[scores={ss_story=2}] at @s run function shatteredseals:story/locate
+execute as @a[scores={ss_story=3}] run function shatteredseals:ngplus/start
+scoreboard players set @a[scores={ss_story=1..}] ss_story 0

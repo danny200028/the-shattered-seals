@@ -77,9 +77,9 @@ public final class AdventureScreen extends Screen {
                 b -> perform("ss_upgrade", 1))
                 .bounds(x + 123, y + 163, 162, 23).build());
         } else if (page == Page.JOURNAL) {
-            addRenderableWidget(Button.builder(Component.literal("Show in-game boss guide"),
-                b -> perform("ss_menu", 2))
-                .bounds(x + 194, y + 227, 203, 21).build());
+            addRenderableWidget(Button.builder(Component.literal("Locate next dungeon"),
+                b -> perform("ss_story", 2))
+                .bounds(x + 194, y + 235, 203, 21).build());
         } else if (page == Page.ARSENAL) {
             addRenderableWidget(Button.builder(Component.literal("Open Relic Forge"),
                 b -> { page = Page.FORGE; rebuildWidgets(); })
@@ -147,7 +147,7 @@ public final class AdventureScreen extends Screen {
         }
         line(graphics, next == -1 ? "All six seals broken. New Game+ awaits."
                 : "Next hunt: " + BOSSES[next] + " | Conquer the dungeon to advance.",
-             x + 8, y + 239, 0xFFC6CBDF);
+             x + 8, y + 223, 0xFFC6CBDF);
     }
 
     private void renderArsenal(GuiGraphics graphics, int x, int y) {
