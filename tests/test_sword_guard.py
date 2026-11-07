@@ -25,7 +25,7 @@ class SwordGuardTests(unittest.TestCase):
         self.assertIn("event.getSource().getEntity().position()", combat)
         self.assertIn("isFacingAttack(player.position(), player.getLookAngle(), source)", combat)
         self.assertIn("SoundEvents.SHIELD_BLOCK", combat)
-        self.assertIn("forward < 0.35", combat)
+        self.assertIn("return forward >= 0.35", combat)
         self.assertIn("DAMAGE_MULTIPLIER = 0.60F", combat)
         self.assertIn("event.setAmount(event.getAmount() * DAMAGE_MULTIPLIER)", combat)
         self.assertIn("registrar.playToServer(SwordGuard.TYPE", network)
