@@ -2,9 +2,15 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    "minecraft:book",
-    "minecraft:nether_star",
-    "minecraft:paper"
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "minecraft:nether_star"
+    },
+    {
+      "item": "minecraft:paper"
+    }
   ],
   "result": {
     "id": "minecraft:written_book",

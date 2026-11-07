@@ -21,7 +21,7 @@
                   "italic": false
                 },
                 {
-                  "text": "Enchantments: Sharpness",
+                  "text": "Enchantments: Sharpness, Soul Edge I",
                   "italic": false
                 },
                 {
@@ -42,7 +42,8 @@
             {
               "function": "minecraft:set_enchantments",
               "enchantments": {
-                "minecraft:sharpness": 1
+                "minecraft:sharpness": 1,
+                "shatteredseals:soul_edge": 1
               }
             },
             {
@@ -75,7 +76,7 @@
                   "italic": false
                 },
                 {
-                  "text": "Enchantments: Sharpness",
+                  "text": "Enchantments: Sharpness, Soul Edge I",
                   "italic": false
                 },
                 {
@@ -96,7 +97,8 @@
             {
               "function": "minecraft:set_enchantments",
               "enchantments": {
-                "minecraft:sharpness": 1
+                "minecraft:sharpness": 1,
+                "shatteredseals:soul_edge": 1
               }
             },
             {
@@ -129,7 +131,7 @@
                   "italic": false
                 },
                 {
-                  "text": "Enchantments: Sharpness",
+                  "text": "Enchantments: Sharpness, Soul Edge I",
                   "italic": false
                 },
                 {
@@ -150,7 +152,8 @@
             {
               "function": "minecraft:set_enchantments",
               "enchantments": {
-                "minecraft:sharpness": 1
+                "minecraft:sharpness": 1,
+                "shatteredseals:soul_edge": 1
               }
             },
             {
@@ -183,7 +186,7 @@
                   "italic": false
                 },
                 {
-                  "text": "Enchantments: Sharpness",
+                  "text": "Enchantments: Sharpness, Soul Edge I",
                   "italic": false
                 },
                 {
@@ -204,7 +207,8 @@
             {
               "function": "minecraft:set_enchantments",
               "enchantments": {
-                "minecraft:sharpness": 1
+                "minecraft:sharpness": 1,
+                "shatteredseals:soul_edge": 1
               }
             },
             {
@@ -453,7 +457,7 @@
                   "italic": false
                 },
                 {
-                  "text": "Enchantments: Efficiency",
+                  "text": "Enchantments: Efficiency, Delver's Luck I",
                   "italic": false
                 },
                 {
@@ -474,7 +478,8 @@
             {
               "function": "minecraft:set_enchantments",
               "enchantments": {
-                "minecraft:efficiency": 1
+                "minecraft:efficiency": 1,
+                "shatteredseals:delvers_luck": 1
               }
             },
             {
@@ -507,7 +512,7 @@
                   "italic": false
                 },
                 {
-                  "text": "Enchantments: Efficiency",
+                  "text": "Enchantments: Efficiency, Delver's Luck I",
                   "italic": false
                 },
                 {
@@ -528,7 +533,8 @@
             {
               "function": "minecraft:set_enchantments",
               "enchantments": {
-                "minecraft:efficiency": 1
+                "minecraft:efficiency": 1,
+                "shatteredseals:delvers_luck": 1
               }
             },
             {
@@ -561,7 +567,7 @@
                   "italic": false
                 },
                 {
-                  "text": "Enchantments: Efficiency",
+                  "text": "Enchantments: Efficiency, Delver's Luck I",
                   "italic": false
                 },
                 {
@@ -582,7 +588,8 @@
             {
               "function": "minecraft:set_enchantments",
               "enchantments": {
-                "minecraft:efficiency": 1
+                "minecraft:efficiency": 1,
+                "shatteredseals:delvers_luck": 1
               }
             },
             {
@@ -615,7 +622,7 @@
                   "italic": false
                 },
                 {
-                  "text": "Enchantments: Efficiency",
+                  "text": "Enchantments: Efficiency, Delver's Luck I",
                   "italic": false
                 },
                 {
@@ -636,7 +643,8 @@
             {
               "function": "minecraft:set_enchantments",
               "enchantments": {
-                "minecraft:efficiency": 1
+                "minecraft:efficiency": 1,
+                "shatteredseals:delvers_luck": 1
               }
             },
             {
@@ -669,7 +677,7 @@
                   "italic": false
                 },
                 {
-                  "text": "Enchantments: Unbreaking",
+                  "text": "Enchantments: Unbreaking, Delver's Luck I",
                   "italic": false
                 },
                 {
@@ -690,7 +698,8 @@
             {
               "function": "minecraft:set_enchantments",
               "enchantments": {
-                "minecraft:unbreaking": 1
+                "minecraft:unbreaking": 1,
+                "shatteredseals:delvers_luck": 1
               }
             },
             {
@@ -723,7 +732,7 @@
                   "italic": false
                 },
                 {
-                  "text": "Enchantments: Unbreaking",
+                  "text": "Enchantments: Unbreaking, Delver's Luck I",
                   "italic": false
                 },
                 {
@@ -744,7 +753,8 @@
             {
               "function": "minecraft:set_enchantments",
               "enchantments": {
-                "minecraft:unbreaking": 1
+                "minecraft:unbreaking": 1,
+                "shatteredseals:delvers_luck": 1
               }
             },
             {
@@ -885,7 +895,7 @@
                   "italic": false
                 },
                 {
-                  "text": "Enchantments: Protection",
+                  "text": "Enchantments: Protection, Granite Heart I",
                   "italic": false
                 },
                 {
@@ -906,7 +916,8 @@
             {
               "function": "minecraft:set_enchantments",
               "enchantments": {
-                "minecraft:protection": 1
+                "minecraft:protection": 1,
+                "shatteredseals:granite_heart": 1
               }
             },
             {
@@ -939,7 +950,7 @@
                   "italic": false
                 },
                 {
-                  "text": "Enchantments: Protection",
+                  "text": "Enchantments: Protection, Vitality I",
                   "italic": false
                 },
                 {
@@ -960,7 +971,8 @@
             {
               "function": "minecraft:set_enchantments",
               "enchantments": {
-                "minecraft:protection": 1
+                "minecraft:protection": 1,
+                "shatteredseals:vitality": 1
               }
             },
             {
@@ -1101,7 +1113,7 @@
                   "italic": false
                 },
                 {
-                  "text": "Enchantments: Feather Falling",
+                  "text": "Enchantments: Feather Falling, Fleetstep I",
                   "italic": false
                 },
                 {
@@ -1122,7 +1134,8 @@
             {
               "function": "minecraft:set_enchantments",
               "enchantments": {
-                "minecraft:feather_falling": 1
+                "minecraft:feather_falling": 1,
+                "shatteredseals:fleetstep": 1
               }
             },
             {
@@ -1155,7 +1168,7 @@
                   "italic": false
                 },
                 {
-                  "text": "Enchantments: Feather Falling",
+                  "text": "Enchantments: Feather Falling, Fleetstep I",
                   "italic": false
                 },
                 {
@@ -1176,7 +1189,8 @@
             {
               "function": "minecraft:set_enchantments",
               "enchantments": {
-                "minecraft:feather_falling": 1
+                "minecraft:feather_falling": 1,
+                "shatteredseals:fleetstep": 1
               }
             },
             {
@@ -1425,7 +1439,7 @@
                   "italic": false
                 },
                 {
-                  "text": "Enchantments: Loyalty",
+                  "text": "Enchantments: Loyalty, Soul Edge I",
                   "italic": false
                 },
                 {
@@ -1446,7 +1460,8 @@
             {
               "function": "minecraft:set_enchantments",
               "enchantments": {
-                "minecraft:loyalty": 1
+                "minecraft:loyalty": 1,
+                "shatteredseals:soul_edge": 1
               }
             },
             {
@@ -1479,7 +1494,7 @@
                   "italic": false
                 },
                 {
-                  "text": "Enchantments: Loyalty",
+                  "text": "Enchantments: Loyalty, Soul Edge I",
                   "italic": false
                 },
                 {
@@ -1500,7 +1515,8 @@
             {
               "function": "minecraft:set_enchantments",
               "enchantments": {
-                "minecraft:loyalty": 1
+                "minecraft:loyalty": 1,
+                "shatteredseals:soul_edge": 1
               }
             },
             {
@@ -1641,7 +1657,7 @@
                   "italic": false
                 },
                 {
-                  "text": "Enchantments: Sharpness",
+                  "text": "Enchantments: Sharpness, Soul Edge I",
                   "italic": false
                 },
                 {
@@ -1662,7 +1678,8 @@
             {
               "function": "minecraft:set_enchantments",
               "enchantments": {
-                "minecraft:sharpness": 1
+                "minecraft:sharpness": 1,
+                "shatteredseals:soul_edge": 1
               }
             },
             {
@@ -1695,7 +1712,7 @@
                   "italic": false
                 },
                 {
-                  "text": "Enchantments: Sharpness",
+                  "text": "Enchantments: Sharpness, Soul Edge I",
                   "italic": false
                 },
                 {
@@ -1716,7 +1733,8 @@
             {
               "function": "minecraft:set_enchantments",
               "enchantments": {
-                "minecraft:sharpness": 1
+                "minecraft:sharpness": 1,
+                "shatteredseals:soul_edge": 1
               }
             },
             {
@@ -1749,7 +1767,7 @@
                   "italic": false
                 },
                 {
-                  "text": "Enchantments: Fortune",
+                  "text": "Enchantments: Fortune, Delver's Luck I",
                   "italic": false
                 },
                 {
@@ -1770,7 +1788,8 @@
             {
               "function": "minecraft:set_enchantments",
               "enchantments": {
-                "minecraft:fortune": 1
+                "minecraft:fortune": 1,
+                "shatteredseals:delvers_luck": 1
               }
             },
             {
@@ -1803,7 +1822,7 @@
                   "italic": false
                 },
                 {
-                  "text": "Enchantments: Fortune",
+                  "text": "Enchantments: Fortune, Delver's Luck I",
                   "italic": false
                 },
                 {
@@ -1824,7 +1843,8 @@
             {
               "function": "minecraft:set_enchantments",
               "enchantments": {
-                "minecraft:fortune": 1
+                "minecraft:fortune": 1,
+                "shatteredseals:delvers_luck": 1
               }
             },
             {
@@ -1857,7 +1877,7 @@
                   "italic": false
                 },
                 {
-                  "text": "Enchantments: Efficiency",
+                  "text": "Enchantments: Efficiency, Soul Edge I",
                   "italic": false
                 },
                 {
@@ -1878,7 +1898,8 @@
             {
               "function": "minecraft:set_enchantments",
               "enchantments": {
-                "minecraft:efficiency": 1
+                "minecraft:efficiency": 1,
+                "shatteredseals:soul_edge": 1
               }
             },
             {
@@ -1911,7 +1932,7 @@
                   "italic": false
                 },
                 {
-                  "text": "Enchantments: Efficiency",
+                  "text": "Enchantments: Efficiency, Soul Edge I",
                   "italic": false
                 },
                 {
@@ -1932,7 +1953,8 @@
             {
               "function": "minecraft:set_enchantments",
               "enchantments": {
-                "minecraft:efficiency": 1
+                "minecraft:efficiency": 1,
+                "shatteredseals:soul_edge": 1
               }
             },
             {

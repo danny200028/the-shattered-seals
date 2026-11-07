@@ -51,7 +51,38 @@ class DungeonTests(unittest.TestCase):
                 self.assertIn('"ss_ritual": "'+boss+'"',json.dumps(loot))
                 if previous:
                     ritual=(DATA/f"function/ritual/use_{boss}.mcfunction").read_text()
-                    self.assertIn(f"if score @s {previous} matches 1..",ritual)
+                    self.assertIn(f"unless score @s {previous} matches 1.. run return",ritual)
+
+    def test_bosses_require_the_matching_arena_and_consume_sigils_after_spawn(self):
+        functions = DATA / "function"
+        for chapter, (dungeon, boss, _) in enumerate(DUNGEONS, 1):
+            with self.subTest(boss=boss):
+                predicate = json.loads((DATA / f"predicate/arena/{dungeon}.json").read_text())
+                self.assertEqual(predicate["predicate"]["structures"], f"shatteredseals:{dungeon}")
+                use = (functions / f"ritual/use_{boss}.mcfunction").read_text()
+                self.assertIn(f"unless predicate shatteredseals:arena/{dungeon} run return", use)
+                self.assertIn("unless block ~ ~-1 ~ minecraft:crying_obsidian run return", use)
+                self.assertIn(f"unless score @s ss_ngchapter matches {chapter} run return", use)
+                activate = (functions / f"ritual/activate_{boss}.mcfunction").read_text()
+                self.assertLess(activate.index(f"boss/summon_{boss}"), activate.index("clear @s"))
+                self.assertIn("unless score @s ss_spawnok matches 1 run return 0", activate)
+                summon = (functions / f"boss/summon_{boss}.mcfunction").read_text()
+                self.assertNotIn("positioned over", summon)
+                self.assertIn("store success score @s ss_spawnok run summon", summon)
+
+    def test_new_game_plus_replays_without_resetting_first_clear_rewards(self):
+        functions = DATA / "function"
+        start = (functions / "ngplus/start.mcfunction").read_text()
+        self.assertIn("unless score @s ss_level matches 60..", start)
+        self.assertIn("unless score @s ss_vk_king matches 1..", start)
+        self.assertIn("ss_ngchapter matches 1..6 run return", start)
+        self.assertIn("scoreboard players set @s ss_ngchapter 1", start)
+        for chapter, (_, boss, _) in enumerate(DUNGEONS, 1):
+            with self.subTest(boss=boss):
+                reward = (functions / f"reward/{boss}.mcfunction").read_text()
+                self.assertIn(f"ss_ngchapter matches {chapter} run scoreboard players add @s ss_ngchapter 1", reward)
+                repeat = (functions / f"reward/repeat/{boss}.mcfunction").read_text()
+                self.assertIn("ss_ng matches 1.. run function shatteredseals:progression/boss_xp", repeat)
 
     def test_optional_cache_rarity_distribution(self):
         # Bonus treasure should be common-biased even though late-game
@@ -74,5 +105,6 @@ class DungeonTests(unittest.TestCase):
         self.assertIn("scoreboard players enable @a ss_story",tick)
         self.assertIn("shatteredseals:story/journal",tick)
         self.assertIn("shatteredseals:story/locate",tick)
-        self.assertEqual(locate.count("locate structure shatteredseals:"),6)
+        for chapter, (dungeon, _, _) in enumerate(DUNGEONS, 1):
+            self.assertIn(f"ss_ngchapter matches {chapter} run return run locate structure shatteredseals:{dungeon}", locate)
         self.assertIn("NEW GAME+",journal.upper())

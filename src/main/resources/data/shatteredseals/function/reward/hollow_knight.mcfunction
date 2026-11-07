@@ -5,4 +5,6 @@ execute at @s run kill @e[type=minecraft:marker,tag=ss_watch_hollow_knight,sort=
 execute if score @s ss_vk_holl matches 0 run function shatteredseals:reward/first/hollow_knight
 execute if score @s ss_vk_holl matches 1.. run function shatteredseals:reward/repeat/hollow_knight
 scoreboard players add @s ss_vk_holl 1
+execute if score @s ss_ngchapter matches 3 run tellraw @s {"text":"New Game+ chapter cleared. Open the Codex to find the next dungeon.","color":"light_purple"}
+execute if score @s ss_ngchapter matches 3 run scoreboard players add @s ss_ngchapter 1
 advancement revoke @s only shatteredseals:victory/hollow_knight

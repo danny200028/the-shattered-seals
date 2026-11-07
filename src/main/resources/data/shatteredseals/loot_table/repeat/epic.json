@@ -965,7 +965,7 @@
                   "italic": false
                 },
                 {
-                  "text": "Enchantments: Protection, Unbreaking, Granite Heart",
+                  "text": "Enchantments: Protection, Unbreaking, Vitality",
                   "italic": false
                 },
                 {
@@ -988,7 +988,7 @@
               "enchantments": {
                 "minecraft:protection": 3,
                 "minecraft:unbreaking": 3,
-                "shatteredseals:granite_heart": 2
+                "shatteredseals:vitality": 2
               }
             },
             {

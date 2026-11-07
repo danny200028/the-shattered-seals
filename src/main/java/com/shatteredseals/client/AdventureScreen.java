@@ -22,6 +22,7 @@ public final class AdventureScreen extends Screen {
         "Smuggler King", "Cinder Warden", "Hollow Knight",
         "Arcane Seer", "Sixfold Guardian", "Hollow King"
     };
+    private static final int[] RECOMMENDED_LEVELS = {8, 16, 25, 35, 45, 55};
     private static final String[] WEAPONS = {
         "Emberbound", "King's Fang", "Warden's Oath",
         "Starfall", "Gravekeeper", "King's Bane"
@@ -80,6 +81,10 @@ public final class AdventureScreen extends Screen {
             addRenderableWidget(Button.builder(Component.literal("Locate next dungeon"),
                 b -> perform("ss_story", 2))
                 .bounds(x + 194, y + 235, 203, 21).build());
+            if (state != null && state.level() >= 60 && state.bossWins()[5] > 0 && !isReplay(state)) {
+                addRenderableWidget(Button.builder(Component.literal(state.ngCycle() == 0 ? "Begin New Game+" : "Start next NG+ cycle"),
+                    b -> perform("ss_story", 3)).bounds(x + 8, y + 235, 180, 21).build());
+            }
         } else if (page == Page.ARSENAL) {
             addRenderableWidget(Button.builder(Component.literal("Open Relic Forge"),
                 b -> { page = Page.FORGE; rebuildWidgets(); })
@@ -135,19 +140,38 @@ public final class AdventureScreen extends Screen {
     }
 
     private void renderJournal(GuiGraphics graphics, SkillSnapshot data, int x, int y) {
-        line(graphics, "THE SIX SHATTERED SEALS", x + 8, y + 75, 0xFFE4AF76);
-        int next = -1;
+        boolean replay = isReplay(data);
+        line(graphics, replay ? "NEW GAME+ | CYCLE " + data.ngCycle() : "THE SIX SHATTERED SEALS",
+             x + 8, y + 75, 0xFFE4AF76);
+        int next = replay ? data.replayChapter() - 1 : nextChapter(data);
         for (int i = 0; i < CHAPTERS.length; i++) {
-            boolean defeated = data.bossWins()[i] > 0;
-            if (!defeated && next == -1) next = i;
-            int color = defeated ? 0xFF79D4AA : 0xFFEAC99C;
-            line(graphics, (defeated ? "[CLEARED]  " : "[ACTIVE]   ")
+            boolean defeated = replay ? i < next : data.bossWins()[i] > 0;
+            boolean active = i == next;
+            int color = defeated ? 0xFF79D4AA : active ? 0xFFEAC99C : 0xFF8993A8;
+            line(graphics, (defeated ? "[CLEARED]  " : active ? "[ACTIVE]   " : "[LOCKED]  ")
                 + CHAPTERS[i] + "  |  " + BOSSES[i],
-                x + 8, y + 97 + 21 * i, color);
+                x + 8, y + 95 + 17 * i, color);
         }
-        line(graphics, next == -1 ? "All six seals broken. New Game+ awaits."
-                : "Next hunt: " + BOSSES[next] + " | Conquer the dungeon to advance.",
-             x + 8, y + 223, 0xFFC6CBDF);
+        if (next < 0) {
+            line(graphics, data.level() < 60 ? "All six seals broken. Reach level 60 for New Game+."
+                 : "All six seals broken. Begin your next circuit when ready.", x + 8, y + 217, 0xFFC6CBDF);
+            return;
+        }
+        int level = replay ? 60 : RECOMMENDED_LEVELS[next];
+        line(graphics, "1. Locate and enter the fortress. Suggested level " + level + ".", x + 8, y + 197, 0xFFC6CBDF);
+        line(graphics, "2. Find the sigil in the arena chest or craft a replacement.", x + 8, y + 209, 0xFFC6CBDF);
+        line(graphics, "3. Use it on the crying obsidian pad. Defeat " + BOSSES[next] + ".", x + 8, y + 221, 0xFFC6CBDF);
+    }
+
+    private static boolean isReplay(SkillSnapshot data) {
+        return data.replayChapter() >= 1 && data.replayChapter() <= CHAPTERS.length;
+    }
+
+    private static int nextChapter(SkillSnapshot data) {
+        for (int i = 0; i < CHAPTERS.length; i++) {
+            if (data.bossWins()[i] == 0) return i;
+        }
+        return -1;
     }
 
     private void renderArsenal(GuiGraphics graphics, int x, int y) {

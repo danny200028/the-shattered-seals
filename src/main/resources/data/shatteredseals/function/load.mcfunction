@@ -9,6 +9,8 @@ scoreboard objectives add ss_choose trigger
 scoreboard objectives add ss_cast trigger
 scoreboard objectives add ss_won dummy
 scoreboard objectives add ss_ng dummy
+scoreboard objectives add ss_ngchapter dummy
+scoreboard objectives add ss_spawnok dummy
 scoreboard players set #clock ss_clock 0
 bossbar add shatteredseals:smuggler_king {"text":"Smuggler King","color":"gold","bold":true}
 bossbar set shatteredseals:smuggler_king max 150

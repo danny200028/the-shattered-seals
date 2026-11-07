@@ -5,4 +5,6 @@ execute at @s run kill @e[type=minecraft:marker,tag=ss_watch_arcane_seer,sort=ne
 execute if score @s ss_vk_arca matches 0 run function shatteredseals:reward/first/arcane_seer
 execute if score @s ss_vk_arca matches 1.. run function shatteredseals:reward/repeat/arcane_seer
 scoreboard players add @s ss_vk_arca 1
+execute if score @s ss_ngchapter matches 4 run tellraw @s {"text":"New Game+ chapter cleared. Open the Codex to find the next dungeon.","color":"light_purple"}
+execute if score @s ss_ngchapter matches 4 run scoreboard players add @s ss_ngchapter 1
 advancement revoke @s only shatteredseals:victory/arcane_seer

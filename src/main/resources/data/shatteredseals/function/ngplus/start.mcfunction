@@ -1,5 +1,6 @@
-execute unless score @s ss_level matches 60.. run tellraw @s {"text":"New Game+ mastery requires character level 60.","color":"red"}
-execute if score @s ss_level matches 60.. if score @s ss_won matches 1.. run scoreboard players add @s ss_ng 1
-execute if score @s ss_level matches 60.. if score @s ss_won matches 1.. run scoreboard players set @s ss_won 0
-execute if score @s ss_ng matches 1.. run tellraw @s {"text":"New Game+ activated. The next six bosses gain additional power.","color":"dark_purple","bold":true}
-execute unless score @s ss_ng matches 1.. run tellraw @s {"text":"Defeat the Hollow King first to unlock New Game+.","color":"red","bold":false}
+execute unless score @s ss_level matches 60.. run return run tellraw @s {"text":"New Game+ requires character level 60.","color":"red"}
+execute unless score @s ss_vk_king matches 1.. run return run tellraw @s {"text":"Defeat the Hollow King to unlock New Game+.","color":"red"}
+execute if score @s ss_ngchapter matches 1..6 run return run tellraw @s {"text":"Complete your current New Game+ circuit first.","color":"yellow"}
+scoreboard players add @s ss_ng 1
+scoreboard players set @s ss_ngchapter 1
+tellraw @s {"text":"New Game+ begins at the Smugglers' Den. Replay all six dungeons for mastery XP.","color":"light_purple"}

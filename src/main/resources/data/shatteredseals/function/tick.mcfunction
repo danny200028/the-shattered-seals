@@ -4,6 +4,9 @@ scoreboard players add @a ss_path 0
 scoreboard players add @a ss_cd 0
 scoreboard players add @a ss_won 0
 scoreboard players add @a ss_ng 0
+scoreboard players add @a ss_ngchapter 0
+# Existing New Game+ players start their first guided replay.
+execute as @a[scores={ss_ng=1..,ss_ngchapter=0}] run scoreboard players set @s ss_ngchapter 1
 scoreboard players enable @a ss_choose
 scoreboard players enable @a ss_cast
 execute as @a[tag=!ss_welcome] run function shatteredseals:welcome

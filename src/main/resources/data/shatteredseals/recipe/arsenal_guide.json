@@ -2,9 +2,15 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    "minecraft:book",
-    "minecraft:amethyst_shard",
-    "minecraft:blaze_powder"
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "minecraft:amethyst_shard"
+    },
+    {
+      "item": "minecraft:blaze_powder"
+    }
   ],
   "result": {
     "id": "minecraft:written_book",
