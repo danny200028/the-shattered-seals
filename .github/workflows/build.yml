@@ -1,4 +1,4 @@
-name: Build The Shattered Seals 1.0.42
+name: Build The Shattered Seals 1.0.43
 on:
   push:
     branches: [main]
@@ -42,6 +42,18 @@ jobs:
         run: |
           set -o pipefail
           gradle --no-daemon build --stacktrace 2>&1 | tee compile-log.txt
+      - name: Package CurseForge import ZIP
+        run: python3 scripts/package_curseforge.py
+      - name: Validate packaged modpack
+        run: python3 -m unittest discover -s tests -p 'verify_package.py' -v
+      - name: Upload CurseForge modpack
+        uses: actions/upload-artifact@v4
+        with:
+          name: Shattered-Seals-1.0.43-CurseForge-Modpack
+          path: |
+            build/distributions/*.zip
+            build/distributions/*.sha256
+          if-no-files-found: error
       - name: Record output hashes
         if: success()
         run: sha256sum build/libs/*.jar > SHA256SUMS.txt
@@ -49,7 +61,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.42-NeoForge-JAR
+          name: Shattered-Seals-1.0.43-NeoForge-JAR
           path: |
             build/libs/*.jar
             SHA256SUMS.txt
@@ -58,6 +70,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.42-Build-Log
+          name: Shattered-Seals-1.0.43-Build-Log
           path: compile-log.txt
           if-no-files-found: ignore

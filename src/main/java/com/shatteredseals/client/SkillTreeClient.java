@@ -17,6 +17,10 @@ public final class SkillTreeClient {
         "key.shatteredseals.open_skills", InputConstants.Type.KEYSYM,
         GLFW.GLFW_KEY_K, "key.categories.shatteredseals");
 
+    public static final KeyMapping OPEN_CODEX = new KeyMapping(
+        "key.shatteredseals.open_codex", InputConstants.Type.KEYSYM,
+        GLFW.GLFW_KEY_J, "key.categories.shatteredseals");
+
     public static final KeyMapping CAST_ABILITY = new KeyMapping(
         "key.shatteredseals.cast_ability", InputConstants.Type.KEYSYM,
         GLFW.GLFW_KEY_Q, "key.categories.shatteredseals");
@@ -39,6 +43,7 @@ public final class SkillTreeClient {
         @SubscribeEvent
         public static void registerKeys(RegisterKeyMappingsEvent event) {
             event.register(OPEN_SKILLS);
+            event.register(OPEN_CODEX);
             event.register(CAST_ABILITY);
             event.register(CAST_2);
             event.register(CAST_3);
@@ -63,6 +68,7 @@ public final class SkillTreeClient {
             }
             if (mc.screen != null) return;
             while (OPEN_SKILLS.consumeClick()) mc.setScreen(new SkillTreeScreen());
+            while (OPEN_CODEX.consumeClick()) mc.setScreen(new AdventureScreen());
             while (CAST_ABILITY.consumeClick()) PacketDistributor.sendToServer(new CombatCast(1));
             while (CAST_2.consumeClick()) PacketDistributor.sendToServer(new CombatCast(2));
             while (CAST_3.consumeClick()) PacketDistributor.sendToServer(new CombatCast(3));
