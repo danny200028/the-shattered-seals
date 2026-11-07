@@ -12,7 +12,8 @@ import net.minecraft.world.scores.Scoreboard;
 /** Server-owned state; client cannot use this packet to change skill points. */
 public record SkillSnapshot(int level, int xp, int requiredXp, int points,
                             int kills, int activeClass, int masteryRank,
-                            int[] branchRanks, int[] branchMasteries, int[] cooldowns, int[] resources) implements CustomPacketPayload {
+                            int[] branchRanks, int[] branchMasteries, int[] cooldowns, int[] resources,
+                            int ngCycle, int masteryPoints, int[] masteryPerks, int[] bossWins) implements CustomPacketPayload {
     public static final Type<SkillSnapshot> TYPE = new Type<>(
         ResourceLocation.fromNamespaceAndPath("shatteredseals", "skill_snapshot"));
     public static final StreamCodec<RegistryFriendlyByteBuf, SkillSnapshot> STREAM_CODEC = StreamCodec.of(
@@ -28,6 +29,10 @@ public record SkillSnapshot(int level, int xp, int requiredXp, int points,
             for (int i = 0; i < 12; i++) buf.writeVarInt(value.branchMasteries()[i]);
             for (int i = 0; i < 4; i++) buf.writeVarInt(value.cooldowns()[i]);
             for (int i = 0; i < 4; i++) buf.writeVarInt(value.resources()[i]);
+            buf.writeVarInt(value.ngCycle());
+            buf.writeVarInt(value.masteryPoints());
+            for (int i = 0; i < 3; i++) buf.writeVarInt(value.masteryPerks()[i]);
+            for (int i = 0; i < 6; i++) buf.writeVarInt(value.bossWins()[i]);
         },
         buf -> {
             int level = buf.readVarInt();
@@ -45,8 +50,15 @@ public record SkillSnapshot(int level, int xp, int requiredXp, int points,
             for (int i = 0; i < 4; i++) cooldowns[i] = buf.readVarInt();
             int[] resources = new int[4];
             for (int i = 0; i < 4; i++) resources[i] = buf.readVarInt();
+            int ngCycle = buf.readVarInt();
+            int masteryPoints = buf.readVarInt();
+            int[] masteryPerks = new int[3];
+            int[] bossWins = new int[6];
+            for (int i = 0; i < 3; i++) masteryPerks[i] = buf.readVarInt();
+            for (int i = 0; i < 6; i++) bossWins[i] = buf.readVarInt();
             return new SkillSnapshot(level, xp, requiredXp, points, kills,
-                                     activeClass, masteryRank, ranks, masteries, cooldowns, resources);
+                                     activeClass, masteryRank, ranks, masteries, cooldowns, resources,
+                                     ngCycle, masteryPoints, masteryPerks, bossWins);
         });
 
     private static int read(Scoreboard scoreboard, ServerPlayer player, String objective) {
@@ -74,7 +86,13 @@ public record SkillSnapshot(int level, int xp, int requiredXp, int points,
             new int[] {read(board, player, "ss_burst_cd"), read(board, player, "ss_burst_cd2"),
                        read(board, player, "ss_burst_cd3"), read(board, player, "ss_burst_cd4")},
             new int[] {read(board, player, "ss_fury"), read(board, player, "ss_guard"),
-                       read(board, player, "ss_focus"), read(board, player, "ss_arcane")});
+                       read(board, player, "ss_focus"), read(board, player, "ss_arcane")},
+            read(board, player, "ss_ng"), read(board, player, "ss_mpoints"),
+            new int[] {read(board, player, "ss_mp_guard"), read(board, player, "ss_mp_haste"),
+                       read(board, player, "ss_mp_fury")},
+            new int[] {read(board, player, "ss_vk_smug"), read(board, player, "ss_vk_cind"),
+                       read(board, player, "ss_vk_holl"), read(board, player, "ss_vk_arca"),
+                       read(board, player, "ss_vk_six"), read(board, player, "ss_vk_king")});
     }
     @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
 }
