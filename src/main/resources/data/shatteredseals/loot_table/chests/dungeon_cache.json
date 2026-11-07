@@ -7,22 +7,22 @@
         {
           "type": "minecraft:loot_table",
           "value": "shatteredseals:repeat/common",
-          "weight": 20
+          "weight": 70
         },
         {
           "type": "minecraft:loot_table",
           "value": "shatteredseals:repeat/rare",
-          "weight": 40
+          "weight": 20
         },
         {
           "type": "minecraft:loot_table",
           "value": "shatteredseals:repeat/epic",
-          "weight": 30
+          "weight": 8
         },
         {
           "type": "minecraft:loot_table",
           "value": "shatteredseals:repeat/legendary",
-          "weight": 10
+          "weight": 2
         }
       ]
     },
