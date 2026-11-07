@@ -1,0 +1,12 @@
+execute if score @s ss_branch matches 1 run function shatteredseals:talents/buy_1
+execute if score @s ss_branch matches 2 run function shatteredseals:talents/buy_2
+execute if score @s ss_branch matches 3 run function shatteredseals:talents/buy_3
+execute if score @s ss_branch matches 4 run function shatteredseals:talents/buy_4
+execute if score @s ss_branch matches 5 run function shatteredseals:talents/buy_5
+execute if score @s ss_branch matches 6 run function shatteredseals:talents/buy_6
+execute if score @s ss_branch matches 7 run function shatteredseals:talents/buy_7
+execute if score @s ss_branch matches 8 run function shatteredseals:talents/buy_8
+execute if score @s ss_branch matches 9 run function shatteredseals:talents/buy_9
+execute if score @s ss_branch matches 10 run function shatteredseals:talents/buy_10
+execute if score @s ss_branch matches 11 run function shatteredseals:talents/buy_11
+execute if score @s ss_branch matches 12 run function shatteredseals:talents/buy_12

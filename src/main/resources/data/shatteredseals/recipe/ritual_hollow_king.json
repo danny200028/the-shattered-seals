@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " A ",
+    "BCB",
+    " D "
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:nether_star"
+    },
+    "B": {
+      "item": "minecraft:netherite_scrap"
+    },
+    "C": {
+      "item": "minecraft:carrot_on_a_stick"
+    },
+    "D": {
+      "item": "minecraft:dragon_breath"
+    }
+  },
+  "result": {
+    "id": "minecraft:carrot_on_a_stick",
+    "count": 1,
+    "components": {
+      "minecraft:item_name": "{\"text\":\"Hollow King Summoning Sigil\",\"color\":\"dark_red\",\"italic\":false}",
+      "minecraft:custom_data": {
+        "ss_ritual": "hollow_king"
+      },
+      "minecraft:custom_model_data": 5006,
+      "minecraft:rarity": "epic",
+      "minecraft:unbreakable": {}
+    }
+  }
+}

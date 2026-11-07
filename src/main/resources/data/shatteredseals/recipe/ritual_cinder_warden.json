@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " A ",
+    "BCB",
+    " D "
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:blaze_rod"
+    },
+    "B": {
+      "item": "minecraft:blaze_powder"
+    },
+    "C": {
+      "item": "minecraft:carrot_on_a_stick"
+    },
+    "D": {
+      "item": "minecraft:soul_sand"
+    }
+  },
+  "result": {
+    "id": "minecraft:carrot_on_a_stick",
+    "count": 1,
+    "components": {
+      "minecraft:item_name": "{\"text\":\"Cinder Warden Summoning Sigil\",\"color\":\"red\",\"italic\":false}",
+      "minecraft:custom_data": {
+        "ss_ritual": "cinder_warden"
+      },
+      "minecraft:custom_model_data": 5002,
+      "minecraft:rarity": "rare",
+      "minecraft:unbreakable": {}
+    }
+  }
+}

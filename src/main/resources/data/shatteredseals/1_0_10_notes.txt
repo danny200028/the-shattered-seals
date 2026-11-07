@@ -1,0 +1,8 @@
+The Shattered Seals 1.0.10 - Lore & Reward Parser Fix
+
+Changes:
+- Converted set_lore list-operation mode from object form to the 1.21.1 compact mode string.
+- Converted loot reward custom-data markers from SNBT strings to structured compounds.
+- Converted lore strings to explicit text components.
+- Patched 13 loot tables; 206 lore functions and 206 custom-data functions changed.
+- Added isolated diagnostics for lore, custom data, vanilla enchantments, custom enchantments, decoration components, and full reward composition.

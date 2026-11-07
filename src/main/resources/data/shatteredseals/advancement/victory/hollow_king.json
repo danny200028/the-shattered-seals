@@ -1,0 +1,15 @@
+{
+  "criteria": {
+    "victory": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "nbt": "{Tags:[\"ss_hollow_king\"]}"
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "shatteredseals:reward/hollow_king"
+  }
+}

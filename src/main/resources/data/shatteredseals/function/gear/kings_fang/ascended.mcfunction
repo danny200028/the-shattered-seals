@@ -1,0 +1,2 @@
+give @s minecraft:netherite_sword[item_name='{"text":"Kings Fang [Ascended]","color":"yellow","italic":false}',lore=['{"text":"Legendary weapon | Ascended","color":"gray","italic":false}','{"text":"Forged from a defeated boss","color":"dark_aqua","italic":false}','{"text":"Upgrade using the Relic Forge","color":"gold","italic":false}'],custom_model_data=1202,enchantments={levels:{"minecraft:sharpness":7,"minecraft:unbreaking":3}},custom_data={ss_weapon:"kings_fang",ss_tier:"ascended"}] 1
+tellraw @s {"text":"Acquired: Kings Fang [Ascended]","color":"yellow","bold":false}

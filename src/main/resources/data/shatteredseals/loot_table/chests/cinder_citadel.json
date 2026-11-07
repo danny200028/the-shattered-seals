@@ -1,0 +1,54 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+        "type": "minecraft:uniform",
+        "min": 1,
+        "max": 3
+      },
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "value": "shatteredseals:repeat/common",
+          "weight": 85
+        },
+        {
+          "type": "minecraft:loot_table",
+          "value": "shatteredseals:repeat/rare",
+          "weight": 14
+        },
+        {
+          "type": "minecraft:loot_table",
+          "value": "shatteredseals:repeat/epic",
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "rolls": 2,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:emerald",
+          "weight": 8
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:gold_ingot",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:experience_bottle",
+          "weight": 8
+        }
+      ]
+    }
+  ]
+}

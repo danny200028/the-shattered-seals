@@ -1,0 +1,3 @@
+tellraw @s [{"text":"━━━━━━━━  INTERACTIVE MENU TEST  ━━━━━━━━","color":"gold","italic":false}]
+tellraw @s [{"text":"[OPEN SKILLS]","color":"aqua","italic":false,"clickEvent":{"action":"run_command","value":"/trigger ss_menu set 1"}},{"text":"  [OPEN ARSENAL]","color":"yellow","italic":false,"clickEvent":{"action":"run_command","value":"/trigger ss_menu set 2"}},{"text":"  [OPEN FORGE]","color":"light_purple","italic":false,"clickEvent":{"action":"run_command","value":"/trigger ss_menu set 3"}}]
+tellraw @s [{"text":"Use /trigger ss_menu set 1, 2 or 3 if buttons do not open.","color":"gray","italic":false}]

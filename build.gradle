@@ -1,0 +1,16 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.148'
+}
+
+version = '1.0.36-dev'
+group = 'com.shatteredseals'
+base { archivesName = 'the-shattered-seals' }
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+
+neoForge {
+    version = '21.1.238'
+    mods { shatteredseals { sourceSet(sourceSets.main) } }
+}

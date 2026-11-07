@@ -1,0 +1,13 @@
+THE SHATTERED SEALS 1.0.11
+Nested Loot Table Reference Fix
+
+Minecraft 1.20.5+ renamed the nested loot-table entry field from "name" to "value".
+All six repeat-boss random tables have been updated.
+
+Test:
+1. /reload
+2. /function shatteredseals:diagnostics/test_random_loot
+3. /function shatteredseals:diagnostics/test_cinder_warden_random_loot
+
+If those work, kill the Cinder Warden again in Survival and confirm a random reward
+is received after the normal boss drops.

@@ -1,0 +1,19 @@
+{
+  "feature": "shatteredseals:hollow_kings_dominion_surface_patch",
+  "placement": [
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 32
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "WORLD_SURFACE_WG"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

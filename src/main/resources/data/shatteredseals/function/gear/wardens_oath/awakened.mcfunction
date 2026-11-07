@@ -1,0 +1,2 @@
+give @s minecraft:netherite_sword[item_name='{"text":"Wardens Oath [Awakened]","color":"blue","italic":false}',lore=['{"text":"Legendary weapon | Awakened","color":"gray","italic":false}','{"text":"Forged from a defeated boss","color":"dark_aqua","italic":false}','{"text":"Upgrade using the Relic Forge","color":"gold","italic":false}'],custom_model_data=1105,enchantments={levels:{"minecraft:sharpness":4,"minecraft:unbreaking":3}},custom_data={ss_weapon:"wardens_oath",ss_tier:"awakened"}] 1
+tellraw @s {"text":"Acquired: Wardens Oath [Awakened]","color":"blue","bold":false}

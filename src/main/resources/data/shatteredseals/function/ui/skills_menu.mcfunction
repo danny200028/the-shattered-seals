@@ -1,0 +1,34 @@
+tellraw @s [{"text":"━━━━━━━━  SKILL PATHS  ━━━━━━━━","color":"gold","italic":false}]
+tellraw @s [{"text":"Class: ","color":"gray","italic":false},{"score":{"name":"@s","objective":"ss_path"}},{"text":"  |  Mastery: ","color":"gray","italic":false},{"score":{"name":"@s","objective":"ss_rank"}}]
+tellraw @s [{"text":"Kills: ","color":"gray","italic":false},{"score":{"name":"@s","objective":"ss_kills"}}]
+tellraw @s [{"text":"Switch active class instantly (all upgrades are kept):","color":"yellow","italic":false}]
+tellraw @s [{"text":"[1] Vanguard  ","color":"green","italic":false,"clickEvent":{"action":"run_command","value":"/trigger ss_switch set 1"},"hoverEvent":{"action":"show_text","contents":{"text":"Strength"}}},{"text":" • Strength","color":"gray","italic":false}]
+tellraw @s [{"text":"[2] Warden  ","color":"green","italic":false,"clickEvent":{"action":"run_command","value":"/trigger ss_switch set 2"},"hoverEvent":{"action":"show_text","contents":{"text":"Resistance"}}},{"text":" • Resistance","color":"gray","italic":false}]
+tellraw @s [{"text":"[3] Pathfinder  ","color":"green","italic":false,"clickEvent":{"action":"run_command","value":"/trigger ss_switch set 3"},"hoverEvent":{"action":"show_text","contents":{"text":"Speed"}}},{"text":" • Speed","color":"gray","italic":false}]
+tellraw @s [{"text":"[4] Arcanist  ","color":"green","italic":false,"clickEvent":{"action":"run_command","value":"/trigger ss_switch set 4"},"hoverEvent":{"action":"show_text","contents":{"text":"Night Vision"}}},{"text":" • Night Vision","color":"gray","italic":false}]
+tellraw @s [{"text":"[CAST CLASS ABILITY]","color":"aqua","italic":false,"clickEvent":{"action":"run_command","value":"/trigger ss_cast set 1"},"hoverEvent":{"action":"show_text","contents":{"text":"Uses your current class ability and cooldown"}}}]
+tellraw @s [{"text":"Mastery thresholds: 10 / 40 / 100 kills","color":"gray","italic":false}]
+tellraw @s [{"text":"[SKILLS]","color":"aqua","italic":false,"clickEvent":{"action":"run_command","value":"/trigger ss_menu set 1"}},{"text":"  [ARSENAL]","color":"yellow","italic":false,"clickEvent":{"action":"run_command","value":"/trigger ss_menu set 2"}},{"text":"  [FORGE]","color":"light_purple","italic":false,"clickEvent":{"action":"run_command","value":"/trigger ss_menu set 3"}}]
+
+function shatteredseals:progression/status
+tellraw @s [{"text": "[SPEND 1 POINT: Vanguard Might]", "color": "green", "clickEvent": {"action": "run_command", "value": "/trigger ss_buy set 1"}}]
+tellraw @s [{"text": "[SPEND 1 POINT: Warden Fortitude]", "color": "green", "clickEvent": {"action": "run_command", "value": "/trigger ss_buy set 2"}}]
+tellraw @s [{"text": "[SPEND 1 POINT: Pathfinder Agility]", "color": "green", "clickEvent": {"action": "run_command", "value": "/trigger ss_buy set 3"}}]
+tellraw @s [{"text": "[SPEND 1 POINT: Arcanist Focus]", "color": "green", "clickEvent": {"action": "run_command", "value": "/trigger ss_buy set 4"}}]
+tellraw @s [{"text": "[RESET SKILLS: 1 DRAGON EGG]", "color": "red", "clickEvent": {"action": "run_command", "value": "/trigger ss_respec set 1"}}]
+
+tellraw @s {"text":"--- BRANCH TALENTS (1 point/rank, 5 ranks) ---","color":"gold"}
+tellraw @s [{"text":"[1] Vanguard / Berserker +1 rank","color":"green","clickEvent":{"action":"run_command","value":"/trigger ss_branch set 1"}},{"text":"  [MASTER]","color":"light_purple","clickEvent":{"action":"run_command","value":"/trigger ss_ascend set 1"}}]
+tellraw @s [{"text":"[2] Vanguard / Weapon Master +1 rank","color":"green","clickEvent":{"action":"run_command","value":"/trigger ss_branch set 2"}},{"text":"  [MASTER]","color":"light_purple","clickEvent":{"action":"run_command","value":"/trigger ss_ascend set 2"}}]
+tellraw @s [{"text":"[3] Vanguard / Juggernaut +1 rank","color":"green","clickEvent":{"action":"run_command","value":"/trigger ss_branch set 3"}},{"text":"  [MASTER]","color":"light_purple","clickEvent":{"action":"run_command","value":"/trigger ss_ascend set 3"}}]
+tellraw @s [{"text":"[4] Warden / Guardian +1 rank","color":"green","clickEvent":{"action":"run_command","value":"/trigger ss_branch set 4"}},{"text":"  [MASTER]","color":"light_purple","clickEvent":{"action":"run_command","value":"/trigger ss_ascend set 4"}}]
+tellraw @s [{"text":"[5] Warden / Protector +1 rank","color":"green","clickEvent":{"action":"run_command","value":"/trigger ss_branch set 5"}},{"text":"  [MASTER]","color":"light_purple","clickEvent":{"action":"run_command","value":"/trigger ss_ascend set 5"}}]
+tellraw @s [{"text":"[6] Warden / Immortal +1 rank","color":"green","clickEvent":{"action":"run_command","value":"/trigger ss_branch set 6"}},{"text":"  [MASTER]","color":"light_purple","clickEvent":{"action":"run_command","value":"/trigger ss_ascend set 6"}}]
+tellraw @s [{"text":"[7] Pathfinder / Marksman +1 rank","color":"green","clickEvent":{"action":"run_command","value":"/trigger ss_branch set 7"}},{"text":"  [MASTER]","color":"light_purple","clickEvent":{"action":"run_command","value":"/trigger ss_ascend set 7"}}]
+tellraw @s [{"text":"[8] Pathfinder / Hunter +1 rank","color":"green","clickEvent":{"action":"run_command","value":"/trigger ss_branch set 8"}},{"text":"  [MASTER]","color":"light_purple","clickEvent":{"action":"run_command","value":"/trigger ss_ascend set 8"}}]
+tellraw @s [{"text":"[9] Pathfinder / Shadow +1 rank","color":"green","clickEvent":{"action":"run_command","value":"/trigger ss_branch set 9"}},{"text":"  [MASTER]","color":"light_purple","clickEvent":{"action":"run_command","value":"/trigger ss_ascend set 9"}}]
+tellraw @s [{"text":"[10] Arcanist / Elementalist +1 rank","color":"green","clickEvent":{"action":"run_command","value":"/trigger ss_branch set 10"}},{"text":"  [MASTER]","color":"light_purple","clickEvent":{"action":"run_command","value":"/trigger ss_ascend set 10"}}]
+tellraw @s [{"text":"[11] Arcanist / Spellweaver +1 rank","color":"green","clickEvent":{"action":"run_command","value":"/trigger ss_branch set 11"}},{"text":"  [MASTER]","color":"light_purple","clickEvent":{"action":"run_command","value":"/trigger ss_ascend set 11"}}]
+tellraw @s [{"text":"[12] Arcanist / Soulbinder +1 rank","color":"green","clickEvent":{"action":"run_command","value":"/trigger ss_branch set 12"}},{"text":"  [MASTER]","color":"light_purple","clickEvent":{"action":"run_command","value":"/trigger ss_ascend set 12"}}]
+
+tellraw @s {"text":"Switch classes freely. All four class skill trees retain their upgrades.","color":"aqua"}

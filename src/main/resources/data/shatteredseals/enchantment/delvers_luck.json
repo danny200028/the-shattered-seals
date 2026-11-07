@@ -1,0 +1,35 @@
+{
+  "description": {
+    "text": "Delver's Luck",
+    "color": "light_purple"
+  },
+  "supported_items": "#minecraft:enchantable/mining",
+  "weight": 3,
+  "max_level": 3,
+  "min_cost": {
+    "base": 10,
+    "per_level_above_first": 12
+  },
+  "max_cost": {
+    "base": 35,
+    "per_level_above_first": 12
+  },
+  "anvil_cost": 5,
+  "slots": [
+    "mainhand"
+  ],
+  "effects": {
+    "minecraft:block_experience": [
+      {
+        "effect": {
+          "type": "minecraft:add",
+          "value": {
+            "type": "minecraft:linear",
+            "base": 0.6,
+            "per_level_above_first": 0.5
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " A ",
+    "BCB",
+    " D "
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:echo_shard"
+    },
+    "B": {
+      "item": "minecraft:bone"
+    },
+    "C": {
+      "item": "minecraft:carrot_on_a_stick"
+    },
+    "D": {
+      "item": "minecraft:crying_obsidian"
+    }
+  },
+  "result": {
+    "id": "minecraft:carrot_on_a_stick",
+    "count": 1,
+    "components": {
+      "minecraft:item_name": "{\"text\":\"Hollow Knight Summoning Sigil\",\"color\":\"dark_purple\",\"italic\":false}",
+      "minecraft:custom_data": {
+        "ss_ritual": "hollow_knight"
+      },
+      "minecraft:custom_model_data": 5003,
+      "minecraft:rarity": "rare",
+      "minecraft:unbreakable": {}
+    }
+  }
+}

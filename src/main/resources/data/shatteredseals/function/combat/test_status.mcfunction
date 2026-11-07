@@ -1,0 +1,3 @@
+tellraw @s [{"text":"[Shattered Seals] ","color":"gold"},{"text":"Combat diagnostic: current class, resources, cooldowns","color":"white"}]
+tellraw @s [{"text":"Class: "},{"score":{"name":"@s","objective":"ss_path"}},{"text":" | Fury "},{"score":{"name":"@s","objective":"ss_fury"}},{"text":" | Guard "},{"score":{"name":"@s","objective":"ss_guard"}},{"text":" | Focus "},{"score":{"name":"@s","objective":"ss_focus"}},{"text":" | Arcane "},{"score":{"name":"@s","objective":"ss_arcane"}}]
+tellraw @s [{"text":"Cooldown ticks: Q "},{"score":{"name":"@s","objective":"ss_burst_cd"}},{"text":" R "},{"score":{"name":"@s","objective":"ss_burst_cd2"}},{"text":" V "},{"score":{"name":"@s","objective":"ss_burst_cd3"}},{"text":" G "},{"score":{"name":"@s","objective":"ss_burst_cd4"}}]

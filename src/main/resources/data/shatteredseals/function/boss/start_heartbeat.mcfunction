@@ -1,0 +1,22 @@
+# Called when any boss is summoned. Objectives may exist already if #minecraft:load ran.
+scoreboard objectives add ss_bt dummy
+scoreboard objectives add ss_hp dummy
+bossbar add shatteredseals:smuggler_king {"text":"Smuggler King","color":"gold","bold":true}
+bossbar set shatteredseals:smuggler_king max 150
+bossbar set shatteredseals:smuggler_king color purple
+bossbar add shatteredseals:cinder_warden {"text":"Cinder Warden","color":"red","bold":true}
+bossbar set shatteredseals:cinder_warden max 170
+bossbar set shatteredseals:cinder_warden color purple
+bossbar add shatteredseals:hollow_knight {"text":"Hollow Knight","color":"dark_purple","bold":true}
+bossbar set shatteredseals:hollow_knight max 240
+bossbar set shatteredseals:hollow_knight color purple
+bossbar add shatteredseals:arcane_seer {"text":"Arcane Seer","color":"aqua","bold":true}
+bossbar set shatteredseals:arcane_seer max 180
+bossbar set shatteredseals:arcane_seer color purple
+bossbar add shatteredseals:sixfold_guardian {"text":"Sixfold Guardian","color":"yellow","bold":true}
+bossbar set shatteredseals:sixfold_guardian max 310
+bossbar set shatteredseals:sixfold_guardian color purple
+bossbar add shatteredseals:hollow_king {"text":"Hollow King","color":"dark_red","bold":true}
+bossbar set shatteredseals:hollow_king max 450
+bossbar set shatteredseals:hollow_king color red
+schedule function shatteredseals:boss/heartbeat 1t replace

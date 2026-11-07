@@ -1,0 +1,2490 @@
+{
+  "type": "minecraft:generic",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_sword",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Sabre of Ash [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Sharpness, Unbreaking, Soul Edge",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_01",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:sharpness": 4,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:soul_edge": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true,
+                "minecraft:unbreakable": {}
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3150
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_sword",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Sabre of the Rift [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Sharpness, Unbreaking, Soul Edge",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_02",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:sharpness": 4,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:soul_edge": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true,
+                "minecraft:unbreakable": {}
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3151
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_axe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen War Axe of Ash [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Sharpness, Unbreaking, Soul Edge",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_03",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:sharpness": 4,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:soul_edge": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3152
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_axe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift War Axe of the Rift [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Sharpness, Unbreaking, Soul Edge",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_04",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:sharpness": 4,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:soul_edge": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3153
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bow",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Longbow of Ash [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Power, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_05",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:power": 4,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3154
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bow",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Longbow of the Rift [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Power, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_06",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:power": 4,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3155
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:crossbow",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Repeater of Ash [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Quick Charge, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_07",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:quick_charge": 4,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3156
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:crossbow",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Repeater of the Rift [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Quick Charge, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_08",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:quick_charge": 4,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3157
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_pickaxe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Delver Pick of Ash [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Efficiency, Unbreaking, Delvers Luck",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_09",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:efficiency": 4,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:delvers_luck": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true,
+                "minecraft:unbreakable": {}
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3158
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_pickaxe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Delver Pick of the Rift [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Efficiency, Unbreaking, Delvers Luck",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_10",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:efficiency": 4,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:delvers_luck": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true,
+                "minecraft:unbreakable": {}
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3159
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_shovel",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Spade of Ash [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Efficiency, Unbreaking, Delvers Luck",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_11",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:efficiency": 4,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:delvers_luck": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3160
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_shovel",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Spade of the Rift [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Efficiency, Unbreaking, Delvers Luck",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_12",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:efficiency": 4,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:delvers_luck": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3161
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_hoe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Harvester of Ash [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Unbreaking, Delvers Luck",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_13",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:unbreaking": 3,
+                "shatteredseals:delvers_luck": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3162
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_hoe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Harvester of the Rift [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Unbreaking, Delvers Luck",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_14",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:unbreaking": 3,
+                "shatteredseals:delvers_luck": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3163
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_helmet",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Helm of Ash [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Protection, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_15",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:protection": 4,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3164
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_helmet",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Helm of the Rift [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Protection, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_16",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:protection": 4,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3165
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_chestplate",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Plate of Ash [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Protection, Unbreaking, Granite Heart",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_17",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:protection": 4,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:granite_heart": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3166
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_chestplate",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Plate of the Rift [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Protection, Unbreaking, Granite Heart",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_18",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:protection": 4,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:granite_heart": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3167
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_leggings",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Greaves of Ash [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Protection, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_19",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:protection": 4,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3168
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_leggings",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Greaves of the Rift [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Protection, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_20",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:protection": 4,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3169
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_boots",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Treads of Ash [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Feather Falling, Unbreaking, Fleetstep",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_21",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:feather_falling": 4,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:fleetstep": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3170
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_boots",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Treads of the Rift [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Feather Falling, Unbreaking, Fleetstep",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_22",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:feather_falling": 4,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:fleetstep": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3171
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:shield",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Buckler of Ash [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_23",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3172
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:shield",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Buckler of the Rift [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_24",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3173
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:fishing_rod",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Angler Rod of Ash [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Luck Of The Sea, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_25",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:luck_of_the_sea": 4,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3174
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:fishing_rod",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Angler Rod of the Rift [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Luck Of The Sea, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_26",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:luck_of_the_sea": 4,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3175
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:trident",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Tide Spear of Ash [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Loyalty, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_27",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:loyalty": 4,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3176
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:trident",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Tide Spear of the Rift [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Loyalty, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_28",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:loyalty": 4,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3177
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:mace",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Impact Mace of Ash [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Density, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_29",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:density": 4,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3178
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:mace",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Impact Mace of the Rift [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Density, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_30",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:density": 4,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3179
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_sword",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Runeblade of Ash [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Sharpness, Unbreaking, Soul Edge",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_31",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:sharpness": 4,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:soul_edge": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true,
+                "minecraft:unbreakable": {}
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3180
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_sword",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Runeblade of the Rift [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Sharpness, Unbreaking, Soul Edge",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_32",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:sharpness": 4,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:soul_edge": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true,
+                "minecraft:unbreakable": {}
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3181
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_pickaxe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Deep Pick of Ash [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Fortune, Unbreaking, Delvers Luck",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_33",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:fortune": 4,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:delvers_luck": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true,
+                "minecraft:unbreakable": {}
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3182
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_pickaxe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Deep Pick of the Rift [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Fortune, Unbreaking, Delvers Luck",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_34",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:fortune": 4,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:delvers_luck": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true,
+                "minecraft:unbreakable": {}
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3183
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_axe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Timber Cleaver of Ash [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Efficiency, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_35",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:efficiency": 4,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3184
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_axe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Timber Cleaver of the Rift [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Legendary",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Efficiency, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_gear_36",
+                "ss_tier": "legendary",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:efficiency": 4,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3185
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot_on_a_stick",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ember Powder [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Legendary relic | Power 4",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Fire Resistance and Regeneration",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Right-click | Shared 20s cooldown",
+                  "color": "dark_gray",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_relic_01",
+                "ss_ability": "ember_guard",
+                "ss_power": 4,
+                "ss_tier": "legendary"
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 7140
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot_on_a_stick",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Shard [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Legendary relic | Power 4",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Blink forward; Slow Falling",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Right-click | Shared 20s cooldown",
+                  "color": "dark_gray",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_relic_02",
+                "ss_ability": "rift_step",
+                "ss_power": 4,
+                "ss_tier": "legendary"
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 7141
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot_on_a_stick",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Echo Stone [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Legendary relic | Power 4",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Reveal hostiles; Night Vision",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Right-click | Shared 20s cooldown",
+                  "color": "dark_gray",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_relic_03",
+                "ss_ability": "echo_ping",
+                "ss_power": 4,
+                "ss_tier": "legendary"
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 7142
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot_on_a_stick",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Warden Pulse [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Legendary relic | Power 4",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Resistance; levitate hostiles",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Right-click | Shared 20s cooldown",
+                  "color": "dark_gray",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_relic_04",
+                "ss_ability": "wardens_pulse",
+                "ss_power": 4,
+                "ss_tier": "legendary"
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 7143
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot_on_a_stick",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Frost Sigil [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Legendary relic | Power 4",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Slow hostiles; brief Speed",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Right-click | Shared 20s cooldown",
+                  "color": "dark_gray",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_relic_05",
+                "ss_ability": "frost_snare",
+                "ss_power": 4,
+                "ss_tier": "legendary"
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 7144
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot_on_a_stick",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Delver Draft [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Legendary relic | Power 4",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Haste, Night Vision, Water Breathing",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Right-click | Shared 20s cooldown",
+                  "color": "dark_gray",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_relic_06",
+                "ss_ability": "delvers_draft",
+                "ss_power": 4,
+                "ss_tier": "legendary"
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 7145
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot_on_a_stick",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Soul Ember [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Legendary relic | Power 4",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Regeneration and Absorption",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Drawback: Hunger",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Right-click | Shared 20s cooldown",
+                  "color": "dark_gray",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_relic_07",
+                "ss_ability": "soul_mend",
+                "ss_power": 4,
+                "ss_tier": "legendary"
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 7146
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot_on_a_stick",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Storm Conduit [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Legendary relic | Power 4",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Lightning on a nearby enemy",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Right-click | Shared 20s cooldown",
+                  "color": "dark_gray",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_relic_08",
+                "ss_ability": "storm_call",
+                "ss_power": 4,
+                "ss_tier": "legendary"
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 7147
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot_on_a_stick",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Shadow Cloth [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Legendary relic | Power 4",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Invisibility and Night Vision",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Drawback: Weakness",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Right-click | Shared 20s cooldown",
+                  "color": "dark_gray",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "legendary_relic_09",
+                "ss_ability": "shadow_cloak",
+                "ss_power": 4,
+                "ss_tier": "legendary"
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 7148
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "epic",
+                "minecraft:enchantment_glint_override": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

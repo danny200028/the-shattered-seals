@@ -1,0 +1,15 @@
+{
+  "criteria": {
+    "victory": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "nbt": "{Tags:[\"ss_sixfold_guardian\"]}"
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "shatteredseals:reward/sixfold_guardian"
+  }
+}

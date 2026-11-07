@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:generic",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_sword",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Diagnostic Lore Fixed",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Lore parser test",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Minecraft 1.21.1",
+                  "color": "dark_aqua",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

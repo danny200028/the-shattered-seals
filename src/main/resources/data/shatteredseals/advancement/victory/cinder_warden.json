@@ -1,0 +1,15 @@
+{
+  "criteria": {
+    "victory": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "nbt": "{Tags:[\"ss_cinder_warden\"]}"
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "shatteredseals:reward/cinder_warden"
+  }
+}

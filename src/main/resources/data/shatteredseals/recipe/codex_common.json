@@ -1,0 +1,43 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:book",
+    "minecraft:coal",
+    "minecraft:paper"
+  ],
+  "result": {
+    "id": "minecraft:written_book",
+    "count": 1,
+    "components": {
+      "minecraft:written_book_content": {
+        "title": "Common Warden Codex",
+        "author": "The Wardens",
+        "generation": 0,
+        "pages": [
+          "{\"text\":\"\",\"extra\":[{\"text\":\"WARDEN CODEX: COMMON\\n\",\"color\":\"gold\"},{\"text\":\"\\n45 unique spoils in this tier. Repeated boss victories choose a tier by weight.\\n\\n\",\"color\":\"gray\"},{\"text\":\"Tier chance: 60%\\n\",\"color\":\"aqua\"},{\"text\":\"Weapons, armour, tools and activatable relics are listed below.\",\"color\":\"gray\"}]}",
+          "{\"text\":\"\",\"extra\":[{\"text\":\"COMMON - 1 to 3\\n\",\"color\":\"gold\"},{\"text\":\"\\nAshen Sabre of Ash [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"iron sword | sharpness\\n\",\"color\":\"gray\"},{\"text\":\"\\nRift Sabre of the Rift [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"iron sword | sharpness\\n\",\"color\":\"gray\"},{\"text\":\"\\nAshen War Axe of Ash [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"iron axe | sharpness\\n\",\"color\":\"gray\"}]}",
+          "{\"text\":\"\",\"extra\":[{\"text\":\"COMMON - 4 to 6\\n\",\"color\":\"gold\"},{\"text\":\"\\nRift War Axe of the Rift [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"iron axe | sharpness\\n\",\"color\":\"gray\"},{\"text\":\"\\nAshen Longbow of Ash [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"bow | power\\n\",\"color\":\"gray\"},{\"text\":\"\\nRift Longbow of the Rift [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"bow | power\\n\",\"color\":\"gray\"}]}",
+          "{\"text\":\"\",\"extra\":[{\"text\":\"COMMON - 7 to 9\\n\",\"color\":\"gold\"},{\"text\":\"\\nAshen Repeater of Ash [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"crossbow | quick charge\\n\",\"color\":\"gray\"},{\"text\":\"\\nRift Repeater of the Rift [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"crossbow | quick charge\\n\",\"color\":\"gray\"},{\"text\":\"\\nAshen Delver Pick of Ash [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"iron pickaxe | efficiency\\n\",\"color\":\"gray\"}]}",
+          "{\"text\":\"\",\"extra\":[{\"text\":\"COMMON - 10 to 12\\n\",\"color\":\"gold\"},{\"text\":\"\\nRift Delver Pick of the Rift [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"iron pickaxe | efficiency\\n\",\"color\":\"gray\"},{\"text\":\"\\nAshen Spade of Ash [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"iron shovel | efficiency\\n\",\"color\":\"gray\"},{\"text\":\"\\nRift Spade of the Rift [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"iron shovel | efficiency\\n\",\"color\":\"gray\"}]}",
+          "{\"text\":\"\",\"extra\":[{\"text\":\"COMMON - 13 to 15\\n\",\"color\":\"gold\"},{\"text\":\"\\nAshen Harvester of Ash [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"iron hoe | unbreaking\\n\",\"color\":\"gray\"},{\"text\":\"\\nRift Harvester of the Rift [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"iron hoe | unbreaking\\n\",\"color\":\"gray\"},{\"text\":\"\\nAshen Helm of Ash [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"iron helmet | protection\\n\",\"color\":\"gray\"}]}",
+          "{\"text\":\"\",\"extra\":[{\"text\":\"COMMON - 16 to 18\\n\",\"color\":\"gold\"},{\"text\":\"\\nRift Helm of the Rift [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"iron helmet | protection\\n\",\"color\":\"gray\"},{\"text\":\"\\nAshen Plate of Ash [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"iron chestplate | protection\\n\",\"color\":\"gray\"},{\"text\":\"\\nRift Plate of the Rift [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"iron chestplate | protection\\n\",\"color\":\"gray\"}]}",
+          "{\"text\":\"\",\"extra\":[{\"text\":\"COMMON - 19 to 21\\n\",\"color\":\"gold\"},{\"text\":\"\\nAshen Greaves of Ash [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"iron leggings | protection\\n\",\"color\":\"gray\"},{\"text\":\"\\nRift Greaves of the Rift [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"iron leggings | protection\\n\",\"color\":\"gray\"},{\"text\":\"\\nAshen Treads of Ash [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"iron boots | feather falling\\n\",\"color\":\"gray\"}]}",
+          "{\"text\":\"\",\"extra\":[{\"text\":\"COMMON - 22 to 24\\n\",\"color\":\"gold\"},{\"text\":\"\\nRift Treads of the Rift [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"iron boots | feather falling\\n\",\"color\":\"gray\"},{\"text\":\"\\nAshen Buckler of Ash [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"shield | unbreaking\\n\",\"color\":\"gray\"},{\"text\":\"\\nRift Buckler of the Rift [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"shield | unbreaking\\n\",\"color\":\"gray\"}]}",
+          "{\"text\":\"\",\"extra\":[{\"text\":\"COMMON - 25 to 27\\n\",\"color\":\"gold\"},{\"text\":\"\\nAshen Angler Rod of Ash [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"fishing rod | luck of the sea\\n\",\"color\":\"gray\"},{\"text\":\"\\nRift Angler Rod of the Rift [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"fishing rod | luck of the sea\\n\",\"color\":\"gray\"},{\"text\":\"\\nAshen Tide Spear of Ash [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"trident | loyalty\\n\",\"color\":\"gray\"}]}",
+          "{\"text\":\"\",\"extra\":[{\"text\":\"COMMON - 28 to 30\\n\",\"color\":\"gold\"},{\"text\":\"\\nRift Tide Spear of the Rift [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"trident | loyalty\\n\",\"color\":\"gray\"},{\"text\":\"\\nAshen Impact Mace of Ash [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"mace | density\\n\",\"color\":\"gray\"},{\"text\":\"\\nRift Impact Mace of the Rift [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"mace | density\\n\",\"color\":\"gray\"}]}",
+          "{\"text\":\"\",\"extra\":[{\"text\":\"COMMON - 31 to 33\\n\",\"color\":\"gold\"},{\"text\":\"\\nAshen Runeblade of Ash [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"diamond sword | sharpness\\n\",\"color\":\"gray\"},{\"text\":\"\\nRift Runeblade of the Rift [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"diamond sword | sharpness\\n\",\"color\":\"gray\"},{\"text\":\"\\nAshen Deep Pick of Ash [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"diamond pickaxe | fortune\\n\",\"color\":\"gray\"}]}",
+          "{\"text\":\"\",\"extra\":[{\"text\":\"COMMON - 34 to 36\\n\",\"color\":\"gold\"},{\"text\":\"\\nRift Deep Pick of the Rift [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"diamond pickaxe | fortune\\n\",\"color\":\"gray\"},{\"text\":\"\\nAshen Timber Cleaver of Ash [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"diamond axe | efficiency\\n\",\"color\":\"gray\"},{\"text\":\"\\nRift Timber Cleaver of the Rift [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"diamond axe | efficiency\\n\",\"color\":\"gray\"}]}",
+          "{\"text\":\"\",\"extra\":[{\"text\":\"COMMON - 37 to 39\\n\",\"color\":\"gold\"},{\"text\":\"\\nEmber Powder [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"Fire resistance and recovery\\n\",\"color\":\"gray\"},{\"text\":\"\\nRift Shard [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"Short-range phase-step with slow falling\\n\",\"color\":\"gray\"},{\"text\":\"\\nEcho Stone [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"Reveal nearby threats and bosses\\n\",\"color\":\"gray\"}]}",
+          "{\"text\":\"\",\"extra\":[{\"text\":\"COMMON - 40 to 42\\n\",\"color\":\"gold\"},{\"text\":\"\\nWarden Pulse [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"Knock back threats; briefly resist damage\\n\",\"color\":\"gray\"},{\"text\":\"\\nFrost Sigil [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"Slow nearby hostiles\\n\",\"color\":\"gray\"},{\"text\":\"\\nDelver Draft [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"Haste and night vision for mining\\n\",\"color\":\"gray\"}]}",
+          "{\"text\":\"\",\"extra\":[{\"text\":\"COMMON - 43 to 45\\n\",\"color\":\"gold\"},{\"text\":\"\\nSoul Ember [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"Regeneration and absorption at a cost\\n\",\"color\":\"gray\"},{\"text\":\"\\nStorm Conduit [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"Target nearest hostile with a lightning strike\\n\",\"color\":\"gray\"},{\"text\":\"\\nShadow Cloth [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"Stealth and night vision\\n\",\"color\":\"gray\"}]}"
+        ]
+      },
+      "minecraft:item_name": {
+        "text": "Common Warden Codex",
+        "color": "white",
+        "italic": false
+      }
+    }
+  }
+}

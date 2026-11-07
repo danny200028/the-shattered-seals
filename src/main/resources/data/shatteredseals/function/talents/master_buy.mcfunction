@@ -1,0 +1,12 @@
+execute if score @s ss_ascend matches 1 run function shatteredseals:talents/master_1
+execute if score @s ss_ascend matches 2 run function shatteredseals:talents/master_2
+execute if score @s ss_ascend matches 3 run function shatteredseals:talents/master_3
+execute if score @s ss_ascend matches 4 run function shatteredseals:talents/master_4
+execute if score @s ss_ascend matches 5 run function shatteredseals:talents/master_5
+execute if score @s ss_ascend matches 6 run function shatteredseals:talents/master_6
+execute if score @s ss_ascend matches 7 run function shatteredseals:talents/master_7
+execute if score @s ss_ascend matches 8 run function shatteredseals:talents/master_8
+execute if score @s ss_ascend matches 9 run function shatteredseals:talents/master_9
+execute if score @s ss_ascend matches 10 run function shatteredseals:talents/master_10
+execute if score @s ss_ascend matches 11 run function shatteredseals:talents/master_11
+execute if score @s ss_ascend matches 12 run function shatteredseals:talents/master_12

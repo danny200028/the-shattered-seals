@@ -1,0 +1,23 @@
+{
+  "criteria": {
+    "earned": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "icon": {
+      "id": "minecraft:nether_star"
+    },
+    "title": {
+      "text": "Hollow Knight: First Victory",
+      "color": "gold"
+    },
+    "description": {
+      "text": "Defeat this Warden boss at least once."
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": true
+  }
+}

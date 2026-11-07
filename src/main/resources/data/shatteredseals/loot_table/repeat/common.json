@@ -1,0 +1,2432 @@
+{
+  "type": "minecraft:generic",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_sword",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Sabre of Ash [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Sharpness",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_01",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:sharpness": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3000
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_sword",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Sabre of the Rift [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Sharpness",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_02",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:sharpness": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3001
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_axe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen War Axe of Ash [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Sharpness",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_03",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:sharpness": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3002
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_axe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift War Axe of the Rift [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Sharpness",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_04",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:sharpness": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3003
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bow",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Longbow of Ash [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Power",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_05",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:power": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3004
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bow",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Longbow of the Rift [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Power",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_06",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:power": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3005
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:crossbow",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Repeater of Ash [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Quick Charge",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_07",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:quick_charge": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3006
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:crossbow",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Repeater of the Rift [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Quick Charge",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_08",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:quick_charge": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3007
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_pickaxe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Delver Pick of Ash [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Efficiency",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_09",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:efficiency": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3008
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_pickaxe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Delver Pick of the Rift [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Efficiency",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_10",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:efficiency": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3009
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_shovel",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Spade of Ash [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Efficiency",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_11",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:efficiency": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3010
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_shovel",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Spade of the Rift [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Efficiency",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_12",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:efficiency": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3011
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_hoe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Harvester of Ash [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_13",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:unbreaking": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3012
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_hoe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Harvester of the Rift [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_14",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:unbreaking": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3013
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_helmet",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Helm of Ash [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Protection",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_15",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:protection": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3014
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_helmet",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Helm of the Rift [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Protection",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_16",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:protection": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3015
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_chestplate",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Plate of Ash [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Protection",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_17",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:protection": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3016
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_chestplate",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Plate of the Rift [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Protection",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_18",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:protection": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3017
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_leggings",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Greaves of Ash [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Protection",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_19",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:protection": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3018
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_leggings",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Greaves of the Rift [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Protection",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_20",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:protection": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3019
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_boots",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Treads of Ash [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Feather Falling",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_21",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:feather_falling": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3020
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_boots",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Treads of the Rift [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Feather Falling",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_22",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:feather_falling": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3021
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:shield",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Buckler of Ash [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_23",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:unbreaking": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3022
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:shield",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Buckler of the Rift [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_24",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:unbreaking": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3023
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:fishing_rod",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Angler Rod of Ash [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Luck Of The Sea",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_25",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:luck_of_the_sea": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3024
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:fishing_rod",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Angler Rod of the Rift [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Luck Of The Sea",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_26",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:luck_of_the_sea": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3025
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:trident",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Tide Spear of Ash [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Loyalty",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_27",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:loyalty": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3026
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:trident",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Tide Spear of the Rift [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Loyalty",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_28",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:loyalty": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3027
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:mace",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Impact Mace of Ash [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Density",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_29",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:density": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3028
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:mace",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Impact Mace of the Rift [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Density",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_30",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:density": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3029
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_sword",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Runeblade of Ash [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Sharpness",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_31",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:sharpness": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3030
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_sword",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Runeblade of the Rift [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Sharpness",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_32",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:sharpness": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3031
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_pickaxe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Deep Pick of Ash [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Fortune",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_33",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:fortune": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3032
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_pickaxe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Deep Pick of the Rift [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Fortune",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_34",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:fortune": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3033
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_axe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Timber Cleaver of Ash [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Efficiency",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_35",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:efficiency": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3034
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_axe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Timber Cleaver of the Rift [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Common",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Efficiency",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_gear_36",
+                "ss_tier": "common",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:efficiency": 1
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "common",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3035
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot_on_a_stick",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ember Powder [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Common relic | Power 1",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Fire Resistance and Regeneration",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Right-click | Shared 20s cooldown",
+                  "color": "dark_gray",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_relic_01",
+                "ss_ability": "ember_guard",
+                "ss_power": 1,
+                "ss_tier": "common"
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 7110
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "uncommon",
+                "minecraft:enchantment_glint_override": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot_on_a_stick",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Shard [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Common relic | Power 1",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Blink forward; Slow Falling",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Right-click | Shared 20s cooldown",
+                  "color": "dark_gray",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_relic_02",
+                "ss_ability": "rift_step",
+                "ss_power": 1,
+                "ss_tier": "common"
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 7111
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "uncommon",
+                "minecraft:enchantment_glint_override": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot_on_a_stick",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Echo Stone [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Common relic | Power 1",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Reveal hostiles; Night Vision",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Right-click | Shared 20s cooldown",
+                  "color": "dark_gray",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_relic_03",
+                "ss_ability": "echo_ping",
+                "ss_power": 1,
+                "ss_tier": "common"
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 7112
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "uncommon",
+                "minecraft:enchantment_glint_override": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot_on_a_stick",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Warden Pulse [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Common relic | Power 1",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Resistance; levitate hostiles",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Right-click | Shared 20s cooldown",
+                  "color": "dark_gray",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_relic_04",
+                "ss_ability": "wardens_pulse",
+                "ss_power": 1,
+                "ss_tier": "common"
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 7113
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "uncommon",
+                "minecraft:enchantment_glint_override": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot_on_a_stick",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Frost Sigil [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Common relic | Power 1",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Slow hostiles; brief Speed",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Right-click | Shared 20s cooldown",
+                  "color": "dark_gray",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_relic_05",
+                "ss_ability": "frost_snare",
+                "ss_power": 1,
+                "ss_tier": "common"
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 7114
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "uncommon",
+                "minecraft:enchantment_glint_override": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot_on_a_stick",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Delver Draft [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Common relic | Power 1",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Haste, Night Vision, Water Breathing",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Right-click | Shared 20s cooldown",
+                  "color": "dark_gray",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_relic_06",
+                "ss_ability": "delvers_draft",
+                "ss_power": 1,
+                "ss_tier": "common"
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 7115
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "uncommon",
+                "minecraft:enchantment_glint_override": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot_on_a_stick",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Soul Ember [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Common relic | Power 1",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Regeneration and Absorption",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Drawback: Hunger",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Right-click | Shared 20s cooldown",
+                  "color": "dark_gray",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_relic_07",
+                "ss_ability": "soul_mend",
+                "ss_power": 1,
+                "ss_tier": "common"
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 7116
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "uncommon",
+                "minecraft:enchantment_glint_override": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot_on_a_stick",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Storm Conduit [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Common relic | Power 1",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Lightning on a nearby enemy",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Right-click | Shared 20s cooldown",
+                  "color": "dark_gray",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_relic_08",
+                "ss_ability": "storm_call",
+                "ss_power": 1,
+                "ss_tier": "common"
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 7117
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "uncommon",
+                "minecraft:enchantment_glint_override": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot_on_a_stick",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Shadow Cloth [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Common relic | Power 1",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Invisibility and Night Vision",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Drawback: Weakness",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Right-click | Shared 20s cooldown",
+                  "color": "dark_gray",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "common_relic_09",
+                "ss_ability": "shadow_cloak",
+                "ss_power": 1,
+                "ss_tier": "common"
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 7118
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "uncommon",
+                "minecraft:enchantment_glint_override": false
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

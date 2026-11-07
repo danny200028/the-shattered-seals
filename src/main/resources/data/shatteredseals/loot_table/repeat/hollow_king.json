@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:generic",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "weight": 60,
+          "value": "shatteredseals:repeat/common"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "weight": 25,
+          "value": "shatteredseals:repeat/rare"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "weight": 12,
+          "value": "shatteredseals:repeat/epic"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "weight": 3,
+          "value": "shatteredseals:repeat/legendary"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,182 @@
+{
+  "type": "minecraft:generic",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:prismarine_shard",
+          "weight": 60,
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Sixfold Guardian Memorial [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Display-only Warden Trophy",
+                  "italic": false
+                },
+                {
+                  "text": "No combat or crafting powers",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_trophy": "sixfold_guardian",
+                "ss_tier": "common"
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:enchantment_glint_override": false
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 5016
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:prismarine_shard",
+          "weight": 25,
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Sixfold Guardian Memorial [Rare]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Display-only Warden Trophy",
+                  "italic": false
+                },
+                {
+                  "text": "No combat or crafting powers",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_trophy": "sixfold_guardian",
+                "ss_tier": "rare"
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:enchantment_glint_override": false
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 5017
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:prismarine_shard",
+          "weight": 12,
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Sixfold Guardian Memorial [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Display-only Warden Trophy",
+                  "italic": false
+                },
+                {
+                  "text": "No combat or crafting powers",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_trophy": "sixfold_guardian",
+                "ss_tier": "epic"
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 5018
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:prismarine_shard",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Sixfold Guardian Memorial [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Display-only Warden Trophy",
+                  "italic": false
+                },
+                {
+                  "text": "No combat or crafting powers",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_trophy": "sixfold_guardian",
+                "ss_tier": "legendary"
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 5019
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

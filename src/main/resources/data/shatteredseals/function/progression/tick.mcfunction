@@ -1,0 +1,25 @@
+execute as @a unless score @s ss_level matches 1.. run function shatteredseals:progression/init
+execute as @a[scores={ss_level=1..}] unless score @s ss_points_v130 matches 1.. run function shatteredseals:progression/migrate_points
+scoreboard players enable @a ss_buy
+scoreboard players enable @a ss_respec
+execute as @a run function shatteredseals:progression/kill_xp
+execute as @a[scores={ss_level=1..59}] if score @s ss_xp >= @s ss_need run function shatteredseals:progression/level_up
+execute as @a[scores={ss_level=60..,ss_ng=1..,ss_master=..49}] if score @s ss_mxp >= @s ss_mneed run function shatteredseals:progression/master_up
+execute as @a[scores={ss_buy=1..}] run function shatteredseals:progression/buy
+execute as @a[scores={ss_respec=1..}] run function shatteredseals:progression/reset
+scoreboard players set @a[scores={ss_buy=1..}] ss_buy 0
+scoreboard players set @a[scores={ss_respec=1..}] ss_respec 0
+execute if score #clock ss_clock matches 0 as @a run function shatteredseals:progression/passives
+
+scoreboard players enable @a ss_branch
+scoreboard players enable @a ss_ascend
+execute as @a[scores={ss_branch=1..}] run function shatteredseals:talents/buy
+execute as @a[scores={ss_ascend=1..}] run function shatteredseals:talents/master_buy
+scoreboard players set @a[scores={ss_branch=1..}] ss_branch 0
+scoreboard players set @a[scores={ss_ascend=1..}] ss_ascend 0
+
+# NG+ mastery perk shop and 1-second passive refresh
+scoreboard players enable @a ss_mperk
+execute as @a[scores={ss_mperk=1..}] run function shatteredseals:mastery/shop
+scoreboard players set @a[scores={ss_mperk=1..}] ss_mperk 0
+execute if score #clock ss_clock matches 0 as @a[scores={ss_ng=1..}] run function shatteredseals:mastery/passives

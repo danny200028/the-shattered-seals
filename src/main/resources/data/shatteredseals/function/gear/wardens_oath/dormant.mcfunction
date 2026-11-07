@@ -1,0 +1,2 @@
+give @s minecraft:diamond_sword[item_name='{"text":"Wardens Oath [Dormant]","color":"blue","italic":false}',lore=['{"text":"Legendary weapon | Dormant","color":"gray","italic":false}','{"text":"Forged from a defeated boss","color":"dark_aqua","italic":false}','{"text":"Upgrade using the Relic Forge","color":"gold","italic":false}'],custom_model_data=1005,enchantments={levels:{"minecraft:sharpness":3,"minecraft:unbreaking":3}},custom_data={ss_weapon:"wardens_oath",ss_tier:"dormant"}] 1
+tellraw @s {"text":"Acquired: Wardens Oath [Dormant]","color":"blue","bold":false}

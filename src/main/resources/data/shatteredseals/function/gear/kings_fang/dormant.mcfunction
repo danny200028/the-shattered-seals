@@ -1,0 +1,2 @@
+give @s minecraft:diamond_sword[item_name='{"text":"Kings Fang [Dormant]","color":"yellow","italic":false}',lore=['{"text":"Legendary weapon | Dormant","color":"gray","italic":false}','{"text":"Forged from a defeated boss","color":"dark_aqua","italic":false}','{"text":"Upgrade using the Relic Forge","color":"gold","italic":false}'],custom_model_data=1002,enchantments={levels:{"minecraft:sharpness":5,"minecraft:unbreaking":3}},custom_data={ss_weapon:"kings_fang",ss_tier:"dormant"}] 1
+tellraw @s {"text":"Acquired: Kings Fang [Dormant]","color":"yellow","bold":false}

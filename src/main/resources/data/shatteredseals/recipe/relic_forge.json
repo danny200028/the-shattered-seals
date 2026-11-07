@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "DID",
+    "OLO",
+    "OOO"
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    },
+    "L": {
+      "item": "minecraft:lectern"
+    }
+  },
+  "result": {
+    "id": "minecraft:lectern",
+    "count": 1,
+    "components": {
+      "minecraft:item_name": "{\"text\":\"Warden Relic Forge\",\"color\":\"gold\",\"italic\":false}",
+      "minecraft:custom_data": {
+        "ss_station": "relic_forge"
+      },
+      "minecraft:rarity": "rare"
+    }
+  }
+}

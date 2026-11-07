@@ -1,0 +1,224 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "minecraft:item/carrot_on_a_stick"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "custom_model_data": 7110
+      },
+      "model": "shatteredseals:item/relic_ember_guard_common"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7111
+      },
+      "model": "shatteredseals:item/relic_rift_step_common"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7112
+      },
+      "model": "shatteredseals:item/relic_echo_ping_common"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7113
+      },
+      "model": "shatteredseals:item/relic_wardens_pulse_common"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7114
+      },
+      "model": "shatteredseals:item/relic_frost_snare_common"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7115
+      },
+      "model": "shatteredseals:item/relic_delvers_draft_common"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7116
+      },
+      "model": "shatteredseals:item/relic_soul_mend_common"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7117
+      },
+      "model": "shatteredseals:item/relic_storm_call_common"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7118
+      },
+      "model": "shatteredseals:item/relic_shadow_cloak_common"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7120
+      },
+      "model": "shatteredseals:item/relic_ember_guard_rare"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7121
+      },
+      "model": "shatteredseals:item/relic_rift_step_rare"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7122
+      },
+      "model": "shatteredseals:item/relic_echo_ping_rare"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7123
+      },
+      "model": "shatteredseals:item/relic_wardens_pulse_rare"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7124
+      },
+      "model": "shatteredseals:item/relic_frost_snare_rare"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7125
+      },
+      "model": "shatteredseals:item/relic_delvers_draft_rare"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7126
+      },
+      "model": "shatteredseals:item/relic_soul_mend_rare"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7127
+      },
+      "model": "shatteredseals:item/relic_storm_call_rare"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7128
+      },
+      "model": "shatteredseals:item/relic_shadow_cloak_rare"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7130
+      },
+      "model": "shatteredseals:item/relic_ember_guard_epic"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7131
+      },
+      "model": "shatteredseals:item/relic_rift_step_epic"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7132
+      },
+      "model": "shatteredseals:item/relic_echo_ping_epic"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7133
+      },
+      "model": "shatteredseals:item/relic_wardens_pulse_epic"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7134
+      },
+      "model": "shatteredseals:item/relic_frost_snare_epic"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7135
+      },
+      "model": "shatteredseals:item/relic_delvers_draft_epic"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7136
+      },
+      "model": "shatteredseals:item/relic_soul_mend_epic"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7137
+      },
+      "model": "shatteredseals:item/relic_storm_call_epic"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7138
+      },
+      "model": "shatteredseals:item/relic_shadow_cloak_epic"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7140
+      },
+      "model": "shatteredseals:item/relic_ember_guard_legendary"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7141
+      },
+      "model": "shatteredseals:item/relic_rift_step_legendary"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7142
+      },
+      "model": "shatteredseals:item/relic_echo_ping_legendary"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7143
+      },
+      "model": "shatteredseals:item/relic_wardens_pulse_legendary"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7144
+      },
+      "model": "shatteredseals:item/relic_frost_snare_legendary"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7145
+      },
+      "model": "shatteredseals:item/relic_delvers_draft_legendary"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7146
+      },
+      "model": "shatteredseals:item/relic_soul_mend_legendary"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7147
+      },
+      "model": "shatteredseals:item/relic_storm_call_legendary"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7148
+      },
+      "model": "shatteredseals:item/relic_shadow_cloak_legendary"
+    }
+  ]
+}

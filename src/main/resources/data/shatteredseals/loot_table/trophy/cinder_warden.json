@@ -1,0 +1,182 @@
+{
+  "type": "minecraft:generic",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:fire_charge",
+          "weight": 60,
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Cinder Warden Memorial [Common]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Display-only Warden Trophy",
+                  "italic": false
+                },
+                {
+                  "text": "No combat or crafting powers",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_trophy": "cinder_warden",
+                "ss_tier": "common"
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:enchantment_glint_override": false
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 5000
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:fire_charge",
+          "weight": 25,
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Cinder Warden Memorial [Rare]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Display-only Warden Trophy",
+                  "italic": false
+                },
+                {
+                  "text": "No combat or crafting powers",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_trophy": "cinder_warden",
+                "ss_tier": "rare"
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:enchantment_glint_override": false
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 5001
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:fire_charge",
+          "weight": 12,
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Cinder Warden Memorial [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Display-only Warden Trophy",
+                  "italic": false
+                },
+                {
+                  "text": "No combat or crafting powers",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_trophy": "cinder_warden",
+                "ss_tier": "epic"
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 5002
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:fire_charge",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Cinder Warden Memorial [Legendary]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Display-only Warden Trophy",
+                  "italic": false
+                },
+                {
+                  "text": "No combat or crafting powers",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_trophy": "cinder_warden",
+                "ss_tier": "legendary"
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 5003
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

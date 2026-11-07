@@ -1,0 +1,21 @@
+execute as @s[scores={ss_path=1,ss_t_van=1..}] run effect give @s minecraft:strength 5 0 true
+execute as @s[scores={ss_path=1,ss_t_van=4..}] run effect give @s minecraft:strength 5 1 true
+execute as @s[scores={ss_path=2,ss_t_ward=1..}] run effect give @s minecraft:resistance 5 0 true
+execute as @s[scores={ss_path=2,ss_t_ward=4..}] run effect give @s minecraft:resistance 5 1 true
+execute as @s[scores={ss_path=3,ss_t_path=1..}] run effect give @s minecraft:speed 5 0 true
+execute as @s[scores={ss_path=3,ss_t_path=4..}] run effect give @s minecraft:speed 5 1 true
+execute as @s[scores={ss_path=4,ss_t_arc=1..}] run effect give @s minecraft:night_vision 14 0 true
+execute as @s[scores={ss_path=4,ss_t_arc=4..}] run effect give @s minecraft:haste 5 0 true
+
+execute as @a[scores={ss_path=1,ss_b11=3..}] run effect give @s minecraft:strength 5 0 true
+execute as @a[scores={ss_path=1,ss_b12=3..}] run effect give @s minecraft:haste 5 0 true
+execute as @a[scores={ss_path=1,ss_b13=3..}] run effect give @s minecraft:resistance 5 0 true
+execute as @a[scores={ss_path=2,ss_b21=3..}] run effect give @s minecraft:resistance 5 0 true
+execute as @a[scores={ss_path=2,ss_b22=3..}] run effect give @s minecraft:absorption 5 0 true
+execute as @a[scores={ss_path=2,ss_b23=3..}] run effect give @s minecraft:regeneration 5 0 true
+execute as @a[scores={ss_path=3,ss_b31=3..}] run effect give @s minecraft:speed 5 0 true
+execute as @a[scores={ss_path=3,ss_b32=3..}] run effect give @s minecraft:jump_boost 5 0 true
+execute as @a[scores={ss_path=3,ss_b33=3..}] run effect give @s minecraft:night_vision 5 0 true
+execute as @a[scores={ss_path=4,ss_b41=3..}] run effect give @s minecraft:fire_resistance 5 0 true
+execute as @a[scores={ss_path=4,ss_b42=3..}] run effect give @s minecraft:haste 5 0 true
+execute as @a[scores={ss_path=4,ss_b43=3..}] run effect give @s minecraft:regeneration 5 0 true

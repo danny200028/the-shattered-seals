@@ -1,0 +1,6 @@
+function shatteredseals:elites/ability_cinder_citadel
+function shatteredseals:elites/ability_smugglers_den
+function shatteredseals:elites/ability_hollow_crypt
+function shatteredseals:elites/ability_arcane_observatory
+function shatteredseals:elites/ability_sixfold_temple
+function shatteredseals:elites/ability_hollow_kings_fortress

@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " A ",
+    "BCB",
+    " D "
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:prismarine_crystals"
+    },
+    "B": {
+      "item": "minecraft:diamond"
+    },
+    "C": {
+      "item": "minecraft:carrot_on_a_stick"
+    },
+    "D": {
+      "item": "minecraft:heart_of_the_sea"
+    }
+  },
+  "result": {
+    "id": "minecraft:carrot_on_a_stick",
+    "count": 1,
+    "components": {
+      "minecraft:item_name": "{\"text\":\"Sixfold Guardian Summoning Sigil\",\"color\":\"yellow\",\"italic\":false}",
+      "minecraft:custom_data": {
+        "ss_ritual": "sixfold_guardian"
+      },
+      "minecraft:custom_model_data": 5005,
+      "minecraft:rarity": "epic",
+      "minecraft:unbreakable": {}
+    }
+  }
+}

@@ -1,0 +1,2 @@
+give @s minecraft:diamond_sword[item_name='{"text":"Emberbound Blade [Dormant]","color":"gold","italic":false}',lore=['{"text":"Legendary weapon | Dormant","color":"gray","italic":false}','{"text":"Forged from a defeated boss","color":"dark_aqua","italic":false}','{"text":"Upgrade using the Relic Forge","color":"gold","italic":false}'],custom_model_data=1001,enchantments={levels:{"minecraft:fire_aspect":2,"minecraft:unbreaking":3}},custom_data={ss_weapon:"emberbound",ss_tier:"dormant"}] 1
+tellraw @s {"text":"Acquired: Emberbound Blade [Dormant]","color":"gold","bold":false}

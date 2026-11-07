@@ -1,0 +1,2482 @@
+{
+  "type": "minecraft:generic",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_sword",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Sabre of Ash [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Sharpness, Unbreaking, Soul Edge",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_01",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:sharpness": 3,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:soul_edge": 2
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3100
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_sword",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Sabre of the Rift [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Sharpness, Unbreaking, Soul Edge",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_02",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:sharpness": 3,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:soul_edge": 2
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3101
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_axe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen War Axe of Ash [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Sharpness, Unbreaking, Soul Edge",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_03",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:sharpness": 3,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:soul_edge": 2
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3102
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_axe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift War Axe of the Rift [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Sharpness, Unbreaking, Soul Edge",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_04",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:sharpness": 3,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:soul_edge": 2
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3103
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bow",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Longbow of Ash [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Power, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_05",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:power": 3,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3104
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bow",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Longbow of the Rift [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Power, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_06",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:power": 3,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3105
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:crossbow",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Repeater of Ash [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Quick Charge, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_07",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:quick_charge": 3,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3106
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:crossbow",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Repeater of the Rift [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Quick Charge, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_08",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:quick_charge": 3,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3107
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_pickaxe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Delver Pick of Ash [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Efficiency, Unbreaking, Delvers Luck",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_09",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:efficiency": 3,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:delvers_luck": 2
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3108
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_pickaxe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Delver Pick of the Rift [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Efficiency, Unbreaking, Delvers Luck",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_10",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:efficiency": 3,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:delvers_luck": 2
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3109
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_shovel",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Spade of Ash [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Efficiency, Unbreaking, Delvers Luck",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_11",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:efficiency": 3,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:delvers_luck": 2
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3110
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_shovel",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Spade of the Rift [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Efficiency, Unbreaking, Delvers Luck",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_12",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:efficiency": 3,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:delvers_luck": 2
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3111
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_hoe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Harvester of Ash [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Unbreaking, Delvers Luck",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_13",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:unbreaking": 3,
+                "shatteredseals:delvers_luck": 2
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3112
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_hoe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Harvester of the Rift [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Unbreaking, Delvers Luck",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_14",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:unbreaking": 3,
+                "shatteredseals:delvers_luck": 2
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3113
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_helmet",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Helm of Ash [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Protection, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_15",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:protection": 3,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3114
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_helmet",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Helm of the Rift [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Protection, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_16",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:protection": 3,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3115
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_chestplate",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Plate of Ash [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Protection, Unbreaking, Granite Heart",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_17",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:protection": 3,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:granite_heart": 2
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3116
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_chestplate",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Plate of the Rift [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Protection, Unbreaking, Granite Heart",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_18",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:protection": 3,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:granite_heart": 2
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3117
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_leggings",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Greaves of Ash [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Protection, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_19",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:protection": 3,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3118
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_leggings",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Greaves of the Rift [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Protection, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_20",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:protection": 3,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3119
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_boots",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Treads of Ash [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Feather Falling, Unbreaking, Fleetstep",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_21",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:feather_falling": 3,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:fleetstep": 2
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3120
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_boots",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Treads of the Rift [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Feather Falling, Unbreaking, Fleetstep",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_22",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:feather_falling": 3,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:fleetstep": 2
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3121
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:shield",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Buckler of Ash [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_23",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3122
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:shield",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Buckler of the Rift [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_24",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3123
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:fishing_rod",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Angler Rod of Ash [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Luck Of The Sea, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_25",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:luck_of_the_sea": 3,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3124
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:fishing_rod",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Angler Rod of the Rift [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Luck Of The Sea, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_26",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:luck_of_the_sea": 3,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3125
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:trident",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Tide Spear of Ash [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Loyalty, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_27",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:loyalty": 3,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3126
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:trident",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Tide Spear of the Rift [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Loyalty, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_28",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:loyalty": 3,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3127
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:mace",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Impact Mace of Ash [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Density, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_29",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:density": 3,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3128
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:mace",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Impact Mace of the Rift [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Density, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_30",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:density": 3,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3129
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_sword",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Runeblade of Ash [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Sharpness, Unbreaking, Soul Edge",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_31",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:sharpness": 3,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:soul_edge": 2
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3130
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_sword",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Runeblade of the Rift [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Sharpness, Unbreaking, Soul Edge",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_32",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:sharpness": 3,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:soul_edge": 2
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3131
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_pickaxe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Deep Pick of Ash [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Fortune, Unbreaking, Delvers Luck",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_33",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:fortune": 3,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:delvers_luck": 2
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3132
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_pickaxe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Deep Pick of the Rift [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Fortune, Unbreaking, Delvers Luck",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_34",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:fortune": 3,
+                "minecraft:unbreaking": 3,
+                "shatteredseals:delvers_luck": 2
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3133
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_axe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ashen Timber Cleaver of Ash [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Efficiency, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_35",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:efficiency": 3,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3134
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_axe",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Timber Cleaver of the Rift [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Warden's Spoils | Epic",
+                  "italic": false
+                },
+                {
+                  "text": "Enchantments: Efficiency, Unbreaking",
+                  "italic": false
+                },
+                {
+                  "text": "Earned from a repeat boss victory",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_gear_36",
+                "ss_tier": "epic",
+                "ss_loot": 1
+              }
+            },
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:efficiency": 3,
+                "minecraft:unbreaking": 3
+              }
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 3135
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot_on_a_stick",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Ember Powder [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Epic relic | Power 3",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Fire Resistance and Regeneration",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Right-click | Shared 20s cooldown",
+                  "color": "dark_gray",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_relic_01",
+                "ss_ability": "ember_guard",
+                "ss_power": 3,
+                "ss_tier": "epic"
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 7130
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot_on_a_stick",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Rift Shard [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Epic relic | Power 3",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Blink forward; Slow Falling",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Right-click | Shared 20s cooldown",
+                  "color": "dark_gray",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_relic_02",
+                "ss_ability": "rift_step",
+                "ss_power": 3,
+                "ss_tier": "epic"
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 7131
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot_on_a_stick",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Echo Stone [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Epic relic | Power 3",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Reveal hostiles; Night Vision",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Right-click | Shared 20s cooldown",
+                  "color": "dark_gray",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_relic_03",
+                "ss_ability": "echo_ping",
+                "ss_power": 3,
+                "ss_tier": "epic"
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 7132
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot_on_a_stick",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Warden Pulse [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Epic relic | Power 3",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Resistance; levitate hostiles",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Right-click | Shared 20s cooldown",
+                  "color": "dark_gray",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_relic_04",
+                "ss_ability": "wardens_pulse",
+                "ss_power": 3,
+                "ss_tier": "epic"
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 7133
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot_on_a_stick",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Frost Sigil [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Epic relic | Power 3",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Slow hostiles; brief Speed",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Right-click | Shared 20s cooldown",
+                  "color": "dark_gray",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_relic_05",
+                "ss_ability": "frost_snare",
+                "ss_power": 3,
+                "ss_tier": "epic"
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 7134
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot_on_a_stick",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Delver Draft [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Epic relic | Power 3",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Haste, Night Vision, Water Breathing",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Right-click | Shared 20s cooldown",
+                  "color": "dark_gray",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_relic_06",
+                "ss_ability": "delvers_draft",
+                "ss_power": 3,
+                "ss_tier": "epic"
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 7135
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot_on_a_stick",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Soul Ember [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Epic relic | Power 3",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Regeneration and Absorption",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Drawback: Hunger",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Right-click | Shared 20s cooldown",
+                  "color": "dark_gray",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_relic_07",
+                "ss_ability": "soul_mend",
+                "ss_power": 3,
+                "ss_tier": "epic"
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 7136
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot_on_a_stick",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Storm Conduit [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Epic relic | Power 3",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Lightning on a nearby enemy",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Right-click | Shared 20s cooldown",
+                  "color": "dark_gray",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_relic_08",
+                "ss_ability": "storm_call",
+                "ss_power": 3,
+                "ss_tier": "epic"
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 7137
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot_on_a_stick",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Shadow Cloth [Epic]",
+              "target": "item_name"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Epic relic | Power 3",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Invisibility and Night Vision",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Drawback: Weakness",
+                  "color": "gray",
+                  "italic": false
+                },
+                {
+                  "text": "Right-click | Shared 20s cooldown",
+                  "color": "dark_gray",
+                  "italic": false
+                }
+              ],
+              "mode": "replace_all"
+            },
+            {
+              "function": "minecraft:set_custom_data",
+              "tag": {
+                "ss_loot_id": "epic_relic_09",
+                "ss_ability": "shadow_cloak",
+                "ss_power": 3,
+                "ss_tier": "epic"
+              }
+            },
+            {
+              "function": "minecraft:set_custom_model_data",
+              "value": 7138
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:rarity": "rare",
+                "minecraft:enchantment_glint_override": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

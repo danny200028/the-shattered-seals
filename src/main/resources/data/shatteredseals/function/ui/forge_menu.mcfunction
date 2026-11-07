@@ -1,0 +1,6 @@
+tellraw @s [{"text":"━━━━━━━━  RELIC FORGE  ━━━━━━━━","color":"gold","italic":false}]
+tellraw @s [{"text":"Hold a legendary weapon in your main hand.","color":"yellow","italic":false}]
+tellraw @s [{"text":"Upgrade costs and checks are handled by existing mod functions.","color":"gray","italic":false}]
+tellraw @s [{"text":"[ATTEMPT UPGRADE]","color":"green","italic":false,"clickEvent":{"action":"run_command","value":"/trigger ss_upgrade set 1"},"hoverEvent":{"action":"show_text","contents":{"text":"Uses existing upgrade logic; requires materials"}}}]
+tellraw @s [{"text":"The upgrade is not free. Existing requirements apply.","color":"gray","italic":false}]
+tellraw @s [{"text":"[SKILLS]","color":"aqua","italic":false,"clickEvent":{"action":"run_command","value":"/trigger ss_menu set 1"}},{"text":"  [ARSENAL]","color":"yellow","italic":false,"clickEvent":{"action":"run_command","value":"/trigger ss_menu set 2"}},{"text":"  [FORGE]","color":"light_purple","italic":false,"clickEvent":{"action":"run_command","value":"/trigger ss_menu set 3"}}]

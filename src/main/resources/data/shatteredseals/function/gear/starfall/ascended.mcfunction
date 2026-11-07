@@ -1,0 +1,2 @@
+give @s minecraft:netherite_sword[item_name='{"text":"Starfall [Ascended]","color":"aqua","italic":false}',lore=['{"text":"Legendary weapon | Ascended","color":"gray","italic":false}','{"text":"Forged from a defeated boss","color":"dark_aqua","italic":false}','{"text":"Upgrade using the Relic Forge","color":"gold","italic":false}'],custom_model_data=1204,enchantments={levels:{"minecraft:knockback":4,"minecraft:unbreaking":3}},custom_data={ss_weapon:"starfall",ss_tier:"ascended"}] 1
+tellraw @s {"text":"Acquired: Starfall [Ascended]","color":"aqua","bold":false}

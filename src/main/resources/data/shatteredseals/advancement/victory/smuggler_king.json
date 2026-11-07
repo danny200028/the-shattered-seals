@@ -1,0 +1,15 @@
+{
+  "criteria": {
+    "victory": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "nbt": "{Tags:[\"ss_smuggler_king\"]}"
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "shatteredseals:reward/smuggler_king"
+  }
+}
