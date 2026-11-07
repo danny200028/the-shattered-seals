@@ -1,0 +1,38 @@
+name: Promote tested mod source
+on:
+  push:
+    paths:
+      - '.github/workflows/promote-source.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Expand legacy source and apply verified patches
+        shell: bash
+        run: |
+          set -euo pipefail
+          unzip -oq Shattered_Seals_1.0.36_Combat_Polish_Source.zip -d .
+          python3 patches/v1_0_37_level_cap.py
+          python3 patches/v1_0_38_respec_confirm.py
+          python3 patches/v1_0_39_mastery_refund.py
+          python3 patches/v1_0_40_ng_mastery_shop.py
+          test -f src/main/java/com/shatteredseals/client/SkillTreeScreen.java
+          test -f src/main/resources/data/shatteredseals/function/mastery/shop.mcfunction
+      - name: Commit source as maintainable files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'shattered-seals-build-bot'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src build.gradle gradle.properties settings.gradle scripts
+          if ! git diff --cached --quiet; then
+            git commit -m "Promote v1.0.40 tested source from ZIP into directly editable project"
+            git push origin HEAD:main
+          fi
