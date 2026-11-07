@@ -1,4 +1,4 @@
-name: Build The Shattered Seals 1.0.35
+name: Build The Shattered Seals 1.0.36
 on:
   push:
     branches: [main]
@@ -15,28 +15,9 @@ jobs:
         uses: actions/checkout@v4
       - name: Extract source archive
         run: |
-          unzip -oq Shattered_Seals_1.0.35_Class_Resources_Source.zip -d .
+          unzip -oq Shattered_Seals_1.0.36_Combat_Polish_Source.zip -d .
           test -f build.gradle
           test -f scripts/preflight.py
-      - name: Apply resource clock compatibility fix
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          root = Path('src/main/resources/data/shatteredseals/function')
-          load = root / 'load.mcfunction'
-          content = load.read_text()
-          if 'scoreboard objectives add ss_resource_clock dummy' not in content:
-              load.write_text(content + '\nscoreboard objectives add ss_resource_clock dummy\n')
-          tick = root / 'combat/resource_tick.mcfunction'
-          content = tick.read_text()
-          content = content.replace('execute if score @s ss_path matches 3 if entity @s[nbt={Sprinting:1b}] if score #clock ss_clock matches 0 run scoreboard players add @s ss_focus 3',
-                                    'scoreboard players add @s ss_resource_clock 1\nexecute if score @s ss_path matches 3 if entity @s[nbt={Sprinting:1b}] if score @s ss_resource_clock matches 20.. run scoreboard players add @s ss_focus 3')
-          content = content.replace('execute if score #clock ss_clock matches 0 run function shatteredseals:combat/resource_regen',
-                                    'execute if score @s ss_resource_clock matches 20.. run function shatteredseals:combat/resource_regen\nexecute if score @s ss_resource_clock matches 20.. run scoreboard players set @s ss_resource_clock 0')
-          tick.write_text(content)
-          init = root / 'combat/resource_init.mcfunction'
-          init.write_text(init.read_text() + '\nscoreboard players set @s ss_resource_clock 0\n')
-          PY
       - name: Install Java 21
         uses: actions/setup-java@v4
         with:
@@ -60,7 +41,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.35-NeoForge-JAR
+          name: Shattered-Seals-1.0.36-NeoForge-JAR
           path: |
             build/libs/*.jar
             SHA256SUMS.txt
@@ -69,6 +50,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.35-Build-Log
+          name: Shattered-Seals-1.0.36-Build-Log
           path: compile-log.txt
           if-no-files-found: ignore
