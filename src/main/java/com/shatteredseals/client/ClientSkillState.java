@@ -14,6 +14,7 @@ public final class ClientSkillState {
         Minecraft.getInstance().execute(() -> {
             latest = value;
             if (Minecraft.getInstance().screen instanceof SkillTreeScreen screen) screen.refresh();
+            if (Minecraft.getInstance().screen instanceof AdventureScreen adventure) adventure.refresh();
         });
     }
     public static SkillSnapshot current() { return latest; }
