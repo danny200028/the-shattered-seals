@@ -61,6 +61,23 @@ class ReleaseTests(unittest.TestCase):
         self.assertIn("scoreboard players add @s ss_master 1",up)
         self.assertIn("scoreboard players add @s ss_mpoints 1",up)
 
+    def test_ng_mastery_perk_shop(self):
+        tick=source("progression/tick")
+        self.assertIn("scoreboard players enable @a ss_mperk",tick)
+        self.assertIn("shatteredseals:mastery/passives",tick)
+        shop=source("mastery/shop")
+        refund=source("progression/reset_apply")
+        for perk in ("guard","haste","fury"):
+            objective="ss_mp_"+perk
+            with self.subTest(perk=perk):
+                buy=source("mastery/buy_"+perk)
+                self.assertIn("scoreboard players remove @s ss_mpoints 1",buy)
+                self.assertIn(f"scoreboard players add @s {objective} 1",buy)
+                self.assertIn(f"scoreboard players operation @s ss_mpoints += @s {objective}",refund)
+                self.assertIn(f"scoreboard players set @s {objective} 0",refund)
+                self.assertIn(f"ss_mp_{perk} matches ..4",shop)
+        self.assertEqual(source("mastery/passives").count("effect give @s"),15)
+
     def test_internal_function_references(self):
         files=list(FUNCTIONS.rglob("*.mcfunction"))
         self.assertGreater(len(files),50)
