@@ -1,0 +1,28 @@
+name: Quick Development Test
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+concurrency:
+  group: quick-development-test-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  test:
+    name: RPG and dungeon checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Generate six natural dungeons
+        run: python3 scripts/generate_dungeons.py
+      - name: RPG regression tests
+        run: python3 -m unittest discover -s tests -p 'test_*.py' -v
+      - name: Preflight validation
+        run: python3 scripts/preflight.py
