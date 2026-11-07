@@ -2,7 +2,7 @@
 
 Minecraft Java **1.21.1** | **NeoForge 21.1.238** | **Java 21**
 
-The world defaults to Hard difficulty, with high attack speed for an approximation of classic 1.8.9 full-strength combat. This is not a byte-for-byte recreation of the old combat engine.\n\nA challenging single-player RPG modpack, featuring a six-chapter boss storyline, nine-room natural jigsaw fortresses, class skill trees, powerful relics, rarity-based loot, and New Game+ mastery.
+The world defaults to Hard difficulty, with high attack speed for an approximation of classic 1.8.9 full-strength combat. Holding right-click with a sword now blocks 40% of frontal, positioned incoming damage while the guard is active. This is not a byte-for-byte recreation of the old combat engine.\n\nA challenging single-player RPG modpack, featuring a six-chapter boss storyline, nine-room natural jigsaw fortresses, class skill trees, powerful relics, rarity-based loot, and New Game+ mastery.
 
 ## Install the development pack
 
@@ -20,6 +20,7 @@ The shaderpack is **referenced** as a CurseForge dependency rather than redistri
 - **K** Native four-class skill tree.
 - **L** Toggle the on-screen chapter tracker with live rune-ward and keeper side-quest progress. The overlay reads server-owned scores and never grants progress.
 - **Q / R / V / G** Four combat skill slots.
+- **Hold right-click with a sword** for 1.8-style frontal sword guarding. The server checks your held weapon, incoming attack direction and a short-lived hold signal. Damage from behind and environmental damage are not blocked; shields still use vanilla mechanics.
 - Complete the six dungeon chapters in order by defeating each boss. Summoning sigils spawn in the corresponding loot chest. Dungeon fortresses have six guardian spawners, magma and cobweb hazards, hidden caches and a ritual arena. Dungeon locator uses Minecraft's `/locate structure` to find the current chapter.
 - Character level cap is **60**. Clearing the Hollow King and reaching level 60 unlocks New Game+.
 - Dragon Egg skill resets require explicit confirmation, consume one egg, refund normal and invested NG+ mastery allocations.

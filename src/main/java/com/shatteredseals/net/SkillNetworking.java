@@ -2,6 +2,7 @@ package com.shatteredseals.net;
 
 import com.shatteredseals.client.ClientSkillState;
 import com.shatteredseals.client.XaeroWaypoints;
+import com.shatteredseals.combat.ClassicSwordGuard;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -26,6 +27,11 @@ public final class SkillNetworking {
                 // choose damage, target, class or bypass server-side cooldowns.
                 player.getServer().getCommands().performPrefixedCommand(
                     player.createCommandSourceStack(), "trigger ss_burst set " + payload.slot());
+            }
+        });
+        registrar.playToServer(SwordGuard.TYPE, SwordGuard.STREAM_CODEC, (payload, context) -> {
+            if (context.player() instanceof ServerPlayer player) {
+                ClassicSwordGuard.update(player, payload.guarding());
             }
         });
         registrar.playToClient(SkillSnapshot.TYPE, SkillSnapshot.STREAM_CODEC,

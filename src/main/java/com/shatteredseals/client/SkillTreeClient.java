@@ -2,6 +2,8 @@ package com.shatteredseals.client;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import com.shatteredseals.net.CombatCast;
+import com.shatteredseals.net.SwordGuard;
+import net.minecraft.tags.ItemTags;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
@@ -59,18 +61,23 @@ public final class SkillTreeClient {
     @EventBusSubscriber(modid = "shatteredseals", value = Dist.CLIENT)
     public static final class GameEvents {
         private static int snapshotTicker = 0;
+        private static int guardTicker = 0;
+        private static boolean guardingLastTick = false;
         @SubscribeEvent
         public static void tick(ClientTickEvent.Post event) {
             Minecraft mc = Minecraft.getInstance();
             if (mc.player == null) {
                 ClientSkillState.clear();
                 snapshotTicker = 0;
+                guardTicker = 0;
+                guardingLastTick = false;
                 return;
             }
             if (++snapshotTicker >= 5) {
                 snapshotTicker = 0;
                 ClientSkillState.request();
             }
+            updateSwordGuard(mc);
             if (mc.screen != null) return;
             while (OPEN_SKILLS.consumeClick()) mc.setScreen(new SkillTreeScreen());
             while (OPEN_CODEX.consumeClick()) mc.setScreen(new AdventureScreen());
@@ -79,6 +86,18 @@ public final class SkillTreeClient {
             while (CAST_2.consumeClick()) PacketDistributor.sendToServer(new CombatCast(2));
             while (CAST_3.consumeClick()) PacketDistributor.sendToServer(new CombatCast(3));
             while (CAST_4.consumeClick()) PacketDistributor.sendToServer(new CombatCast(4));
+        }
+
+        private static void updateSwordGuard(Minecraft mc) {
+            // A held-use intent is refreshed while blocking and expires server-side.
+            // Opening a menu or switching weapons instantly releases the guard.
+            boolean holding = mc.screen == null && mc.options.keyUse.isDown()
+                && mc.player.getMainHandItem().is(ItemTags.SWORDS) && !mc.player.isSpectator();
+            if (holding != guardingLastTick || (holding && ++guardTicker >= 4)) {
+                guardingLastTick = holding;
+                guardTicker = 0;
+                PacketDistributor.sendToServer(new SwordGuard(holding));
+            }
         }
     }
     private SkillTreeClient() {}
