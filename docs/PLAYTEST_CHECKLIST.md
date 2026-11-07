@@ -17,10 +17,11 @@ Minecraft Java 1.21.1 (Java 21, NeoForge 21.1.238).
 - [ ] Create a fresh single-player world and verify Hard difficulty applies.
 - [ ] Open Codex (J), skill tree (K), and toggle the quest overlay (L).
 - [ ] Check quest tracker against Codex chapter, current rune step and keeper side quest.
-- [ ] Test each of Vanguard, Warden, Pathfinder and Arcanist plus skills (Q / R / V / G).
+- [ ] Rebind vanilla Drop or Ability 1 to resolve the default Q key conflict, then test each class and skills (Q / R / V / G as currently assigned).
 - [ ] Confirm cooldown/resource indicators reflect server state and persist after save and reload.
 - [ ] Test sword right-click guard: damage from straight ahead is reduced, side/rear and environmental damage are not.
 - [ ] Verify a normal skill respec requires confirmation and consumes **exactly one** Dragon Egg.
+- [ ] Cancel or close a reset confirmation and confirm no Dragon Egg is consumed and no approval remains; verify the 60-second expiry.
 - [ ] Verify refund of regular spent points and invested New Game+ mastery allocations.
 
 ## The six-chapter campaign
@@ -34,6 +35,7 @@ Observatory, Sixfold Temple and Hollow King's Fortress:
 - [ ] Confirm attempting to summon the boss before unlocking the ward fails.
 - [ ] Confirm boss summoning only works at its matching arena and consumes one sigil.
 - [ ] Confirm boss health bar, three phases, distinct warning effects and minions.
+- [ ] Kill or safely remove each boss and confirm its encounter-owned minions are cleaned up.
 - [ ] Confirm boss victory advances the story and awards expected chapter-specific loot.
 - [ ] Confirm optional cache rarity and relic upgrade recipes behave as described.
 
