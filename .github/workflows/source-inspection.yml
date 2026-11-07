@@ -43,7 +43,7 @@ jobs:
           from pathlib import Path
           root=Path('source-inspection/unpacked')
           names=('src/main/java/com/shatteredseals/ShatteredSeals.java','src/main/java/com/shatteredseals/net/SkillNetworking.java','src/main/java/com/shatteredseals/net/SkillRequest.java','src/main/java/com/shatteredseals/net/SkillSnapshot.java','src/main/resources/data/shatteredseals/function/progression/level_up.mcfunction','src/main/resources/data/shatteredseals/function/progression/kill_xp.mcfunction')
-          names = [str(p.relative_to(root)) for p in sorted(root.glob('src/main/resources/data/shatteredseals/function/talents/master_*.mcfunction'))] + [str(p.relative_to(root)) for p in sorted(root.glob('src/main/resources/data/shatteredseals/function/talents/ascend_*.mcfunction'))]
+          names = [str(p.relative_to(root)) for p in sorted(root.glob('src/main/resources/data/shatteredseals/function/talents/master_apply_*.mcfunction'))] + [str(p.relative_to(root)) for p in sorted(root.glob('src/main/resources/data/shatteredseals/function/talents/ascend_*.mcfunction'))]
           for name in dict.fromkeys(names):
               p=root/name
               if p.exists():
