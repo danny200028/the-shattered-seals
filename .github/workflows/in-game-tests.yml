@@ -32,6 +32,8 @@ jobs:
         run: |
           set -o pipefail
           gradle --no-daemon runGameTestServer --stacktrace 2>&1 | tee real-minecraft-test-log.txt
+      - name: Verify all expected tests truly ran
+        run: python3 scripts/verify_gametest_results.py real-minecraft-test-log.txt
       - name: Upload GameTest logs and crash diagnostics
         if: always()
         uses: actions/upload-artifact@v4
@@ -39,6 +41,7 @@ jobs:
           name: Shattered-Seals-Real-Minecraft-GameTests
           path: |
             real-minecraft-test-log.txt
+            game-test-summary.txt
             run/logs/*.log
             run/crash-reports/*
           if-no-files-found: warn

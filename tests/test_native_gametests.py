@@ -22,6 +22,8 @@ class NativeMinecraftGameTests(unittest.TestCase):
         self.assertIn("gameTestServer",gradle)
         self.assertIn("type = 'gameTestServer'",gradle)
         self.assertIn("runGameTestServer",ci)
+        self.assertIn("scripts/verify_gametest_results.py",ci)
+        self.assertIn("game-test-summary.txt",ci)
         self.assertIn("gradle --no-daemon runGameTestServer",ci)
         self.assertIn("scripts/generate_dungeons.py",ci)
 if __name__=="__main__":

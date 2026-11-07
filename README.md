@@ -39,8 +39,9 @@ The shaderpack is **referenced** as a CurseForge dependency rather than redistri
   The Windows collector writes a summary and ZIP to `ShatteredSeals-TestReports`.
 - Review the report ZIP before sharing it; filtered logs may include usernames
   or computer paths. Nothing is transmitted automatically.
-- GitHub's **Real Minecraft GameTests** workflow also spins up a headless
-  NeoForge server and validates all six dungeon layouts and NG+ loot at runtime.
+- GitHub's **Real Minecraft GameTests** workflow spins up a headless
+  NeoForge server and runs **12 actual game tests**, covering six dungeon templates,
+  NG+ sigil loot and all six bosses' phase transitions and minion cleanup.
 
 Read [the Windows testing guide](docs/AUTOMATED_TESTING.md) for exact steps.
 The collector cannot test visual shader quality, full boss AI or an entire
@@ -52,6 +53,6 @@ See [the acceptance checklist](docs/PLAYTEST_CHECKLIST.md) before labeling this 
 
 ### Quality gates and limitations
 
-GitHub Actions automatically generates dungeon structures, runs structural/gameplay regression tests and six real NeoForge server GameTests, compiles the Java mod and assembles the release ZIP. **A successful build does not substitute for an in-game test.** Please test fresh-world generation, dungeon placement, monster spawners, server commands, boss encounters, visual UI, shader loading, CurseForge import and save/reload before treating this as a stable release.
+GitHub Actions automatically generates dungeon structures, runs structural/gameplay regression tests and 12 real NeoForge server GameTests, compiles the Java mod and assembles the release ZIP. **A successful build does not substitute for an in-game test.** Please test fresh-world generation, dungeon placement, monster spawners, server commands, boss encounters, visual UI, shader loading, CurseForge import and save/reload before treating this as a stable release.
 
 Third-party CurseForge projects are referenced by IDs. No proprietary mod/shader binaries are copied into this repository.
