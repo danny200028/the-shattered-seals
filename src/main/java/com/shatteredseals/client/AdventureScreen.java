@@ -1,5 +1,6 @@
 package com.shatteredseals.client;
 
+import com.shatteredseals.adventure.DungeonChapter;
 import com.shatteredseals.net.SkillSnapshot;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -14,15 +15,8 @@ import net.minecraft.network.chat.Component;
  */
 public final class AdventureScreen extends Screen {
     private enum Page { JOURNAL, ARSENAL, FORGE, MASTERY }
-    private static final String[] CHAPTERS = {
-        "I. Smugglers' Den", "II. Cinder Citadel", "III. Hollow Crypt",
-        "IV. Arcane Observatory", "V. Sixfold Temple", "VI. Hollow King's Fortress"
-    };
-    private static final String[] BOSSES = {
-        "Smuggler King", "Cinder Warden", "Hollow Knight",
-        "Arcane Seer", "Sixfold Guardian", "Hollow King"
-    };
-    private static final int[] RECOMMENDED_LEVELS = {8, 16, 25, 35, 45, 55};
+    private static final DungeonChapter[] CHAPTERS = DungeonChapter.values();
+    private static final String[] NUMERALS = {"I", "II", "III", "IV", "V", "VI"};
     private static final String[] WEAPONS = {
         "Emberbound", "King's Fang", "Warden's Oath",
         "Starfall", "Gravekeeper", "King's Bane"
@@ -78,8 +72,8 @@ public final class AdventureScreen extends Screen {
                 b -> perform("ss_upgrade", 1))
                 .bounds(x + 123, y + 163, 162, 23).build());
         } else if (page == Page.JOURNAL) {
-            addRenderableWidget(Button.builder(Component.literal("Locate next dungeon"),
-                b -> perform("ss_story", 2))
+            addRenderableWidget(Button.builder(Component.literal("Mark next dungeon"),
+                b -> markDungeon())
                 .bounds(x + 194, y + 235, 203, 21).build());
             if (state != null && state.level() >= 60 && state.bossWins()[5] > 0 && !isReplay(state)) {
                 addRenderableWidget(Button.builder(Component.literal(state.ngCycle() == 0 ? "Begin New Game+" : "Start next NG+ cycle"),
@@ -102,6 +96,14 @@ public final class AdventureScreen extends Screen {
         if (mc.player != null && mc.player.connection != null) {
             mc.player.connection.sendCommand("trigger " + objective + " set " + value);
             ClientSkillState.request();
+        }
+    }
+
+    private void markDungeon() {
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.player != null && mc.player.connection != null) {
+            mc.player.connection.sendCommand("shatteredseals locate");
+            onClose();
         }
     }
 
@@ -149,18 +151,27 @@ public final class AdventureScreen extends Screen {
             boolean active = i == next;
             int color = defeated ? 0xFF79D4AA : active ? 0xFFEAC99C : 0xFF8993A8;
             line(graphics, (defeated ? "[CLEARED]  " : active ? "[ACTIVE]   " : "[LOCKED]  ")
-                + CHAPTERS[i] + "  |  " + BOSSES[i],
-                x + 8, y + 95 + 17 * i, color);
+                + NUMERALS[i] + ". " + CHAPTERS[i].dungeon + "  |  " + CHAPTERS[i].boss,
+                x + 8, y + 94 + 15 * i, color);
         }
         if (next < 0) {
             line(graphics, data.level() < 60 ? "All six seals broken. Reach level 60 for New Game+."
                  : "All six seals broken. Begin your next circuit when ready.", x + 8, y + 217, 0xFFC6CBDF);
             return;
         }
-        int level = replay ? 60 : RECOMMENDED_LEVELS[next];
-        line(graphics, "1. Locate and enter the fortress. Suggested level " + level + ".", x + 8, y + 197, 0xFFC6CBDF);
-        line(graphics, "2. Find the sigil in the arena chest or craft a replacement.", x + 8, y + 209, 0xFFC6CBDF);
-        line(graphics, "3. Use it on the crying obsidian pad. Defeat " + BOSSES[next] + ".", x + 8, y + 221, 0xFFC6CBDF);
+        DungeonChapter chapter = CHAPTERS[next];
+        int level = replay ? 60 : chapter.recommendedLevel;
+        line(graphics, "1. Mark the fortress and enter. Suggested level " + level + ".", x + 8, y + 183, 0xFFC6CBDF);
+        line(graphics, data.puzzleStep() >= 3 ? "2. Arena ward opened. Take the sigil from the chest."
+             : "2. Ask the keeper and attune the runes (" + data.puzzleStep() + "/3).", x + 8, y + 195, 0xFFC6CBDF);
+        line(graphics, "3. Use the sigil on the obsidian pad and defeat " + chapter.boss + ".", x + 8, y + 207, 0xFFC6CBDF);
+        String side = switch (data.sideQuestState()) {
+            case 1 -> "Defeat " + chapter.miniboss;
+            case 2 -> "Return to the keeper for your reward";
+            case 3 -> "Completed";
+            default -> "Speak to the keeper";
+        };
+        line(graphics, chapter.sideQuest + "  |  " + side, x + 8, y + 219, 0xFFE4AF76);
     }
 
     private static boolean isReplay(SkillSnapshot data) {

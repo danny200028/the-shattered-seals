@@ -11,6 +11,18 @@ scoreboard objectives add ss_won dummy
 scoreboard objectives add ss_ng dummy
 scoreboard objectives add ss_ngchapter dummy
 scoreboard objectives add ss_spawnok dummy
+scoreboard objectives add ss_rune1 dummy
+scoreboard objectives add ss_side1 dummy
+scoreboard objectives add ss_rune2 dummy
+scoreboard objectives add ss_side2 dummy
+scoreboard objectives add ss_rune3 dummy
+scoreboard objectives add ss_side3 dummy
+scoreboard objectives add ss_rune4 dummy
+scoreboard objectives add ss_side4 dummy
+scoreboard objectives add ss_rune5 dummy
+scoreboard objectives add ss_side5 dummy
+scoreboard objectives add ss_rune6 dummy
+scoreboard objectives add ss_side6 dummy
 scoreboard players set #clock ss_clock 0
 bossbar add shatteredseals:smuggler_king {"text":"Smuggler King","color":"gold","bold":true}
 bossbar set shatteredseals:smuggler_king max 150

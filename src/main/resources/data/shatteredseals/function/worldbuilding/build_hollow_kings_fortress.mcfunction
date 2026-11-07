@@ -11,5 +11,5 @@ execute positioned ~8 ~ ~8 run fill ~-4 ~-14 ~-4 ~4 ~-14 ~4 minecraft:reinforced
 execute positioned ~8 ~ ~8 run fill ~-4 ~-13 ~-4 ~4 ~-8 ~4 minecraft:reinforced_deepslate hollow
 execute positioned ~8 ~ ~8 run fill ~-3 ~-13 ~-3 ~3 ~-9 ~3 air
 execute positioned ~8 ~ ~8 run setblock ~0 ~-13 ~0 minecraft:chest{LootTable:"shatteredseals:chests/hollow_kings_fortress"}
-execute positioned ~8 ~ ~8 run summon minecraft:warden ~2 ~-12 ~2 {Tags:["ss_elite_king"],PersistenceRequired:1b,CustomName:'{"text": "King's Dreadguard", "color": "dark_red", "italic": false}'}
+execute positioned ~8 ~ ~8 run summon minecraft:warden ~2 ~-12 ~2 {Tags:["ss_elite_king"],PersistenceRequired:1b,CustomName:'{"text": "King\'s Dreadguard", "color": "dark_red", "italic": false}'}
 tellraw @s {"text": "Hollow King\'s Fortress prototype outpost created. Underground vault is sealed; use Spectator mode to inspect safely.", "color": "gold"}

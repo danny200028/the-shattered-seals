@@ -29,11 +29,7 @@
           "{\"text\":\"\",\"extra\":[{\"text\":\"KING'S BANE\\n\",\"color\":\"gold\"},{\"text\":\"\\nHaste when held.\\n\\n\",\"color\":\"gray\"},{\"text\":\"Dormant to Awakened:\\n\",\"color\":\"aqua\"},{\"text\":\"1 nether star + 1 netherite ingot\\n\\n\",\"color\":\"gray\"},{\"text\":\"Awakened to Ascended:\\n\",\"color\":\"aqua\"},{\"text\":\"4 nether stars\\n\\n\",\"color\":\"gray\"},{\"text\":\"[ UPGRADE HELD RELIC ]\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/trigger ss_upgrade set 1\"}}]}"
         ]
       },
-      "minecraft:item_name": {
-        "text": "Warden Relic Forge Codex",
-        "color": "gold",
-        "italic": false
-      }
+      "minecraft:item_name": "{\"text\":\"Warden Relic Forge Codex\",\"color\":\"gold\",\"italic\":false}"
     }
   }
 }

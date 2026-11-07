@@ -1,6 +1,7 @@
 package com.shatteredseals.net;
 
 import com.shatteredseals.client.ClientSkillState;
+import com.shatteredseals.client.XaeroWaypoints;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -12,7 +13,7 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 public final class SkillNetworking {
     @SubscribeEvent
     public static void register(final RegisterPayloadHandlersEvent event) {
-        final PayloadRegistrar registrar = event.registrar("2");
+        final PayloadRegistrar registrar = event.registrar("3");
         registrar.playToServer(SkillRequest.TYPE, SkillRequest.STREAM_CODEC, (payload, context) -> {
             if (context.player() instanceof ServerPlayer player) {
                 // All score reads happen on the server. No client-supplied values are trusted.
@@ -29,6 +30,8 @@ public final class SkillNetworking {
         });
         registrar.playToClient(SkillSnapshot.TYPE, SkillSnapshot.STREAM_CODEC,
             (payload, context) -> ClientSkillState.accept(payload));
+        registrar.playToClient(DungeonWaypoint.TYPE, DungeonWaypoint.STREAM_CODEC,
+            (payload, context) -> XaeroWaypoints.accept(payload));
     }
     private SkillNetworking() {}
 }

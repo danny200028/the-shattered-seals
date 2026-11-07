@@ -37,6 +37,18 @@ THEMES = [
      "minecraft:wither_skeleton", 52412779),
 ]
 
+# Room numbers run west to east, then north to south. Each route connects all
+# nine rooms, from the entrance in room 1 to the altar in room 7.
+LAYOUTS = (
+    ("01 12 03 25 34 36 67 78 58", (0, 4, 8), 5, "Mara the Lookout"),
+    ("14 01 12 45 25 58 87 76 63", (2, 3, 8), 6, "Ember Archivist"),
+    ("14 43 30 01 12 25 58 87 76", (0, 5, 6), 8, "Crypt Caretaker"),
+    ("12 25 54 43 30 36 67 78 47", (2, 4, 6), 3, "Star Reader Iona"),
+    ("10 03 36 67 74 45 52 58 87", (3, 2, 8), 0, "Temple Keeper Sela"),
+    ("14 43 30 01 36 67 78 85 52", (4, 6, 2), 8, "Last Sealkeeper"),
+)
+RUNE_BLOCKS = ("minecraft:chiseled_copper", "minecraft:prismarine", "minecraft:polished_blackstone")
+
 
 def nbt_string(value: str) -> bytes:
     data = value.encode("utf-8")
@@ -72,7 +84,23 @@ def palette_block(name: str) -> bytes:
     return compound(nbt_str("Name", name))
 
 
-def structure_nbt(wall: str, floor: str, trim: str, mob: str, loot: str) -> bytes:
+def template_entity(kind: str, x: int, y: int, z: int, *tags: bytes) -> bytes:
+    return compound(
+        nbt_list("pos", 6, [struct.pack(">d", n) for n in (x + 0.5, y, z + 0.5)]),
+        nbt_list("blockPos", 3, [struct.pack(">i", n) for n in (x, y, z)]),
+        nbt_compound("nbt", nbt_str("id", kind), *tags),
+    )
+
+
+def entity_tags(*values: str) -> bytes:
+    return nbt_list("Tags", 8, [nbt_string(value) for value in values])
+
+
+def room_center(room: int) -> tuple[int, int]:
+    return 7 + 14 * (room % 3), 7 + 14 * (room // 3)
+
+
+def structure_nbt(chapter: int, wall: str, floor: str, trim: str, mob: str, loot: str) -> bytes:
     """Nine-room, interconnected fortress: traps, guardians, hidden caches, boss arena."""
     size = (43, 12, 43)
     blocks: dict[tuple[int, int, int], tuple[str, bytes | None]] = {}
@@ -95,13 +123,15 @@ def structure_nbt(wall: str, floor: str, trim: str, mob: str, loot: str) -> byte
                 else:
                     material = "minecraft:air"
                 place(x, y, z, material)
-    # Every room can be reached via three entrances in each dividing wall.
-    for divider in (14, 28):
-        for opening in (7, 21, 35):
-            for offset in (-1, 0, 1):
-                for y in range(1, 5):
-                    place(opening + offset, y, divider, "minecraft:air")
-                    place(divider, y, opening + offset, "minecraft:air")
+    routes, rune_rooms, challenge_room, keeper = LAYOUTS[chapter - 1]
+    for edge in routes.split():
+        x1, z1 = room_center(int(edge[0]))
+        x2, z2 = room_center(int(edge[1]))
+        x, z = (x1 + x2) // 2, (z1 + z2) // 2
+        for offset in (-1, 0, 1):
+            for y in range(1, 5):
+                place(x + (offset if x1 == x2 else 0), y,
+                      z + (offset if z1 == z2 else 0), "minecraft:air")
     # Exterior entrance, framed with contrasting blocks.
     for x in range(19, 24):
         for y in range(1, 6):
@@ -167,6 +197,25 @@ def structure_nbt(wall: str, floor: str, trim: str, mob: str, loot: str) -> byte
                  (9, 37), (34, 37)):
         place(x, 1, z, "minecraft:cobweb")
 
+    chapter_tag = f"ss_chapter_{chapter}"
+    entities = [template_entity("minecraft:marker", 21, 1, 36,
+                                entity_tags("ss_runed_arena", chapter_tag))]
+    for index, (room, material) in enumerate(zip(rune_rooms, RUNE_BLOCKS)):
+        x, z = room_center(room)
+        place(x, 1, z - 3, material)
+        entities.append(template_entity("minecraft:marker", x, 2, z - 3,
+                                        entity_tags(f"ss_rune_{index}", chapter_tag)))
+
+    x, z = room_center(challenge_room)
+    place(x, 1, z + 3, "minecraft:chiseled_deepslate")
+    entities.append(template_entity("minecraft:marker", x, 2, z + 3,
+                                    entity_tags("ss_challenge", chapter_tag)))
+    entities.append(template_entity(
+        "minecraft:villager", 18, 1, 7, entity_tags("ss_keeper", chapter_tag),
+        nbt_str("CustomName", json.dumps({"text": keeper, "color": "gold"})),
+        *(named(1, key, b"\x01") for key in ("NoAI", "Invulnerable", "PersistenceRequired", "CustomNameVisible", "Silent")),
+    ))
+
     # Palette and block positions are proper binary structure NBT rather
     # than an unvalidated text fixture or zipped datapack command.
     names = list(dict.fromkeys(name for name, _ in blocks.values()))
@@ -184,7 +233,7 @@ def structure_nbt(wall: str, floor: str, trim: str, mob: str, loot: str) -> byte
         nbt_list("size", 3, [struct.pack(">i", n) for n in size]),
         nbt_list("palette", 10, palette),
         nbt_list("blocks", 10, entries),
-        nbt_list("entities", 10, []),
+        nbt_list("entities", 10, entities),
     )
     return named(10, "", root)
 
@@ -194,11 +243,11 @@ def write_json(path: Path, data: dict) -> None:
 
 
 def main() -> None:
-    for dungeon, biome, wall, floor, trim, mob, salt in THEMES:
+    for chapter, (dungeon, biome, wall, floor, trim, mob, salt) in enumerate(THEMES, 1):
         loot = f"shatteredseals:chests/{dungeon}"
         if not (DATA / f"loot_table/chests/{dungeon}.json").is_file():
             raise SystemExit(f"Missing existing loot table for {dungeon}")
-        nbt = structure_nbt(wall, floor, trim, mob, loot)
+        nbt = structure_nbt(chapter, wall, floor, trim, mob, loot)
         path = DATA / f"structure/{dungeon}.nbt"
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(gzip.compress(nbt, compresslevel=9, mtime=0))
@@ -236,6 +285,9 @@ def main() -> None:
                 "salt": salt,
                 "spread_type": "linear",
             },
+        })
+        write_json(DATA / f"tags/worldgen/structure/{dungeon}.json", {
+            "values": [f"shatteredseals:{dungeon}"],
         })
     print(f"Generated {len(THEMES)} reproducible overworld dungeon structures.")
 

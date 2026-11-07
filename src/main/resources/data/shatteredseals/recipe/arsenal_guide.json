@@ -29,11 +29,7 @@
           "{\"text\":\"\",\"extra\":[{\"text\":\"EQUIPMENT TIPS\\n\",\"color\":\"gold\"},{\"text\":\"Weapons: swords, axes, bows, crossbows, tridents, maces.\\nTools: picks, shovels, hoes, fishing rods.\\nArmour: helmet, chest, legs, boots.\\nUtility: bucklers and right-click relics.\\n\",\"color\":\"gray\"},{\"text\":\"Loot drops from *repeat* bosses; first kills remain unique.\",\"color\":\"yellow\"}]}"
         ]
       },
-      "minecraft:item_name": {
-        "text": "Warden Arsenal",
-        "color": "gold",
-        "italic": false
-      }
+      "minecraft:item_name": "{\"text\":\"Warden Arsenal\",\"color\":\"gold\",\"italic\":false}"
     }
   }
 }

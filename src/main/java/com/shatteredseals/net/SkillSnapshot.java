@@ -1,5 +1,6 @@
 package com.shatteredseals.net;
 
+import com.shatteredseals.adventure.DungeonChapter;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
@@ -14,7 +15,7 @@ public record SkillSnapshot(int level, int xp, int requiredXp, int points,
                             int kills, int activeClass, int masteryRank,
                             int[] branchRanks, int[] branchMasteries, int[] cooldowns, int[] resources,
                             int ngCycle, int replayChapter, int masteryPoints, int[] masteryPerks,
-                            int[] bossWins) implements CustomPacketPayload {
+                            int[] bossWins, int puzzleStep, int sideQuestState) implements CustomPacketPayload {
     public static final Type<SkillSnapshot> TYPE = new Type<>(
         ResourceLocation.fromNamespaceAndPath("shatteredseals", "skill_snapshot"));
     public static final StreamCodec<RegistryFriendlyByteBuf, SkillSnapshot> STREAM_CODEC = StreamCodec.of(
@@ -35,6 +36,8 @@ public record SkillSnapshot(int level, int xp, int requiredXp, int points,
             buf.writeVarInt(value.masteryPoints());
             for (int i = 0; i < 3; i++) buf.writeVarInt(value.masteryPerks()[i]);
             for (int i = 0; i < 6; i++) buf.writeVarInt(value.bossWins()[i]);
+            buf.writeVarInt(value.puzzleStep());
+            buf.writeVarInt(value.sideQuestState());
         },
         buf -> {
             int level = buf.readVarInt();
@@ -61,7 +64,8 @@ public record SkillSnapshot(int level, int xp, int requiredXp, int points,
             for (int i = 0; i < 6; i++) bossWins[i] = buf.readVarInt();
             return new SkillSnapshot(level, xp, requiredXp, points, kills,
                                      activeClass, masteryRank, ranks, masteries, cooldowns, resources,
-                                     ngCycle, replayChapter, masteryPoints, masteryPerks, bossWins);
+                                     ngCycle, replayChapter, masteryPoints, masteryPerks, bossWins,
+                                     buf.readVarInt(), buf.readVarInt());
         });
 
     private static int read(Scoreboard scoreboard, ServerPlayer player, String objective) {
@@ -73,6 +77,7 @@ public record SkillSnapshot(int level, int xp, int requiredXp, int points,
 
     public static SkillSnapshot capture(ServerPlayer player) {
         Scoreboard board = player.getScoreboard();
+        DungeonChapter chapter = DungeonChapter.current(player);
         int[] ranks = new int[12];
         int[] masteries = new int[12];
         for (int i = 0; i < 12; i++) {
@@ -96,7 +101,9 @@ public record SkillSnapshot(int level, int xp, int requiredXp, int points,
                        read(board, player, "ss_mp_fury")},
             new int[] {read(board, player, "ss_vk_smug"), read(board, player, "ss_vk_cind"),
                        read(board, player, "ss_vk_holl"), read(board, player, "ss_vk_arca"),
-                       read(board, player, "ss_vk_six"), read(board, player, "ss_vk_king")});
+                       read(board, player, "ss_vk_six"), read(board, player, "ss_vk_king")},
+            chapter == null ? 0 : read(board, player, chapter.puzzleScore()),
+            chapter == null ? 0 : read(board, player, chapter.sideScore()));
     }
     @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
 }

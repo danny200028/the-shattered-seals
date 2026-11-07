@@ -39,11 +39,7 @@
           "{\"text\":\"\",\"extra\":[{\"text\":\"COMMON - 43 to 45\\n\",\"color\":\"gold\"},{\"text\":\"\\nSoul Ember [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"Regeneration and absorption at a cost\\n\",\"color\":\"gray\"},{\"text\":\"\\nStorm Conduit [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"Target nearest hostile with a lightning strike\\n\",\"color\":\"gray\"},{\"text\":\"\\nShadow Cloth [Common]\\n\",\"color\":\"aqua\"},{\"text\":\"Stealth and night vision\\n\",\"color\":\"gray\"}]}"
         ]
       },
-      "minecraft:item_name": {
-        "text": "Common Warden Codex",
-        "color": "white",
-        "italic": false
-      }
+      "minecraft:item_name": "{\"text\":\"Common Warden Codex\",\"color\":\"white\",\"italic\":false}"
     }
   }
 }

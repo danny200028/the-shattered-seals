@@ -39,11 +39,7 @@
           "{\"text\":\"\",\"extra\":[{\"text\":\"EPIC - 43 to 45\\n\",\"color\":\"gold\"},{\"text\":\"\\nSoul Ember [Epic]\\n\",\"color\":\"aqua\"},{\"text\":\"Regeneration and absorption at a cost\\n\",\"color\":\"gray\"},{\"text\":\"\\nStorm Conduit [Epic]\\n\",\"color\":\"aqua\"},{\"text\":\"Target nearest hostile with a lightning strike\\n\",\"color\":\"gray\"},{\"text\":\"\\nShadow Cloth [Epic]\\n\",\"color\":\"aqua\"},{\"text\":\"Stealth and night vision\\n\",\"color\":\"gray\"}]}"
         ]
       },
-      "minecraft:item_name": {
-        "text": "Epic Warden Codex",
-        "color": "light_purple",
-        "italic": false
-      }
+      "minecraft:item_name": "{\"text\":\"Epic Warden Codex\",\"color\":\"light_purple\",\"italic\":false}"
     }
   }
 }

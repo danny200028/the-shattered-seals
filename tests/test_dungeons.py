@@ -1,11 +1,15 @@
 """Regression checks for generated jigsaw dungeons and story ritual gates."""
 import gzip
+import importlib.util
 import json
 import unittest
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
 DATA=ROOT/"src/main/resources/data/shatteredseals"
+GENERATOR = importlib.util.spec_from_file_location("dungeons", ROOT / "scripts/generate_dungeons.py")
+DUNGEON_SOURCE = importlib.util.module_from_spec(GENERATOR)
+GENERATOR.loader.exec_module(DUNGEON_SOURCE)
 DUNGEONS=[
     ("smugglers_den","smuggler_king",None),
     ("cinder_citadel","cinder_warden","ss_vk_smug"),
@@ -35,6 +39,11 @@ class DungeonTests(unittest.TestCase):
                 self.assertEqual(data.count(b"SpawnData"),6)
                 # One chapter sigil chest and two optional treasure caches.
                 self.assertEqual(data.count(b"LootTable"),3)
+                self.assertIn(b"ss_runed_arena", data)
+                self.assertIn(b"ss_keeper", data)
+                self.assertIn(b"ss_challenge", data)
+                for rune in range(3):
+                    self.assertIn(f"ss_rune_{rune}".encode(), data)
 
                 self.assertIn(f"shatteredseals:chests/{dungeon}".encode(),data)
                 pool=json.loads((DATA/f"worldgen/template_pool/{dungeon}.json").read_text())
@@ -69,6 +78,24 @@ class DungeonTests(unittest.TestCase):
                 summon = (functions / f"boss/summon_{boss}.mcfunction").read_text()
                 self.assertNotIn("positioned over", summon)
                 self.assertIn("store success score @s ss_spawnok run summon", summon)
+                self.assertIn(f"ss_runed_arena,tag=ss_chapter_{chapter}", use)
+                self.assertIn(f"unless score @s ss_rune{chapter} matches 3", use)
+
+    def test_dungeon_routes_are_distinct_and_every_room_is_reachable(self):
+        layouts = []
+        for routes, runes, challenge, _ in DUNGEON_SOURCE.LAYOUTS:
+            edges = {tuple(sorted(map(int, edge))) for edge in routes.split()}
+            layouts.append(frozenset(edges))
+            reached = {1}
+            for _ in range(8):
+                for first, second in edges:
+                    self.assertEqual(abs(first // 3 - second // 3) + abs(first % 3 - second % 3), 1)
+                    if first in reached or second in reached:
+                        reached.update((first, second))
+            self.assertEqual(reached, set(range(9)))
+            self.assertEqual(len(set(runes)), 3)
+            self.assertIn(challenge, reached)
+        self.assertEqual(len(set(layouts)), len(DUNGEONS))
 
     def test_new_game_plus_replays_without_resetting_first_clear_rewards(self):
         functions = DATA / "function"
