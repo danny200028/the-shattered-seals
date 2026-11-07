@@ -30,3 +30,9 @@ execute as @a[scores={ss_story=1}] run function shatteredseals:story/journal
 execute as @a[scores={ss_story=2}] at @s run function shatteredseals:story/locate
 execute as @a[scores={ss_story=3}] run function shatteredseals:ngplus/start
 scoreboard players set @a[scores={ss_story=1..}] ss_story 0
+
+# Ensure pre-v1.0.44 worlds have a score entry for mastery purchase conditions.
+scoreboard players add @a ss_mp_guard 0
+scoreboard players add @a ss_mp_haste 0
+scoreboard players add @a ss_mp_fury 0
+scoreboard players add @a ss_reset_confirm 0

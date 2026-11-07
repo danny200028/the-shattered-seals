@@ -78,6 +78,34 @@ class ReleaseTests(unittest.TestCase):
                 self.assertIn(f"ss_mp_{perk} matches ..4",shop)
         self.assertEqual(source("mastery/passives").count("effect give @s"),15)
 
+    def test_ng_mastery_objective_init_and_buff_uptime(self):
+        load=source("load")
+        tick=source("progression/tick")
+        init=source("progression/init")
+        passives=source("mastery/passives")
+        self.assertIn("scoreboard objectives add ss_reset_confirm dummy",load)
+        for perk in ("guard","haste","fury"):
+            name="ss_mp_"+perk
+            self.assertIn(f"scoreboard players set @s {name} 0",init)
+            self.assertIn(f"scoreboard players add @a {name} 0",tick)
+            effect={"guard":"resistance","haste":"haste","fury":"strength"}[perk]
+            for rank in range(1,6):
+                self.assertIn(f"scoreboard players",tick)
+                self.assertIn(f"ss_mp_{perk} matches {rank} run effect give @s minecraft:{effect} 6 ",passives)
+
+    def test_reset_requires_prior_server_confirmation(self):
+        reset=source("progression/reset")
+        load=source("load")
+        init=source("progression/init")
+        self.assertIn("scoreboard objectives add ss_reset_confirm dummy",load)
+        self.assertIn("scoreboard players set @s ss_reset_confirm 0",init)
+        self.assertIn("ss_respec matches 1 run scoreboard players set @s ss_reset_confirm 1",reset)
+        self.assertIn("ss_respec matches 2 if score @s ss_reset_confirm matches 1 run function shatteredseals:progression/reset_confirm",reset)
+        self.assertIn("ss_respec matches 2 run scoreboard players set @s ss_reset_confirm 0",reset)
+        gui=(ROOT/"src/main/java/com/shatteredseals/client/SkillTreeScreen.java").read_text()
+        self.assertIn('confirmingReset = true; perform("ss_respec", 1);',gui)
+        self.assertIn('perform("ss_respec", 2);',gui)
+
     def test_internal_function_references(self):
         files=list(FUNCTIONS.rglob("*.mcfunction"))
         self.assertGreater(len(files),50)

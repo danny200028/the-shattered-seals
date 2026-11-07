@@ -35,3 +35,9 @@ scoreboard players set @s ss_b42 0
 scoreboard players set @s ss_a42 0
 scoreboard players set @s ss_b43 0
 scoreboard players set @s ss_a43 0
+
+# Explicit zero starting ranks for New Game+ perk purchases and refunds
+scoreboard players set @s ss_mp_guard 0
+scoreboard players set @s ss_mp_haste 0
+scoreboard players set @s ss_mp_fury 0
+scoreboard players set @s ss_reset_confirm 0

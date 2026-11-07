@@ -75,7 +75,7 @@ public final class SkillTreeScreen extends Screen {
 
         addRenderableWidget(Button.builder(Component.literal(
             confirmingReset ? "CONFIRM: Use Dragon Egg" : "Reset skill points (Dragon Egg)"), b -> {
-            if (!confirmingReset) { confirmingReset = true; rebuildWidgets(); }
+            if (!confirmingReset) { confirmingReset = true; perform("ss_respec", 1); rebuildWidgets(); }
             else { confirmingReset = false; perform("ss_respec", 2); }
         }).bounds(x,y+235,245,20).build());
         if (confirmingReset) addRenderableWidget(Button.builder(Component.literal("Cancel"), b -> {

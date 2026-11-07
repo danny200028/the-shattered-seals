@@ -162,3 +162,6 @@ scoreboard objectives add ss_mp_fury dummy
 
 # Main story: survival-accessible quest journal and dungeon locator
 scoreboard objectives add ss_story trigger
+
+# Per-player server-side reset confirmation state; never accept an unprompted reset
+scoreboard objectives add ss_reset_confirm dummy
