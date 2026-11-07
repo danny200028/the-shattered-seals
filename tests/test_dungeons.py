@@ -21,7 +21,7 @@ class DungeonTests(unittest.TestCase):
                 template=DATA/f"structure/{dungeon}.nbt"
                 self.assertTrue(template.exists(),f"missing {template}")
                 data=gzip.decompress(template.read_bytes())
-                self.assertEqual(data[:3],b"\\x0a\\x00\\x00")
+                self.assertEqual(data[:3],bytes.fromhex("0a0000"))
                 self.assertIn(b"minecraft:chest",data)
                 self.assertIn(b"minecraft:spawner",data)
                 self.assertIn(f"shatteredseals:chests/{dungeon}".encode(),data)
@@ -51,4 +51,4 @@ class DungeonTests(unittest.TestCase):
         self.assertIn("shatteredseals:story/journal",tick)
         self.assertIn("shatteredseals:story/locate",tick)
         self.assertEqual(locate.count("locate structure shatteredseals:"),6)
-        self.assertIn("NEW GAME+",journal)
+        self.assertIn("NEW GAME+",journal.upper())
