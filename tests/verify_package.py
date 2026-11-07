@@ -6,7 +6,7 @@ from zipfile import ZipFile
 import unittest
 
 ROOT=Path(__file__).resolve().parents[1]
-OUT=ROOT/"build/distributions/The-Shattered-Seals-1.0.47-CurseForge.zip"
+OUT=ROOT/"build/distributions/The-Shattered-Seals-1.0.48-CurseForge.zip"
 REQUIRED={
     (263420,9067173), (317780,9067277), (455508,6661598),
     (394468,6382651), (627557,8884654),
@@ -28,7 +28,7 @@ class PackageTests(unittest.TestCase):
             manifest=json.loads(archive.read("manifest.json"))
             self.assertEqual(manifest["minecraft"]["version"],"1.21.1")
             self.assertEqual(manifest["minecraft"]["modLoaders"],[{"id":"neoforge-21.1.238","primary":True}])
-            self.assertEqual(manifest["version"],"1.0.47")
+            self.assertEqual(manifest["version"],"1.0.48")
             self.assertEqual(manifest["overrides"],"overrides")
             self.assertEqual({(x["projectID"],x["fileID"]) for x in manifest["files"]},REQUIRED)
             self.assertTrue(all(x["required"] for x in manifest["files"]))

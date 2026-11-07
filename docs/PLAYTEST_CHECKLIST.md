@@ -1,13 +1,21 @@
-# The Shattered Seals v1.0.47: In-game Acceptance Checklist
+# The Shattered Seals v1.0.48: In-game Acceptance Checklist
 
 This checklist is **not an automated test result**. The GitHub build compiles the
 NeoForge mod, generates six dungeon structures and validates CurseForge packaging.
 A tester must mark each of the following steps after actually performing it in
 Minecraft Java 1.21.1 (Java 21, NeoForge 21.1.238).
 
+## Automated testing (first run)
+- [ ] In a disposable Minecraft world, execute `/shatteredseals audit` without cheats.
+- [ ] Confirm the runtime audit reports zero FAIL entries; investigate WARN entries.
+- [ ] Close Minecraft; run `TEST_THE_SHATTERED_SEALS.cmd` from the CurseForge profile directory.
+- [ ] Check that `ShatteredSeals-TestReports` contains the runtime audit, installed-mod checks and ZIP.
+- [ ] Confirm GitHub's Real Minecraft GameTests workflow passes all six GameTests.
+- [ ] Review report ZIP before sharing; relevant log extracts may contain personal paths or usernames.
+
 ## Installation and graphics
-- [ ] Download the `Shattered-Seals-1.0.47-CurseForge-Modpack` GitHub Actions artifact.
-- [ ] Extract the outer Actions artifact once; import the inner `The-Shattered-Seals-1.0.47-CurseForge.zip` in CurseForge.
+- [ ] Download the `Shattered-Seals-1.0.48-CurseForge-Modpack` GitHub Actions artifact.
+- [ ] Extract the outer Actions artifact once; import the inner `The-Shattered-Seals-1.0.48-CurseForge.zip` in CurseForge.
 - [ ] Verify the mod loads without crash and the NeoForge mod list includes The Shattered Seals.
 - [ ] Verify Xaero's Minimap, Xaero's World Map, Iris and Sodium load on the selected game version.
 - [ ] Verify Complementary Reimagined is installed/selected (manual shader installation may be required).
@@ -45,11 +53,13 @@ Observatory, Sixfold Temple and Hollow King's Fortress:
 - [ ] Visit a previously looted dungeon in NG+, complete the keeper quest and receive a new matching sigil.
 - [ ] Replay all six bosses in the correct order without first-clear rewards being repeated.
 - [ ] Compare boss strength and mastery XP in NG+ cycles 1, 2 and 4: scaling must increase and then cap.
-- [ ] Test saving/loading, leaving/rejoining, and upgrading an existing pre-v1.0.47 world.
+- [ ] Test saving/loading, leaving/rejoining, and upgrading an existing pre-v1.0.48 world.
 
 ## Sign-off
 - Automated GitHub unit/static tests: see the latest successful Quick Development Test workflow.
 - Automated Java 21 compilation and package verification: see the latest successful Build workflow.
+- Six native in-game structure and loot checks: see the Real Minecraft GameTests workflow.
+- Your Windows runtime audit and modpack diagnostics: **not verified until collected from your installation**.
 - CurseForge import: **not verified until manually checked**.
 - Real Minecraft combat, dungeons, shaders and save persistence: **not verified until manually checked**.
 - Release status: **development candidate**, not player-tested stable.
