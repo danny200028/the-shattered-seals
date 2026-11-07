@@ -1,4 +1,4 @@
-name: Build The Shattered Seals 1.0.37
+name: Build The Shattered Seals 1.0.38
 on:
   push:
     branches: [main]
@@ -20,6 +20,8 @@ jobs:
           test -f scripts/preflight.py
       - name: Apply level 60 progression patch
         run: python3 patches/v1_0_37_level_cap.py
+      - name: Add confirmed Dragon Egg skill reset
+        run: python3 patches/v1_0_38_respec_confirm.py
       - name: Install Java 21
         uses: actions/setup-java@v4
         with:
@@ -43,7 +45,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.37-NeoForge-JAR
+          name: Shattered-Seals-1.0.38-NeoForge-JAR
           path: |
             build/libs/*.jar
             SHA256SUMS.txt
@@ -52,6 +54,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.37-Build-Log
+          name: Shattered-Seals-1.0.38-Build-Log
           path: compile-log.txt
           if-no-files-found: ignore
