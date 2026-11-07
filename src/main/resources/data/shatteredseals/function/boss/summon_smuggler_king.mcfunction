@@ -8,6 +8,11 @@ execute as @e[tag=ss_smuggler_king,sort=nearest,limit=1,distance=..3] run data m
 execute as @e[tag=ss_smuggler_king,tag=!ss_watch_linked,sort=nearest,limit=1,distance=..4] at @s run summon minecraft:marker ~ ~ ~ {Tags:["ss_boss_watch","ss_watch_smuggler_king"]}
 execute as @e[tag=ss_smuggler_king,tag=!ss_watch_linked,sort=nearest,limit=1,distance=..4] run tag @s add ss_watch_linked
 function shatteredseals:boss/start_heartbeat
-execute if score @s ss_ng matches 1.. run effect give @e[tag=ss_smuggler_king,distance=..10,sort=nearest,limit=1] minecraft:strength 99999 2 true
-execute if score @s ss_ng matches 1.. run effect give @e[tag=ss_smuggler_king,distance=..10,sort=nearest,limit=1] minecraft:resistance 99999 0 true
+# Every NG+ circuit raises the challenge, with a cap at cycle four.
+execute if score @s ss_ng matches 1 run effect give @e[tag=ss_smuggler_king,distance=..10,sort=nearest,limit=1] minecraft:strength 99999 2 true
+execute if score @s ss_ng matches 2 run effect give @e[tag=ss_smuggler_king,distance=..10,sort=nearest,limit=1] minecraft:strength 99999 3 true
+execute if score @s ss_ng matches 3 run effect give @e[tag=ss_smuggler_king,distance=..10,sort=nearest,limit=1] minecraft:strength 99999 4 true
+execute if score @s ss_ng matches 4.. run effect give @e[tag=ss_smuggler_king,distance=..10,sort=nearest,limit=1] minecraft:strength 99999 5 true
+execute if score @s ss_ng matches 1..3 run effect give @e[tag=ss_smuggler_king,distance=..10,sort=nearest,limit=1] minecraft:resistance 99999 0 true
+execute if score @s ss_ng matches 4.. run effect give @e[tag=ss_smuggler_king,distance=..10,sort=nearest,limit=1] minecraft:resistance 99999 1 true
 tellraw @s {"text":"Smuggler King has awakened. Prepare for three phases!","color":"gold","bold":true}
