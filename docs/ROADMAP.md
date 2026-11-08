@@ -117,6 +117,32 @@ save persistence and rooms that open/improve as the adventure progresses:
 | **Portal Chamber** | Convenient but limited travel connections, compatible with Waystones | No bypassing chapter gates or free infinite teleportation |
 | **War Room** | Boss Bestiary, quest status, bounties and Shattered Trials planning | Information, not combat bonuses |
 
+### Everyday survival facilities (part of the Sanctuary, not an extra power system)
+
+The Sanctuary must also work as the player's real Minecraft survival base,
+with **usable blocks and enough practical room** for normal day-to-day play.
+Build these as a connected living-and-survival wing or sensible annexes, without
+replacing any of the seven specialist rooms:
+
+- **Bedroom:** normal player bed/respawn point and room for personal decorations.
+- **Bulk storage room:** ample expandable space for labelled chests, barrels,
+  item frames and ordinary Minecraft item organisation, separate from the trophy
+  and treasure display vaults.
+- **Smelting room:** working furnaces, blast furnaces, smokers and fuel storage.
+- **Crafting workshop:** crafting tables, anvils, smithing tables, grindstones
+  and stonecutters; alongside the separate Enchanter's Workshop.
+- **Brewing nook:** brewing stands, cauldrons and potion ingredient storage.
+- **Garden and farm:** room for crops, food supplies and a modest animal area,
+  preferably in an outdoor courtyard or attached garden.
+
+All facilities use standard vanilla block mechanics, storage ownership and
+crafting/fuel costs. Offer expansion space so survival storage does not become
+cramped. **No free auto-generated resources, item duplication or unearned gear.**
+Practical facilities are available early enough for everyday use; high-end
+cosmetic rooms and records continue unlocking through story progression.
+Make sure player bed spawn points, inventories and placed blocks persist on
+save/reload and NG+, and avoid overwriting player-modified rooms on updates.
+
 The home **visually evolves** after chapter victories and optional milestones.
 Preserve completed displays and achievements across save/reload and NG+.
 Integrate the achievements and trophy collection **inside this base**, not as
