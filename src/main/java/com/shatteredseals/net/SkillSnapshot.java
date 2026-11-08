@@ -13,7 +13,7 @@ import net.minecraft.world.scores.Scoreboard;
 /** Server-owned state; client cannot use this packet to change skill points. */
 public record SkillSnapshot(int level, int xp, int requiredXp, int points,
                             int kills, int activeClass, int masteryRank,
-                            int[] branchRanks, int[] branchMasteries, int[] cooldowns, int[] resources,
+                            int[] branchRanks, int[] branchMasteries, int[] coreRanks, int[] cooldowns, int[] resources,
                             int ngCycle, int replayChapter, int masteryPoints, int[] masteryPerks,
                             int[] bossWins, int puzzleStep, int sideQuestState) implements CustomPacketPayload {
     public static final Type<SkillSnapshot> TYPE = new Type<>(
@@ -29,6 +29,7 @@ public record SkillSnapshot(int level, int xp, int requiredXp, int points,
             buf.writeVarInt(value.masteryRank());
             for (int i = 0; i < 12; i++) buf.writeVarInt(value.branchRanks()[i]);
             for (int i = 0; i < 12; i++) buf.writeVarInt(value.branchMasteries()[i]);
+            for (int i = 0; i < 4; i++) buf.writeVarInt(value.coreRanks()[i]);
             for (int i = 0; i < 4; i++) buf.writeVarInt(value.cooldowns()[i]);
             for (int i = 0; i < 4; i++) buf.writeVarInt(value.resources()[i]);
             buf.writeVarInt(value.ngCycle());
@@ -51,6 +52,8 @@ public record SkillSnapshot(int level, int xp, int requiredXp, int points,
             int[] masteries = new int[12];
             for (int i = 0; i < 12; i++) ranks[i] = buf.readVarInt();
             for (int i = 0; i < 12; i++) masteries[i] = buf.readVarInt();
+            int[] coreRanks = new int[4];
+            for (int i = 0; i < 4; i++) coreRanks[i] = buf.readVarInt();
             int[] cooldowns = new int[4];
             for (int i = 0; i < 4; i++) cooldowns[i] = buf.readVarInt();
             int[] resources = new int[4];
@@ -63,7 +66,7 @@ public record SkillSnapshot(int level, int xp, int requiredXp, int points,
             for (int i = 0; i < 3; i++) masteryPerks[i] = buf.readVarInt();
             for (int i = 0; i < 6; i++) bossWins[i] = buf.readVarInt();
             return new SkillSnapshot(level, xp, requiredXp, points, kills,
-                                     activeClass, masteryRank, ranks, masteries, cooldowns, resources,
+                                     activeClass, masteryRank, ranks, masteries, coreRanks, cooldowns, resources,
                                      ngCycle, replayChapter, masteryPoints, masteryPerks, bossWins,
                                      buf.readVarInt(), buf.readVarInt());
         });
@@ -91,6 +94,8 @@ public record SkillSnapshot(int level, int xp, int requiredXp, int points,
             read(board, player, "ss_need"), read(board, player, "ss_points"),
             read(board, player, "ss_kills"), read(board, player, "ss_path"),
             read(board, player, "ss_master"), ranks, masteries,
+            new int[] {read(board, player, "ss_t_van"), read(board, player, "ss_t_ward"),
+                       read(board, player, "ss_t_path"), read(board, player, "ss_t_arc")},
             new int[] {read(board, player, "ss_burst_cd"), read(board, player, "ss_burst_cd2"),
                        read(board, player, "ss_burst_cd3"), read(board, player, "ss_burst_cd4")},
             new int[] {read(board, player, "ss_fury"), read(board, player, "ss_guard"),

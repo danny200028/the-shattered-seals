@@ -4,6 +4,7 @@ import com.shatteredseals.net.SkillSnapshot;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 
@@ -21,6 +22,60 @@ public final class SkillTreeScreen extends Screen {
         {"Iron Bastion", "Aegis Surge", "Undying Oath"},
         {"Eagle Eye", "Apex Hunter", "Ghostwalk"},
         {"Elemental Dominion", "Arcane Overdrive", "Soul Ascendance"}
+    };
+    // Every description is taken from live progression/combat functions.
+    private static final String[] CORE_NAME = {"Vanguard Might", "Warden Fortitude", "Pathfinder Agility", "Arcanist Focus"};
+    private static final String[] CORE_HELP = {
+        "Strength I at ranks 1-3, Strength II at ranks 4-5 while Vanguard is active.",
+        "Resistance I at ranks 1-3, Resistance II at ranks 4-5 while Warden is active.",
+        "Speed I at ranks 1-3, Speed II at ranks 4-5 while Pathfinder is active.",
+        "Night Vision at ranks 1-5, plus Haste I at ranks 4-5 while Arcanist is active."
+    };
+    private static final String[][] BRANCH_HELP = {
+        {"Rank 3 grants Strength I; rank 5 unlocks mastery.",
+         "Rank 3 grants Haste I; rank 5 unlocks mastery.",
+         "Rank 3 grants Resistance I; rank 5 unlocks mastery."},
+        {"Rank 3 grants Resistance I; rank 5 unlocks mastery.",
+         "Rank 3 grants Absorption I; rank 5 unlocks mastery.",
+         "Rank 3 grants Regeneration I; rank 5 unlocks mastery."},
+        {"Rank 3 grants Speed I; rank 5 unlocks mastery.",
+         "Rank 3 grants Jump Boost I; rank 5 unlocks mastery.",
+         "Rank 3 grants Night Vision; rank 5 unlocks mastery."},
+        {"Rank 3 grants Fire Resistance; rank 5 unlocks mastery.",
+         "Rank 3 grants Haste I; rank 5 unlocks mastery.",
+         "Rank 3 grants Regeneration I; rank 5 unlocks mastery."}
+    };
+    private static final String[][] MASTERY_HELP = {
+        {"Blood Frenzy: Strength IV and Speed II for 12s.",
+         "Perfect Edge: Haste IV and Strength III for 18s.",
+         "Unbreakable: Resistance III and Absorption IV for 18s."},
+        {"Iron Bastion: Resistance IV for 18s; brief Slowness I.",
+         "Aegis Surge: Absorption V for 25s, Regeneration II for 12s.",
+         "Undying Oath: Regeneration III and Fire Resistance for 18s."},
+        {"Eagle Eye: Speed III 20s and Strength II 12s.",
+         "Apex Hunter: Night Vision, Regeneration II, Jump Boost II.",
+         "Ghostwalk: Invisibility and Speed III for 14s."},
+        {"Elemental Dominion: Reveal nearby foes; Fire Resistance and Strength II.",
+         "Arcane Overdrive: Haste IV, Speed II, Absorption II for 20s.",
+         "Soul Ascendance: Regeneration III, Absorption IV, Resistance II."}
+    };
+    private static final String[][] ACTIVE_HELP = {
+        {"Q Blood Cleave: 12 Fury, 6 AoE damage, 8s cooldown.",
+         "R Rallying Roar: 20 Fury, Strength and Resistance, 11s cooldown.",
+         "V Earthbreaker: 28 Fury, AoE damage and Slow, 13s cooldown.",
+         "G Last Stand: 45 Fury, Absorption and Regen, 25s cooldown."},
+        {"Q Bastion Pulse: 12 Guard, Slowness and shielding, 12s cooldown.",
+         "R Guardian Aura: 20 Guard, Absorption and Resistance, 13s cooldown.",
+         "V Shield Rebuke: 28 Guard, magic damage and Weakness, 11s cooldown.",
+         "G Undying Oath: 45 Guard, Resistance and Regen, 30s cooldown."},
+        {"Q Hunter's Mark: 12 Focus, reveal, Speed, Strength, 9s cooldown.",
+         "R Windstep: 20 Focus, Speed and Jump Boost, 8s cooldown.",
+         "V Predator Focus: 28 Focus, Strength and Night Vision, 11s cooldown.",
+         "G Shadow Escape: 45 Focus, Invisibility and Speed, 20s cooldown."},
+        {"Q Arcane Nova: 12 Arcane, magic AoE and Weakness, 11s cooldown.",
+         "R Frost Ring: 20 Arcane, AoE Slowness, 10s cooldown.",
+         "V Storm Spark: 28 Arcane, up to four magic hits, 13s cooldown.",
+         "G Arcane Overdrive: 45 Arcane, Strength and Resistance, 25s cooldown."}
     };
     private int selectedClass = 0;
     private boolean confirmingReset;
@@ -43,6 +98,8 @@ public final class SkillTreeScreen extends Screen {
                 rebuildWidgets();
             }).bounds(x + i * 87, y + 4, 84, 20).build();
             tab.active = i != selectedClass;
+            tab.setTooltip(Tooltip.create(Component.literal(
+                String.join("\\n", ACTIVE_HELP[i]))));
             addRenderableWidget(tab);
         }
         int base = selectedClass * 3;
@@ -55,16 +112,25 @@ public final class SkillTreeScreen extends Screen {
             Button upgrade = Button.builder(Component.literal("+ Rank"), b -> perform("ss_branch", number))
                 .bounds(x + 205, by, 66, 20).build();
             upgrade.active = ready && rank < 5 && data.points() >= 1;
+            upgrade.setTooltip(Tooltip.create(Component.literal(
+                BRANCHES[selectedClass][branch] + " rank " + rank + "/5. " +
+                BRANCH_HELP[selectedClass][branch] + " Cost: 1 skill point.")));
             addRenderableWidget(upgrade);
             Button mastery = Button.builder(Component.literal(mastered ? "MASTERED" : "Master"),
                 b -> perform("ss_ascend", number)).bounds(x + 274, by, 70, 20).build();
             mastery.active = ready && !mastered && rank >= 5 && data.level() >= 50
                              && data.kills() >= 100 && data.points() >= 8;
+            mastery.setTooltip(Tooltip.create(Component.literal(
+                MASTERY_HELP[selectedClass][branch] + " Unlock: level 50, 100 kills, branch 5/5, 8 SP.")));
             addRenderableWidget(mastery);
         }
-        Button core = Button.builder(Component.literal("+ Core Ability (1 SP)"), b -> perform("ss_buy", selectedClass + 1))
+        int coreRank = ready ? data.coreRanks()[selectedClass] : 0;
+        Button core = Button.builder(Component.literal("Core " + coreRank + "/5 (1 SP)"),
+            b -> perform("ss_buy", selectedClass + 1))
             .bounds(x, y + 211, 151, 20).build();
-        core.active = ready && data.points() >= 1;
+        core.active = ready && data.points() >= 1 && coreRank < 5;
+        core.setTooltip(Tooltip.create(Component.literal(
+            CORE_NAME[selectedClass] + " rank " + coreRank + "/5: " + CORE_HELP[selectedClass])));
         addRenderableWidget(core);
 
         Button switcher = Button.builder(Component.literal(ready && data.activeClass() == selectedClass+1
@@ -134,6 +200,8 @@ public final class SkillTreeScreen extends Screen {
                 graphics.drawString(font,
                     MASTERIES[selectedClass][i] + (unlocked ? " [UNLOCKED]" : " [LOCKED]"),
                     x+3, by+14, unlocked ? 0xFFB4F2C5 : 0xFFC7B1E6);
+                graphics.drawString(font, font.plainSubstrByWidth(BRANCH_HELP[selectedClass][i], 192),
+                    x+3, by+27, 0xFFB3BCCA);
             }
         }
         graphics.drawString(font, "Masteries: Level 50 | 100 kills | Rank 5/5 | 8 SP",
