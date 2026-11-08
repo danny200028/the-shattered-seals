@@ -19,6 +19,7 @@ import net.minecraft.core.component.DataComponents;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 /**
  * Six server-authoritative, rare and tier-scaled sword passives.
@@ -64,10 +65,32 @@ public final class LegendarySwordPassives {
             // Reserve the cooldown BEFORE applying secondary damage, to prevent recursion.
             player.getPersistentData().putLong(cooldown, now + power.cooldownTicks());
             trigger(player, target, power.id(), tier);
-            player.displayClientMessage(Component.literal(power.name() + " activated!").withStyle(ChatFormatting.GOLD), true);
+            player.getPersistentData().putBoolean("SSPassiveReadyPending_" + id, true);
+            player.displayClientMessage(Component.literal(
+                power.name() + " activated! Cooldown started: " + power.cooldownTicks() / 20
+                + " seconds.").withStyle(ChatFormatting.GOLD), false);
             level.playSound(null, player.blockPosition(), SoundEvents.NOTE_BLOCK_CHIME.value(),
                 net.minecraft.sounds.SoundSource.PLAYERS, 0.8F, 0.8F + tier * 0.12F);
             return;
+        }
+    }
+
+    /**
+     * Notifies the player once when their saved sword cooldown finishes,
+     * even if the sword was put away before the timer expired.
+     */
+    @SubscribeEvent
+    public static void onPlayerTick(PlayerTickEvent.Post event) {
+        if (!(event.getEntity() instanceof ServerPlayer player) || player.tickCount % 20 != 0) return;
+        CompoundTag persisted = player.getPersistentData();
+        long now = player.serverLevel().getGameTime();
+        for (Power power : POWERS) {
+            String pendingKey = "SSPassiveReadyPending_" + power.id();
+            if (!persisted.getBoolean(pendingKey)) continue;
+            if (persisted.getLong("SSPassiveCooldown_" + power.id()) > now) continue;
+            persisted.remove(pendingKey);
+            player.displayClientMessage(Component.literal(
+                power.name() + " is available again!").withStyle(ChatFormatting.GREEN), false);
         }
     }
 
