@@ -1,0 +1,2 @@
+give @s minecraft:enchanted_book[stored_enchantments={levels:{"shatteredseals:magnetic_harvest":1}},lore=['{"text":"RARE | TOOL | Level I / III","color":"aqua","italic":false}','{"text":"Increases tool mining efficiency.","color":"gray","italic":false}','{"text":"Combine matching books in an anvil to reach II and III.","color":"dark_gray","italic":false}']] 1
+tellraw @s {"text":"Purchased Magnetic Harvest I (rare).","color":"aqua"}

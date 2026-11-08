@@ -1,0 +1,2 @@
+give @s minecraft:enchanted_book[stored_enchantments={levels:{"shatteredseals:berserker":1}},lore=['{"text":"RARE | AXE | Level I / III","color":"aqua","italic":false}','{"text":"Adds heavy damage to axe attacks.","color":"gray","italic":false}','{"text":"Combine matching books in an anvil to reach II and III.","color":"dark_gray","italic":false}']] 1
+tellraw @s {"text":"Purchased Berserker I (rare).","color":"aqua"}

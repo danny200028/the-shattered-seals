@@ -1,0 +1,2 @@
+give @s minecraft:enchanted_book[stored_enchantments={levels:{"shatteredseals:eternal_harvest":1}},lore=['{"text":"LEGENDARY | HOE | Level I / III","color":"gold","italic":false}','{"text":"Adds extra XP to suitable block harvests.","color":"gray","italic":false}','{"text":"Combine matching books in an anvil to reach II and III.","color":"dark_gray","italic":false}']] 1
+tellraw @s {"text":"Purchased Eternal Harvest I (legendary).","color":"gold"}

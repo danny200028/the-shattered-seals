@@ -1,0 +1,2 @@
+give @s minecraft:enchanted_book[stored_enchantments={levels:{"shatteredseals:frostbite":1}},lore=['{"text":"RARE | WEAPON | Level I / III","color":"aqua","italic":false}','{"text":"Occasionally slows struck enemies.","color":"gray","italic":false}','{"text":"Combine matching books in an anvil to reach II and III.","color":"dark_gray","italic":false}']] 1
+tellraw @s {"text":"Purchased Frostbite I (rare).","color":"aqua"}

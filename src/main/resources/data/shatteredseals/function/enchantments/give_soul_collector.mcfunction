@@ -1,0 +1,2 @@
+give @s minecraft:enchanted_book[stored_enchantments={levels:{"shatteredseals:soul_collector":1}},lore=['{"text":"RARE | SWORD | Level I / III","color":"aqua","italic":false}','{"text":"Adds experience from eligible mob kills.","color":"gray","italic":false}','{"text":"Combine matching books in an anvil to reach II and III.","color":"dark_gray","italic":false}']] 1
+tellraw @s {"text":"Purchased Soul Collector I (rare).","color":"aqua"}

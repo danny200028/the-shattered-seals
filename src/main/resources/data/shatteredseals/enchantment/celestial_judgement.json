@@ -1,0 +1,40 @@
+{
+  "anvil_cost": 8,
+  "description": {
+    "text": "Celestial Judgement",
+    "color": "gold",
+    "italic": false
+  },
+  "supported_items": "#minecraft:enchantable/sword",
+  "weight": 1,
+  "max_level": 3,
+  "min_cost": {
+    "base": 5,
+    "per_level_above_first": 8
+  },
+  "max_cost": {
+    "base": 55,
+    "per_level_above_first": 12
+  },
+  "slots": [
+    "mainhand"
+  ],
+  "effects": {
+    "minecraft:post_attack": [
+      {
+        "affected": "victim",
+        "enchanted": "attacker",
+        "effect": {
+          "type": "minecraft:damage_entity",
+          "damage_type": "minecraft:magic",
+          "min_damage": 1.25,
+          "max_damage": 2.75
+        },
+        "requirements": {
+          "condition": "minecraft:random_chance",
+          "chance": 0.1
+        }
+      }
+    ]
+  }
+}

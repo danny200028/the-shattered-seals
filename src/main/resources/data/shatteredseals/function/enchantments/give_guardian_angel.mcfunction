@@ -1,0 +1,2 @@
+give @s minecraft:enchanted_book[stored_enchantments={levels:{"shatteredseals:guardian_angel":1}},lore=['{"text":"LEGENDARY | ARMOR | Level I / III","color":"gold","italic":false}','{"text":"Periodically grants a brief absorption shield.","color":"gray","italic":false}','{"text":"Combine matching books in an anvil to reach II and III.","color":"dark_gray","italic":false}']] 1
+tellraw @s {"text":"Purchased Guardian Angel I (legendary).","color":"gold"}

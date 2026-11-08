@@ -1,0 +1,2 @@
+give @s minecraft:enchanted_book[stored_enchantments={levels:{"shatteredseals:infernal_wrath":1}},lore=['{"text":"LEGENDARY | WEAPON | Level I / III","color":"gold","italic":false}','{"text":"Sometimes ignites enemies struck by the weapon.","color":"gray","italic":false}','{"text":"Combine matching books in an anvil to reach II and III.","color":"dark_gray","italic":false}']] 1
+tellraw @s {"text":"Purchased Infernal Wrath I (legendary).","color":"gold"}

@@ -1,0 +1,2 @@
+give @s minecraft:enchanted_book[stored_enchantments={levels:{"shatteredseals:phoenix_skin":1}},lore=['{"text":"RARE | ARMOR | Level I / III","color":"aqua","italic":false}','{"text":"Periodically grants brief Fire Resistance.","color":"gray","italic":false}','{"text":"Combine matching books in an anvil to reach II and III.","color":"dark_gray","italic":false}']] 1
+tellraw @s {"text":"Purchased Phoenix Skin I (rare).","color":"aqua"}

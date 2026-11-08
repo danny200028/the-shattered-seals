@@ -1,0 +1,2 @@
+give @s minecraft:enchanted_book[stored_enchantments={levels:{"shatteredseals:dragons_fury":1}},lore=['{"text":"LEGENDARY | SWORD | Level I / III","color":"gold","italic":false}','{"text":"Occasionally ignites struck enemies for longer.","color":"gray","italic":false}','{"text":"Combine matching books in an anvil to reach II and III.","color":"dark_gray","italic":false}']] 1
+tellraw @s {"text":"Purchased Dragon's Fury I (legendary).","color":"gold"}

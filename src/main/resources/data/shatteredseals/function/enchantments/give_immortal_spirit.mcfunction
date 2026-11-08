@@ -1,0 +1,2 @@
+give @s minecraft:enchanted_book[stored_enchantments={levels:{"shatteredseals:immortal_spirit":1}},lore=['{"text":"LEGENDARY | ARMOR | Level I / III","color":"gold","italic":false}','{"text":"Raises maximum health while equipped.","color":"gray","italic":false}','{"text":"Combine matching books in an anvil to reach II and III.","color":"dark_gray","italic":false}']] 1
+tellraw @s {"text":"Purchased Immortal Spirit I (legendary).","color":"gold"}

@@ -1,0 +1,2 @@
+give @s minecraft:enchanted_book[stored_enchantments={levels:{"shatteredseals:titans_resolve":1}},lore=['{"text":"LEGENDARY | CHEST | Level I / III","color":"gold","italic":false}','{"text":"Provides substantial incoming damage protection.","color":"gray","italic":false}','{"text":"Combine matching books in an anvil to reach II and III.","color":"dark_gray","italic":false}']] 1
+tellraw @s {"text":"Purchased Titan's Resolve I (legendary).","color":"gold"}

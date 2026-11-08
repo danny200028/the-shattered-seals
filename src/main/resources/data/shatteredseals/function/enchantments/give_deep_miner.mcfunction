@@ -1,0 +1,2 @@
+give @s minecraft:enchanted_book[stored_enchantments={levels:{"shatteredseals:deep_miner":1}},lore=['{"text":"COMMON | PICKAXE | Level I / III","color":"gray","italic":false}','{"text":"Improves mining speed with a pickaxe.","color":"gray","italic":false}','{"text":"Combine matching books in an anvil to reach II and III.","color":"dark_gray","italic":false}']] 1
+tellraw @s {"text":"Purchased Deep Miner I (common).","color":"gray"}

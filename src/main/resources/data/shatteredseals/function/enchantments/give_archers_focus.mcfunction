@@ -1,0 +1,2 @@
+give @s minecraft:enchanted_book[stored_enchantments={levels:{"shatteredseals:archers_focus":1}},lore=['{"text":"COMMON | BOW | Level I / III","color":"gray","italic":false}','{"text":"Increases bow damage.","color":"gray","italic":false}','{"text":"Combine matching books in an anvil to reach II and III.","color":"dark_gray","italic":false}']] 1
+tellraw @s {"text":"Purchased Archer's Focus I (common).","color":"gray"}

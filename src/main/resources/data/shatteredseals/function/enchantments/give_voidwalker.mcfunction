@@ -1,0 +1,2 @@
+give @s minecraft:enchanted_book[stored_enchantments={levels:{"shatteredseals:voidwalker":1}},lore=['{"text":"LEGENDARY | FEET | Level I / III","color":"gold","italic":false}','{"text":"Greatly increases movement speed.","color":"gray","italic":false}','{"text":"Combine matching books in an anvil to reach II and III.","color":"dark_gray","italic":false}']] 1
+tellraw @s {"text":"Purchased Voidwalker I (legendary).","color":"gold"}

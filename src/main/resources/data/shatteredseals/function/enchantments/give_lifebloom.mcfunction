@@ -1,0 +1,2 @@
+give @s minecraft:enchanted_book[stored_enchantments={levels:{"shatteredseals:lifebloom":1}},lore=['{"text":"COMMON | ARMOR | Level I / III","color":"gray","italic":false}','{"text":"Increases maximum health while worn.","color":"gray","italic":false}','{"text":"Combine matching books in an anvil to reach II and III.","color":"dark_gray","italic":false}']] 1
+tellraw @s {"text":"Purchased Lifebloom I (common).","color":"gray"}

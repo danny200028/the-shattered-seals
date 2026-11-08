@@ -1,0 +1,36 @@
+{
+  "anvil_cost": 4,
+  "description": {
+    "text": "Vein Seeker",
+    "color": "aqua",
+    "italic": false
+  },
+  "supported_items": "#shatteredseals:enchantable/pickaxes",
+  "weight": 3,
+  "max_level": 3,
+  "min_cost": {
+    "base": 5,
+    "per_level_above_first": 8
+  },
+  "max_cost": {
+    "base": 55,
+    "per_level_above_first": 12
+  },
+  "slots": [
+    "mainhand"
+  ],
+  "effects": {
+    "minecraft:block_experience": [
+      {
+        "effect": {
+          "type": "minecraft:add",
+          "value": {
+            "type": "minecraft:linear",
+            "base": 1.3,
+            "per_level_above_first": 0.8
+          }
+        }
+      }
+    ]
+  }
+}

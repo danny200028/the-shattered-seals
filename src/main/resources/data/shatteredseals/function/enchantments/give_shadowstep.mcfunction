@@ -1,0 +1,2 @@
+give @s minecraft:enchanted_book[stored_enchantments={levels:{"shatteredseals:shadowstep":1}},lore=['{"text":"RARE | FEET | Level I / III","color":"aqua","italic":false}','{"text":"Increases movement speed while equipped.","color":"gray","italic":false}','{"text":"Combine matching books in an anvil to reach II and III.","color":"dark_gray","italic":false}']] 1
+tellraw @s {"text":"Purchased Shadowstep I (rare).","color":"aqua"}

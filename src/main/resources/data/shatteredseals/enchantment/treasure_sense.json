@@ -1,0 +1,36 @@
+{
+  "anvil_cost": 2,
+  "description": {
+    "text": "Treasure Sense",
+    "color": "gray",
+    "italic": false
+  },
+  "supported_items": "#minecraft:enchantable/mining",
+  "weight": 6,
+  "max_level": 3,
+  "min_cost": {
+    "base": 5,
+    "per_level_above_first": 8
+  },
+  "max_cost": {
+    "base": 55,
+    "per_level_above_first": 12
+  },
+  "slots": [
+    "mainhand"
+  ],
+  "effects": {
+    "minecraft:block_experience": [
+      {
+        "effect": {
+          "type": "minecraft:add",
+          "value": {
+            "type": "minecraft:linear",
+            "base": 1,
+            "per_level_above_first": 1
+          }
+        }
+      }
+    ]
+  }
+}

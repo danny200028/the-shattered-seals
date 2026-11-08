@@ -137,3 +137,7 @@ scoreboard players set @a[scores={ss_combat_test=1..}] ss_combat_test 0
 # 1.8.9-style full-strength clicks: short recharge rather than post-1.9 timed sword cooldown.
 # Refresh every four seconds to persist through death, dimension changes and equipment swaps.
 execute if score #clock ss_clock matches 0 as @a run attribute @s minecraft:generic.attack_speed base set 64
+
+# v1.0.53: no-cheats vanilla-XP enchantment book merchant
+scoreboard players enable @a ss_ebook
+execute as @a[scores={ss_ebook=1..}] run function shatteredseals:enchantments/shop

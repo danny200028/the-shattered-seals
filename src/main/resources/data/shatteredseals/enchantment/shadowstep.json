@@ -1,0 +1,36 @@
+{
+  "anvil_cost": 4,
+  "description": {
+    "text": "Shadowstep",
+    "color": "aqua",
+    "italic": false
+  },
+  "supported_items": "#minecraft:enchantable/foot_armor",
+  "weight": 3,
+  "max_level": 3,
+  "min_cost": {
+    "base": 5,
+    "per_level_above_first": 8
+  },
+  "max_cost": {
+    "base": 55,
+    "per_level_above_first": 12
+  },
+  "slots": [
+    "feet"
+  ],
+  "effects": {
+    "minecraft:attributes": [
+      {
+        "id": "shatteredseals:shadowstep",
+        "attribute": "minecraft:generic.movement_speed",
+        "amount": {
+          "type": "minecraft:linear",
+          "base": 0.02,
+          "per_level_above_first": 0.013
+        },
+        "operation": "add_value"
+      }
+    ]
+  }
+}

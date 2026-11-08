@@ -1,0 +1,2 @@
+give @s minecraft:enchanted_book[stored_enchantments={levels:{"shatteredseals:harvest_blessing":1}},lore=['{"text":"COMMON | HOE | Level I / III","color":"gray","italic":false}','{"text":"Grants extra block XP on eligible harvests.","color":"gray","italic":false}','{"text":"Combine matching books in an anvil to reach II and III.","color":"dark_gray","italic":false}']] 1
+tellraw @s {"text":"Purchased Harvest Blessing I (common).","color":"gray"}

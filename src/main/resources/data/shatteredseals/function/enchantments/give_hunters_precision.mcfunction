@@ -1,0 +1,2 @@
+give @s minecraft:enchanted_book[stored_enchantments={levels:{"shatteredseals:hunters_precision":1}},lore=['{"text":"RARE | BOW | Level I / III","color":"aqua","italic":false}','{"text":"Adds ranged attack damage.","color":"gray","italic":false}','{"text":"Combine matching books in an anvil to reach II and III.","color":"dark_gray","italic":false}']] 1
+tellraw @s {"text":"Purchased Hunter's Precision I (rare).","color":"aqua"}

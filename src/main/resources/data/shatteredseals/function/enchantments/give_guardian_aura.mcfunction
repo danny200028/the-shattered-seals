@@ -1,0 +1,2 @@
+give @s minecraft:enchanted_book[stored_enchantments={levels:{"shatteredseals:guardian_aura":1}},lore=['{"text":"RARE | CHEST | Level I / III","color":"aqua","italic":false}','{"text":"Periodically grants brief Resistance while worn.","color":"gray","italic":false}','{"text":"Combine matching books in an anvil to reach II and III.","color":"dark_gray","italic":false}']] 1
+tellraw @s {"text":"Purchased Guardian Aura I (rare).","color":"aqua"}

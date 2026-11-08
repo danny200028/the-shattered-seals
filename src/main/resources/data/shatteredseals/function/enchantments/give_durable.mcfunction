@@ -1,0 +1,2 @@
+give @s minecraft:enchanted_book[stored_enchantments={levels:{"shatteredseals:durable":1}},lore=['{"text":"COMMON | TOOL | Level I / III","color":"gray","italic":false}','{"text":"May prevent durability loss when used.","color":"gray","italic":false}','{"text":"Combine matching books in an anvil to reach II and III.","color":"dark_gray","italic":false}']] 1
+tellraw @s {"text":"Purchased Durable I (common).","color":"gray"}

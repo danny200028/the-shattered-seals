@@ -1,0 +1,2 @@
+give @s minecraft:enchanted_book[stored_enchantments={levels:{"shatteredseals:vein_seeker":1}},lore=['{"text":"RARE | PICKAXE | Level I / III","color":"aqua","italic":false}','{"text":"Adds XP when mining XP-bearing ores.","color":"gray","italic":false}','{"text":"Combine matching books in an anvil to reach II and III.","color":"dark_gray","italic":false}']] 1
+tellraw @s {"text":"Purchased Vein Seeker I (rare).","color":"aqua"}

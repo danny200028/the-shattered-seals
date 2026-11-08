@@ -1,0 +1,36 @@
+{
+  "anvil_cost": 2,
+  "description": {
+    "text": "Aqua Step",
+    "color": "gray",
+    "italic": false
+  },
+  "supported_items": "#minecraft:enchantable/foot_armor",
+  "weight": 6,
+  "max_level": 3,
+  "min_cost": {
+    "base": 5,
+    "per_level_above_first": 8
+  },
+  "max_cost": {
+    "base": 55,
+    "per_level_above_first": 12
+  },
+  "slots": [
+    "feet"
+  ],
+  "effects": {
+    "minecraft:attributes": [
+      {
+        "id": "shatteredseals:aqua_step",
+        "attribute": "minecraft:generic.water_movement_efficiency",
+        "amount": {
+          "type": "minecraft:linear",
+          "base": 0.045,
+          "per_level_above_first": 0.035
+        },
+        "operation": "add_value"
+      }
+    ]
+  }
+}

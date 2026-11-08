@@ -183,3 +183,7 @@ scoreboard objectives add ss_reset_timer dummy
 
 # The requested very difficult Vanilla+ experience defaults to Hard.
 difficulty hard
+
+# v1.0.53: tiered Codex enchantment shop
+scoreboard objectives add ss_ebook trigger
+scoreboard objectives add ss_ebook_roll dummy

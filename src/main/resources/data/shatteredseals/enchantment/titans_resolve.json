@@ -1,0 +1,36 @@
+{
+  "anvil_cost": 8,
+  "description": {
+    "text": "Titan's Resolve",
+    "color": "gold",
+    "italic": false
+  },
+  "supported_items": "#minecraft:enchantable/chest_armor",
+  "weight": 1,
+  "max_level": 3,
+  "min_cost": {
+    "base": 5,
+    "per_level_above_first": 8
+  },
+  "max_cost": {
+    "base": 55,
+    "per_level_above_first": 12
+  },
+  "slots": [
+    "chest"
+  ],
+  "effects": {
+    "minecraft:damage_protection": [
+      {
+        "effect": {
+          "type": "minecraft:add",
+          "value": {
+            "type": "minecraft:linear",
+            "base": 1.2,
+            "per_level_above_first": 0.9
+          }
+        }
+      }
+    ]
+  }
+}

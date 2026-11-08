@@ -1,0 +1,36 @@
+{
+  "anvil_cost": 4,
+  "description": {
+    "text": "Magnetic Harvest",
+    "color": "aqua",
+    "italic": false
+  },
+  "supported_items": "#minecraft:enchantable/mining",
+  "weight": 3,
+  "max_level": 3,
+  "min_cost": {
+    "base": 5,
+    "per_level_above_first": 8
+  },
+  "max_cost": {
+    "base": 55,
+    "per_level_above_first": 12
+  },
+  "slots": [
+    "mainhand"
+  ],
+  "effects": {
+    "minecraft:attributes": [
+      {
+        "id": "shatteredseals:magnetic_harvest",
+        "attribute": "minecraft:player.mining_efficiency",
+        "amount": {
+          "type": "minecraft:linear",
+          "base": 0.9,
+          "per_level_above_first": 0.75
+        },
+        "operation": "add_value"
+      }
+    ]
+  }
+}

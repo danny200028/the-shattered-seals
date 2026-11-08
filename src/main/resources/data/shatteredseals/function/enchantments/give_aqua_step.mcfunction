@@ -1,0 +1,2 @@
+give @s minecraft:enchanted_book[stored_enchantments={levels:{"shatteredseals:aqua_step":1}},lore=['{"text":"COMMON | FEET | Level I / III","color":"gray","italic":false}','{"text":"Improves movement efficiency in water.","color":"gray","italic":false}','{"text":"Combine matching books in an anvil to reach II and III.","color":"dark_gray","italic":false}']] 1
+tellraw @s {"text":"Purchased Aqua Step I (common).","color":"gray"}

@@ -1,0 +1,2 @@
+give @s minecraft:enchanted_book[stored_enchantments={levels:{"shatteredseals:thunderstrike":1}},lore=['{"text":"RARE | WEAPON | Level I / III","color":"aqua","italic":false}','{"text":"Sometimes deals an extra magical burst on hit.","color":"gray","italic":false}','{"text":"Combine matching books in an anvil to reach II and III.","color":"dark_gray","italic":false}']] 1
+tellraw @s {"text":"Purchased Thunderstrike I (rare).","color":"aqua"}

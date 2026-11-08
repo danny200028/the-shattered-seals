@@ -1,0 +1,2 @@
+give @s minecraft:enchanted_book[stored_enchantments={levels:{"shatteredseals:worldbreaker":1}},lore=['{"text":"LEGENDARY | PICKAXE | Level I / III","color":"gold","italic":false}','{"text":"Greatly increases mining speed.","color":"gray","italic":false}','{"text":"Combine matching books in an anvil to reach II and III.","color":"dark_gray","italic":false}']] 1
+tellraw @s {"text":"Purchased Worldbreaker I (legendary).","color":"gold"}

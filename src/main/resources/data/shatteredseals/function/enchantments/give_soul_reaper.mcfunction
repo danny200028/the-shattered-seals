@@ -1,0 +1,2 @@
+give @s minecraft:enchanted_book[stored_enchantments={levels:{"shatteredseals:soul_reaper":1}},lore=['{"text":"LEGENDARY | SWORD | Level I / III","color":"gold","italic":false}','{"text":"Occasionally grants Regeneration on a hit.","color":"gray","italic":false}','{"text":"Combine matching books in an anvil to reach II and III.","color":"dark_gray","italic":false}']] 1
+tellraw @s {"text":"Purchased Soul Reaper I (legendary).","color":"gold"}
