@@ -7,11 +7,13 @@ JAVA=ROOT/"src/main/java/com/shatteredseals"
 class FeedbackTests(unittest.TestCase):
     def test_first_person_guard_only_while_held(self):
         feedback=(JAVA/"client/SwordGuardFeedback.java").read_text()
-        self.assertIn("RenderHandEvent",feedback)
-        self.assertIn("InteractionHand.MAIN_HAND",feedback)
-        self.assertIn("getPoseStack()",feedback)
-        self.assertIn("isSwordGuardHeld(mc)",feedback)
-        self.assertIn("ItemTags.SWORDS",feedback)
+        pose=(JAVA/"client/SwordGuardPoseTransform.java").read_text()
+        self.assertIn("RegisterClientExtensionsEvent",pose)
+        self.assertIn("applyForgeHandTransform",pose)
+        self.assertIn("isSwordGuardHeld",pose)
+        self.assertIn("Items.DIAMOND_SWORD",pose)
+        self.assertIn("Items.NETHERITE_SWORD",pose)
+        self.assertIn('rotationDegrees(-68.0F)',pose)
         self.assertIn('"BLOCK"',feedback)
 
     def test_dynamic_keybinds(self):
