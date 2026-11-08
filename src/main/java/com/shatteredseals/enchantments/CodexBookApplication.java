@@ -15,12 +15,11 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.ItemStackedOnOtherEvent;
 
 /**
- * Optional left-click shortcut for a Codex enchanted book held on the cursor
- * and a compatible equipment slot in the survival inventory. Anvils continue
- * to work normally, including I+I -> II and II+II -> III.
+ * Apply a Codex book to a compatible inventory item regardless of which stack
+ * was picked up first. Cancel vanilla item swaps on both logical sides, then
+ * modify inventory once on the authoritative server.
  *
- * Server performs all validation; the client only suppresses the vanilla
- * cursor swap while awaiting its authoritative inventory update.
+ * Creative inventory is clientside only, so use an anvil in creative mode.
  */
 @EventBusSubscriber(modid = ShatteredSeals.MOD_ID)
 public final class CodexBookApplication {
@@ -30,39 +29,55 @@ public final class CodexBookApplication {
         if (player.containerMenu != player.inventoryMenu
                 || event.getClickAction() != ClickAction.PRIMARY
                 || player.isSpectator() || player.isCreative()) return;
-        ItemStack book = event.getCarriedItem();
-        ItemStack gear = event.getStackedOnItem();
-        if (!book.is(Items.ENCHANTED_BOOK) || gear.isEmpty() || gear.is(Items.ENCHANTED_BOOK)) return;
+
+        ItemStack cursor = event.getCarriedItem();
+        ItemStack slotted = event.getStackedOnItem();
+        boolean bookOnCursor = cursor.is(Items.ENCHANTED_BOOK) && !slotted.is(Items.ENCHANTED_BOOK);
+        boolean bookInSlot = slotted.is(Items.ENCHANTED_BOOK) && !cursor.is(Items.ENCHANTED_BOOK);
+        if (!bookOnCursor && !bookInSlot) return;
+
+        ItemStack book = bookOnCursor ? cursor : slotted;
+        ItemStack gear = bookOnCursor ? slotted : cursor;
+        if (gear.isEmpty()) return;
         ItemEnchantments stored = book.get(DataComponents.STORED_ENCHANTMENTS);
         if (stored == null || stored.size() != 1) return;
         var entry = stored.entrySet().iterator().next();
         Holder<Enchantment> enchant = entry.getKey();
         if (!enchant.unwrapKey().map(key -> ShatteredSeals.MOD_ID.equals(key.location().getNamespace()))
                 .orElse(false)) return;
-        if (!gear.supportsEnchantment(enchant)) return;
 
+        // Prevent the normal swap while the server validates/consumes the book.
+        event.setCanceled(true);
+        if (player.level().isClientSide) return;
+
+        if (!gear.supportsEnchantment(enchant)) {
+            player.displayClientMessage(Component.literal(
+                "That enchantment cannot be applied to this item."), true);
+            return;
+        }
         int bookRank = entry.getIntValue();
         int existing = EnchantmentHelper.getEnchantmentsForCrafting(gear).getLevel(enchant);
         int targetRank = existing == bookRank ? existing + 1 : Math.max(existing, bookRank);
-        event.setCanceled(true);
-        if (player.level().isClientSide) return;
         if (targetRank <= existing || targetRank > enchant.value().getMaxLevel()) {
             player.displayClientMessage(Component.literal(
-                "Cannot upgrade this enchantment. Combine equal-ranked books in an anvil first."), true);
+                "Cannot improve this enchantment further. Matching books can be combined in an anvil."), true);
             return;
         }
+
         ItemStack upgraded = gear.copy();
         EnchantmentHelper.updateEnchantments(upgraded, mutable -> mutable.set(enchant, targetRank));
-        event.getSlot().set(upgraded);
-        // Book was already purchased for 10/20/30 vanilla levels.
-        // Never charge again or silently delete an incompatible book.
         ItemStack remaining = book.copy();
         remaining.shrink(1);
-        event.getCarriedSlotAccess().set(remaining);
+        if (bookOnCursor) {
+            event.getSlot().set(upgraded);
+            event.getCarriedSlotAccess().set(remaining);
+        } else {
+            event.getSlot().set(remaining);
+            event.getCarriedSlotAccess().set(upgraded);
+        }
         event.getSlot().setChanged();
         player.displayClientMessage(Component.literal(
             "Applied " + enchant.value().description().getString() + " " + targetRank + "."), true);
     }
-
     private CodexBookApplication() {}
 }
