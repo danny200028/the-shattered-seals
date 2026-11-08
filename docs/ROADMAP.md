@@ -1,91 +1,226 @@
-# The Shattered Seals: Final Development Roadmap
+# The Shattered Seals — LOCKED Final Release Roadmap
 
-**Current release:** v1.0.54 (Minecraft Java 1.21.1 / NeoForge, CurseForge).
-**Target:** v1.1.0, a complete and balanced single-player Vanilla+ RPG.
-**Status:** These features are **planned**, not yet implemented. All items require testing before release.
+> **Scope locked: 8 November 2026.**
+> **Current playable build:** v1.0.54 (Minecraft Java 1.21.1, NeoForge 21.1.238, Java 21, CurseForge).
+> **Final target:** v1.1.0, the complete, difficult, single-player Vanilla+ RPG.
+> **Implementation status:** All features listed under v1.0.55 onward are PLANNED and NOT YET RELEASED.
+> This document is the canonical feature-freeze checklist. No new major features will be added
+> beyond this scope without explicit user approval. Bug fixes, compatibility, accessibility,
+> necessary technical implementation, and balance tuning remain permitted.
 
-## Design principles
+## Core experience and rules (unchanged)
 
-- Very difficult, but fair: learning a mechanic matters more than grinding more damage.
-- No further character-level cap increases beyond level 60; New Game+ remains the late-game progression.
-- Avoid adding duplicate third-party mods for systems this pack already owns.
-- Cosmetics, navigation, storytelling, rare crafting resources and carefully capped utility beat stat inflation.
-- Save compatibility is mandatory; all new worldgen must work on fresh unexplored chunks without rewriting already-generated terrain.
+- Six story chapters and dungeons with six bosses and their legendary swords.
+- Four player classes, level cap 60, skill tree, class abilities, relics, quests,
+  NG+ mastery and the existing Dragon Egg confirmed-respec rule.
+- Keep the classic-style high-speed sword combat and frontal sword guard.
+- Keep JEI, Xaero maps, Waystones/Balm, performance mods and shader support.
+- **Challenging but fair**: distinct boss moves, telegraphs, positioning and decisions
+  are preferred over enormous health bars and random unavoidable damage.
+- **No power creep**: no raised level cap, higher weapon tiers, new enchantment
+  rarity tier, unlimited healing, cooldown removal, or duplicate RPG mods.
+- Normal survival crafting/material costs remain; no base, trophy or exploration
+  feature may provide free top-tier gear or an unbounded XP/resource farm.
+- Existing saves must be preserved. Backups are recommended for every release.
+  New biome terrain appears only in unexplored chunks, not retroactively.
 
-## v1.0.55: The Living World
+## v1.0.55 — The Living World
 
-### Six dungeon-themed biomes
+**Focus: six connected dungeon biomes, proper opening, discovery and atmosphere.**
 
-Six existing biome **definitions** are currently packaged but **not placed into the Overworld**. Integrate them into normal, new-chunk Overworld generation and connect each dungeon to the appropriate environment:
+### 1. Six rare, naturally generating dungeon biomes
 
-| Chapter | Dungeon | New biome | Visual identity |
+These six biome JSON definitions already exist but are NOT currently integrated
+into Overworld biome generation. Implement and test NeoForge 1.21.1 worldgen,
+rarity, terrain decoration and matching dungeon structure placement:
+
+| Chapter | Dungeon | Biome | Theme |
 | --- | --- | --- | --- |
-| I | Smugglers' Den | Smugglers' Wilds (`shatteredseals:smugglers_wilds`) | Scarred woodlands, fallen timber, hidden paths and camps |
-| II | Cinder Citadel | Cinder Wastes (`shatteredseals:cinder_wastes`) | Ash-grey terrain, basalt, magma fissures and ember particles |
-| III | Hollow Crypt | Hollow Moor (`shatteredseals:hollow_moor`) | Foggy marshland, twisted trees, old graves and ruins |
-| IV | Arcane Observatory | Arcane Highlands (`shatteredseals:arcane_highlands`) | Wind-carved mountain country, luminous crystals and star motifs |
-| V | Sixfold Temple | Sixfold Expanse (`shatteredseals:sixfold_expanse`) | Overgrown ancient stonework, six-element shrines and worn monuments |
-| VI | Hollow King's Fortress | Hollow King's Dominion (`shatteredseals:hollow_kings_dominion`) | Darkened woodland, abandoned battlements and corrupted ground |
+| I | Smugglers' Den | Smugglers' Wilds (`shatteredseals:smugglers_wilds`) | Scarred woodlands, fallen trees, bandit traces, secret paths |
+| II | Cinder Citadel | Cinder Wastes (`shatteredseals:cinder_wastes`) | Ash-grey terrain, basalt, smouldering fissures |
+| III | Hollow Crypt | Hollow Moor (`shatteredseals:hollow_moor`) | Fog, twisted trees, mossy graves, abandoned crypt stones |
+| IV | Arcane Observatory | Arcane Highlands (`shatteredseals:arcane_highlands`) | High mountains, magical lighting and stargazing landmarks |
+| V | Sixfold Temple | Sixfold Expanse (`shatteredseals:sixfold_expanse`) | Ancient overgrowth, sixfold shrines and elemental motifs |
+| VI | Hollow King's Fortress | Hollow King's Dominion (`shatteredseals:hollow_kings_dominion`) | Blighted dark woods, ruined battlements and corrupted ground |
 
-**Worldgen acceptance criteria:** compatible 1.21.1 NeoForge biome registration and climate/world-generation integration (evaluate TerraBlender versus native alternatives); ensure the existing /locate structure chapter flow works; keep custom biomes rare, with sensible climate/terrain fit; do not replace vast swathes of vanilla geography; make structures actually generate in their biome; validate surface features, vegetation, ambient colours and mob spawns; verify fresh worlds, upgrades and compatibility with Xaero's maps and shaders. Existing explored chunks do not retroactively transform. **No unique high-power loot is granted merely for finding a biome.**
+Acceptance: rare and climate-appropriate regions; dungeon spawns in its own
+region; existing `/locate structure` progression remains reliable; terrain and
+features load on a fresh world and unexplored existing-world chunks; shaders
+and Xaero mapping still work; no impossible-to-find story chapter or major
+vanilla-biome replacement. Avoid arbitrary increases in enemy stats or loot.
 
-### Boss Bestiary and exploration
+### 2. A proper RPG introduction and tutorial
 
-- Add Codex bestiary entries for the six bosses: lore, moves, counterplay, first-clear and fastest-clear records, drop previews.
-- Discoverable hidden rooms, journals and landmarks link story chapters to their surrounding biomes.
-- Rewards: lore, trophies, cosmetics, existing materials and small capped experience, not new damage tiers.
+- Short story opening, the six seals premise, class choice and first quest.
+- Concise introduction to skills, guarding, Codex, world map and dungeon discovery.
+- Skippable or easily dismissed for existing players; no world reset or forced
+  class change; respect current class/quest progress on upgrade.
 
-## v1.0.56: Shattered Trials and Adventurer's Bounties
+### 3. Boss Bestiary in the Codex
 
-### Shattered Trials: optional dungeon modifiers
+- Six boss pages: story lore, weaknesses/counterplay, telegraphed abilities,
+  drops and a reliable defeated/not-defeated status.
+- First kill, repeat victories and best times where technically reliable.
+- Reveal information through progression; do not spoil late bosses prematurely.
+- Only cosmetic/informational completion rewards.
 
-- Unlocked after Hollow King and level 60, within New Game+.
-- Start with one modifier active per run; a second modifier may unlock in higher NG+ cycles.
-- Chapter-specific options: healing restrictions, stronger hazards, new telegraphed attacks and encounter restrictions.
-- Separate trial completion record and distinct cosmetic trophies; moderate crafting-resource rewards.
-- No inflated legendary weapon tier, infinite XP loop, unavoidable lethal hits or permanent power advantage.
+### 4. Exploration secrets and dungeon atmosphere
 
-### Repeatable Adventurer's Bounties
+- Hidden lore fragments, meaningful landmarks, optional discoveries, secret
+  rooms and modest non-OP rewards.
+- Biome ambience (sound, fog, lighting and particle effects) and boss entrance/
+  phase atmosphere, tuned to avoid excessive noise or performance loss.
+- No unavoidable visual obstruction, shader incompatibility, or mandatory
+  out-of-chapter exploration gate.
 
-- Codex bounty board with monster-hunt, exploration and chapter replay contracts.
-- Limit simultaneous contracts and repeat payouts; include varied objectives to avoid single-mob farming.
-- Reward existing progression materials, capped XP, trophies and cosmetics. Keep rare enchantment book acquisition meaningful.
-- Bounties are optional and cannot bypass chapter requirements.
+## v1.0.56 — Shattered Trials and Adventurer's Bounty Board
 
-## v1.0.57: Legendary Equipment
+**Focus: optional endgame replayability, with limits that prevent farming.**
 
-### Five-rank legendary weapon mastery
+### 5. Shattered Trials
 
-- Six distinct mastery tracks, one for each existing legendary sword.
-- Unlock ranks by using that sword in real combat. Exclude training dummies or trivial entity loops from fast XP farming.
-- Mostly cosmetic effects, weapon lore, profile achievements and clear passive feedback.
-- At most tiny **capped** utility improvements; do not increase existing passive trigger chances or remove cooldowns.
-- Keep Dormant -> Awakened -> Ascended upgrade tiers intact.
+- NG+ optional dungeon modifiers, unlocked after defeating the Hollow King
+  and reaching level 60; separate records for all six chapter dungeons.
+- One modifier active initially; two only in a later, balanced NG+ phase.
+- Chapter-specific telegraphed attacks, hazards, reduced healing or positioning
+  challenges; not cheap one-shot attacks or infinite stat scaling.
+- Rewards: cosmetic trial trophies, existing crafting resources and bounded XP.
+  No higher sword tiers or guaranteed overpowered gear.
 
-### Legendary enchantment protection
+### 6. Adventurer's Bounty Board
 
-- Introduce one rare, consumed-on-use item that **protects a single selected enchantment** when a future reforging or replacement system risks losing it.
-- No duplicating books, refunding item costs, removing normal enchanting costs or protecting every enchantment simultaneously.
-- If no destructive reforging system is added, avoid a useless item: defer this until it has a concrete protective role.
-- Keep normal anvil upgrades and direct-book enchanting unchanged.
+- Accessible through the Codex and discoverable at The Warden's Sanctuary
+  once the Sanctuary is unlocked.
+- Repeatable monster hunts, exploration objectives and dungeon/boss contracts;
+  visible tracking and explicit claim flow.
+- Limited active contracts, bounded/cooldown-gated reward claims,
+  anti-farming controls and level/chapter suitability.
+- Rewards use existing materials, modest XP, cosmetic trophies and rare but
+  balanced opportunities, never free infinite legendary books.
 
-## v1.0.58: Final Balance and Refinement
+## v1.0.57 — The Warden's Sanctuary and Legendary Equipment
 
-- Audit all 41 enchantment registry entries (36 new shop books plus five older entries), their stacking/compatibility, effects and availability.
-- Prevent abusive lifesteal, immortality, resistance and emergency healing combinations; avoid unbounded ability spam.
-- Tune bosses with readable visual/audio cues, avoidable damage, fair openings and attack patterns rather than excess health.
-- Review level 1-60 pacing, XP costs, NG+ scaling, skill refunds, mastery and shop economy.
-- Verify dungeon loot distribution, guaranteed sigils, world exploration, difficulty, performance and save/reload.
+**Focus: a home worth coming back to, collections and mastery without extra power tiers.**
 
-## v1.1.0: Complete Release
+### 7. The Warden's Sanctuary: permanent progression home base
 
-- Clean CurseForge import with correct NeoForge/Java 21 compatibility and dependency versions.
-- Automated Java compilation, package/manifest validation, real server GameTests, and documented player/client checks.
-- Fresh-world and **existing-world** acceptance playthrough including all six dungeon biomes, all six dungeon boss fights, save compatibility and NG+.
-- Enchantment and inventory interactions at levels I/II/III, on all compatible gear; legendary cooldown messages and screen readability.
-- Final changelog, player guide, controls, backup guidance and known limitations.
-- **No more major power systems after this release** unless a real gameplay problem demands them.
+Build the previously agreed home base with story-gated unlocking, safe access,
+save persistence and rooms that open/improve as the adventure progresses:
 
-## Scope control
+| Room | Planned purpose | Balance rule |
+| --- | --- | --- |
+| **Trophy Hall** | All boss trophies, NG+ milestones, Shattered Trials medals, all six biome discoveries, secret boss trophy and other achievements | Decorations and records only |
+| **Armoury** | Display and compare six legendary swords and equipment, plus mastery ranks | No duplicated or free weapons |
+| **Enchanter's Workshop** | Clear enchanting/book information and access to existing crafting systems | Uses existing XP and material costs |
+| **Cartographer's Room** | Discovered biomes, chapter landmarks and dungeon clues | Unlock locations by actually exploring |
+| **Treasure Vault** | Trophies and earned resource storage/display | No automatic resource generation |
+| **Portal Chamber** | Convenient but limited travel connections, compatible with Waystones | No bypassing chapter gates or free infinite teleportation |
+| **War Room** | Boss Bestiary, quest status, bounties and Shattered Trials planning | Information, not combat bonuses |
 
-Avoid extra character levels, more damage rarities, higher legendary sword tiers, unconditional permanent stat bonuses, and piling on overlapping RPG mods. Balance, atmosphere and replayability are the goal.
+The home **visually evolves** after chapter victories and optional milestones.
+Preserve completed displays and achievements across save/reload and NG+.
+Integrate the achievements and trophy collection **inside this base**, not as
+a redundant separate power system. Add no unconditional sanctuary buffs.
+
+### 8. Achievements and trophies
+
+- Six boss trophies, legendary sword mastery awards, biome exploration
+  collection, NG+ and trial achievements, and a secret encounter centrepiece.
+- The Sanctuary Trophy Hall is the physical display; the Codex provides
+  a searchable checklist/record.
+- Cosmetics, titles, banners and furniture only, not extra damage/armour.
+
+### 9. Five-rank legendary sword mastery
+
+- One mastery track for each of the six existing legendary swords.
+- Gain ranks through legitimate combat with that specific weapon.
+- Mainly visual trails, weapon lore, titles, showcase effects and records.
+- At most minimal capped utility if later balance testing demonstrates a need.
+- **Do not increase passive proc chance, remove cooldowns, add damage tiers,
+  or bypass Dormant/Awakened/Ascended progression.**
+- Anti-exploit progress rules for low-risk/trivial-mob farming.
+
+### 10. Legendary enchantment protection
+
+- One rare, consumable safeguard for **one chosen enchantment** if a future
+  equipment-replacement/reforging mechanic would otherwise remove it.
+- Never duplicate enchantments, refund all costs or protect unlimited slots.
+- **Do not add a pointless item**: if the complete design never risks losing
+  enchantments, satisfy this requirement by explicitly confirming existing
+  safe upgrades and omit a standalone protection item.
+- Preserve vanilla anvils, direct book application and ranks I/II/III.
+
+## v1.0.58 — Final Endgame Encounter, Settings and Combat Polish
+
+### 11. One secret endgame challenge
+
+- Optional, unlocked through the six Shattered Trials, not required to finish
+  the main story.
+- A distinct high-skill challenge with readable mechanics, meaningful counterplay,
+  safe recovery after failure, and no unfair instant-kill gimmicks.
+- Cosmetic-only completion rewards and an exclusive Sanctuary centrepiece.
+- Reuse existing progression, avoid inventing a seventh mandatory power tier.
+
+### 12. Modpack settings and accessibility
+
+- Player-facing options for HUD layout, ability/cooldown notices, boss text
+  prompts, ambient effects and optional performance-friendly visual settings.
+- Preserve core damage/difficulty rules; never provide a hidden easy-mode buff
+  through settings. Respect keybind remapping and readable UI scales.
+
+### 13. Combat and atmosphere refinement
+
+- Boss visual/audio telegraphs, hit feedback, phase transitions and reliable
+  encounter cleanup; tune with client visual/performance testing.
+- Ensure the Sanctuary, dungeon biomes, soundtrack cues (original or properly
+  licensed only), quests and Codex feel coherent and do not spam chat.
+
+## v1.0.59 — Feature Freeze, Balance and Release Candidate
+
+**No new major gameplay systems after v1.0.58.**
+
+- Audit all **41** custom enchantment registry entries (36 shop additions
+  and five older entries): real effects, tooltip correctness, conflicts and
+  stacking, levels I-III, anvil and inventory application.
+- Cap abusive damage, lifesteal, emergency survival, resistances and resource
+  generation. Test all classes and legendary swords together at endgame.
+- Review level 1-60 progression, mastery economy, NG+ scaling, boss difficulty,
+  bounties, Shattered Trials, XP purchase prices and loot drop fairness.
+- Ensure full campaign remains possible without farming bounties or trials.
+- Validate biome worldgen, Sanctuary persistence, relics, Boss Bestiary records,
+  secret challenge unlocking, fresh worlds, save updates and survival inventory.
+- Fix compatibility, performance, missing assets, crashes and exploits.
+
+## v1.1.0 — COMPLETE Release
+
+- Export one reproducible CurseForge-importable package for Java 1.21.1/
+  NeoForge with verified dependency pins, bundled mod textures and documentation.
+- Pass automated Java compile, asset/data/packaging checks and real server GameTests.
+- Perform full **client** acceptance on fresh and upgraded saves: biome exploration,
+  all six dungeons/bosses, all classes, Level 60/NG+, bounties, Shattered Trials,
+  Sanctuary rooms/trophies, enchantments, all six legendary sword powers,
+  secret encounter, map/mod/shader integration, save and reload.
+- Deliver final controls tutorial, progression guide, troubleshooting,
+  backup instructions, changelog and honest known-limitations section.
+- Mark stable only after real-player checks are complete, not just green CI.
+
+## Locked scope checklist
+
+- [ ] Six dungeon biomes naturally generated and linked to the six dungeons
+- [ ] RPG introduction and optional tutorial
+- [ ] Six-boss Codex Bestiary
+- [ ] Environmental secrets and dungeon atmosphere
+- [ ] Shattered Trials
+- [ ] Repeatable Adventurer's Bounty Board
+- [ ] The Warden's Sanctuary with all seven rooms
+- [ ] Sanctuary Trophy Hall, achievements and collectible displays
+- [ ] Five-rank mastery for all six legendary swords
+- [ ] Meaningful single-enchantment protection, or safe-upgrade confirmation
+- [ ] One optional secret endgame encounter and its trophy
+- [ ] Modpack UI/notification/ambience settings
+- [ ] Comprehensive final balance and regression tests
+- [ ] Verified v1.1.0 CurseForge stable release
+
+These boxes remain unchecked until implemented and tested. Changing the major
+feature list requires explicit user approval; fixes and technical decisions
+that satisfy an existing item do not.
