@@ -12,7 +12,7 @@ from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "1.0.53"
+VERSION = "1.0.54"
 MC_VERSION = "1.21.1"
 LOADER = "neoforge-21.1.238"
 OUT_DIR = ROOT / "build/distributions"
@@ -33,7 +33,7 @@ DEPENDENCIES = (
     (245755, 8969751, "Waystones 21.1.46 (NeoForge 1.21.1)", "BlayTheNinth"),
 )
 
-README = """THE SHATTERED SEALS v1.0.53
+README = """THE SHATTERED SEALS v1.0.54
 Minecraft Java 1.21.1 / NeoForge 21.1.238 / Java 21
 
 CURSEFORGE IMPORT:
@@ -58,7 +58,11 @@ CURSEFORGE IMPORT:
    or left-click the book onto compatible survival-inventory equipment.
 8. All six legendary swords have a rare passive on successful melee hits,
    with independent cooldowns and stronger effects at higher sword tiers.
-9. J Codex includes optional rune hints and sword/relic ability descriptions;
+9. v1.0.54: Sword passive cooldowns display chat messages on activation
+   and ready-again. Book hover tooltips track the actual enchantment rank
+   after anvil combining. Survival inventory accepts enchant application
+   in either click direction. Creative inventory requires an anvil.
+10. J Codex includes optional rune hints and sword/relic ability descriptions;
    K Skill Tree now has detailed tooltips for skills and mastery perks.
 
 AUTOMATED TESTING:
@@ -111,6 +115,9 @@ def select_jar() -> Path:
             "com/shatteredseals/combat/ClassicSwordGuard.class",
             "com/shatteredseals/net/SwordGuard.class",
             "com/shatteredseals/diagnostics/RuntimeAudit.class",
+            "com/shatteredseals/combat/LegendarySwordPassives.class",
+            "com/shatteredseals/enchantments/CodexBookApplication.class",
+            "com/shatteredseals/client/CodexBookTooltips.class",
         )
         for required in required_classes:
             if required not in names:
