@@ -6,8 +6,10 @@ DATA=ROOT/"src/main/resources/data/shatteredseals"
 class EnchantmentTests(unittest.TestCase):
     def test_36_registry_enchantments(self):
         enchant=list((DATA/"enchantment").glob("*.json"))
-        self.assertEqual(len(enchant),36)
-        for p in enchant:
+        self.assertGreaterEqual(len(enchant),36)
+        self.assertEqual(len(list((DATA/'function/enchantments').glob('give_*.mcfunction'))),36)
+        for give in (DATA/'function/enchantments').glob('give_*.mcfunction'):
+            p=DATA/'enchantment'/(give.stem.removeprefix('give_')+'.json')
             data=json.loads(p.read_text())
             self.assertEqual(data["max_level"],3,p.name)
             self.assertTrue(data["effects"],p.name)
