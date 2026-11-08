@@ -6,11 +6,32 @@ The world defaults to Hard difficulty, with high attack speed for an approximati
 
 A challenging single-player RPG modpack, featuring a six-chapter boss storyline, nine-room natural jigsaw fortresses, class skill trees, powerful relics, rarity-based loot, and New Game+ mastery and repeatable chapter quests.
 
+### New in v1.0.53: Enchantments, Codex, passives and compatible mods
+
+- **36 new native enchanted books**: 12 Common, 12 Rare, 12 Legendary. Each
+  supports I, II and III. J > Enchants provides all book descriptions and
+  an XP-level merchant (10 / 20 / 30 vanilla levels). Anvils can apply and
+  combine books, and survival inventory left-click of a purchased book onto
+  compatible gear is supported.
+- **Six rare on-hit legendary sword passives**, each with its own cooldown.
+  Dormant, Awakened and Ascended scale the effect, not the trigger frequency.
+  The J Codex explains each ability and lists the nine separate relic skills.
+- **Story hints**: J > Quest Journal > Reveal rune hint shows the keeper's
+  riddle and the current chapter's correct rune sequence.
+- **Skill help**: K shows current core ranks and tooltips for all branch
+  upgrades, mastery effects and the four class abilities.
+- **New CurseForge references**: JEI, Waystones + Balm, ModernFix and FerriteCore.
+  We deliberately skip overlapping third-party dungeon, skill, quest and
+  enchantment mods. Existing player saves are not reset.
+- **First-person guarding** uses a NeoForge item render transform rather than
+  the earlier early-stage render event, which should make the actual sword
+  block pose visible. This still requires a user screenshot verification.
+
 ## Install the development pack
 
 1. Open [GitHub Actions](https://github.com/danny200028/the-shattered-seals/actions/workflows/build.yml) and choose the latest successful **Build The Shattered Seals** run.
-2. Download the artifact named **Shattered-Seals-1.0.52-CurseForge-Modpack**.
-3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.52-CurseForge.zip`.
+2. Download the artifact named **Shattered-Seals-1.0.53-CurseForge-Modpack**.
+3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.53-CurseForge.zip`.
 4. Import the inner ZIP through the CurseForge Minecraft modpack importer. CurseForge resolves the pinned NeoForge map and shader dependencies; the custom Shattered Seals JAR lives in `overrides/mods`.
 5. Start Minecraft 1.21.1 with Java 21. Use **J** for the Adventurer's Codex, **K** for the skill tree and **L** to toggle the on-screen quest tracker.
 
@@ -33,13 +54,13 @@ The shaderpack is **referenced** as a CurseForge dependency rather than redistri
 Abilities **Q and R** are stacked on the left side of the default Minecraft
 hotbar, while **V and G** sit on its right. The class label aligns with the
 hearts, the resource count aligns with the hunger bar, and the resource meter
-spans the space above the vanilla status HUD. In v1.0.52, the class/resource
+spans the space above the vanilla status HUD. In v1.0.53, the class/resource
 label sits below Minecraft's action-bar level/XP/SP message and the meter ends
 before the hearts/hunger, rather than crowding the text above the hotbar. The panels automatically narrow
 for smaller GUI widths and keep server-provided cooldowns / ability names.
 **This is a visual client change that still needs an in-game screenshot check.**
 
-### Clearer native RPG menus (v1.0.52)
+### Clearer native RPG menus (v1.0.53)
 
 The four-class skill tree and the Codex now draw their labels after the
 vanilla screen widgets/background, with fully opaque text colours. The
@@ -51,7 +72,7 @@ Minecraft's action-bar class text: the active class resource
 remain on their two sides of the hotbar. These visual changes need a
 screenshot confirmation on the user's Minecraft client.
 
-### Responsive controls and sword guard (v1.0.52)
+### Responsive controls and sword guard (v1.0.53)
 
 - The ability boxes display **current keybinds from Minecraft's Controls menu**, not fixed Q/R/V/G labels. Changing keyboard or mouse bindings updates the combat HUD immediately, without restarting.
 - Right-click sword blocking now visibly raises the first-person sword and displays a temporary BLOCK label outside the vanilla hotbar. When a frontal hit is mitigated, an audible shield-clink confirms it. Damage reduction remains server-owned and requires a sword, an active hold, and an attacker in front.

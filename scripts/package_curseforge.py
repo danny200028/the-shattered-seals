@@ -12,7 +12,7 @@ from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "1.0.52"
+VERSION = "1.0.53"
 MC_VERSION = "1.21.1"
 LOADER = "neoforge-21.1.238"
 OUT_DIR = ROOT / "build/distributions"
@@ -26,9 +26,14 @@ DEPENDENCIES = (
     (455508, 6661598, "Iris Shaders 1.8.12 (NeoForge 1.21.1)", "Iris Team"),
     (394468, 6382651, "Sodium 0.6.13 (NeoForge 1.21.1)", "CaffeineMC"),
     (627557, 8884654, "Complementary Reimagined r5.9.3 (shader pack)", "EminGT"),
+    (238222, 8792638, "Just Enough Items (JEI 19.51.0.418, NeoForge 1.21.1)", "mezz"),
+    (790626, 9309399, "ModernFix 5.27.27 (NeoForge 1.21.1)", "embeddedt"),
+    (429235, 7524151, "FerriteCore 7.0.3 (NeoForge 1.21.1)", "malte0811"),
+    (531761, 9406246, "Balm 21.0.67 (NeoForge 1.21.1; Waystones library)", "BlayTheNinth"),
+    (245755, 8969751, "Waystones 21.1.46 (NeoForge 1.21.1)", "BlayTheNinth"),
 )
 
-README = """THE SHATTERED SEALS v1.0.52
+README = """THE SHATTERED SEALS v1.0.53
 Minecraft Java 1.21.1 / NeoForge 21.1.238 / Java 21
 
 CURSEFORGE IMPORT:
@@ -43,6 +48,18 @@ CURSEFORGE IMPORT:
    https://www.curseforge.com/minecraft/shaders/complementary-reimagined
 5. Xaero's Minimap and World Map should be installed by the importer; use the
    minimap and waypoint settings to mark discovered dungeons.
+6. JEI (recipe viewing), Waystones and its required Balm library (travel),
+   ModernFix and FerriteCore (performance) are included as CurseForge
+   dependency references. The pack deliberately does not add duplicate
+   quest, dungeon, enchantment or skill-tree mods.
+7. The J Codex Enchants page sells Common / Rare / Legendary books for
+   10 / 20 / 30 vanilla XP levels. 36 new enchantments each have levels I-III.
+   Combine matching rank books in an anvil, use an anvil to enchant gear,
+   or left-click the book onto compatible survival-inventory equipment.
+8. All six legendary swords have a rare passive on successful melee hits,
+   with independent cooldowns and stronger effects at higher sword tiers.
+9. J Codex includes optional rune hints and sword/relic ability descriptions;
+   K Skill Tree now has detailed tooltips for skills and mastery perks.
 
 AUTOMATED TESTING:
 - Inside a new test world, type /shatteredseals audit in chat (no cheats required).
