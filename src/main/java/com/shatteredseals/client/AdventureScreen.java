@@ -14,7 +14,7 @@ import net.minecraft.network.chat.Component;
  * are enforced by datapack functions on the integrated/dedicated server.
  */
 public final class AdventureScreen extends Screen {
-    private enum Page { JOURNAL, ARSENAL, FORGE, MASTERY }
+    private enum Page { JOURNAL, ARSENAL, RELICS, FORGE, MASTERY, ENCHANTS }
     private static final DungeonChapter[] CHAPTERS = DungeonChapter.values();
     private static final String[] NUMERALS = {"I", "II", "III", "IV", "V", "VI"};
     private static final String[] WEAPONS = {
@@ -22,6 +22,60 @@ public final class AdventureScreen extends Screen {
         "Starfall", "Gravekeeper", "King's Bane"
     };
     private static final String[] PERKS = { "Defender", "Swiftblade", "Warbringer" };
+    private static final String[] RUNES = {"Sun", "Tide", "Ash"};
+    private static final String[] SWORD_POWERS = {
+        "Inferno Slash | 5% | 45s", "Executioner's Mark | 6% | 40s",
+        "Guardian's Wrath | 5% | 50s", "Celestial Strike | 4% | 55s",
+        "Soul Harvest | 6% | 45s", "Shattered Reality | 3% | 60s"
+    };
+    private static final String[] SWORD_DESCRIPTIONS = {
+        "Burn nearby enemies; stronger fire area at higher tiers.",
+        "Weaken and reveal targets; Ascended adds Wither.",
+        "Knock enemies back; higher tiers grant shield and Resistance.",
+        "Reveal foes, strike nearby enemies and slow at higher tiers.",
+        "Heal after a hit; higher tiers add Wither and Regeneration.",
+        "Void burst and Weakness; higher tiers slow larger groups."
+    };
+    private static final String[] RELIC_NAMES = {
+        "Ember Guard", "Rift Step", "Echo Ping", "Warden's Pulse",
+        "Frost Snare", "Delver's Draft", "Soul Mend", "Storm Call", "Shadow Cloak"
+    };
+    private static final String[] RELIC_DESCRIPTIONS = {
+        "Fire Resistance and healing", "Short teleport and Slow Falling",
+        "Reveals nearby foes", "Resistance and levitation pulse",
+        "Slows nearby foes; grants Speed", "Mining Haste and exploration buffs",
+        "Regeneration and Absorption, at a hunger cost", "Lightning strike and Resistance",
+        "Invisibility and Night Vision, at a Weakness cost"
+    };
+    private static final String[] TIER_NAMES = {"Common", "Rare", "Legendary"};
+    private static final int[] TIER_PRICES = {10, 20, 30};
+    // Exact native-enchantment registry order, grouped into purchasable book rarities.
+    private static final String[][] ENCHANT_NAMES = {
+        {"Keen Edge", "Stagger", "Lifebloom", "Stoneguard", "Fleetfoot", "Deep Miner",
+         "Lumberjack", "Harvest Blessing", "Durable", "Archer's Focus", "Aqua Step", "Treasure Sense"},
+        {"Vampiric Edge", "Frostbite", "Thunderstrike", "Guardian Aura", "Phoenix Skin",
+         "Shadowstep", "Berserker", "Vein Seeker", "Soul Collector", "Hunter's Precision",
+         "Second Wind", "Magnetic Harvest"},
+        {"Soul Reaper", "Infernal Wrath", "Celestial Judgement", "Titan's Resolve",
+         "Immortal Spirit", "Voidwalker", "Worldbreaker", "Eternal Harvest",
+         "Stormcaller", "Dragon's Fury", "Guardian Angel", "King's Execution"}
+    };
+    private static final String[][] ENCHANT_HELP = {
+        {"Sword: extra melee damage", "Weapons: extra knockback", "Armour: extra max health",
+         "Chestplate: damage reduction", "Boots: movement speed", "Pickaxe: mining speed",
+         "Axe: woodcutting speed", "Hoe: harvest block XP", "Tools: reduced durability wear",
+         "Bow: ranged damage", "Boots: swim movement", "Tools: bonus mining XP"},
+        {"Sword: proc regeneration", "Weapons: proc Slowness", "Weapons: magic burst",
+         "Chestplate: periodic Resistance", "Armour: periodic fire protection",
+         "Boots: extra movement", "Axe: increased damage", "Pickaxe: extra ore XP",
+         "Sword: bonus mob XP", "Bow: ranged damage", "Leggings: periodic healing",
+         "Tools: mining efficiency"},
+        {"Sword: proc regeneration", "Weapons: burning strikes", "Sword: magic damage burst",
+         "Chestplate: damage reduction", "Armour: added max health", "Boots: speed",
+         "Pickaxe: strong mining efficiency", "Hoe: bonus harvesting XP",
+         "Bow: magic strike burst", "Sword: ignite on hit", "Armour: periodic Absorption",
+         "Axe: increased damage"}
+    };
     private static final String[] PERK_HELP = {
         "Resistance when fighting in NG+",
         "Haste for gathering and close combat",
@@ -31,6 +85,8 @@ public final class AdventureScreen extends Screen {
     private Page page = Page.JOURNAL;
     private boolean requestedInitial;
     private int refreshTicks;
+    private int enchantTier;
+    private boolean showRuneHint;
 
     public AdventureScreen() {
         super(Component.literal("The Shattered Seals | Adventurer's Codex"));
@@ -45,13 +101,13 @@ public final class AdventureScreen extends Screen {
         }
         int x = width / 2 - 205, y = height / 2 - 143;
         Page[] pages = Page.values();
-        String[] names = { "Quest Journal", "Arsenal", "Relic Forge", "NG+ Mastery" };
+        String[] names = { "Journal", "Swords", "Relics", "Forge", "NG+ Mastery", "Enchants" };
         for (int i = 0; i < pages.length; i++) {
             final Page destination = pages[i];
             Button tab = Button.builder(Component.literal(names[i]), b -> {
                 page = destination;
                 rebuildWidgets();
-            }).bounds(x + 4 + i * 102, y + 16, 99, 21).build();
+            }).bounds(x + 4 + i * 68, y + 16, 65, 21).build();
             tab.active = page != destination;
             addRenderableWidget(tab);
         }
@@ -78,11 +134,28 @@ public final class AdventureScreen extends Screen {
             if (state != null && state.level() >= 60 && state.bossWins()[5] > 0 && !isReplay(state)) {
                 addRenderableWidget(Button.builder(Component.literal(state.ngCycle() == 0 ? "Begin New Game+" : "Start next NG+ cycle"),
                     b -> perform("ss_story", 3)).bounds(x + 8, y + 235, 180, 21).build());
+            } else {
+                addRenderableWidget(Button.builder(Component.literal(showRuneHint ? "Hide rune hint" : "Reveal rune hint"),
+                    b -> { showRuneHint = !showRuneHint; rebuildWidgets(); })
+                    .bounds(x + 8, y + 235, 180, 21).build());
             }
         } else if (page == Page.ARSENAL) {
             addRenderableWidget(Button.builder(Component.literal("Open Relic Forge"),
                 b -> { page = Page.FORGE; rebuildWidgets(); })
-                .bounds(x + 220, y + 227, 177, 21).build());
+                .bounds(x + 134, y + 261, 175, 21).build());
+        } else if (page == Page.ENCHANTS) {
+            for (int i = 0; i < 3; i++) {
+                final int chosen = i;
+                Button tier = Button.builder(Component.literal(TIER_NAMES[i]),
+                    b -> { enchantTier = chosen; rebuildWidgets(); })
+                    .bounds(x + 8 + i * 130, y + 78, 123, 20).build();
+                tier.active = enchantTier != i;
+                addRenderableWidget(tier);
+            }
+            addRenderableWidget(Button.builder(Component.literal(
+                "Buy random " + TIER_NAMES[enchantTier] + " book (" + TIER_PRICES[enchantTier] + " XP levels)"),
+                b -> perform("ss_ebook", enchantTier + 1))
+                .bounds(x + 8, y + 237, 391, 20).build());
         }
         addRenderableWidget(Button.builder(Component.literal("Skill Tree (K)"),
             b -> Minecraft.getInstance().setScreen(new SkillTreeScreen()))
@@ -137,6 +210,8 @@ public final class AdventureScreen extends Screen {
             switch (page) {
                 case JOURNAL -> renderJournal(graphics, data, x, y);
                 case ARSENAL -> renderArsenal(graphics, x, y);
+                case RELICS -> renderRelics(graphics, x, y);
+                case ENCHANTS -> renderEnchants(graphics, x, y, mouseX, mouseY);
                 case FORGE -> renderForge(graphics, x, y);
                 case MASTERY -> renderMastery(graphics, data, x, y);
             }
@@ -163,9 +238,17 @@ public final class AdventureScreen extends Screen {
         }
         DungeonChapter chapter = CHAPTERS[next];
         int level = replay ? 60 : chapter.recommendedLevel;
-        line(graphics, "1. Mark the fortress and enter. Suggested level " + level + ".", x + 8, y + 183, 0xFFC6CBDF);
-        line(graphics, data.puzzleStep() >= 3 ? "2. Arena ward opened. Take the sigil from the chest."
-             : "2. Ask the keeper and attune the runes (" + data.puzzleStep() + "/3).", x + 8, y + 195, 0xFFC6CBDF);
+        if (showRuneHint) {
+            line(graphics, font.plainSubstrByWidth("Keeper: " + chapter.clue, 390),
+                x + 8, y + 183, 0xFFF2D296);
+            line(graphics, "Rune order: " + RUNES[chapter.runeAt(0)] + " > "
+                + RUNES[chapter.runeAt(1)] + " > " + RUNES[chapter.runeAt(2)]
+                + "  (" + data.puzzleStep() + "/3)", x + 8, y + 195, 0xFF9EDEDC);
+        } else {
+            line(graphics, "1. Mark the fortress and enter. Suggested level " + level + ".", x + 8, y + 183, 0xFFC6CBDF);
+            line(graphics, data.puzzleStep() >= 3 ? "2. Arena ward opened. Take the sigil from the chest."
+                 : "2. Ask the keeper and attune the runes (" + data.puzzleStep() + "/3).", x + 8, y + 195, 0xFFC6CBDF);
+        }
         line(graphics, "3. Use the sigil on the obsidian pad and defeat " + chapter.boss + ".", x + 8, y + 207, 0xFFC6CBDF);
         String side = switch (data.sideQuestState()) {
             case 1 -> "Defeat " + chapter.miniboss;
@@ -188,11 +271,44 @@ public final class AdventureScreen extends Screen {
     }
 
     private void renderArsenal(GuiGraphics graphics, int x, int y) {
-        line(graphics, "SIX WARDEN RELICS", x + 8, y + 77, 0xFFE4AF76);
-        for (int i = 0; i < WEAPONS.length; i++)
-            line(graphics, (i + 1) + ". " + WEAPONS[i] + "  |  Dormant / Awakened / Ascended",
-                x + 8, y + 99 + i * 21, 0xFFCEDDF2);
-        line(graphics, "Bosses award the relics. Upgrade them at the forge.", x + 8, y + 241, 0xFFC6CBDF);
+        line(graphics, "SIX LEGENDARY SWORDS | PASSIVES ON MELEE HITS", x + 8, y + 77, 0xFFE4AF76);
+        for (int i = 0; i < WEAPONS.length; i++) {
+            line(graphics, WEAPONS[i] + "  |  " + SWORD_POWERS[i],
+                x + 8, y + 92 + i * 24, 0xFFE1CFAB);
+            line(graphics, SWORD_DESCRIPTIONS[i],
+                x + 12, y + 104 + i * 24, 0xFFAFC4D5);
+        }
+        line(graphics, "Effects grow from Dormant to Awakened to Ascended. Chance is unchanged.",
+            x + 8, y + 240, 0xFF9BCDAD);
+    }
+
+    private void renderRelics(GuiGraphics graphics, int x, int y) {
+        line(graphics, "ACTIVE RELICS  |  RIGHT-CLICK WHILE HOLDING TO CAST", x + 8, y + 77, 0xFFE4AF76);
+        for (int i = 0; i < RELIC_NAMES.length; i++) {
+            line(graphics, RELIC_NAMES[i] + ": " + RELIC_DESCRIPTIONS[i],
+                x + 8, y + 95 + i * 16, 0xFFCEDDF2);
+        }
+        line(graphics, "All share a 20-second cooldown. Higher power tiers grant bonus effects.",
+            x + 8, y + 244, 0xFF9BCDAD);
+    }
+
+    private void renderEnchants(GuiGraphics graphics, int x, int y, int mouseX, int mouseY) {
+        line(graphics, "ENCHANTMENT ARCHIVE  |  " + TIER_NAMES[enchantTier] + "  |  12 UNIQUE BOOKS",
+            x + 8, y + 54, 0xFFE4AF76);
+        for (int i = 0; i < 12; i++) {
+            int column = i / 6;
+            int row = i % 6;
+            int px = x + 8 + column * 196;
+            int py = y + 105 + row * 21;
+            line(graphics, ENCHANT_NAMES[enchantTier][i] + "  I-III", px, py, 0xFFE5DBB6);
+            line(graphics, font.plainSubstrByWidth(ENCHANT_HELP[enchantTier][i], 185),
+                 px + 2, py + 10, 0xFFAFC4D5);
+            if (mouseX >= px && mouseX < px + 192 && mouseY >= py && mouseY < py + 21)
+                graphics.renderTooltip(font, Component.literal(
+                    ENCHANT_NAMES[enchantTier][i] + ": " + ENCHANT_HELP[enchantTier][i]), mouseX, mouseY);
+        }
+        line(graphics, "Book I + Book I = II; Book II + Book II = III. Apply in an anvil.",
+            x + 8, y + 230, 0xFF9BCDAD);
     }
 
     private void renderForge(GuiGraphics graphics, int x, int y) {
