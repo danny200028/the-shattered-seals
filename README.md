@@ -6,6 +6,10 @@ The world defaults to Hard difficulty, with high attack speed for an approximati
 
 A challenging single-player RPG modpack, featuring a six-chapter boss storyline, nine-room natural jigsaw fortresses, class skill trees, powerful relics, rarity-based loot, and New Game+ mastery and repeatable chapter quests.
 
+## Planned final releases
+
+See the [final development roadmap](docs/ROADMAP.md) for the six dungeon biomes, Boss Bestiary, Shattered Trials, repeatable bounties, legendary weapon mastery, enchantment protection, final balancing and v1.1.0 completion criteria. These are **planned features**, not included in v1.0.54.
+
 ### v1.0.54: Enchantment and legendary sword polish
 
 - Six legendary sword passives announce a **gold cooldown-start message** in
