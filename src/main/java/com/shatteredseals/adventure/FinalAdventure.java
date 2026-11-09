@@ -435,6 +435,18 @@ public final class FinalAdventure {
             }
             if (data.getBoolean("SSSanctuaryVisited")) updateTrophies(player);
         }
+        // Sparse original scores, never spammed and fully opt-out with ambience.
+        if (player.tickCount % 1800 == 0 && enabled(player, "SSShowAmbientEffects")) {
+            boolean atHome = !world.getEntitiesOfClass(Marker.class,
+                new AABB(player.blockPosition()).inflate(24),
+                m -> m.getTags().contains("ss_sanctuary_room")).isEmpty();
+            if (atHome) world.playSound(null, player.blockPosition(),
+                ShatteredSeals.SANCTUARY_THEME.get(), SoundSource.AMBIENT, 0.45F, 1.0F);
+            else if (world.getBiome(player.blockPosition()).unwrapKey()
+                    .map(key -> key.location().getNamespace().equals(ShatteredSeals.MOD_ID)).orElse(false))
+                world.playSound(null, player.blockPosition(),
+                    ShatteredSeals.EXPLORE_THEME.get(), SoundSource.AMBIENT, 0.35F, 1.0F);
+        }
         // Telegraph every special pulse two seconds before it strikes.
         for (Mob boss : world.getEntitiesOfClass(Mob.class,
                 new AABB(player.blockPosition()).inflate(32),

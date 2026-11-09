@@ -1,0 +1,26 @@
+{
+  "music.boss": {
+    "sounds": [
+      {
+        "name": "shatteredseals:music/boss",
+        "stream": true
+      }
+    ]
+  },
+  "music.sanctuary": {
+    "sounds": [
+      {
+        "name": "shatteredseals:music/sanctuary",
+        "stream": true
+      }
+    ]
+  },
+  "music.explore": {
+    "sounds": [
+      {
+        "name": "shatteredseals:music/explore",
+        "stream": true
+      }
+    ]
+  }
+}

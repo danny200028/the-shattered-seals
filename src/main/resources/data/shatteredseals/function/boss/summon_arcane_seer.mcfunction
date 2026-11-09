@@ -16,3 +16,10 @@ execute if score @s ss_ng matches 4.. run effect give @e[tag=ss_arcane_seer,dist
 execute if score @s ss_ng matches 1..3 run effect give @e[tag=ss_arcane_seer,distance=..10,sort=nearest,limit=1] minecraft:resistance 99999 0 true
 execute if score @s ss_ng matches 4.. run effect give @e[tag=ss_arcane_seer,distance=..10,sort=nearest,limit=1] minecraft:resistance 99999 1 true
 tellraw @s {"text":"Arcane Seer has awakened. Prepare for three phases!","color":"aqua","bold":true}
+
+# Cinematic encounter cue: title remains readable and does not freeze the fight.
+execute if score @s ss_spawnok matches 1 run title @a[distance=..40] times 8 48 16
+execute if score @s ss_spawnok matches 1 run title @a[distance=..40] title {"text":"ARCANE SEER","color":"aqua","bold":true}
+execute if score @s ss_spawnok matches 1 run title @a[distance=..40] subtitle {"text":"The heavens have seen your fate","color":"gray","italic":true}
+execute if score @s ss_spawnok matches 1 run playsound shatteredseals:music.boss master @a[distance=..40] ~ ~ ~ 0.8 1.0
+execute if score @s ss_spawnok matches 1 run particle minecraft:enchant ~ ~1 ~ 1.8 1.5 1.8 0.04 60 force @a[distance=..40]

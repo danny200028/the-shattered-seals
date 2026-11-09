@@ -6,6 +6,10 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import terrablender.api.Regions;
 import net.minecraft.world.item.Item;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredItem;
 import terrablender.api.SurfaceRuleManager;
@@ -14,6 +18,13 @@ import terrablender.api.SurfaceRuleManager;
 public final class ShatteredSeals {
     public static final String MOD_ID = "shatteredseals";
     public static final String VERSION = "1.0.58-dev";
+    public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(Registries.SOUND_EVENT, MOD_ID);
+    public static final DeferredHolder<SoundEvent, SoundEvent> BOSS_THEME = SOUNDS.register("music.boss",
+        () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "music.boss")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SANCTUARY_THEME = SOUNDS.register("music.sanctuary",
+        () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "music.sanctuary")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> EXPLORE_THEME = SOUNDS.register("music.explore",
+        () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "music.explore")));
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MOD_ID);
     public static final DeferredItem<Item> SANCTUARY_KEYSTONE =
         ITEMS.registerSimpleItem("sanctuary_keystone", new Item.Properties().stacksTo(1));
@@ -23,6 +34,7 @@ public final class ShatteredSeals {
 
     public ShatteredSeals(IEventBus modBus) {
         ITEMS.register(modBus);
+        SOUNDS.register(modBus);
         modBus.addListener(this::commonSetup);
         LOGGER.log(System.Logger.Level.INFO,
             "The Shattered Seals progression and GUI initialized ({0})", VERSION);
