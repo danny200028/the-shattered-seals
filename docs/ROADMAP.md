@@ -1,9 +1,9 @@
 # The Shattered Seals — LOCKED Final Release Roadmap
 
 > **Scope locked: 8 November 2026.**
-> **Current playable build:** v1.0.54 (Minecraft Java 1.21.1, NeoForge 21.1.238, Java 21, CurseForge).
+> **Current built release:** v1.0.55 (new features pending client playtest; v1.0.54 was player-tested) (Minecraft Java 1.21.1, NeoForge 21.1.238, Java 21, CurseForge).
 > **Final target:** v1.1.0, the complete, difficult, single-player Vanilla+ RPG.
-> **Implementation status:** All features listed under v1.0.55 onward are PLANNED and NOT YET RELEASED.
+> **Implementation status:** v1.0.55 Living World features are implemented in the new development release and await player acceptance; v1.0.56 onward remain PLANNED.
 > This document is the canonical feature-freeze checklist. No new major features will be added
 > beyond this scope without explicit user approval. Bug fixes, compatibility, accessibility,
 > necessary technical implementation, and balance tuning remain permitted.
@@ -247,6 +247,6 @@ a redundant separate power system. Add no unconditional sanctuary buffs.
 - [ ] Comprehensive final balance and regression tests
 - [ ] Verified v1.1.0 CurseForge stable release
 
-These boxes remain unchecked until implemented and tested. Changing the major
+These boxes remain unchecked until implemented and both automated and client playtests pass. Changing the major
 feature list requires explicit user approval; fixes and technical decisions
 that satisfy an existing item do not.

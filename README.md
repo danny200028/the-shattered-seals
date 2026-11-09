@@ -14,8 +14,29 @@ v1.0.56 Shattered Trials and the Bounty Board, v1.0.57 The Warden's Sanctuary
 (seven rooms, Trophy Hall and achievements) plus legendary weapon mastery and
 enchantment protection, v1.0.58 secret endgame encounter and player settings,
 v1.0.59 final balance/QA and v1.1.0 complete CurseForge release.
-All these features are **planned**, not included in the current v1.0.54 build.
+All these features are **planned**, with the Living World features developed in v1.0.55 pending player acceptance.
 No major additions are authorised beyond this list without user approval.
+
+### v1.0.55: The Living World (new release, pending player acceptance)
+
+- Six **rare, climate-matched chapter biomes** now join Overworld generation
+  using TerraBlender 4.1.0.8. The six dungeons generate in their corresponding
+  biome, with themed surface blocks, vegetation, ores and hostile mobs.
+- Six **Lost Shrine structures** generate in their matching biomes. Their
+  hidden chests offer modest books, candles, paper and materials, never
+  legendary weapons, free XP or progression shortcuts.
+- J Codex adds **Bestiary** (all six bosses, victory records, counters and drops)
+  and **Explore** (biome discoveries and independently tracked shrines).
+- New players see a one-time story prologue and short class/combat tutorial.
+  Existing progressed players retain their saves and skip the tutorial.
+  `/shatteredseals intro` replays instructions at any time.
+- Each biome has lightly themed, low-cost ambient particles and one-time
+  discovery sound. This update makes **no new player power tiers**.
+- **Worldgen migration:** already-explored chunks stay unchanged. The new
+  terrain and shrines appear only in *new* chunks. Use a new world to test the
+  generation changes before playing on an established save.
+- **New dependency:** TerraBlender NeoForge 1.21.1-4.1.0.8
+  (CurseForge project 940057, file 6054947), pinned in the modpack manifest.
 
 ### v1.0.54: Enchantment and legendary sword polish
 
@@ -55,8 +76,8 @@ No major additions are authorised beyond this list without user approval.
 ## Install the development pack
 
 1. Open [GitHub Actions](https://github.com/danny200028/the-shattered-seals/actions/workflows/build.yml) and choose the latest successful **Build The Shattered Seals** run.
-2. Download the artifact named **Shattered-Seals-1.0.54-CurseForge-Modpack**.
-3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.54-CurseForge.zip`.
+2. Download the artifact named **Shattered-Seals-1.0.55-CurseForge-Modpack**.
+3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.55-CurseForge.zip`.
 4. Import the inner ZIP through the CurseForge Minecraft modpack importer. CurseForge resolves the pinned NeoForge map and shader dependencies; the custom Shattered Seals JAR lives in `overrides/mods`.
 5. Start Minecraft 1.21.1 with Java 21. Use **J** for the Adventurer's Codex, **K** for the skill tree and **L** to toggle the on-screen quest tracker.
 

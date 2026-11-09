@@ -1,9 +1,42 @@
-# The Shattered Seals v1.0.54: In-game Acceptance Checklist
+# The Shattered Seals v1.0.55: In-game Acceptance Checklist
 
 This checklist is **not an automated test result**. The GitHub build compiles the
 NeoForge mod, generates six dungeon structures and validates CurseForge packaging.
 A tester must mark each of the following steps after actually performing it in
 Minecraft Java 1.21.1 (Java 21, NeoForge 21.1.238).
+
+## v1.0.55: The Living World (new tests, not yet player-confirmed)
+
+**Use a new test world for natural worldgen**, and back up your original save
+before checking existing-world compatibility.
+
+- [ ] CurseForge imports `The-Shattered-Seals-1.0.55-CurseForge.zip`
+      and installs TerraBlender NeoForge **1.21.1-4.1.0.8** automatically.
+- [ ] A new world starts on Java 21 / NeoForge 21.1.238 without registry
+      errors. The one-time Shattered Seals introduction appears for a new player.
+- [ ] Existing-world characters retain quests, levels, class, bosses, items,
+      achievements and familiar terrain, without replaying the introduction.
+- [ ] `/shatteredseals intro` replays the tutorial without resetting progress.
+- [ ] In the new world find each of six chapter biomes in new terrain
+      using `/locate biome shatteredseals:<biome_name>`.
+- [ ] Check biome surfaces, resource ores, trees/vegetation, normal hostile mobs,
+      atmospheric particles, map/shaders and that vanilla regions still exist.
+- [ ] `/locate structure shatteredseals:<dungeon_name>` finds the matching
+      dungeon in its themed biome; J > Journal locator still works.
+- [ ] Find one lost shrine with `/locate structure
+      shatteredseals:smugglers_wilds_lost_shrine` and inspect its modest chest.
+- [ ] Approach the shrine: first discovery announces lore once, survives reload
+      and increases the J > Explore shrine count.
+- [ ] Visit one biome: first discovery announces once and increases its
+      J > Explore counter; re-entering cannot repeatedly award discoveries.
+- [ ] J > Bestiary correctly displays six bosses, victory counts, advice and
+      chapter unlock states without prematurely spoiling future chapters.
+- [ ] J > Explore shows six biome entries and six independent shrine statuses.
+- [ ] The six existing dungeons/bosses, swords and enchantment systems
+      still work; World Discovery does not grant free combat advantages.
+- [ ] Test first-time client menus at 2x/3x GUI scale, including new Bestiary
+      and Explore tabs; no tab overlap, text clipping or missing textures.
+- [ ] Verify FPS stays stable with shaders and effects, including in shrines.
 
 ## Automated testing (first run)
 - [ ] In a disposable Minecraft world, execute `/shatteredseals audit` without cheats.
@@ -14,8 +47,8 @@ Minecraft Java 1.21.1 (Java 21, NeoForge 21.1.238).
 - [ ] Review report ZIP before sharing; relevant log extracts may contain personal paths or usernames.
 
 ## Installation and graphics
-- [ ] Download the `Shattered-Seals-1.0.54-CurseForge-Modpack` GitHub Actions artifact.
-- [ ] Extract the outer Actions artifact once; import the inner `The-Shattered-Seals-1.0.54-CurseForge.zip` in CurseForge.
+- [ ] Download the `Shattered-Seals-1.0.55-CurseForge-Modpack` GitHub Actions artifact.
+- [ ] Extract the outer Actions artifact once; import the inner `The-Shattered-Seals-1.0.55-CurseForge.zip` in CurseForge.
 - [ ] Verify the mod loads without crash and the NeoForge mod list includes The Shattered Seals.
 - [ ] Verify Xaero's Minimap, Xaero's World Map, Iris and Sodium load on the selected game version.
 - [ ] Check JEI, Waystones + Balm, ModernFix and FerriteCore all install and load successfully.
