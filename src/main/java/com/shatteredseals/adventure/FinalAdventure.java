@@ -19,6 +19,7 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.Display;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Marker;
 import net.minecraft.world.entity.Mob;
@@ -492,9 +493,21 @@ public final class FinalAdventure {
             int i = 0;
             for (int x : new int[] {-4, 0, 4}) for (int z : new int[] {-4, 4}) {
                 BlockPos cap = marker.blockPosition().offset(x, 1, z);
-                if (DungeonChapter.score(player, DungeonChapter.values()[i].victoryScore) > 0
-                        && level.getBlockState(cap).is(Blocks.POLISHED_BLACKSTONE_WALL)) {
-                    level.setBlock(cap, Blocks.GILDED_BLACKSTONE.defaultBlockState(), 3);
+                if (DungeonChapter.score(player, DungeonChapter.values()[i].victoryScore) > 0) {
+                    if (level.getBlockState(cap).is(Blocks.POLISHED_BLACKSTONE_WALL))
+                        level.setBlock(cap, Blocks.GILDED_BLACKSTONE.defaultBlockState(), 3);
+                    String trophyTag = "ss_sanctuary_boss_trophy_" + i;
+                    if (level.getEntitiesOfClass(Display.ItemDisplay.class,
+                            new AABB(cap).inflate(1.3), e -> e.getTags().contains(trophyTag)).isEmpty()) {
+                        Display.ItemDisplay display = EntityType.ITEM_DISPLAY.create(level);
+                        if (display != null) {
+                            display.setPos(cap.getX() + 0.5, cap.getY() + 1.1, cap.getZ() + 0.5);
+                            display.getSlot(0).set(new ItemStack(ShatteredSeals.bossMask(i)));
+                            display.setNoGravity(true);
+                            display.addTag(trophyTag);
+                            level.addFreshEntity(display);
+                        }
+                    }
                 }
                 i++;
             }

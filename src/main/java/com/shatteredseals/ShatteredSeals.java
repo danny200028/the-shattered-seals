@@ -52,6 +52,18 @@ public final class ShatteredSeals {
             "The Shattered Seals progression and GUI initialized ({0})", VERSION);
     }
 
+    /** The six first-victory trophy models, also worn by the storyline bosses. */
+    public static Item bossMask(int chapter) {
+        return switch (chapter) {
+            case 0 -> MASK_SMUGGLER_KING.get();
+            case 1 -> MASK_CINDER_WARDEN.get();
+            case 2 -> MASK_HOLLOW_KNIGHT.get();
+            case 3 -> MASK_ARCANE_SEER.get();
+            case 4 -> MASK_SIXFOLD_GUARDIAN.get();
+            default -> MASK_HOLLOW_KING.get();
+        };
+    }
+
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             Regions.register(new ShatteredBiomeRegion());

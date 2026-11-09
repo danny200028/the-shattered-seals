@@ -17,6 +17,9 @@ public final class FinalWorldGameTests {
     @GameTest(template = "wardens_sanctuary", timeoutTicks = 400)
     public static void sanctuaryRoomsPlaced(GameTestHelper h) {
         h.assertBlockPresent(Blocks.LODESTONE, new BlockPos(40, 2, 24));
+        h.assertBlockPresent(Blocks.BOOKSHELF, new BlockPos(65, 2, 3));
+        h.assertBlockPresent(Blocks.DEEPSLATE_BRICKS, new BlockPos(0, 16, 0));
+        h.assertBlockPresent(Blocks.GLASS, new BlockPos(55, 10, 40));
         h.assertBlockPresent(Blocks.ENCHANTING_TABLE, new BlockPos(38, 2, 8));
         h.assertBlockPresent(Blocks.FURNACE, new BlockPos(4, 2, 40));
         h.assertBlockPresent(Blocks.CHEST, new BlockPos(68, 2, 21));
