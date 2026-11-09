@@ -36,6 +36,21 @@ public final class DungeonLocator {
             .then(Commands.literal("audit")
                 .executes(context -> com.shatteredseals.diagnostics.RuntimeAudit.run(
                     context.getSource().getPlayerOrException())))
+            .then(Commands.literal("sanctuary")
+                .then(Commands.literal("locate").executes(c -> FinalAdventure.locateSanctuary(c.getSource().getPlayerOrException()))))
+            .then(Commands.literal("depths")
+                .then(Commands.literal("locate")
+                    .then(Commands.argument("chapter", IntegerArgumentType.integer(1, 6))
+                        .executes(c -> FinalAdventure.locateDepths(c.getSource().getPlayerOrException(),
+                            IntegerArgumentType.getInteger(c, "chapter"))))))
+            .then(Commands.literal("secret")
+                .then(Commands.literal("summon").executes(c -> FinalAdventure.summonSecret(c.getSource().getPlayerOrException()))))
+            .then(Commands.literal("options")
+                .then(Commands.argument("slot", IntegerArgumentType.integer(1, 4))
+                    .then(Commands.literal("on").executes(c -> FinalAdventure.setOption(c.getSource().getPlayerOrException(),
+                        IntegerArgumentType.getInteger(c, "slot") - 1, true)))
+                    .then(Commands.literal("off").executes(c -> FinalAdventure.setOption(c.getSource().getPlayerOrException(),
+                        IntegerArgumentType.getInteger(c, "slot") - 1, false)))))
             .then(Commands.literal("trial")
                 .then(Commands.literal("arm")
                     .then(Commands.argument("mask", IntegerArgumentType.integer(1, 3))

@@ -14,7 +14,7 @@ import net.minecraft.network.chat.Component;
  * are enforced by datapack functions on the integrated/dedicated server.
  */
 public final class AdventureScreen extends Screen {
-    private enum Page { JOURNAL, ARSENAL, RELICS, FORGE, MASTERY, ENCHANTS, BESTIARY, EXPLORE, TRIALS, BOUNTIES }
+    private enum Page { JOURNAL, ARSENAL, RELICS, FORGE, MASTERY, ENCHANTS, BESTIARY, EXPLORE, TRIALS, BOUNTIES, MORE, SANCTUARY, DEPTHS, SECRET, SETTINGS }
     private static final DungeonChapter[] CHAPTERS = DungeonChapter.values();
     private static final String[] NUMERALS = {"I", "II", "III", "IV", "V", "VI"};
     private static final String[] WEAPONS = {
@@ -132,7 +132,7 @@ public final class AdventureScreen extends Screen {
             ClientSkillState.request();
         }
         int x = width / 2 - 205, y = height / 2 - 143;
-        Page[] pages = Page.values();
+        Page[] pages = java.util.Arrays.copyOf(Page.values(), 10);
         String[] names = { "Journal", "Swords", "Relics", "Forge", "Mastery", "Books", "Bosses", "Explore", "Trials", "Bounty" };
         for (int i = 0; i < pages.length; i++) {
             final Page destination = pages[i];
@@ -230,6 +230,45 @@ public final class AdventureScreen extends Screen {
             abandon.active = bounty[0] > 0;
             addRenderableWidget(abandon);
         }
+        if (page == Page.MORE) {
+            String[] extras = {"Warden Sanctuary", "Shattered Depths", "Secret Challenge", "Accessibility Settings"};
+            Page[] targets = {Page.SANCTUARY, Page.DEPTHS, Page.SECRET, Page.SETTINGS};
+            for (int i = 0; i < targets.length; i++) {
+                final Page target = targets[i];
+                addRenderableWidget(Button.builder(Component.literal(extras[i]), b -> {
+                    page = target; rebuildWidgets();
+                }).bounds(x + 47, y + 90 + i * 39, 311, 27).build());
+            }
+        } else if (page == Page.SANCTUARY) {
+            addRenderableWidget(Button.builder(Component.literal("Locate the Sanctuary"),
+                b -> sendAdventure("sanctuary locate")).bounds(x + 8, y + 222, 391, 23).build());
+        } else if (page == Page.DEPTHS) {
+            for (int i = 0; i < 6; i++) {
+                final int chapter = i + 1;
+                addRenderableWidget(Button.builder(Component.literal("Locate"),
+                    b -> sendAdventure("depths locate " + chapter))
+                    .bounds(x + 306, y + 95 + i * 24, 93, 20).build());
+            }
+        } else if (page == Page.SECRET) {
+            int[] world = state == null ? new int[5] : state.finalWorld();
+            boolean ready = state != null && state.ngCycle() >= 1 && (state.trials()[2] & 63) == 63;
+            Button challenge = Button.builder(Component.literal("Summon the Unbound Warden"),
+                b -> sendAdventure("secret summon")).bounds(x + 40, y + 195, 324, 25).build();
+            challenge.active = ready;
+            addRenderableWidget(challenge);
+        } else if (page == Page.SETTINGS) {
+            String[] labels = {"Combat HUD", "Ambient particles", "Enchantment procs", "Optional flavour text"};
+            for (int i = 0; i < labels.length; i++) {
+                final int which = i;
+                boolean enabled = state == null || state.options()[i] != 0;
+                addRenderableWidget(Button.builder(Component.literal(labels[i] + "  " + (enabled ? "ON" : "OFF")),
+                    b -> sendAdventure("options " + (which + 1) + (enabled ? " off" : " on")))
+                    .bounds(x + 53, y + 98 + i * 35, 301, 24).build());
+            }
+        }
+        addRenderableWidget(Button.builder(Component.literal(page == Page.MORE ? "Return to Journal" : "More Pages"),
+            b -> { page = page == Page.MORE ? Page.JOURNAL : Page.MORE; rebuildWidgets(); })
+            .bounds(x + 139, y + 261, 165, 21).build());
         addRenderableWidget(Button.builder(Component.literal("Skill Tree (K)"),
             b -> Minecraft.getInstance().setScreen(new SkillTreeScreen()))
             .bounds(x + 4, y + 261, 126, 21).build());
@@ -299,6 +338,11 @@ public final class AdventureScreen extends Screen {
                 case EXPLORE -> renderExplore(graphics, data, x, y);
                 case TRIALS -> renderTrials(graphics, data, x, y);
                 case BOUNTIES -> renderBounties(graphics, data, x, y);
+                case MORE -> renderMore(graphics, x, y);
+                case SANCTUARY -> renderSanctuary(graphics, data, x, y);
+                case DEPTHS -> renderDepths(graphics, data, x, y);
+                case SECRET -> renderSecret(graphics, data, x, y);
+                case SETTINGS -> renderSettings(graphics, x, y);
             }
         }
     }
@@ -528,6 +572,73 @@ public final class AdventureScreen extends Screen {
         line(graphics, data.ngCycle() > 0 ? "Each mastery rank costs 1 NG+ mastery point."
                  : "Unlock NG+ after level 60 and defeating the Hollow King.",
             x + 8, y + 240, 0xFFC6CBDF);
+    }
+
+
+    private void renderMore(GuiGraphics graphics, int x, int y) {
+        line(graphics, "FINAL ADVENTURE | WORLD, COLLECTIONS AND ACCESSIBILITY", x + 8, y + 76, 0xFFE4AF76);
+        line(graphics, "The remaining adventure systems live on these additional Codex pages.",
+             x + 8, y + 251, 0xFFAFC4D5);
+    }
+
+    private void renderSanctuary(GuiGraphics graphics, SkillSnapshot data, int x, int y) {
+        line(graphics, "THE WARDEN'S SANCTUARY | PERMANENT HOME", x + 8, y + 76, 0xFFE4AF76);
+        boolean unlocked = data.bossWins()[0] > 0 || data.ngCycle() > 0;
+        line(graphics, unlocked ? "UNLOCKED: locate the natural structure in new Overworld terrain."
+            : "LOCKED: defeat the Smuggler King to reveal the Sanctuary.", x + 8, y + 99, unlocked ? 0xFF8ADBB2 : 0xFFEDBD87);
+        line(graphics, "Seven rooms: Trophy Hall, Armoury, Enchanting, Cartography, Vault,",
+            x + 8, y + 125, 0xFFCEDDF2);
+        line(graphics, "Portal Chamber and War Room, plus ordinary survival facilities.",
+            x + 8, y + 140, 0xFFCEDDF2);
+        line(graphics, "Bedroom, bulk storage, furnaces, crafting, brewing and farm.",
+            x + 8, y + 155, 0xFFCEDDF2);
+        line(graphics, "All chests start empty. No bonus combat stats or unlimited resources.",
+            x + 8, y + 171, 0xFF9BCDAD);
+        line(graphics, "Visit recorded: " + (data.finalWorld()[4] > 0 ? "YES" : "NOT YET")
+            + " | Trophy stands evolve when you defeat story bosses.", x + 8, y + 190, 0xFF9BDBC0);
+        line(graphics, "Existing explored chunks and your placed blocks are never rebuilt.",
+            x + 8, y + 205, 0xFFC1C8D4);
+    }
+
+    private void renderDepths(GuiGraphics graphics, SkillSnapshot data, int x, int y) {
+        line(graphics, "THE SHATTERED DEPTHS | SIX OPTIONAL CAVE REGIONS", x + 8, y + 76, 0xFFE4AF76);
+        int[] flags = data.finalWorld();
+        String[] names = {"Smugglers' Tunnels", "Emberfault Chasms", "Drowned Ossuary",
+            "Starshard Caverns", "Rootbound Grottos", "Black Crown Depths"};
+        for (int i = 0; i < names.length; i++) {
+            int bit = 1 << i;
+            line(graphics, (flags[0] & bit) != 0 ? "[FOUND] " + names[i] : "[UNKNOWN] " + names[i],
+                x + 8, y + 99 + i * 24, (flags[0] & bit) != 0 ? 0xFF79D4AA : 0xFFCCC5B7);
+            line(graphics, "Vault " + ((flags[1] & bit) != 0 ? "OPEN" : "?")
+                + "   Elite " + ((flags[2] & bit) != 0 ? "BEATEN" : "?"),
+                x + 14, y + 110 + i * 24, 0xFFAFC4D5);
+        }
+        line(graphics, "Mine near Y -30; attune Sun/Tide/Ash runes to open rare vaults.",
+            x + 8, y + 246, 0xFF9BCDAD);
+    }
+
+    private void renderSecret(GuiGraphics graphics, SkillSnapshot data, int x, int y) {
+        line(graphics, "THE UNBOUND WARDEN | OPTIONAL FINAL CHALLENGE", x + 8, y + 76, 0xFFE4AF76);
+        int medals = Integer.bitCount(data.trials()[2] & 63);
+        line(graphics, "Trial medals earned THIS NG+ cycle: " + medals + "/6", x + 8, y + 103, 0xFF9BDBC0);
+        line(graphics, medals == 6 ? "CHALLENGE READY: go to the Sanctuary secret arena."
+            : "Win all six chapter trials in one NG+ cycle to unlock the arena.", x + 8, y + 124, 0xFFC6CBDF);
+        line(graphics, "The boss has announced area surges, evoker attacks and a safe reset",
+            x + 8, y + 146, 0xFFCEDDF2);
+        line(graphics, "after player death. No mandatory story progress or power upgrades.",
+            x + 8, y + 160, 0xFFCEDDF2);
+        line(graphics, "Unique trophy: " + (data.finalWorld()[3] != 0 ? "EARNED" : "NOT YET EARNED"),
+            x + 8, y + 178, data.finalWorld()[3] != 0 ? 0xFF79D4AA : 0xFFF0CD86);
+        line(graphics, "The button only summons the boss while inside its real arena.",
+            x + 8, y + 230, 0xFFAFC4D5);
+    }
+
+    private void renderSettings(GuiGraphics graphics, int x, int y) {
+        line(graphics, "ADVENTURE SETTINGS | PER-PLAYER, SAVE-PERSISTENT", x + 8, y + 76, 0xFFE4AF76);
+        line(graphics, "Toggle an option. The server saves the new state automatically.",
+             x + 8, y + 247, 0xFF9BCDAD);
+        line(graphics, "Required boss and trial warnings cannot be disabled.",
+             x + 8, y + 233, 0xFFCEB9B2);
     }
 
     private void line(GuiGraphics graphics, String message, int x, int y, int color) {

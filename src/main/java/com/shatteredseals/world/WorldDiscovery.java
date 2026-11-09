@@ -104,14 +104,16 @@ public final class WorldDiscovery {
             int visited = saved.getInt("SSBiomeDiscoveryMask");
             if ((visited & bit) == 0) {
                 saved.putInt("SSBiomeDiscoveryMask", visited | bit);
-                player.sendSystemMessage(Component.literal(
-                    "NEW DISCOVERY: " + NAMES[biomeIndex] + " | See J > Explore.")
-                    .withStyle(ChatFormatting.AQUA));
+                if (com.shatteredseals.adventure.FinalAdventure.enabled(player, "SSShowFlavourText"))
+                    player.sendSystemMessage(Component.literal(
+                        "NEW DISCOVERY: " + NAMES[biomeIndex] + " | See J > Explore.")
+                        .withStyle(ChatFormatting.AQUA));
                 world.playSound(null, player.blockPosition(), SoundEvents.NOTE_BLOCK_CHIME.value(),
                     SoundSource.PLAYERS, 0.7F, 1.25F);
             }
             // Restrained ambience, five particles per five seconds. No new shaders.
-            if (player.tickCount % 200 == 0) {
+            if (player.tickCount % 200 == 0 && com.shatteredseals.adventure.FinalAdventure.enabled(
+                    player, "SSShowAmbientEffects")) {
                 double x = player.getX(), y = player.getY() + 1, z = player.getZ();
                 switch (biomeIndex) {
                     case 1 -> world.sendParticles(ParticleTypes.ASH, x, y, z, 5, 4, 1, 4, 0.005);
@@ -132,9 +134,10 @@ public final class WorldDiscovery {
                 int bit = 1 << i;
                 if ((found & bit) != 0 || !marker.getTags().contains("ss_landmark_" + IDS[i])) continue;
                 found |= bit;
-                player.sendSystemMessage(Component.literal(
-                    "LOST SHRINE FOUND: " + NAMES[i] + " | " + SECRETS[i])
-                    .withStyle(ChatFormatting.GOLD));
+                if (com.shatteredseals.adventure.FinalAdventure.enabled(player, "SSShowFlavourText"))
+                    player.sendSystemMessage(Component.literal(
+                        "LOST SHRINE FOUND: " + NAMES[i] + " | " + SECRETS[i])
+                        .withStyle(ChatFormatting.GOLD));
                 world.playSound(null, player.blockPosition(), SoundEvents.NOTE_BLOCK_CHIME.value(),
                     SoundSource.PLAYERS, 0.6F, 0.9F);
             }

@@ -32,7 +32,7 @@ public final class CombatHudOverlay {
         Minecraft mc = Minecraft.getInstance();
         if (mc.player == null || mc.options.hideGui || mc.screen != null) return;
         SkillSnapshot snapshot = ClientSkillState.current();
-        if (snapshot == null) return;
+        if (snapshot == null || snapshot.options()[0] == 0) return;
         int classIndex = snapshot.activeClass() - 1;
         if (classIndex < 0 || classIndex >= ABILITIES.length) return;
 
