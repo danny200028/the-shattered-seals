@@ -14,7 +14,7 @@ import net.minecraft.network.chat.Component;
  * are enforced by datapack functions on the integrated/dedicated server.
  */
 public final class AdventureScreen extends Screen {
-    private enum Page { JOURNAL, ARSENAL, RELICS, FORGE, MASTERY, ENCHANTS }
+    private enum Page { JOURNAL, ARSENAL, RELICS, FORGE, MASTERY, ENCHANTS, BESTIARY, EXPLORE }
     private static final DungeonChapter[] CHAPTERS = DungeonChapter.values();
     private static final String[] NUMERALS = {"I", "II", "III", "IV", "V", "VI"};
     private static final String[] WEAPONS = {
@@ -76,6 +76,38 @@ public final class AdventureScreen extends Screen {
          "Bow: magic strike burst", "Sword: ignite on hit", "Armour: periodic Absorption",
          "Axe: increased damage"}
     };
+    private static final String[] BOSS_LORE = {
+        "Controls the old smuggling roads. He strikes from a distance.",
+        "The fortress heart burns. Watch for sudden flares and pressure.",
+        "An oathbound warrior; skeletons gather when its seal weakens.",
+        "An arcane watcher that marks prey with cold starlight.",
+        "A sentinel of six runes. Its patterns change as it weakens.",
+        "The last seal's guardian. Survive the darkness to end the cycle."
+    };
+    private static final String[] BOSS_COUNTERS = {
+        "Break line of sight; avoid crossbow volleys.",
+        "Watch fire bursts; control distance and cover.",
+        "Move between attacks; avoid getting surrounded.",
+        "Keep moving; use cover and watch its phase cues.",
+        "Clear summoned enemies; respond to the phase warnings.",
+        "Guard frontal blows, reposition and respect phase changes."
+    };
+    private static final String[] BOSS_DROPS = {
+        "King's Fang", "Emberbound Blade", "Warden's Oath",
+        "Starfall", "Gravekeeper", "King's Bane"
+    };
+    private static final String[] BIOME_NAMES = {
+        "Smugglers' Wilds", "Cinder Wastes", "Hollow Moor",
+        "Arcane Highlands", "Sixfold Expanse", "Hollow King's Dominion"
+    };
+    private static final String[] BIOME_HINTS = {
+        "Scarred tracks and ruined cargo camps",
+        "Basalt and ash around the citadel",
+        "Graves beneath the pale woodland",
+        "White cliffs and scattered starstones",
+        "Overgrown shrines to the six runes",
+        "Black stone in the last king's shadow"
+    };
     private static final String[] PERK_HELP = {
         "Resistance when fighting in NG+",
         "Haste for gathering and close combat",
@@ -101,13 +133,13 @@ public final class AdventureScreen extends Screen {
         }
         int x = width / 2 - 205, y = height / 2 - 143;
         Page[] pages = Page.values();
-        String[] names = { "Journal", "Swords", "Relics", "Forge", "NG+ Mastery", "Enchants" };
+        String[] names = { "Journal", "Swords", "Relics", "Forge", "Mastery", "Enchants", "Bestiary", "Explore" };
         for (int i = 0; i < pages.length; i++) {
             final Page destination = pages[i];
             Button tab = Button.builder(Component.literal(names[i]), b -> {
                 page = destination;
                 rebuildWidgets();
-            }).bounds(x + 4 + i * 68, y + 16, 65, 21).build();
+            }).bounds(x + 4 + i * 50, y + 16, 48, 21).build();
             tab.active = page != destination;
             addRenderableWidget(tab);
         }
@@ -214,6 +246,8 @@ public final class AdventureScreen extends Screen {
                 case ENCHANTS -> renderEnchants(graphics, x, y, mouseX, mouseY);
                 case FORGE -> renderForge(graphics, x, y);
                 case MASTERY -> renderMastery(graphics, data, x, y);
+                case BESTIARY -> renderBestiary(graphics, data, x, y);
+                case EXPLORE -> renderExplore(graphics, data, x, y);
             }
         }
     }
@@ -309,6 +343,50 @@ public final class AdventureScreen extends Screen {
         }
         line(graphics, "Book I + Book I = II; Book II + Book II = III. Apply in an anvil.",
             x + 8, y + 230, 0xFF9BCDAD);
+    }
+
+    private void renderBestiary(GuiGraphics graphics, SkillSnapshot data, int x, int y) {
+        line(graphics, "BOSS BESTIARY | BATTLE RECORDS AND COUNTERS", x + 8, y + 76, 0xFFE4AF76);
+        int next = nextChapter(data);
+        for (int i = 0; i < CHAPTERS.length; i++) {
+            int wins = data.bossWins()[i];
+            boolean revealed = wins > 0 || i == next;
+            int top = y + 92 + 27 * i;
+            line(graphics, (wins > 0 ? "[DEFEATED x" + wins + "] " : revealed ? "[TARGET] " : "[UNKNOWN] ")
+                    + CHAPTERS[i].boss,
+                x + 8, top, wins > 0 ? 0xFF79D4AA : revealed ? 0xFFE9C78B : 0xFF8993A8);
+            if (wins > 0) {
+                line(graphics, font.plainSubstrByWidth(BOSS_LORE[i], 375), x + 12, top + 10, 0xFFCEDDF2);
+                line(graphics, font.plainSubstrByWidth("Counter: " + BOSS_COUNTERS[i]
+                    + " | First reward: " + BOSS_DROPS[i], 375), x + 12, top + 19, 0xFF90BDCE);
+            } else {
+                line(graphics, revealed ? font.plainSubstrByWidth("Tactics: " + BOSS_COUNTERS[i], 370)
+                    : "Defeat earlier guardians to reveal this entry.", x + 12, top + 12, 0xFF95A2B8);
+            }
+        }
+        line(graphics, "Records count boss victories; later encounters remain hidden until reached.",
+            x + 8, y + 256, 0xFFAFC4D5);
+    }
+
+    private void renderExplore(GuiGraphics graphics, SkillSnapshot data, int x, int y) {
+        line(graphics, "LIVING WORLD | BIOMES AND HIDDEN SHRINES", x + 8, y + 75, 0xFFE4AF76);
+        int discovered = Integer.bitCount(data.discoveredBiomes() & 63);
+        int landmarks = Integer.bitCount(data.discoveredLandmarks() & 63);
+        line(graphics, "Biomes visited: " + discovered + "/6   Lost shrines: " + landmarks + "/6",
+            x + 8, y + 90, 0xFF9BDBC0);
+        for (int i = 0; i < BIOME_NAMES.length; i++) {
+            boolean found = (data.discoveredBiomes() & (1 << i)) != 0;
+            boolean shrine = (data.discoveredLandmarks() & (1 << i)) != 0;
+            int top = y + 109 + i * 23;
+            line(graphics, (found ? "[VISITED] " : "[UNDISCOVERED] ") + BIOME_NAMES[i]
+                + "  |  Shrine: " + (shrine ? "FOUND" : "UNKNOWN"),
+                x + 8, top, found ? 0xFF8ADBB2 : 0xFF99A3AF);
+            line(graphics, font.plainSubstrByWidth(found ? BIOME_HINTS[i] :
+                 "Visit new Overworld terrain to unlock clues.", 380),
+                x + 12, top + 10, 0xFFAFC4D5);
+        }
+        line(graphics, "Explore new chunks. Existing terrain will not be replaced.",
+            x + 8, y + 251, 0xFFCCC9C0);
     }
 
     private void renderForge(GuiGraphics graphics, int x, int y) {
