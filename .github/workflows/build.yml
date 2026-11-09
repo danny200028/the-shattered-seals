@@ -1,7 +1,7 @@
-name: Build The Shattered Seals 1.0.57
+name: Build The Shattered Seals 1.0.58
 on:
   push:
-    branches: [main]
+    branches: [main, feature/sanctuary-chronicles-v1-0-58]
   workflow_dispatch:
 concurrency:
   group: shattered-seals-neoforge-main
@@ -32,7 +32,10 @@ jobs:
         with:
           gradle-version: '8.14'
       - name: Generate six natural dungeons
-        run: python3 scripts/generate_dungeons.py
+        run: |
+          python3 scripts/generate_dungeons.py
+          python3 scripts/generate_v158_assets.py
+          python3 scripts/generate_soundtrack.py
       - name: RPG regression tests
         run: python3 -m unittest discover -s tests -p 'test_*.py' -v
       - name: Preflight validation
@@ -49,7 +52,7 @@ jobs:
       - name: Upload CurseForge modpack
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.57-CurseForge-Modpack
+          name: Shattered-Seals-1.0.58-CurseForge-Modpack
           path: |
             build/distributions/*.zip
             build/distributions/*.sha256
@@ -61,7 +64,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.57-NeoForge-JAR
+          name: Shattered-Seals-1.0.58-NeoForge-JAR
           path: |
             build/libs/*.jar
             SHA256SUMS.txt
@@ -70,6 +73,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.57-Build-Log
+          name: Shattered-Seals-1.0.58-Build-Log
           path: compile-log.txt
           if-no-files-found: ignore

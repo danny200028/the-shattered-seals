@@ -1,7 +1,7 @@
 name: Quick Development Test
 on:
   push:
-    branches: [main]
+    branches: [main, feature/sanctuary-chronicles-v1-0-58]
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -21,7 +21,10 @@ jobs:
         with:
           persist-credentials: false
       - name: Generate six natural dungeons
-        run: python3 scripts/generate_dungeons.py
+        run: |
+          python3 scripts/generate_dungeons.py
+          python3 scripts/generate_v158_assets.py
+          python3 scripts/generate_soundtrack.py
       - name: RPG regression tests
         run: python3 -m unittest discover -s tests -p 'test_*.py' -v
       - name: Preflight validation

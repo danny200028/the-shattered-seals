@@ -23,9 +23,9 @@ def png(path, grid):
     h,w=len(grid),len(grid[0])
     def chunk(name,payload):
         return struct.pack(">I",len(payload))+name+payload+struct.pack(">I",zlib.crc32(name+payload)&0xffffffff)
-    scan=b"".join(b"\\x00"+b"".join(bytes(pixel) for pixel in row) for row in grid)
+    scan=b"".join(b"\x00"+b"".join(bytes(pixel) for pixel in row) for row in grid)
     path.parent.mkdir(parents=True,exist_ok=True)
-    path.write_bytes(b"\\x89PNG\\r\\n\\x1a\\n"+chunk(b"IHDR",struct.pack(">IIBBBBB",w,h,8,6,0,0,0))
+    path.write_bytes(b"\x89PNG\r\n\x1a\n"+chunk(b"IHDR",struct.pack(">IIBBBBB",w,h,8,6,0,0,0))
         +chunk(b"IDAT",zlib.compress(scan,9))+chunk(b"IEND",b""))
 
 def painted(name, primary, shadow, accent, icon):
@@ -92,14 +92,14 @@ def ornament(name,primary,shadow,accent):
     model={"parent":"minecraft:item/generated","textures":{"layer0":f"shatteredseals:item/{name}"}}
     dest=ASSETS/f"models/item/{name}.json"
     dest.parent.mkdir(parents=True,exist_ok=True)
-    dest.write_text(json.dumps(model,indent=2)+"\\n")
+    dest.write_text(json.dumps(model,indent=2)+"\n")
 
 def main():
     for name,(primary,shadow,accent,style) in PALETTES.items():
         painted(name,primary,shadow,accent,style)
         out=ASSETS/f"models/item/boss_mask_{name}.json"
         out.parent.mkdir(parents=True,exist_ok=True)
-        out.write_text(json.dumps(mask_model(name,style),indent=2)+"\\n")
+        out.write_text(json.dumps(mask_model(name,style),indent=2)+"\n")
     ornament("sanctuary_keystone",(80,171,211),(22,44,66),(236,207,112))
     ornament("archivists_crown",(124,81,184),(35,24,63),(235,189,101))
     print("Generated eight original 32px textures and six unique 3D boss-mask models")

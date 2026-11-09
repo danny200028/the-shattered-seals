@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "OAO",
+    "ALA",
+    "OAO"
+  ],
+  "key": {
+    "O": "minecraft:obsidian",
+    "A": "minecraft:amethyst_shard",
+    "L": "minecraft:lodestone"
+  },
+  "result": {
+    "id": "shatteredseals:sanctuary_keystone",
+    "count": 1
+  }
+}

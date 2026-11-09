@@ -212,3 +212,17 @@ Observatory, Sixfold Temple and Hollow King's Fortress:
 - CurseForge import: **not verified until manually checked**.
 - Real Minecraft combat, dungeons, shaders and save persistence: **not verified until manually checked**.
 - Release status: **development candidate**, not player-tested stable.
+
+
+## v1.0.58 focused acceptance (new feature development)
+
+- [ ] Receive Warden's Sanctuary Keystone after first Smuggler King victory, including an existing v1.0.57 save
+- [ ] Use it on top of a ground block in a broad clearing: the 81 x 49 structure rests on the clicked surface with foundation support
+- [ ] Click near a chest or constructed base: placement safely refuses without consuming the item
+- [ ] Visit all 15 rooms, especially the Chronicle Archive in the old treasure vault
+- [ ] Check six Chronicle region entries and unique completion trophy, including carried-over elite kills
+- [ ] Defeat a fresh underground elite: 30 vanilla XP and 250 RPG XP, awarded only once per site
+- [ ] Check original boss soundtrack, six unique 3D boss masks and cinematic titles/particles
+- [ ] Check forest exploration and Sanctuary ambient tracks (disable ambience to stop automatic music)
+- [ ] Confirm first-person blocking sits higher, while retaining 40% frontal mitigation
+- [ ] Reload and retest world progress, trophies, Keystone placement and boss systems

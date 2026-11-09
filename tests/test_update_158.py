@@ -21,6 +21,16 @@ class Update158Tests(unittest.TestCase):
         for word in ("+ 250","giveExperiencePoints(30)","SSDepthsEliteMask",
                      "SSChronicleComplete","SSSanctuaryKeystoneGranted"):
             self.assertIn(word,source)
+    def test_generated_original_assets(self):
+        from json import loads
+        sounds=loads((ROOT/"src/main/resources/assets/shatteredseals/sounds.json").read_text())
+        self.assertEqual(set(sounds),{"music.boss","music.explore","music.sanctuary"})
+        for name in ("boss","explore","sanctuary"):
+            self.assertTrue((ROOT/f"src/main/resources/assets/shatteredseals/sounds/music/{name}.ogg").is_file())
+        for name in ("smuggler_king","cinder_warden","hollow_knight",
+                     "arcane_seer","sixfold_guardian","hollow_king"):
+            self.assertTrue((ROOT/f"src/main/resources/assets/shatteredseals/textures/item/boss_mask_{name}.png").is_file())
+            self.assertTrue((ROOT/f"src/main/resources/assets/shatteredseals/models/item/boss_mask_{name}.json").is_file())
     def test_sword_guard_pose_only(self):
         pose=(JAVA/"client/SwordGuardPoseTransform.java").read_text()
         guard=(JAVA/"combat/ClassicSwordGuard.java").read_text()
