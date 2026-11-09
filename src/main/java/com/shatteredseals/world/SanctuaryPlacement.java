@@ -3,6 +3,7 @@ package com.shatteredseals.world;
 import com.shatteredseals.ShatteredSeals;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -26,7 +27,7 @@ public final class SanctuaryPlacement {
             notify(player, "Your one-time Sanctuary placement has already been used.", ChatFormatting.YELLOW);
             return false;
         }
-        if (player.getPersistentData().getInt("SSSanctuaryKeystoneGranted") == 0
+        if (!player.getPersistentData().getBoolean("SSSanctuaryKeystoneGranted")
                 || com.shatteredseals.adventure.DungeonChapter.score(player, "ss_vk_smug") <= 0) {
             notify(player, "Defeat the Smuggler King to unlock your Sanctuary.", ChatFormatting.YELLOW);
             return false;
@@ -82,6 +83,39 @@ public final class SanctuaryPlacement {
                 }
             }
         }
+        // Intentional two-click confirmation. The player sees the footprint's
+        // four corners before irreversible changes; a different site resets it.
+        var data = player.getPersistentData();
+        long tick = level.getGameTime();
+        if (!data.contains("SSSanctuaryConfirmPos")
+                || data.getLong("SSSanctuaryConfirmPos") != clicked.asLong()
+                || tick < data.getLong("SSSanctuaryConfirmTick")
+                || tick - data.getLong("SSSanctuaryConfirmTick") > 200) {
+            data.putLong("SSSanctuaryConfirmPos", clicked.asLong());
+            data.putLong("SSSanctuaryConfirmTick", tick);
+            for (int cx : new int[] {0, width - 1}) {
+                for (int cz : new int[] {0, length - 1}) {
+                    BlockPos corner = origin.offset(cx, 2, cz);
+                    level.sendParticles(ParticleTypes.END_ROD,
+                        corner.getX() + 0.5, corner.getY() + 0.5, corner.getZ() + 0.5,
+                        16, 0.2, 0.7, 0.2, 0.03);
+                }
+            }
+            notify(player, "Sanctuary preview: " + width + " x " + length
+                + " blocks, ground Y " + clicked.getY()
+                + ". Right-click this SAME block again within 10 seconds to confirm.",
+                ChatFormatting.AQUA);
+            return false;
+        }
+        data.remove("SSSanctuaryConfirmPos");
+        data.remove("SSSanctuaryConfirmTick");
+        if (!blueprint.placeInWorld(level, origin, origin,
+                new StructurePlaceSettings().setIgnoreEntities(false), level.random, 3)) {
+            notify(player, "Sanctuary placement failed. The Keystone was not consumed.", ChatFormatting.RED);
+            return false;
+        }
+        // Foundations only start after the blueprint was placed, to avoid
+        // leaving an orphaned stone platform on a rejected placement.
         for (int x = 0; x < width; x++) for (int z = 0; z < length; z++) {
             for (int depth = 1; depth <= MAX_FOUNDATION_DROP; depth++) {
                 BlockPos foot = origin.offset(x, -depth, z);
@@ -89,12 +123,10 @@ public final class SanctuaryPlacement {
                 level.setBlock(foot, Blocks.STONE_BRICKS.defaultBlockState(), 3);
             }
         }
-        if (!blueprint.placeInWorld(level, origin, origin,
-                new StructurePlaceSettings().setIgnoreEntities(false), level.random, 3)) {
-            notify(player, "Sanctuary placement failed. The Keystone was not consumed.", ChatFormatting.RED);
-            return false;
-        }
-        player.getPersistentData().putBoolean("SSSanctuaryPlaced", true);
+        data.putInt("SSSanctuaryX", clicked.getX());
+        data.putInt("SSSanctuaryY", clicked.getY() + 1);
+        data.putInt("SSSanctuaryZ", clicked.getZ());
+        data.putBoolean("SSSanctuaryPlaced", true);
         if (!player.isCreative()) stack.shrink(1);
         notify(player, "WARDEN'S SANCTUARY ESTABLISHED! Chronicle Archive and trophy halls are ready.", ChatFormatting.GOLD);
         return true;

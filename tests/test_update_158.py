@@ -14,7 +14,8 @@ class Update158Tests(unittest.TestCase):
     def test_placeable_safety(self):
         source=(JAVA/"world/SanctuaryPlacement.java").read_text()
         for word in ("hasChunkAt(", "getBlockEntity(", "canBeReplaced(", "MAX_FOUNDATION_DROP",
-                     "SSSanctuaryPlaced","placeInWorld(", "stack.shrink(1)"):
+                     "SSSanctuaryPlaced","placeInWorld(", "stack.shrink(1)",
+                     "SSSanctuaryConfirmPos", "SSSanctuaryConfirmTick", "sendParticles("):
             self.assertIn(word,source)
     def test_reward_save_compatibility(self):
         source=(JAVA/"adventure/FinalAdventure.java").read_text()

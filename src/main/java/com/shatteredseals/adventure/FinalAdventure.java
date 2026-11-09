@@ -81,6 +81,7 @@ public final class FinalAdventure {
         "SSDepthsSitesMask", "SSDepthsVaultsMask", "SSDepthsEliteMask",
         "SSSecretWon", "SSSanctuaryVisited", "SSChronicleComplete",
         "SSSanctuaryKeystoneGranted", "SSSanctuaryPlaced",
+        "SSSanctuaryX", "SSSanctuaryY", "SSSanctuaryZ",
         "SSBiomeDiscoveryMask", "SSLandmarkDiscoveryMask", "SSIntroSeen",
         "SSShowCombatHud", "SSShowAmbientEffects", "SSShowFlavourText"
     };
@@ -121,6 +122,13 @@ public final class FinalAdventure {
                 && DungeonChapter.score(player, "ss_ng") < 1) {
             say(player, "Defeat the Smuggler King first to unlock the Warden's Sanctuary map.", ChatFormatting.YELLOW);
             return 0;
+        }
+        if (player.getPersistentData().getBoolean("SSSanctuaryPlaced")) {
+            CompoundTag data = player.getPersistentData();
+            say(player, "Your Warden's Sanctuary (Overworld) | X "
+                + data.getInt("SSSanctuaryX") + " Y " + data.getInt("SSSanctuaryY")
+                + " Z " + data.getInt("SSSanctuaryZ"), ChatFormatting.AQUA);
+            return 1;
         }
         return find(player, "wardens_sanctuary", "The Warden's Sanctuary");
     }
