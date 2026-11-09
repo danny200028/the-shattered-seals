@@ -3,7 +3,7 @@ from pathlib import Path
 import unittest
 
 ROOT=Path(__file__).resolve().parents[1]
-VERSION="1.0.56"
+VERSION="1.0.57"
 
 class ReleaseMetadataTests(unittest.TestCase):
     def test_release_version_consistency(self):
@@ -31,6 +31,8 @@ class ReleaseMetadataTests(unittest.TestCase):
         self.assertIn("WorldDiscovery.class",packager)
         self.assertIn("AdventureContracts.class",packager)
         self.assertIn("TrialsBountiesGameTests.class",packager)
+        self.assertIn("FinalWorldGameTests.class",packager)
+        self.assertIn("FinalAdventure.class",packager)
         self.assertIn("TEST_THE_SHATTERED_SEALS.cmd",packager)
         self.assertIn('loot_table/ritual_replay/{boss}.json',packager)
 

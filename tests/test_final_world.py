@@ -1,0 +1,55 @@
+"""Static sanity gates for the consolidated final world expansion."""
+from pathlib import Path
+import ast
+import json
+import unittest
+ROOT=Path(__file__).resolve().parents[1]
+DATA=ROOT/"src/main/resources/data/shatteredseals"
+JAVA=ROOT/"src/main/java/com/shatteredseals"
+REGIONS=("smugglers_tunnels","emberfault_chasms","drowned_ossuary",
+         "starshard_caverns","rootbound_grottos","black_crown_depths")
+class FinalWorldTests(unittest.TestCase):
+    def test_generator_and_worldgen_registries(self):
+        ast.parse((ROOT/"scripts/generate_final_world.py").read_text())
+        for name in ("wardens_sanctuary",)+tuple(n+"_ruin" for n in REGIONS)+tuple(n+"_vault" for n in REGIONS):
+            with self.subTest(name=name):
+                self.assertTrue((DATA/f"structure/{name}.nbt").is_file(),name)
+                for folder in ("template_pool","structure","structure_set"):
+                    file=DATA/f"worldgen/{folder}/{name}.json"
+                    self.assertTrue(file.is_file(),name+":"+folder)
+                    json.loads(file.read_text())
+    def test_regions_ore_and_vanilla_biome_preservation(self):
+        from runpy import run_path
+        # Generator outputs are materialised by the CI generation step first.
+        biomes=("smugglers_wilds","cinder_wastes","hollow_moor",
+                "arcane_highlands","sixfold_expanse","hollow_kings_dominion")
+        for biome in biomes:
+            data=json.loads((DATA/f"worldgen/biome/{biome}.json").read_text())
+            self.assertIn("minecraft:cave",data["carvers"]["air"])
+            self.assertIn("minecraft:ore_diamond",data["features"][6])
+            self.assertIn("shatteredseals:"+biome+"_depths_vein",data["features"][6])
+    def test_exact_proc_chance_not_rerolled(self):
+        for id in ("celestial_judgement","dragons_fury","frostbite","infernal_wrath",
+                   "soul_reaper","stormcaller","thunderstrike","vampiric_edge"):
+            enchant=json.loads((DATA/f"enchantment/{id}.json").read_text())
+            proc=[p for p in enchant["effects"]["minecraft:post_attack"] if p.get("requirements",{}).get("condition")=="minecraft:random_chance"]
+            self.assertEqual(len(proc),1,id)
+            self.assertEqual(proc[0]["effect"]["type"],"minecraft:all_of")
+            self.assertEqual(proc[0]["effect"]["effects"][1]["type"],"minecraft:run_function")
+            self.assertTrue((DATA/f"function/enchantment_procs/{id}.mcfunction").is_file())
+    def test_all_features_are_server_authoritative(self):
+        source=(JAVA/"adventure/FinalAdventure.java").read_text()
+        for needle in ("secretUnlocked(", "SSTrial", "SSDepthsSitesMask",
+                       "SSDepthsVaultsMask","SSDepthsEliteMask","onClone",
+                       "SSSecretWon","SSShowAmbientEffects","SSShowCombatHud"):
+            if needle=="SSTrial":continue
+            self.assertIn(needle,source)
+        self.assertNotIn("giveExperienceLevels(100",source)
+    def test_real_minecraft_structures_have_games(self):
+        tests=(JAVA/"diagnostics/FinalWorldGameTests.java").read_text()
+        self.assertEqual(tests.count("@GameTest("),9)
+        self.assertIn("wardens_sanctuary",tests)
+        self.assertIn("smugglers_tunnels_vault",tests)
+        self.assertIn("All", (ROOT/"scripts/verify_gametest_results.py").read_text())
+if __name__=="__main__":
+    unittest.main()

@@ -11,7 +11,7 @@ import re
 import sys
 from pathlib import Path
 
-MINIMUM_TESTS = 17
+MINIMUM_TESTS = 26
 
 
 def summarize(log: str, minimum: int = MINIMUM_TESTS) -> tuple[int, str]:

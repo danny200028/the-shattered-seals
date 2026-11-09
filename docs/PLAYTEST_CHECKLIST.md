@@ -1,11 +1,44 @@
-# The Shattered Seals v1.0.56: In-game Acceptance Checklist
+# The Shattered Seals v1.0.57: ONE ALL-FEATURES PLAYTEST
+
+**This is a manual acceptance checklist, not an assertion that gameplay
+has already passed.** Back up saves and use a throwaway world for generation.
+
+## Consolidated final-feature acceptance
+
+- [ ] Install v1.0.57 ZIP and confirm the old v1.0.56 player save still loads
+- [ ] J > Books headings never overlap at GUI scales 2 and 3
+- [ ] Eight true custom-enchantment procs notify once without flooding chat;
+      `/shatteredseals enchantmessages off` mutes optional notifications
+- [ ] Each of six sword masteries progresses through five ranks on legitimate
+      hostile-mob melee kills, independent of the sword tier or NG+ cycle
+- [ ] Locate Warden Sanctuary in newly generated terrain and enter all 15
+      connected rooms; use bed, chests, furnaces, anvil, brewing and farm
+- [ ] Verify the Sanctuary begins without free loot or equipment and does not
+      overwrite any player-modified blocks after restarting/updating
+- [ ] Trophy Hall and War Room records match boss kills, NG+ and Trials
+- [ ] Explore each underground ruin near the correct surface biome; cave seams
+      and chamber placement do not remove vanilla ores or important structures
+- [ ] Find and solve one Hidden Vault per chapter using three rune stones,
+      then confirm bounded chest loot and one-time puzzle behaviour
+- [ ] Defeat an elite in each cave region and test attack warning, saving,
+      retreat, first-win reward and inability to farm that same site
+- [ ] Win six trials in a single NG+ cycle, summon secret boss INSIDE Sanctuary
+      arena, avoid its warned attacks, check death clean-up and trophy persistence
+- [ ] Test accessibility settings and confirm required trial warnings persist
+- [ ] Complete full six-chapter story, then replay NG+ with classes, swords,
+      relics, bounties, shaders and map mods enabled
+- [ ] Retest save/reload, existing world, anvil/enchantment rank upgrades and
+      CurseForge import. Record FPS and UI problems for v1.0.59 polish.
+
+---
+# Previously verified: v1.0.56 Trials and Bounties
 
 This checklist is **not an automated test result**. The GitHub build compiles the
 NeoForge mod, generates six dungeon structures and validates CurseForge packaging.
 A tester must mark each of the following steps after actually performing it in
 Minecraft Java 1.21.1 (Java 21, NeoForge 21.1.238).
 
-## v1.0.56: Shattered Trials and Bounty Board (not yet player-confirmed)
+## v1.0.56: Shattered Trials and Bounty Board (13/13 manually passed by player)
 
 Use a disposable Creative/Survival test world or a backup of a fully progressed
 save. v1.0.55 surface worlds and prior save progression must remain intact.

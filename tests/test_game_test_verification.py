@@ -10,11 +10,11 @@ module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)
 
 class RunCountGateTests(unittest.TestCase):
-    def test_accepts_seventeen_or_more_real_passes(self):
-        fake = "17 GAME TESTS COMPLETE IN 3.002 s\nAll 17 required tests passed :)"
+    def test_accepts_twenty_six_or_more_real_passes(self):
+        fake = "26 GAME TESTS COMPLETE IN 3.002 s\nAll 26 required tests passed :)"
         count, result = module.summarize(fake)
-        self.assertEqual(count,17)
-        self.assertIn("PASS|17",result)
+        self.assertEqual(count,26)
+        self.assertIn("PASS|26",result)
 
     def test_rejects_skipped_or_partial_suites(self):
         samples = (

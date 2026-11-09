@@ -103,11 +103,55 @@ Additional major expansions still require explicit user approval.
   the earlier early-stage render event, which should make the actual sword
   block pose visible. This still requires a user screenshot verification.
 
+## v1.0.57: ALL-FEATURES CONSOLIDATED PLAYTEST (development candidate)
+
+**All remaining approved content is staged for one comprehensive acceptance
+session**. This combines the originally planned v1.0.57 and v1.0.58 features;
+a green build alone will not make it a stable v1.1.0 release.
+
+- **Warden's Sanctuary:** locate in newly generated plains/meadow/forest terrain
+  after the first Smuggler King victory via `/shatteredseals sanctuary locate`.
+  Seven display/strategy chambers, plus eight ordinary survival rooms and a
+  secret arena. Chests are empty, crafting consumes usual resources, portal is
+  decorative until you place valid vanilla/modded portals or waystones. Sanctuary
+  records and touched blocks are preserved.
+- **Shattered Depths:** six chapter-themed optional underground ruin regions
+  near Y -32, six rarer puzzle-gated Hidden Vaults, elite enemies with warned
+  attacks and once-per-site lore rewards; cave-block seams in new chunks only.
+  Use `/shatteredseals depths locate 1` to find the first ruin, or
+  `/locate structure shatteredseals:smugglers_tunnels_vault` for a vault.
+  The surface campaign and vanilla cave generation remain available.
+- **Secret challenge:** earn six Shattered Trial medals in one NG+ cycle,
+  travel to the Sanctuary's secret arena, then use Codex > More > Secret or
+  `/shatteredseals secret summon`. The Unbound Warden is optional; its
+  first-win reward is cosmetic.
+- **Sword mastery:** five cosmetic ranks per legendary sword, earned through
+  legitimate hostile-mob melee kills; inspect Codex > Swords. No damage tiers,
+  proc-rate boosts, or cooldown bypasses.
+- **Enchantment messaging:** the eight randomly triggering offensive/healing
+  custom enchants now announce a REAL successful proc from the same original
+  chance roll. Anti-spam delay 2s; `/shatteredseals enchantmessages off`
+  silences notifications. Passive and continuous enchants do not spam chat.
+- **Codex:** fixed the Enchants page heading/status collision. Extra pages at
+  **J > More Pages**, including Sanctuary, Depths, Secret and Settings.
+  Persistent settings toggle the combat HUD, optional particles, enchantment
+  notices and optional discovery flavour text. Boss warnings never mute.
+- **Enchantments and upgrades:** existing vanilla anvil, shop, direct-book
+  application and Dormant/Awakened/Ascended upgrades remain. No new safeguard
+  item is generated without a meaningful enchantment-loss mechanism.
+- **Save safety:** back up the primary world, and test worldgen in a fresh
+  world or distant unvisited chunks. Existing generated terrain is never replaced.
+
+**Status:** implementation branch, pending static regression, Java compilation,
+real NeoForge GameTests, and the user's final combined playtest. Do not treat
+untested interactions, FPS, shaders or full dungeon replay as passed.
+
+
 ## Install the development pack
 
 1. Open [GitHub Actions](https://github.com/danny200028/the-shattered-seals/actions/workflows/build.yml) and choose the latest successful **Build The Shattered Seals** run.
-2. Download the artifact named **Shattered-Seals-1.0.56-CurseForge-Modpack**.
-3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.56-CurseForge.zip`.
+2. Download the artifact named **Shattered-Seals-1.0.57-CurseForge-Modpack**.
+3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.57-CurseForge.zip`.
 4. Import the inner ZIP through the CurseForge Minecraft modpack importer. CurseForge resolves the pinned NeoForge map and shader dependencies; the custom Shattered Seals JAR lives in `overrides/mods`.
 5. Start Minecraft 1.21.1 with Java 21. Use **J** for the Adventurer's Codex, **K** for the skill tree and **L** to toggle the on-screen quest tracker.
 
