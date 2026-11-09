@@ -14,7 +14,7 @@ import net.minecraft.network.chat.Component;
  * are enforced by datapack functions on the integrated/dedicated server.
  */
 public final class AdventureScreen extends Screen {
-    private enum Page { JOURNAL, ARSENAL, RELICS, FORGE, MASTERY, ENCHANTS, BESTIARY, EXPLORE }
+    private enum Page { JOURNAL, ARSENAL, RELICS, FORGE, MASTERY, ENCHANTS, BESTIARY, EXPLORE, TRIALS, BOUNTIES }
     private static final DungeonChapter[] CHAPTERS = DungeonChapter.values();
     private static final String[] NUMERALS = {"I", "II", "III", "IV", "V", "VI"};
     private static final String[] WEAPONS = {
@@ -133,13 +133,13 @@ public final class AdventureScreen extends Screen {
         }
         int x = width / 2 - 205, y = height / 2 - 143;
         Page[] pages = Page.values();
-        String[] names = { "Journal", "Swords", "Relics", "Forge", "Mastery", "Enchants", "Bestiary", "Explore" };
+        String[] names = { "Journal", "Swords", "Relics", "Forge", "Mastery", "Books", "Bosses", "Explore", "Trials", "Bounty" };
         for (int i = 0; i < pages.length; i++) {
             final Page destination = pages[i];
             Button tab = Button.builder(Component.literal(names[i]), b -> {
                 page = destination;
                 rebuildWidgets();
-            }).bounds(x + 4 + i * 50, y + 16, 48, 21).build();
+            }).bounds(x + 4 + i * 40, y + 16, 39, 21).build();
             tab.active = page != destination;
             addRenderableWidget(tab);
         }
@@ -188,6 +188,47 @@ public final class AdventureScreen extends Screen {
                 "Buy random " + TIER_NAMES[enchantTier] + " book (" + TIER_PRICES[enchantTier] + " XP levels)"),
                 b -> perform("ss_ebook", enchantTier + 1))
                 .bounds(x + 8, y + 237, 391, 20).build());
+        } else if (page == Page.TRIALS) {
+            boolean unlocked = state != null && state.level() >= 60
+                && state.bossWins()[5] > 0 && state.ngCycle() >= 1
+                && isReplay(state);
+            int[] trial = state == null ? new int[4] : state.trials();
+            boolean claimed = state != null && isReplay(state)
+                && (trial[2] & (1 << (state.replayChapter() - 1))) != 0;
+            String[] labels = {"Hazard Pulse", "Scarcity", "Both (NG+3)"};
+            for (int i = 0; i < 3; i++) {
+                final int mask = i + 1;
+                Button trialButton = Button.builder(Component.literal(labels[i]),
+                    b -> sendAdventure("trial arm " + mask))
+                    .bounds(x + 8 + i * 130, y + 132, 124, 22).build();
+                trialButton.active = unlocked && !claimed && (mask != 3 || state.ngCycle() >= 3);
+                addRenderableWidget(trialButton);
+            }
+            addRenderableWidget(Button.builder(Component.literal("Cancel armed trial"),
+                b -> sendAdventure("trial cancel"))
+                .bounds(x + 8, y + 218, 190, 22).build());
+        } else if (page == Page.BOUNTIES) {
+            int[] bounty = state == null ? new int[6] : state.bounties();
+            String[] contractNames = {"Hunt", "Survey", "Guardian"};
+            for (int i = 0; i < 3; i++) {
+                final int kind = i + 1;
+                Button accept = Button.builder(Component.literal("Accept " + contractNames[i]),
+                    b -> sendAdventure("bounty accept " + kind))
+                    .bounds(x + 8 + i * 130, y + 128, 124, 22).build();
+                accept.active = state != null && bounty[0] == 0 && bounty[4] == 0
+                    && (kind != 3 || nextChapter(state) >= 0 || isReplay(state));
+                addRenderableWidget(accept);
+            }
+            Button claim = Button.builder(Component.literal("Claim completed bounty"),
+                b -> sendAdventure("bounty claim"))
+                .bounds(x + 8, y + 215, 190, 22).build();
+            claim.active = bounty[0] > 0 && bounty[2] >= bounty[3];
+            addRenderableWidget(claim);
+            Button abandon = Button.builder(Component.literal("Abandon bounty"),
+                b -> sendAdventure("bounty abandon"))
+                .bounds(x + 208, y + 215, 190, 22).build();
+            abandon.active = bounty[0] > 0;
+            addRenderableWidget(abandon);
         }
         addRenderableWidget(Button.builder(Component.literal("Skill Tree (K)"),
             b -> Minecraft.getInstance().setScreen(new SkillTreeScreen()))
@@ -200,6 +241,14 @@ public final class AdventureScreen extends Screen {
         Minecraft mc = Minecraft.getInstance();
         if (mc.player != null && mc.player.connection != null) {
             mc.player.connection.sendCommand("trigger " + objective + " set " + value);
+            ClientSkillState.request();
+        }
+    }
+
+    private static void sendAdventure(String command) {
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.player != null && mc.player.connection != null) {
+            mc.player.connection.sendCommand("shatteredseals " + command);
             ClientSkillState.request();
         }
     }
@@ -248,6 +297,8 @@ public final class AdventureScreen extends Screen {
                 case MASTERY -> renderMastery(graphics, data, x, y);
                 case BESTIARY -> renderBestiary(graphics, data, x, y);
                 case EXPLORE -> renderExplore(graphics, data, x, y);
+                case TRIALS -> renderTrials(graphics, data, x, y);
+                case BOUNTIES -> renderBounties(graphics, data, x, y);
             }
         }
     }
@@ -387,6 +438,75 @@ public final class AdventureScreen extends Screen {
         }
         line(graphics, "Explore new chunks. Existing terrain will not be replaced.",
             x + 8, y + 251, 0xFFCCC9C0);
+    }
+
+
+    private void renderTrials(GuiGraphics graphics, SkillSnapshot data, int x, int y) {
+        int[] trial = data.trials();
+        line(graphics, "SHATTERED TRIALS | OPTIONAL NG+ BOSS MODIFIERS", x + 8, y + 78, 0xFFE4AF76);
+        boolean unlocked = data.level() >= 60 && data.bossWins()[5] > 0 && data.ngCycle() >= 1;
+        if (!unlocked || !isReplay(data)) {
+            line(graphics, "Requires level 60, the Hollow King and an active NG+ chapter.",
+                 x + 8, y + 103, 0xFFCCBDAA);
+            line(graphics, "Shattered Trials never block normal dungeon completion.",
+                 x + 8, y + 116, 0xFFAFC4D5);
+            return;
+        }
+        int active = data.replayChapter();
+        boolean won = (trial[2] & (1 << (active - 1))) != 0;
+        line(graphics, "Current arena: " + CHAPTERS[active - 1].dungeon
+            + " | Medals this cycle: " + Integer.bitCount(trial[2] & 63) + "/6",
+            x + 8, y + 99, 0xFF9BDBC0);
+        line(graphics, won ? "Medal already claimed for this chapter and cycle."
+            : "Arm a modifier, then summon this chapter's normal boss.",
+            x + 8, y + 115, won ? 0xFF8ADBB2 : 0xFFE0E3EA);
+        line(graphics, "Hazard Pulse: a warned, chapter-specific area attack.",
+            x + 8, y + 174, 0xFFCEDDF2);
+        line(graphics, "Scarcity: healing halved while fighting the trial boss.",
+            x + 8, y + 188, 0xFFCEDDF2);
+        line(graphics, "Two modifiers together unlock in NG+ cycle 3.",
+            x + 8, y + 202, 0xFF9DBAD2);
+        line(graphics, trial[0] == active ? "ARMED: " + (trial[1] == 3 ? "Both modifiers"
+             : trial[1] == 1 ? "Hazard Pulse" : "Scarcity") :
+             "Trial records are saved across logout and NG+ cycles.",
+             x + 8, y + 247, 0xFFDBBE81);
+    }
+
+    private void renderBounties(GuiGraphics graphics, SkillSnapshot data, int x, int y) {
+        int[] bounty = data.bounties();
+        line(graphics, "ADVENTURER'S BOUNTY BOARD | ONE ACTIVE CONTRACT",
+             x + 8, y + 79, 0xFFE4AF76);
+        line(graphics, "Hunt mobs, survey chapter biomes or defeat a chapter guardian.",
+             x + 8, y + 98, 0xFFCEDDF2);
+        line(graphics, "Contracts target your current chapter. Rewards never include relics.",
+             x + 8, y + 112, 0xFFAFC4D5);
+        if (bounty[0] > 0 && bounty[1] >= 1 && bounty[1] <= 6) {
+            String mission = switch (bounty[0]) {
+                case 1 -> "Hunt " + switch (bounty[1]) {
+                    case 1 -> "Pillagers";
+                    case 2 -> "Zombies";
+                    case 3 -> "Skeletons";
+                    case 4 -> "Spiders";
+                    case 5 -> "Creepers";
+                    default -> "Endermen";
+                };
+                case 2 -> "Survey " + BIOME_NAMES[bounty[1] - 1];
+                case 3 -> "Defeat " + CHAPTERS[bounty[1] - 1].boss;
+                default -> "Unknown";
+            };
+            line(graphics, "ACTIVE: " + mission, x + 8, y + 164, 0xFFEBCB8F);
+            line(graphics, "Progress: " + bounty[2] + "/" + bounty[3]
+                + (bounty[2] >= bounty[3] ? "  | READY TO CLAIM" : ""),
+                x + 8, y + 182, bounty[2] >= bounty[3] ? 0xFF79D4AA : 0xFFC3C9D4);
+        } else {
+            line(graphics, bounty[4] > 0 ? "Next contract available in " + bounty[4] + " seconds."
+                : "No active contract. Choose one above.",
+                x + 8, y + 164, 0xFFB9D6C2);
+        }
+        line(graphics, "Rewards: bounded XP and iron, gold or amethyst.",
+             x + 8, y + 244, 0xFFAFC4D5);
+        line(graphics, "Completed contracts: " + bounty[5] + " | 10-minute claim cooldown",
+             x + 8, y + 255, 0xFF9BCDAD);
     }
 
     private void renderForge(GuiGraphics graphics, int x, int y) {
