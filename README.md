@@ -106,8 +106,8 @@ Additional major expansions still require explicit user approval.
 ## Install the development pack
 
 1. Open [GitHub Actions](https://github.com/danny200028/the-shattered-seals/actions/workflows/build.yml) and choose the latest successful **Build The Shattered Seals** run.
-2. Download the artifact named **Shattered-Seals-1.0.55-CurseForge-Modpack**.
-3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.55-CurseForge.zip`.
+2. Download the artifact named **Shattered-Seals-1.0.56-CurseForge-Modpack**.
+3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.56-CurseForge.zip`.
 4. Import the inner ZIP through the CurseForge Minecraft modpack importer. CurseForge resolves the pinned NeoForge map and shader dependencies; the custom Shattered Seals JAR lives in `overrides/mods`.
 5. Start Minecraft 1.21.1 with Java 21. Use **J** for the Adventurer's Codex, **K** for the skill tree and **L** to toggle the on-screen quest tracker.
 
@@ -166,7 +166,7 @@ screenshot confirmation on the user's Minecraft client.
 - Review the report ZIP before sharing it; filtered logs may include usernames
   or computer paths. Nothing is transmitted automatically.
 - GitHub's **Real Minecraft GameTests** workflow spins up a headless
-  NeoForge server and runs **13 actual game tests**, covering six dungeon templates,
+  NeoForge server and runs **17 actual game tests**, covering six dungeon templates,
   NG+ sigil loot and all six bosses' phase transitions and minion cleanup.
 
 Read [the Windows testing guide](docs/AUTOMATED_TESTING.md) for exact steps.
@@ -179,6 +179,6 @@ See [the acceptance checklist](docs/PLAYTEST_CHECKLIST.md) before labeling this 
 
 ### Quality gates and limitations
 
-GitHub Actions automatically generates dungeon structures, runs structural/gameplay regression tests and 13 real NeoForge server GameTests, compiles the Java mod and assembles the release ZIP. **A successful build does not substitute for an in-game test.** Please test fresh-world generation, dungeon placement, monster spawners, server commands, boss encounters, visual UI, shader loading, CurseForge import and save/reload before treating this as a stable release.
+GitHub Actions automatically generates dungeon structures, runs structural/gameplay regression tests and 17 real NeoForge server GameTests, compiles the Java mod and assembles the release ZIP. **A successful build does not substitute for an in-game test.** Please test fresh-world generation, dungeon placement, monster spawners, server commands, boss encounters, visual UI, shader loading, CurseForge import and save/reload before treating this as a stable release.
 
 Third-party CurseForge projects are referenced by IDs. No proprietary mod/shader binaries are copied into this repository.
