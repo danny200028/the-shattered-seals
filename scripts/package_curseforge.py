@@ -31,6 +31,7 @@ DEPENDENCIES = (
     (429235, 7524151, "FerriteCore 7.0.3 (NeoForge 1.21.1)", "malte0811"),
     (531761, 9406246, "Balm 21.0.67 (NeoForge 1.21.1; Waystones library)", "BlayTheNinth"),
     (245755, 8969751, "Waystones 21.1.46 (NeoForge 1.21.1)", "BlayTheNinth"),
+    (940057, 6054947, "TerraBlender 4.1.0.8 (NeoForge 1.21.1, chapter biomes)", "Glitchfiend"),
 )
 
 README = """THE SHATTERED SEALS v1.0.54

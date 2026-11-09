@@ -10,6 +10,17 @@ base { archivesName = 'the-shattered-seals' }
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
 
+repositories {
+    maven {
+        name = 'Forge Maven (TerraBlender)'
+        url = uri('https://maven.minecraftforge.net')
+    }
+}
+
+dependencies {
+    implementation 'com.github.glitchfiend:TerraBlender-neoforge:1.21.1-4.1.0.8'
+}
+
 neoForge {
     version = '21.1.238'
     mods { shatteredseals { sourceSet(sourceSets.main) } }

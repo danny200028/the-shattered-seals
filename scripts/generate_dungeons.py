@@ -17,22 +17,22 @@ DATA = ROOT / "src/main/resources/data/shatteredseals"
 
 # dungeon id, allowed biome, walls, flooring, trim, guardian mob, structure salt
 THEMES = [
-    ("smugglers_den", "minecraft:plains", "minecraft:deepslate_bricks",
+    ("smugglers_den", "shatteredseals:smugglers_wilds", "minecraft:deepslate_bricks",
      "minecraft:polished_deepslate", "minecraft:chiseled_deepslate",
      "minecraft:pillager", 52412718),
-    ("cinder_citadel", "minecraft:desert", "minecraft:polished_blackstone_bricks",
+    ("cinder_citadel", "shatteredseals:cinder_wastes", "minecraft:polished_blackstone_bricks",
      "minecraft:basalt", "minecraft:gilded_blackstone",
      "minecraft:blaze", 52412729),
-    ("hollow_crypt", "minecraft:forest", "minecraft:mossy_stone_bricks",
+    ("hollow_crypt", "shatteredseals:hollow_moor", "minecraft:mossy_stone_bricks",
      "minecraft:stone_bricks", "minecraft:chiseled_stone_bricks",
      "minecraft:skeleton", 52412741),
-    ("arcane_observatory", "minecraft:snowy_plains", "minecraft:prismarine_bricks",
+    ("arcane_observatory", "shatteredseals:arcane_highlands", "minecraft:prismarine_bricks",
      "minecraft:dark_prismarine", "minecraft:sea_lantern",
      "minecraft:stray", 52412757),
-    ("sixfold_temple", "minecraft:jungle", "minecraft:chiseled_tuff_bricks",
+    ("sixfold_temple", "shatteredseals:sixfold_expanse", "minecraft:chiseled_tuff_bricks",
      "minecraft:tuff_bricks", "minecraft:oxidized_copper",
      "minecraft:husk", 52412763),
-    ("hollow_kings_fortress", "minecraft:dark_forest", "minecraft:polished_blackstone_bricks",
+    ("hollow_kings_fortress", "shatteredseals:hollow_kings_dominion", "minecraft:polished_blackstone_bricks",
      "minecraft:cracked_deepslate_bricks", "minecraft:crying_obsidian",
      "minecraft:wither_skeleton", 52412779),
 ]
