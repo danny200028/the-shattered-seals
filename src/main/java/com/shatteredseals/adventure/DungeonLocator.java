@@ -27,6 +27,12 @@ public final class DungeonLocator {
         event.getDispatcher().register(Commands.literal("shatteredseals")
             .then(Commands.literal("locate")
                 .executes(context -> locate(context.getSource().getPlayerOrException())))
+            .then(Commands.literal("upgrade")
+                .requires(source -> source.hasPermission(2))
+                .then(Commands.literal("remember").executes(c ->
+                    com.shatteredseals.enchantments.UpgradePreservation.remember(c.getSource().getPlayerOrException())))
+                .then(Commands.literal("restore").executes(c ->
+                    com.shatteredseals.enchantments.UpgradePreservation.restore(c.getSource().getPlayerOrException()))))
             .then(Commands.literal("enchantmessages")
                 .then(Commands.literal("on").executes(context -> setEnchantMessages(context.getSource().getPlayerOrException(), true)))
                 .then(Commands.literal("off").executes(context -> setEnchantMessages(context.getSource().getPlayerOrException(), false))))
