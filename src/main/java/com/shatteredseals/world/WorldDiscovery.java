@@ -9,6 +9,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Marker;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
@@ -106,7 +107,8 @@ public final class WorldDiscovery {
                 player.sendSystemMessage(Component.literal(
                     "NEW DISCOVERY: " + NAMES[biomeIndex] + " | See J > Explore.")
                     .withStyle(ChatFormatting.AQUA));
-                player.playSound(SoundEvents.NOTE_BLOCK_CHIME.value(), 0.7F, 1.25F);
+                world.playSound(null, player.blockPosition(), SoundEvents.NOTE_BLOCK_CHIME.value(),
+                    SoundSource.PLAYERS, 0.7F, 1.25F);
             }
             // Restrained ambience, five particles per five seconds. No new shaders.
             if (player.tickCount % 200 == 0) {
@@ -133,7 +135,8 @@ public final class WorldDiscovery {
                 player.sendSystemMessage(Component.literal(
                     "LOST SHRINE FOUND: " + NAMES[i] + " | " + SECRETS[i])
                     .withStyle(ChatFormatting.GOLD));
-                player.playSound(SoundEvents.NOTE_BLOCK_CHIME.value(), 0.6F, 0.9F);
+                world.playSound(null, player.blockPosition(), SoundEvents.NOTE_BLOCK_CHIME.value(),
+                    SoundSource.PLAYERS, 0.6F, 0.9F);
             }
         }
         if (found != saved.getInt("SSLandmarkDiscoveryMask")) {
