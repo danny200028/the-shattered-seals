@@ -35,7 +35,7 @@ public final class SwordGuardPoseTransform {
                     || arm != player.getMainArm()) return false;
             // Strong 1.8-style cross-body posture on the REAL item model,
             // followed by vanilla animations and the sword model's transforms.
-            pose.translate(-0.30, 0.20, -0.19);
+            pose.translate(-0.30, 0.42, -0.19);
             pose.mulPose(Axis.YP.rotationDegrees(-35.0F));
             pose.mulPose(Axis.ZP.rotationDegrees(-68.0F));
             pose.mulPose(Axis.XP.rotationDegrees(-18.0F));

@@ -6,5 +6,7 @@
   "key.shatteredseals.cast_3": "Ability 3: V",
   "key.shatteredseals.cast_4": "Ability 4: G",
   "key.shatteredseals.open_codex": "Open Adventurer's Codex",
-  "key.shatteredseals.toggle_quest_tracker": "Toggle Quest Tracker (L)"
+  "key.shatteredseals.toggle_quest_tracker": "Toggle Quest Tracker (L)",
+  "item.shatteredseals.sanctuary_keystone": "Warden's Sanctuary Keystone",
+  "item.shatteredseals.archivists_crown": "Archivist's Crown"
 }

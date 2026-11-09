@@ -1,8 +1,10 @@
 package com.shatteredseals.adventure;
 
 import com.shatteredseals.ShatteredSeals;
+import com.shatteredseals.world.SanctuaryPlacement;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
@@ -76,7 +78,8 @@ public final class FinalAdventure {
     public static final String[] SETTING_KEYS = {"SSShowCombatHud", "SSShowAmbientEffects", "SSShowEnchantments", "SSShowFlavourText"};
     public static final String[] COPY_KEYS = {
         "SSDepthsSitesMask", "SSDepthsVaultsMask", "SSDepthsEliteMask",
-        "SSSecretWon", "SSSanctuaryVisited",
+        "SSSecretWon", "SSSanctuaryVisited", "SSChronicleComplete",
+        "SSSanctuaryKeystoneGranted", "SSSanctuaryPlaced",
         "SSBiomeDiscoveryMask", "SSLandmarkDiscoveryMask", "SSIntroSeen",
         "SSShowCombatHud", "SSShowAmbientEffects", "SSShowFlavourText"
     };
@@ -164,6 +167,12 @@ public final class FinalAdventure {
                 || !player.serverLevel().dimension().equals(Level.OVERWORLD)) return;
         ServerLevel world = player.serverLevel();
         BlockPos clicked = event.getPos();
+        if (event.getItemStack().is(ShatteredSeals.SANCTUARY_KEYSTONE.get())) {
+            if (event.getFace() == Direction.UP) SanctuaryPlacement.place(player, clicked, event.getItemStack());
+            else say(player, "Click the TOP of the ground block to place your Sanctuary.", ChatFormatting.YELLOW);
+            consume(event);
+            return;
+        }
         var block = world.getBlockState(clicked).getBlock();
         if (block != Blocks.CHISELED_DEEPSLATE && block != Blocks.CHISELED_COPPER
                 && block != Blocks.PRISMARINE && block != Blocks.POLISHED_BLACKSTONE) return;
@@ -213,6 +222,12 @@ public final class FinalAdventure {
                 + Integer.bitCount(progress[2] & 63) + "/6 underground elites, "
                 + (progress[3] > 0 ? "secret victory recorded." : "secret challenge undiscovered."),
                 ChatFormatting.GOLD);
+        } else if (room.getTags().contains("ss_sanctuary_chronicle_archive")) {
+            int mask = player.getPersistentData().getInt("SSDepthsEliteMask") & 63;
+            say(player, "CHRONICLE ARCHIVE: " + Integer.bitCount(mask) + "/6 recovered.", ChatFormatting.GOLD);
+            for (int i = 0; i < 6; i++)
+                if ((mask & (1 << i)) != 0) say(player, REGIONS[i] + ": " + LORE[i], ChatFormatting.AQUA);
+            if (mask == 63) say(player, "All six histories restored. The Archivist's Crown is yours.", ChatFormatting.LIGHT_PURPLE);
         } else if (room.getTags().contains("ss_sanctuary_armoury")) {
             int[] kills = com.shatteredseals.combat.SwordMastery.snapshot(player);
             int total = 0;
@@ -381,6 +396,15 @@ public final class FinalAdventure {
                 || player.tickCount % 20 != 0
                 || !player.serverLevel().dimension().equals(Level.OVERWORLD)) return;
         ServerLevel world = player.serverLevel();
+        CompoundTag award = player.getPersistentData();
+        if (DungeonChapter.score(player, "ss_vk_smug") > 0
+                && !award.getBoolean("SSSanctuaryKeystoneGranted")) {
+            award.putBoolean("SSSanctuaryKeystoneGranted", true);
+            if (!award.getBoolean("SSSanctuaryPlaced")) {
+                give(player, new ItemStack(ShatteredSeals.SANCTUARY_KEYSTONE.get()));
+                say(player, "Warden's Sanctuary Keystone acquired! Find a wide clearing and right-click the ground.", ChatFormatting.GOLD);
+            }
+        }
         long now = player.getServer().overworld().getGameTime();
         // Limit marker and encounter queries: once every four seconds.
         if (player.tickCount % 80 == 0) {
@@ -489,7 +513,20 @@ public final class FinalAdventure {
                 Component.literal("Buried Chronicle: " + REGIONS[index]).withStyle(ChatFormatting.AQUA));
             give(player, lore);
             player.giveExperiencePoints(30);
-            say(player, "Underground elite defeated! Its chronicle is added to your collection.",
+            if (DungeonChapter.score(player, "ss_level") < 60)
+                DungeonChapter.setScore(player, "ss_xp", DungeonChapter.score(player, "ss_xp") + 250);
+            else if (DungeonChapter.score(player, "ss_ng") > 0)
+                DungeonChapter.setScore(player, "ss_mxp", DungeonChapter.score(player, "ss_mxp") + 250);
+            if ((playerData.getInt("SSDepthsEliteMask") & 63) == 63
+                    && !playerData.getBoolean("SSChronicleComplete")) {
+                playerData.putBoolean("SSChronicleComplete", true);
+                ItemStack crown = new ItemStack(ShatteredSeals.ARCHIVISTS_CROWN.get());
+                crown.set(DataComponents.CUSTOM_NAME,
+                    Component.literal("Archivist's Crown | Six Buried Chronicles").withStyle(ChatFormatting.LIGHT_PURPLE));
+                give(player, crown);
+                say(player, "CHRONICLE ARCHIVE COMPLETE! The Archivist's Crown has been awarded.", ChatFormatting.GOLD);
+            }
+            say(player, "Underground elite defeated! +30 vanilla XP, +250 RPG XP and one Buried Chronicle.",
                 ChatFormatting.GOLD);
         }
         if (defeated.getTags().contains("ss_secret_boss")
@@ -524,6 +561,7 @@ public final class FinalAdventure {
         CompoundTag original = event.getOriginal().getPersistentData();
         CompoundTag saved = player.getPersistentData();
         for (String key : COPY_KEYS) if (original.contains(key)) saved.put(key, original.get(key).copy());
+        // Old saves retain Chronicle completion and placement flags on respawn.
         // Vault steps and cleared site identifiers are player-owned and prefix-scoped.
         for (String key : original.getAllKeys()) {
             if ((key.startsWith("SSVaultStep_") || key.startsWith("SSDepthsElite_"))
