@@ -68,18 +68,97 @@ def filled_chest(blocks: dict, x: int, y: int, z: int, loot: str | None = None):
     ))
     set_block(blocks, x, y, z, "minecraft:chest", nbt)
 
+def decorate_sanctuary(blocks: dict, w: int, d: int) -> None:
+    """Fortified gabled hall, four corner towers and a Chronicle Archive.
+    
+    All decorations are in the new template, so untouched existing saves stay
+    intact and new generation / Keystone placement receives the same design.
+    """
+    # Manuscript gallery occupies the former under-decorated treasure vault.
+    for x in (65, 79):
+        for z in range(3, 14):
+            for y in range(1, 5):
+                set_block(blocks, x, y, z, "minecraft:bookshelf")
+    for x in range(66, 79):
+        for y in range(1, 4):
+            set_block(blocks, x, y, 15, "minecraft:chiseled_bookshelf")
+    for x, z in ((67, 3), (71, 3), (75, 3), (67, 13), (71, 13), (75, 13)):
+        set_block(blocks, x, 1, z, "minecraft:lectern")
+    for x, z in ((66, 2), (78, 2), (66, 14), (78, 14)):
+        set_block(blocks, x, 1, z, "minecraft:soul_lantern")
+    # Windows, pilasters and external sculpted wall ribs.
+    for x in range(w):
+        for z in (0, d - 1):
+            if x % 16 in (0, 1, 15):
+                for y in range(1, 9):
+                    if not (z == 0 and 38 <= x <= 42 and y <= 5):
+                        set_block(blocks, x, y, z, "minecraft:polished_deepslate")
+            elif x % 8 in (7, 0) and not (z == 0 and 38 <= x <= 42):
+                for y in range(3, 7):
+                    set_block(blocks, x, y, z, "minecraft:blue_stained_glass_pane")
+                set_block(blocks, x, 7, z, "minecraft:chiseled_stone_bricks")
+    for z in range(d):
+        for x in (0, w - 1):
+            if z % 16 in (0, 1, 15):
+                for y in range(1, 9):
+                    set_block(blocks, x, y, z, "minecraft:polished_deepslate")
+            elif z % 8 in (7, 0):
+                for y in range(3, 7):
+                    set_block(blocks, x, y, z, "minecraft:blue_stained_glass_pane")
+    # Fifteen steep pitch roofs, dark ridges, and stone-edged eaves.
+    # Garden wing has daylight instead of an opaque gable.
+    for col in range(5):
+        for row in range(3):
+            if (col, row) == (3, 2):
+                continue
+            x0, z0 = col * 16, row * 16
+            for x in range(x0, min(x0 + 17, w)):
+                for rise in range(8):
+                    for z in (z0 + rise, z0 + 16 - rise):
+                        if z < d:
+                            set_block(blocks, x, 10 + rise, z, "minecraft:dark_oak_planks")
+                            if rise in (0, 3, 6):
+                                set_block(blocks, x, 11 + rise, z, "minecraft:deepslate_tile_slab")
+                set_block(blocks, x, 18, z0 + 8, "minecraft:polished_blackstone")
+    # Skylit greenhouse roof above the garden.
+    for x in range(49, 64):
+        for z in range(33, 48):
+            rise = min(z - 33, 47 - z)
+            set_block(blocks, x, 10 + rise, z, "minecraft:glass")
+    for x in (49, 63):
+        for z in (33, 47):
+            for y in range(10, 18):
+                set_block(blocks, x, y, z, "minecraft:dark_oak_log")
+    # Corner towers with crenellations and battlements.
+    for ax in (0, w - 5):
+        for az in (0, d - 5):
+            for x in range(ax, ax + 5):
+                for z in range(az, az + 5):
+                    if x in (ax, ax + 4) or z in (az, az + 4):
+                        for y in range(10, 17):
+                            set_block(blocks, x, y, z, "minecraft:deepslate_bricks")
+                    set_block(blocks, x, 16, z, "minecraft:polished_blackstone")
+                    if (x + z) % 2 == 0 and (x in (ax, ax + 4) or z in (az, az + 4)):
+                        set_block(blocks, x, 17, z, "minecraft:deepslate_brick_wall")
+    for x in range(36, 45):
+        for y in range(1, 10):
+            if x in (36, 44) or y in (8, 9):
+                set_block(blocks, x, y, 0, "minecraft:polished_blackstone_bricks")
+    for x in (36, 44):
+        set_block(blocks, x, 6, 1, "minecraft:sea_lantern")
+
 def sanctuary() -> None:
     # 5 x 3 connected rooms, each with a 15x15 usable interior. No auto
     # generated equipment, stored loot, resources, or free fast travel.
     blocks, entities = {}, []
-    w, d, h = 81, 49, 10
+    w, d, h = 81, 49, 20
     for x in range(w):
         for z in range(d):
-            for y in range(h):
+            for y in range(10):
                 room = min(x // 16, 4) + 5 * min(z // 16, 2)
                 floor = "minecraft:polished_deepslate" if room < 7 else "minecraft:stone_bricks"
                 material = (floor if y == 0 else
-                    "minecraft:deepslate_tiles" if y == h - 1 else
+                    "minecraft:deepslate_tiles" if y == 9 else
                     "minecraft:stone_bricks" if x % 16 == 0 or z % 16 == 0 else
                     "minecraft:air")
                 set_block(blocks, x, y, z, material)
@@ -99,8 +178,11 @@ def sanctuary() -> None:
             set_block(blocks, x, y, 0, "minecraft:air")
     for i, room in enumerate(ROOMS):
         cx, cz = 8 + (i % 5) * 16, 8 + (i // 5) * 16
+        room_tags = ["ss_sanctuary_room", "ss_sanctuary_" + room]
+        if room == "treasure_vault":
+            room_tags.append("ss_sanctuary_chronicle_archive")
         entities.append(template_entity("minecraft:marker", cx, 1, cz,
-            entity_tags("ss_sanctuary_room", "ss_sanctuary_" + room)))
+            entity_tags(*room_tags)))
         # Each room has unobstructed centre, unique named markers and safe light.
         for dx, dz in ((-6, -6), (6, -6), (-6, 6), (6, 6)):
             set_block(blocks, cx + dx, 8, cz + dz, "minecraft:sea_lantern")
@@ -158,7 +240,7 @@ def sanctuary() -> None:
         set_block(blocks, x, 0, 40, "minecraft:water[level=0]")
     for x in range(49, 64):
         for z in range(33, 48):
-            set_block(blocks, x, h - 1, z, "minecraft:glass")
+            set_block(blocks, x, 9, z, "minecraft:glass")
     # The hidden arena is physically separate from functional storage.
     for x in range(68, 77):
         for z in range(36, 45):
@@ -168,6 +250,7 @@ def sanctuary() -> None:
     set_block(blocks, 72, 0, 40, "minecraft:crying_obsidian")
     entities.append(template_entity("minecraft:marker", 72, 1, 40,
         entity_tags("ss_secret_arena")))
+    decorate_sanctuary(blocks, w, d)
     save_structure("wardens_sanctuary", (w, h, d), blocks, entities)
 
 def depths_site(index: int, wall: str, floor: str, trim: str) -> None:

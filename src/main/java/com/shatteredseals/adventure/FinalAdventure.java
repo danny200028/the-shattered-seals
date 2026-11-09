@@ -397,6 +397,12 @@ public final class FinalAdventure {
                 || !player.serverLevel().dimension().equals(Level.OVERWORLD)) return;
         ServerLevel world = player.serverLevel();
         CompoundTag award = player.getPersistentData();
+        if ((award.getInt("SSDepthsEliteMask") & 63) == 63
+                && !award.getBoolean("SSChronicleComplete")) {
+            award.putBoolean("SSChronicleComplete", true);
+            give(player, new ItemStack(ShatteredSeals.ARCHIVISTS_CROWN.get()));
+            say(player, "All six Buried Chronicles restored! The Archivist's Crown has been awarded.", ChatFormatting.GOLD);
+        }
         if (DungeonChapter.score(player, "ss_vk_smug") > 0
                 && !award.getBoolean("SSSanctuaryKeystoneGranted")) {
             award.putBoolean("SSSanctuaryKeystoneGranted", true);
