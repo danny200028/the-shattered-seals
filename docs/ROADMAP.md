@@ -1,9 +1,9 @@
 # The Shattered Seals — LOCKED Final Release Roadmap
 
-> **Scope originally locked: 8 November 2026; explicitly expanded by user approval on 9 November 2026 to include the Shattered Depths underground exploration system.**
-> **Current development release:** v1.0.57 combined all-features candidate; v1.0.56 manually passed (Minecraft Java 1.21.1, NeoForge 21.1.238, Java 21, CurseForge).
+> **Scope originally locked: 8 November 2026; expanded on 9 November 2026 by explicit approval for Shattered Depths and the Sanctuary & Legends v1.0.58 update.**
+> **Current development release:** v1.0.58 Sanctuary & Legends candidate (Minecraft Java 1.21.1, NeoForge 21.1.238, Java 21, CurseForge).
 > **Final target:** v1.1.0, the complete, difficult, single-player Vanilla+ RPG.
-> **Implementation status:** v1.0.55 Living World and v1.0.56 Trials and Bounties tested by player. v1.0.57 implements all remaining planned feature systems in one combined candidate; awaiting final player playtest and release QA.
+> **Implementation status:** v1.0.56 manually tested; v1.0.57 passed automated verification. v1.0.58 implements the newly approved architectural, audio, boss visuals and Chronicle features. Latest branch passed build, package checks and 26/26 real NeoForge GameTests; player playtest remains required.
 > This document is the canonical feature-freeze checklist. No new major features will be added
 > beyond this scope without explicit user approval. Bug fixes, compatibility, accessibility,
 > necessary technical implementation, and balance tuning remain permitted.
@@ -19,6 +19,36 @@
 > enchantments before replacement and restore them onto the new sword without
 > changing material cost. An extra consumable protection item is therefore
 > unnecessary. Verify on real enchanted swords during manual acceptance.
+
+## v1.0.58 — Sanctuary & Legends (approved 9 November 2026)
+
+- [x] Original RPG sound cues for exploration, Sanctuary and all six storyline
+  bosses, composed and encoded at build time with no third-party music licenses.
+- [x] Six full-body original boss skins selected by encounter tags; ordinary
+  vanilla mobs still use their own textures.
+- [x] Six boss-specific wearable 3D mask models and textured first-victory
+  trophies, with in-world Trophy Hall display entities. Complete replacement
+  of the vanilla creature animation rigs was not performed.
+- [x] Cinematic title and subtitle introductions, effects and music cues for
+  all six bosses. Existing phase warning cues remain active.
+- [x] Stone, dark-oak and stained-glass Sanctuary facade with steep roofs,
+  crenellated towers, a new entrance frame, glasshouse and 15 functional rooms.
+- [x] One-use, in-game Sanctuary Keystone granted after the first Smuggler
+  King victory (including old saves), with 81×49 footprint, terrain foundation
+  checks, double-click confirmation preview, overwrite protection and
+  saved personal coordinates. It does not retrofit previous explored builds.
+- [x] Chronicle Archive gallery inside the Sanctuary Treasure Vault, six
+  readable region histories from the elite victory records, old-save
+  migration and unique original-textured cosmetic Archivist's Crown.
+- [x] 250 Shattered Seals RPG XP per Shattered Depths elite site,
+  plus original 30 vanilla XP; no repeat farming per cleared site.
+- [x] Raise first-person sword guard pose only; mitigation stays 40%.
+- [x] Static tests, official Java 21 NeoForge build, full CurseForge package
+  and 26/26 real Minecraft GameTests on feature branch.
+- [ ] Consolidated hands-on player acceptance and bug fixes.
+
+The next milestone is v1.0.59 release QA, followed by v1.1.0. Avoid
+adding new equipment power tiers or overwriting existing player structures.
 
 ## Core experience and rules (unchanged)
 

@@ -6,10 +6,52 @@ The world defaults to Hard difficulty, with high attack speed for an approximati
 
 A challenging single-player RPG modpack, featuring a six-chapter boss storyline, nine-room natural jigsaw fortresses, class skill trees, powerful relics, rarity-based loot, and New Game+ mastery and repeatable chapter quests.
 
+## v1.0.58: Sanctuary & Legends (automated build and 26 GameTests passed)
+
+**Back up your existing world before installing this update.** v1.0.58 is
+available as a CurseForge import ZIP after the GitHub Actions build passes,
+but still requires the player's consolidated hands-on survival acceptance.
+
+- **Sanctuary rebuilt:** 15 connected functional rooms within a decorated
+  stone-and-dark-oak fortress with four battlement towers, steep gables,
+  arched windows and a glasshouse garden. These new structures appear in new
+  chunks, or when the new Keystone places a copy. Existing generated buildings
+  are not overwritten in explored saves.
+- **Sanctuary Keystone:** after the first Smuggler King victory, receive one
+  Keystone, even on an old save. Right-click the top of a ground block in an
+  81 x 49-block **clear** area. See the corner preview and right-click the
+  **same block again within 10 seconds** to confirm placement. The Sanctuary
+  starts one block above the clicked surface and a stone foundation bridges
+  gaps of up to eight blocks. Chunks must be loaded; unsafe sites, structures,
+  liquids and containers prevent placement. Keystone is only consumed after
+  successful placement. A replacement can be crafted with a lodestone,
+  obsidian and amethyst, but each player can place a Sanctuary only once.
+  `/shatteredseals sanctuary locate` reports the placed coordinates.
+- **Chronicle Archive:** the Treasure Vault gains a manuscript gallery with
+  six readable histories. Defeating all six unique Shattered Depths elites
+  records the collection and awards an original-textured Archivist's Crown.
+  Existing elite records count automatically; the trophy is not repeatable.
+- **Elite rewards:** each uncleared site gives **30 vanilla XP** and
+  **250 character RPG XP** (or NG+ mastery XP at the level 60 cap); cannot
+  be repeatedly claimed at the same site.
+- **Visual upgrades:** six originally textured full-body boss variants and
+  six bespoke 3D boss masks, first-victory collectibles and dynamic trophies
+  on the Sanctuary Trophy Hall pedestals. Existing vanilla mobs keep normal
+  skins. This reuses vanilla creature body rigs rather than replacing all
+  six with fully custom animated creature skeletons.
+- **Cinematic encounters:** title/subtitle introductions, coloured
+  particles and original music cues accompany the six story bosses.
+- **Original soundtrack:** three short original Ogg compositions for boss
+  encounters, Sanctuary and Shattered biomes. Automatic ambient playback
+  respects the existing ambience setting.
+- **Sword guarding:** raise the on-screen first-person sword by 0.22 units,
+  leaving right-click input and the original 40% frontal damage mitigation
+  untouched.
+
 ## Locked final development roadmap (originally 8 November 2026; expanded 9 November)
 
-**Feature scope targets v1.1.0**, with one explicitly user-approved addition:
-**Shattered Depths**, a complete optional underground exploration system.
+**Feature scope targets v1.1.0**, with explicitly approved additions:
+**Shattered Depths** and the **v1.0.58 Sanctuary & Legends** overhaul.
 See the [canonical roadmap](docs/ROADMAP.md) for v1.0.55 Living World and six
 surface biomes, v1.0.56 Shattered Trials/Bounty Board, v1.0.57 The Warden's
 Sanctuary and legendary equipment mastery, v1.0.58 Shattered Depths, secret
@@ -22,7 +64,8 @@ catacombs and rare treasure vaults; optional dangerous encounters and modest
 treasure; and new lore/discovery tracking in the Codex. Vanilla caves, mining,
 ores, previous worlds and the original story progression must remain intact.
 No new power tiers or mandatory underground progression gates are authorised.
-Additional major expansions still require explicit user approval.
+Further major expansions beyond this separately approved v1.0.58 update still
+require explicit user approval.
 
 ### v1.0.56: Shattered Trials and Adventurer's Bounty Board (13/13 manual tests passed)
 
