@@ -21,10 +21,14 @@ class AnimatedBossTests(unittest.TestCase):
             self.assertIn(state,source)
         for name in BOSSES:self.assertIn(name,source)
         self.assertIn("LayerDefinition.create(mesh,128,128)",source)
+        self.assertIn("STARTING_HEALTH",source)
+        self.assertIn("entity.getHealth()",source)
 
     def test_vanilla_entities_have_a_renderer_fallback(self):
         source=(CLIENT/"BossSkinRenderers.java").read_text()
         self.assertIn("return vanilla;",source)
+        self.assertIn("getCustomName()",source)
+        self.assertIn("visible.getString()",source)
         self.assertIn("new AnimatedRenderer",source)
         self.assertIn("select(entity).render",source)
         for mob in ("PILLAGER","HUSK","WITHER_SKELETON","EVOKER","RAVAGER"):

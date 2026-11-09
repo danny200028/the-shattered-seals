@@ -80,6 +80,8 @@ public final class BossSkinRenderers {
         private final EntityRenderer<T> second;
         private final String primary;
         private final String alternate;
+        private final String primaryTitle;
+        private final String alternateTitle;
 
         SplitRenderer(EntityRendererProvider.Context ctx,EntityRenderer<T> vanilla,
                 int variant,String primary) {
@@ -93,11 +95,27 @@ public final class BossSkinRenderers {
             this.second=alternate==null ? null : new AnimatedRenderer<>(ctx,5);
             this.primary=primary;
             this.alternate=alternate;
+            this.primaryTitle = switch (variant) {
+                case 0 -> "Smuggler King";
+                case 1 -> "Cinder Warden";
+                case 2 -> "Hollow Knight";
+                case 3 -> "Arcane Seer";
+                default -> "Sixfold Guardian";
+            };
+            this.alternateTitle = alternate == null ? null : "Hollow King";
             this.shadowRadius=variant>=4?1.05F:0.7F;
         }
+        // Scoreboard tags are a server-side encounter mechanism, not a
+        // networked entity-data channel. Custom names ARE synchronized by
+        // vanilla EntityData, including for bosses loaded from old saves.
+        private boolean isBoss(T entity, String tag, String title) {
+            if (entity.getTags().contains(tag)) return true;
+            var visible = entity.getCustomName();
+            return visible != null && title.equals(visible.getString());
+        }
         private EntityRenderer<T> select(T entity) {
-            if(alternate!=null && entity.getTags().contains(alternate)) return second;
-            if(entity.getTags().contains(primary)) return first;
+            if(alternate!=null && isBoss(entity,alternate,alternateTitle)) return second;
+            if(isBoss(entity,primary,primaryTitle)) return first;
             return vanilla;
         }
         @Override public ResourceLocation getTextureLocation(T entity) {

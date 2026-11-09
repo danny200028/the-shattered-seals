@@ -36,6 +36,7 @@ public final class AnimatedBossModel<T extends Mob> extends HierarchicalModel<T>
                 ResourceLocation.fromNamespaceAndPath(ShatteredSeals.MOD_ID, "boss/" + NAMES[i]),
                 "main");
     }
+    private static final float[] STARTING_HEALTH = {150,170,240,180,310,450};
     private final int variant;
     private final ModelPart root, head, torso, rightArm, leftArm, rightLeg, leftLeg;
     private final ModelPart crown, wings, tail, leftHorn, rightHorn, jaw;
@@ -192,8 +193,13 @@ public final class AnimatedBossModel<T extends Mob> extends HierarchicalModel<T>
         root.getAllParts().forEach(ModelPart::resetPose);
         float t = ageInTicks, pace = Math.min(limbSwingAmount, 1.0F);
         boolean beast = variant >= 4;
-        int phase = entity.getTags().contains("ss_phase3") ? 3 :
-            entity.getTags().contains("ss_phase2") ? 2 : 1;
+        // Health is synced to the client; scoreboard boss-phase tags are not
+        // guaranteed to be. Preserve the same server thresholds (50%, 33%).
+        float hp = entity.getHealth();
+        int phase = entity.getTags().contains("ss_phase3") ||
+            hp <= STARTING_HEALTH[variant] / 3.0F ? 3 :
+            entity.getTags().contains("ss_phase2") ||
+            hp <= STARTING_HEALTH[variant] / 2.0F ? 2 : 1;
         PhaseMemo memo = phases.computeIfAbsent(entity.getUUID(),
             uuid -> new PhaseMemo(phase, entity.tickCount));
         if (memo.phase != phase) {
