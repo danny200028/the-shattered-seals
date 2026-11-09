@@ -16,7 +16,8 @@ class AnimatedBossTests(unittest.TestCase):
                      "case 0 ->","case 1 ->","case 2 ->","case 3 ->","case 4 ->"):
             self.assertIn(part,source)
         for state in ("getAttackAnim(", "hurtTime", "deathTime", "ss_phase2", "ss_phase3",
-                      "limbSwing", "resetPose", "enteredTick"):
+                      "limbSwing", "resetPose", "enteredTick", "cutlass_blade",
+                      "greatsword", "furnace_fist", "staff", "jaw.xRot"):
             self.assertIn(state,source)
         for name in BOSSES:self.assertIn(name,source)
         self.assertIn("LayerDefinition.create(mesh,128,128)",source)

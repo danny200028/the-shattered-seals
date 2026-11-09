@@ -38,7 +38,7 @@ public final class AnimatedBossModel<T extends Mob> extends HierarchicalModel<T>
     }
     private final int variant;
     private final ModelPart root, head, torso, rightArm, leftArm, rightLeg, leftLeg;
-    private final ModelPart crown, wings, tail, leftHorn, rightHorn;
+    private final ModelPart crown, wings, tail, leftHorn, rightHorn, jaw;
     private final Map<UUID, PhaseMemo> phases = new HashMap<>();
 
     private static final class PhaseMemo {
@@ -64,6 +64,7 @@ public final class AnimatedBossModel<T extends Mob> extends HierarchicalModel<T>
         rightHorn = head.getChild("right_horn");
         wings = torso.getChild("wings");
         tail = torso.getChild("tail");
+        jaw = variant >= 4 ? head.getChild("jaw") : null;
     }
 
     @Override public ModelPart root() {
@@ -84,13 +85,13 @@ public final class AnimatedBossModel<T extends Mob> extends HierarchicalModel<T>
         final boolean beast = variant >= 4;
         // Every boss defines its own complete silhouette. The names of its
         // articulated components are shared, not the actual vanilla model.
-        PartDefinition head, torso;
+        PartDefinition head, torso, rightArmRoot;
         if (beast) {
             float breadth = variant == 5 ? 11.0F : 9.0F;
             torso = child(base,"torso",0,40,-breadth, -8, -13,
                 breadth*2, 15, 27, 0, 8, 0);
             head = child(base,"head",0,0,-7,-8,-8,14,14,13,0,5,-14);
-            child(base,"right_arm",55,51,-4,-2,-4,7,17,8,-7,9,-8);
+            rightArmRoot = child(base,"right_arm",55,51,-4,-2,-4,7,17,8,-7,9,-8);
             child(base,"left_arm",55,51,-3,-2,-4,7,17,8,7,9,-8);
             child(base,"right_leg",82,50,-4,-2,-4,7,17,8,-7,9,10);
             child(base,"left_leg",82,50,-3,-2,-4,7,17,8,7,9,10);
@@ -99,10 +100,33 @@ public final class AnimatedBossModel<T extends Mob> extends HierarchicalModel<T>
             torso = child(base,"torso",0,38,-w,0,-3.6F,w*2,14,7.2F,0,0,0);
             head = child(base,"head",0,0,-4.5F,-9,-4.5F,9,9,9,0,0,0);
             float armWidth = variant == 2 ? 5 : 4;
-            child(base,"right_arm",54,45,-armWidth,-2,-2.5F,armWidth,15,5,-w-1.5F,2,0);
+            rightArmRoot = child(base,"right_arm",54,45,-armWidth,-2,-2.5F,armWidth,15,5,-w-1.5F,2,0);
             child(base,"left_arm",54,45,0,-2,-2.5F,armWidth,15,5,w+1.5F,2,0);
             child(base,"right_leg",82,48,-2.5F,0,-2.5F,5,12,5,-3,13,0);
             child(base,"left_leg",82,48,-2.5F,0,-2.5F,5,12,5,3,13,0);
+        }
+        // Unique weapons are attached to the articulated arm bone.
+        if (!beast) {
+            switch (variant) {
+                case 0 -> {
+                    child(rightArmRoot,"cutlass_hilt",99,80,-2,11,-4,4,6,4,0,0,0);
+                    child(rightArmRoot,"cutlass_blade",100,91,-1.1F,16,-3,2.2F,17,2,0,0,0);
+                    child(rightArmRoot,"cutlass_hook",100,112,0,28,-5,3,5,3,0,0,0);
+                }
+                case 1 -> {
+                    child(rightArmRoot,"furnace_fist",100,80,-5,9,-5,8,8,8,0,0,0);
+                    child(rightArmRoot,"ember_spike",100,98,-3,14,-4,4,10,4,0,0,0);
+                }
+                case 2 -> {
+                    child(rightArmRoot,"blade_guard",100,80,-5,10,-4,10,3,5,0,0,0);
+                    child(rightArmRoot,"greatsword",100,90,-2,13,-3,4,21,3,0,0,0);
+                    child(rightArmRoot,"blade_tip",100,117,-1,34,-2,2,5,1,0,0,0);
+                }
+                default -> {
+                    child(rightArmRoot,"staff",100,78,-1,6,-2,2,29,2,0,0,0);
+                    child(rightArmRoot,"orb",108,79,-4,28,-5,8,8,8,0,0,0);
+                }
+            }
         }
         switch (variant) {
             case 0 -> { // Tricorn + long coat + angular shoulders: Smuggler King
@@ -139,6 +163,7 @@ public final class AnimatedBossModel<T extends Mob> extends HierarchicalModel<T>
             }
             case 4 -> { // Six-pillar antlered nature guardian with moss flanks
                 child(head,"crown",36,0,-8,-15,-3,16,6,7,0,0,0);
+                child(head,"jaw",20,27,-6,3,-11,12,4,7,0,0,0);
                 child(head,"left_horn",34,14,-11,-23,-4,5,18,7,0,0,0);
                 child(head,"right_horn",34,14,6,-23,-4,5,18,7,0,0,0);
                 child(torso,"wings",0,78,-12,-12,-10,24,6,20,0,0,0);
@@ -147,6 +172,7 @@ public final class AnimatedBossModel<T extends Mob> extends HierarchicalModel<T>
             }
             default -> { // Dark crowned colossus, jagged spines and great tail
                 child(head,"crown",36,0,-9,-17,-4,18,8,9,0,0,0);
+                child(head,"jaw",20,27,-7,3,-12,14,5,8,0,0,0);
                 child(head,"left_horn",34,14,-12,-25,-7,6,20,8,0,0,0);
                 child(head,"right_horn",34,14,6,-25,-7,6,20,8,0,0,0);
                 child(torso,"wings",0,78,-14,-17,-12,28,10,24,0,0,0);
@@ -201,6 +227,8 @@ public final class AnimatedBossModel<T extends Mob> extends HierarchicalModel<T>
             rightArm.xRot = stride; leftArm.xRot = -stride;
             rightLeg.xRot = -stride; leftLeg.xRot = stride;
             head.xRot -= attack * 0.65F;
+            jaw.xRot = attack * 0.65F + transform * 0.7F
+                + (phase == 3 ? 0.06F : 0);
             torso.xRot = breath + transform * -0.13F;
             tail.yRot = sine(t * 0.11F) * 0.23F;
         } else {
@@ -247,6 +275,7 @@ public final class AnimatedBossModel<T extends Mob> extends HierarchicalModel<T>
         if (entity.deathTime > 0) {
             float collapse = clamp(entity.deathTime / 20.0F);
             head.xRot = collapse * 0.6F;
+            if (jaw != null) jaw.xRot = collapse * 0.9F;
             rightArm.xRot = collapse * 0.9F;
             leftArm.xRot = collapse * 0.9F;
             wings.xRot = collapse * -0.3F;
