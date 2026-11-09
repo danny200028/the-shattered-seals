@@ -11,7 +11,7 @@ REQUIRED={
     (263420,9067173), (317780,9067277), (455508,6661598),
     (394468,6382651), (627557,8884654),
     (238222,8792638), (790626,9309399), (429235,7524151),
-    (531761,9406246), (245755,8969751),
+    (531761,9406246), (245755,8969751), (940057,6054947),
 }
 class PackageTests(unittest.TestCase):
     def test_import_archive(self):
@@ -34,7 +34,7 @@ class PackageTests(unittest.TestCase):
             self.assertEqual(manifest["overrides"],"overrides")
             self.assertEqual({(x["projectID"],x["fileID"]) for x in manifest["files"]},REQUIRED)
             self.assertTrue(all(x["required"] for x in manifest["files"]))
-            self.assertEqual(len(mods)+len(manifest["files"]),11)
+            self.assertEqual(len(mods)+len(manifest["files"]),12)
             with archive.open(mods[0]) as jar_stream:
                 # JAR is already verified by the packager before inclusion.
                 jar=jar_stream.read()
