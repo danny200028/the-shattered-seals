@@ -1,6 +1,7 @@
 package com.shatteredseals.net;
 
 import com.shatteredseals.adventure.DungeonChapter;
+import com.shatteredseals.adventure.AdventureContracts;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
@@ -15,7 +16,8 @@ public record SkillSnapshot(int level, int xp, int requiredXp, int points,
                             int kills, int activeClass, int masteryRank,
                             int[] branchRanks, int[] branchMasteries, int[] coreRanks, int[] cooldowns, int[] resources,
                             int ngCycle, int replayChapter, int masteryPoints, int[] masteryPerks,
-                            int[] bossWins, int puzzleStep, int sideQuestState, int discoveredBiomes, int discoveredLandmarks) implements CustomPacketPayload {
+                            int[] bossWins, int puzzleStep, int sideQuestState, int discoveredBiomes, int discoveredLandmarks,
+                            int[] trials, int[] bounties) implements CustomPacketPayload {
     public static final Type<SkillSnapshot> TYPE = new Type<>(
         ResourceLocation.fromNamespaceAndPath("shatteredseals", "skill_snapshot"));
     public static final StreamCodec<RegistryFriendlyByteBuf, SkillSnapshot> STREAM_CODEC = StreamCodec.of(
@@ -41,6 +43,8 @@ public record SkillSnapshot(int level, int xp, int requiredXp, int points,
             buf.writeVarInt(value.sideQuestState());
             buf.writeVarInt(value.discoveredBiomes());
             buf.writeVarInt(value.discoveredLandmarks());
+            for (int i = 0; i < 4; i++) buf.writeVarInt(value.trials()[i]);
+            for (int i = 0; i < 6; i++) buf.writeVarInt(value.bounties()[i]);
         },
         buf -> {
             int level = buf.readVarInt();
@@ -67,10 +71,18 @@ public record SkillSnapshot(int level, int xp, int requiredXp, int points,
             int[] bossWins = new int[6];
             for (int i = 0; i < 3; i++) masteryPerks[i] = buf.readVarInt();
             for (int i = 0; i < 6; i++) bossWins[i] = buf.readVarInt();
+            int puzzleStep = buf.readVarInt();
+            int sideState = buf.readVarInt();
+            int biomes = buf.readVarInt();
+            int landmarks = buf.readVarInt();
+            int[] trials = new int[4];
+            int[] bounties = new int[6];
+            for (int i = 0; i < trials.length; i++) trials[i] = buf.readVarInt();
+            for (int i = 0; i < bounties.length; i++) bounties[i] = buf.readVarInt();
             return new SkillSnapshot(level, xp, requiredXp, points, kills,
                                      activeClass, masteryRank, ranks, masteries, coreRanks, cooldowns, resources,
                                      ngCycle, replayChapter, masteryPoints, masteryPerks, bossWins,
-                                     buf.readVarInt(), buf.readVarInt(), buf.readVarInt(), buf.readVarInt());
+                                     puzzleStep, sideState, biomes, landmarks, trials, bounties);
         });
 
     private static int read(Scoreboard scoreboard, ServerPlayer player, String objective) {
@@ -112,7 +124,8 @@ public record SkillSnapshot(int level, int xp, int requiredXp, int points,
             chapter == null ? 0 : read(board, player, chapter.puzzleScore()),
             chapter == null ? 0 : read(board, player, chapter.sideScore()),
             player.getPersistentData().getInt("SSBiomeDiscoveryMask"),
-            player.getPersistentData().getInt("SSLandmarkDiscoveryMask"));
+            player.getPersistentData().getInt("SSLandmarkDiscoveryMask"),
+            AdventureContracts.trialState(player), AdventureContracts.bountyState(player));
     }
     @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
 }
