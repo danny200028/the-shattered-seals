@@ -44,7 +44,7 @@ public final class BossSkinRenderers {
             return entity.getTags().contains("ss_hollow_knight") ? skin("hollow_knight") : super.getTextureLocation(entity);
         }
     }
-    public static final class Seer extends EvokerRenderer {
+    public static final class Seer extends EvokerRenderer<Evoker> {
         public Seer(EntityRendererProvider.Context ctx) { super(ctx); }
         @Override public ResourceLocation getTextureLocation(Evoker entity) {
             return entity.getTags().contains("ss_arcane_seer") ? skin("arcane_seer") : super.getTextureLocation(entity);
