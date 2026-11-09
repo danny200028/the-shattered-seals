@@ -6,16 +6,23 @@ The world defaults to Hard difficulty, with high attack speed for an approximati
 
 A challenging single-player RPG modpack, featuring a six-chapter boss storyline, nine-room natural jigsaw fortresses, class skill trees, powerful relics, rarity-based loot, and New Game+ mastery and repeatable chapter quests.
 
-## Locked final development roadmap (8 November 2026)
+## Locked final development roadmap (originally 8 November 2026; expanded 9 November)
 
-**Feature scope is frozen through v1.1.0.** See the
-[locked final roadmap](docs/ROADMAP.md) for v1.0.55 Living World and six biomes,
-v1.0.56 Shattered Trials and the Bounty Board, v1.0.57 The Warden's Sanctuary
-(seven rooms, Trophy Hall and achievements) plus legendary weapon mastery and
-enchantment protection, v1.0.58 secret endgame encounter and player settings,
-v1.0.59 final balance/QA and v1.1.0 complete CurseForge release.
-All these features are **planned**, with the Living World features developed in v1.0.55 pending player acceptance.
-No major additions are authorised beyond this list without user approval.
+**Feature scope targets v1.1.0**, with one explicitly user-approved addition:
+**Shattered Depths**, a complete optional underground exploration system.
+See the [canonical roadmap](docs/ROADMAP.md) for v1.0.55 Living World and six
+surface biomes, v1.0.56 Shattered Trials/Bounty Board, v1.0.57 The Warden's
+Sanctuary and legendary equipment mastery, v1.0.58 Shattered Depths, secret
+endgame encounter and player settings, v1.0.59 final balance/QA, and v1.1.0
+complete CurseForge release.
+
+**Shattered Depths is PLANNED, not included in v1.0.55.** It will introduce
+six thematic underground regions tied to the six chapters; cave ruins,
+catacombs and rare treasure vaults; optional dangerous encounters and modest
+treasure; and new lore/discovery tracking in the Codex. Vanilla caves, mining,
+ores, previous worlds and the original story progression must remain intact.
+No new power tiers or mandatory underground progression gates are authorised.
+Additional major expansions still require explicit user approval.
 
 ### v1.0.55: The Living World (new release, pending player acceptance)
 
