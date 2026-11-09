@@ -1,7 +1,7 @@
 name: Build The Shattered Seals 1.0.57
 on:
   push:
-    branches: [main, feature/all-remaining-content-v1-0-57]
+    branches: [main]
   workflow_dispatch:
 concurrency:
   group: shattered-seals-neoforge-main
