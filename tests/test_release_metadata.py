@@ -33,6 +33,9 @@ class ReleaseMetadataTests(unittest.TestCase):
         self.assertIn("TrialsBountiesGameTests.class",packager)
         self.assertIn("FinalWorldGameTests.class",packager)
         self.assertIn("FinalAdventure.class",packager)
+        self.assertIn("AnimatedBossModel.class",packager)
+        self.assertIn("BossSkinRenderers.class",packager)
+        self.assertIn("Custom animated boss skin missing",packager)
         self.assertIn("TEST_THE_SHATTERED_SEALS.cmd",packager)
         self.assertIn('loot_table/ritual_replay/{boss}.json',packager)
 

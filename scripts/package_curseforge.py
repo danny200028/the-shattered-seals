@@ -140,6 +140,8 @@ def select_jar() -> Path:
             "com/shatteredseals/adventure/FinalAdventure.class",
             "com/shatteredseals/combat/SwordMastery.class",
             "com/shatteredseals/enchantments/UpgradePreservation.class",
+            "com/shatteredseals/client/AnimatedBossModel.class",
+            "com/shatteredseals/client/BossSkinRenderers.class",
         )
         for required in required_classes:
             if required not in names:
@@ -149,6 +151,9 @@ def select_jar() -> Path:
             sigil = f"data/shatteredseals/loot_table/ritual_replay/{boss}.json"
             if sigil not in names:
                 raise SystemExit(f"The first-party JAR is missing NG+ sigil table: {boss}")
+            skin = f"assets/shatteredseals/textures/entity/boss/{boss}.png"
+            if skin not in names:
+                raise SystemExit(f"Custom animated boss skin missing: {boss}")
         for name in ("smugglers_den", "cinder_citadel", "hollow_crypt",
                      "arcane_observatory", "sixfold_temple", "hollow_kings_fortress"):
             if f"data/shatteredseals/structure/{name}.nbt" not in names:
