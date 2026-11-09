@@ -1,12 +1,24 @@
 # The Shattered Seals — LOCKED Final Release Roadmap
 
 > **Scope originally locked: 8 November 2026; explicitly expanded by user approval on 9 November 2026 to include the Shattered Depths underground exploration system.**
-> **Current development release:** v1.0.56 (Trials/Bounty Board implementation underway; not yet player-tested) (Minecraft Java 1.21.1, NeoForge 21.1.238, Java 21, CurseForge).
+> **Current development release:** v1.0.57 combined all-features candidate; v1.0.56 manually passed (Minecraft Java 1.21.1, NeoForge 21.1.238, Java 21, CurseForge).
 > **Final target:** v1.1.0, the complete, difficult, single-player Vanilla+ RPG.
-> **Implementation status:** v1.0.55 Living World implemented and shrine sound/loot tested; v1.0.56 Trials and Bounty Board implemented as a development candidate pending automated and manual acceptance; v1.0.57 onward, including Shattered Depths, remain PLANNED.
+> **Implementation status:** v1.0.55 Living World and v1.0.56 Trials and Bounties tested by player. v1.0.57 implements all remaining planned feature systems in one combined candidate; awaiting final player playtest and release QA.
 > This document is the canonical feature-freeze checklist. No new major features will be added
 > beyond this scope without explicit user approval. Bug fixes, compatibility, accessibility,
 > necessary technical implementation, and balance tuning remain permitted.
+
+> **Consolidation approved 9 November 2026:** v1.0.57 now also includes
+> v1.0.58's Shattered Depths, six optional underground vaults and elites,
+> secret final boss and accessibility controls. v1.0.59 remains the final
+> compatibility, performance and bug-polish milestone. The final v1.1.0
+> release is not approved until the user's full combined playtest.
+>
+> **Upgrade safety:** existing tier replacements could discard player enchantments.
+> All twelve Dormant/Awakened/Ascended upgrade paths now snapshot the original
+> enchantments before replacement and restore them onto the new sword without
+> changing material cost. An extra consumable protection item is therefore
+> unnecessary. Verify on real enchanted swords during manual acceptance.
 
 ## Core experience and rules (unchanged)
 

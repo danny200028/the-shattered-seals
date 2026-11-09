@@ -63,7 +63,7 @@ CURSEFORGE IMPORT:
    and ready-again. Book hover tooltips track the actual enchantment rank
    after anvil combining. Survival inventory accepts enchant application
    in either click direction. Creative inventory requires an anvil.
-10. v1.0.57: TerraBlender adds six rare Overworld chapter biomes; each
+10. TerraBlender adds six rare Overworld chapter biomes; each
    existing dungeon now generates only in its matching new biome.
    Six hidden lore shrines can appear nearby, with modest survival loot.
    J > Bestiary records six bosses. J > Explore tracks six biome visits
@@ -139,6 +139,7 @@ def select_jar() -> Path:
             "com/shatteredseals/diagnostics/FinalWorldGameTests.class",
             "com/shatteredseals/adventure/FinalAdventure.class",
             "com/shatteredseals/combat/SwordMastery.class",
+            "com/shatteredseals/enchantments/UpgradePreservation.class",
         )
         for required in required_classes:
             if required not in names:

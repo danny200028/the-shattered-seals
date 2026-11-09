@@ -53,11 +53,10 @@ These remain in [PLAYTEST_CHECKLIST.md](PLAYTEST_CHECKLIST.md).
   verifies static assets, gameplay functions, resource consistency and the Windows suite.
 * GitHub Actions compiles Java 21, generates structures and builds the CurseForge ZIP.
 * A separate **Real Minecraft GameTests** workflow launches a headless NeoForge
-  GameTest server with the six generated dungeon templates. Thirteen tests
-  verify arena blocks, spawners, chests, registry entries, ritual
-  sigil loot rolls, six bosses' phase functions and minion cleanup, plus
-  the classic sword guard's front/side/rear directional geometry. A test-count
-  gate fails CI if fewer than 13 run.
+  GameTest server with the six original dungeons plus the generated final-feature structures. Twenty-six real GameTests
+  verify existing arenas and safeguards alongside actual generation and block
+  placement for the Sanctuary, six underground ruins, a hidden vault and the
+  new secret challenge/mastery gates. The test-count gate rejects fewer than 26.
   It runs automatically on GitHub after changes to `main`; no PC setup required.
   It cannot verify visual shader quality or manual boss playthroughs.
 * The survival-mode `/shatteredseals audit` performs runtime checks that cannot be

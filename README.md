@@ -16,7 +16,7 @@ Sanctuary and legendary equipment mastery, v1.0.58 Shattered Depths, secret
 endgame encounter and player settings, v1.0.59 final balance/QA, and v1.1.0
 complete CurseForge release.
 
-**Shattered Depths is PLANNED, not included in v1.0.56.** It will introduce
+**Shattered Depths was not included in v1.0.56, but is now implemented in the combined v1.0.57 acceptance build.** It introduces
 six thematic underground regions tied to the six chapters; cave ruins,
 catacombs and rare treasure vaults; optional dangerous encounters and modest
 treasure; and new lore/discovery tracking in the Codex. Vanilla caves, mining,
@@ -24,7 +24,7 @@ ores, previous worlds and the original story progression must remain intact.
 No new power tiers or mandatory underground progression gates are authorised.
 Additional major expansions still require explicit user approval.
 
-### v1.0.56: Shattered Trials and Adventurer's Bounty Board (development candidate)
+### v1.0.56: Shattered Trials and Adventurer's Bounty Board (13/13 manual tests passed)
 
 - J Codex now offers **Trials** and **Bounty** tabs. Shattered Trials unlock after
   character level 60, first Hollow King victory and an active New Game+ chapter.
@@ -44,8 +44,7 @@ Additional major expansions still require explicit user approval.
   provide the same actions.
 - New tests cover reward/eligibility protections, player-owned persistence,
   UI serialization, and four additional real NeoForge GameTests.
-- **Status: automated build/testing and manual client playtest required before
-  v1.0.56 is declared stable.**
+- **Status: 13/13 user manual tests passed in v1.0.56; 17/17 real GameTests passed.**
 
 ### v1.0.55: The Living World (new release, pending player acceptance)
 
@@ -137,8 +136,11 @@ a green build alone will not make it a stable v1.1.0 release.
   Persistent settings toggle the combat HUD, optional particles, enchantment
   notices and optional discovery flavour text. Boss warnings never mute.
 - **Enchantments and upgrades:** existing vanilla anvil, shop, direct-book
-  application and Dormant/Awakened/Ascended upgrades remain. No new safeguard
-  item is generated without a meaningful enchantment-loss mechanism.
+  application and Dormant/Awakened/Ascended upgrades remain. Upgrading a sword
+  now **preserves all already-applied enchantments**, merging each at its
+  previous rank or the upgraded sword's higher built-in rank. This removes the
+  previous item-replacement loss risk. A standalone consumable safeguard is
+  intentionally unnecessary and would add artificial costs.
 - **Save safety:** back up the primary world, and test worldgen in a fresh
   world or distant unvisited chunks. Existing generated terrain is never replaced.
 

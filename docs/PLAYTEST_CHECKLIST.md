@@ -27,6 +27,10 @@ has already passed.** Back up saves and use a throwaway world for generation.
 - [ ] Test accessibility settings and confirm required trial warnings persist
 - [ ] Complete full six-chapter story, then replay NG+ with classes, swords,
       relics, bounties, shaders and map mods enabled
+- [ ] Upgrade all six legendary swords, Dormant to Awakened and Awakened
+      to Ascended, with player-applied custom enchants. Verify every original
+      enchant and its rank survives, upgrade cost remains unchanged and the
+      new sword is not duplicated
 - [ ] Retest save/reload, existing world, anvil/enchantment rank upgrades and
       CurseForge import. Record FPS and UI problems for v1.0.59 polish.
 
