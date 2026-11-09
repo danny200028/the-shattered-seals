@@ -1,9 +1,9 @@
 # The Shattered Seals — LOCKED Final Release Roadmap
 
 > **Scope originally locked: 8 November 2026; explicitly expanded by user approval on 9 November 2026 to include the Shattered Depths underground exploration system.**
-> **Current built release:** v1.0.55 (new features pending client playtest; v1.0.54 was player-tested) (Minecraft Java 1.21.1, NeoForge 21.1.238, Java 21, CurseForge).
+> **Current development release:** v1.0.56 (Trials/Bounty Board implementation underway; not yet player-tested) (Minecraft Java 1.21.1, NeoForge 21.1.238, Java 21, CurseForge).
 > **Final target:** v1.1.0, the complete, difficult, single-player Vanilla+ RPG.
-> **Implementation status:** v1.0.55 Living World is implemented and its shrine discoveries/loot/audio were player-tested; v1.0.56 onward, including the Shattered Depths, remain PLANNED.
+> **Implementation status:** v1.0.55 Living World implemented and shrine sound/loot tested; v1.0.56 Trials and Bounty Board implemented as a development candidate pending automated and manual acceptance; v1.0.57 onward, including Shattered Depths, remain PLANNED.
 > This document is the canonical feature-freeze checklist. No new major features will be added
 > beyond this scope without explicit user approval. Bug fixes, compatibility, accessibility,
 > necessary technical implementation, and balance tuning remain permitted.

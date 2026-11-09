@@ -1,16 +1,47 @@
-# The Shattered Seals v1.0.55: In-game Acceptance Checklist
+# The Shattered Seals v1.0.56: In-game Acceptance Checklist
 
 This checklist is **not an automated test result**. The GitHub build compiles the
 NeoForge mod, generates six dungeon structures and validates CurseForge packaging.
 A tester must mark each of the following steps after actually performing it in
 Minecraft Java 1.21.1 (Java 21, NeoForge 21.1.238).
 
-## v1.0.55: The Living World (new tests, not yet player-confirmed)
+## v1.0.56: Shattered Trials and Bounty Board (not yet player-confirmed)
+
+Use a disposable Creative/Survival test world or a backup of a fully progressed
+save. v1.0.55 surface worlds and prior save progression must remain intact.
+
+- [ ] Install `The-Shattered-Seals-1.0.56-CurseForge.zip`, launch on Java 21 / NeoForge 21.1.238,
+      and confirm J has Trials and Bounty tabs with readable text at 2x/3x GUI scales.
+- [ ] Before level 60 / Hollow King victory / NG+, Trials cannot be armed even with commands.
+- [ ] At level 60, Hollow King won and an active NG+ chapter, choose Hazard Pulse;
+      summon the proper boss at its natural arena. Confirm a clear hazard warning
+      before a distinct chapter-specific effect, no surprise unavoidable instant kills.
+- [ ] Choose Scarcity for another eligible chapter and verify healing is halved
+      **only while its trial boss is nearby**, never outside combat.
+- [ ] Check combined modifiers are blocked until NG+ cycle 3, and one medal per
+      chapter per cycle cannot be farmed from repeat boss summons.
+- [ ] Confirm trial failure/death and cancel never generate medals or duplicate
+      items; NG+ cycle progression permits legitimately new chapter medals.
+- [ ] Accept a Hunt bounty, defeat the correct ordinary mobs, and verify tracked
+      progress increases but not from scripted minions or named mobs.
+- [ ] Accept a Survey bounty and visit the correct biome; verify it completes
+      without cheating via a previously explored unrelated biome.
+- [ ] Accept a Guardian bounty; defeat the correct chapter boss; only that
+      chapter's encounter counts.
+- [ ] Check only one bounty active, no claims before completion, explicit claim
+      gives modest XP/ordinary resources, and the 10-minute claim cooldown works.
+- [ ] Verify abandon gives no reward; save/reload/death preserve active progress
+      and earned record counts. Verify no creative/admin commands are required.
+- [ ] Open and close the Codex repeatedly; controls never grant items by themselves.
+- [ ] Existing combat, boss loot, dungeon progression, NG+, biome discovery,
+      lost shrines and shaders remain functional.
+
+## v1.0.55: The Living World (prior release regression checks)
 
 **Use a new test world for natural worldgen**, and back up your original save
 before checking existing-world compatibility.
 
-- [ ] CurseForge imports `The-Shattered-Seals-1.0.55-CurseForge.zip`
+- [ ] CurseForge imports `The-Shattered-Seals-1.0.56-CurseForge.zip`
       and installs TerraBlender NeoForge **1.21.1-4.1.0.8** automatically.
 - [ ] A new world starts on Java 21 / NeoForge 21.1.238 without registry
       errors. The one-time Shattered Seals introduction appears for a new player.
@@ -47,8 +78,8 @@ before checking existing-world compatibility.
 - [ ] Review report ZIP before sharing; relevant log extracts may contain personal paths or usernames.
 
 ## Installation and graphics
-- [ ] Download the `Shattered-Seals-1.0.55-CurseForge-Modpack` GitHub Actions artifact.
-- [ ] Extract the outer Actions artifact once; import the inner `The-Shattered-Seals-1.0.55-CurseForge.zip` in CurseForge.
+- [ ] Download the `Shattered-Seals-1.0.56-CurseForge-Modpack` GitHub Actions artifact.
+- [ ] Extract the outer Actions artifact once; import the inner `The-Shattered-Seals-1.0.56-CurseForge.zip` in CurseForge.
 - [ ] Verify the mod loads without crash and the NeoForge mod list includes The Shattered Seals.
 - [ ] Verify Xaero's Minimap, Xaero's World Map, Iris and Sodium load on the selected game version.
 - [ ] Check JEI, Waystones + Balm, ModernFix and FerriteCore all install and load successfully.

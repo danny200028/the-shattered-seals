@@ -16,13 +16,36 @@ Sanctuary and legendary equipment mastery, v1.0.58 Shattered Depths, secret
 endgame encounter and player settings, v1.0.59 final balance/QA, and v1.1.0
 complete CurseForge release.
 
-**Shattered Depths is PLANNED, not included in v1.0.55.** It will introduce
+**Shattered Depths is PLANNED, not included in v1.0.56.** It will introduce
 six thematic underground regions tied to the six chapters; cave ruins,
 catacombs and rare treasure vaults; optional dangerous encounters and modest
 treasure; and new lore/discovery tracking in the Codex. Vanilla caves, mining,
 ores, previous worlds and the original story progression must remain intact.
 No new power tiers or mandatory underground progression gates are authorised.
 Additional major expansions still require explicit user approval.
+
+### v1.0.56: Shattered Trials and Adventurer's Bounty Board (development candidate)
+
+- J Codex now offers **Trials** and **Bounty** tabs. Shattered Trials unlock after
+  character level 60, first Hollow King victory and an active New Game+ chapter.
+  Choose a telegraphed **Hazard Pulse** (1), arena **Scarcity** (healing reduced, 2),
+  or both (3) from NG+ cycle 3 onward. Summon that chapter's boss at its existing
+  arena. Each chapter can award just one trial medal per NG+ cycle, plus bounded
+  amethyst and vanilla XP. The normal campaign and regular boss battles remain
+  available without these modifiers.
+- The **Bounty Board** gives one active contract: chapter-specific monster hunts,
+  surveys of themed surface biomes, or defeating the current chapter boss.
+  Progress and explicit claim/cancel choices are saved server-side, and rewards
+  are intentionally modest. A 10-minute cooldown after claiming limits farming.
+- Bounty commands (no cheats needed): `/shatteredseals bounty accept 1` (hunt),
+  `accept 2` (survey), `accept 3` (guardian), `bounty claim` and
+  `bounty abandon`. Trial commands: `/shatteredseals trial arm 1`,
+  `trial arm 2`, `trial arm 3` or `trial cancel`. Native J Codex buttons
+  provide the same actions.
+- New tests cover reward/eligibility protections, player-owned persistence,
+  UI serialization, and four additional real NeoForge GameTests.
+- **Status: automated build/testing and manual client playtest required before
+  v1.0.56 is declared stable.**
 
 ### v1.0.55: The Living World (new release, pending player acceptance)
 
