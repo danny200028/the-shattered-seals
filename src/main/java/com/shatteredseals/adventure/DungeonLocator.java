@@ -26,6 +26,9 @@ public final class DungeonLocator {
         event.getDispatcher().register(Commands.literal("shatteredseals")
             .then(Commands.literal("locate")
                 .executes(context -> locate(context.getSource().getPlayerOrException())))
+            .then(Commands.literal("intro")
+                .executes(context -> com.shatteredseals.world.WorldDiscovery.showIntroduction(
+                    context.getSource().getPlayerOrException())))
             .then(Commands.literal("audit")
                 .executes(context -> com.shatteredseals.diagnostics.RuntimeAudit.run(
                     context.getSource().getPlayerOrException()))));
