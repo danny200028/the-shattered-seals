@@ -13,12 +13,32 @@
       "sound": "minecraft:ambient.cave",
       "tick_delay": 6000,
       "block_search_extent": 8,
-      "offset": 2.0
+      "offset": 2
     }
   },
   "spawners": {
-    "monster": [],
-    "creature": [],
+    "monster": [
+      {
+        "type": "minecraft:husk",
+        "weight": 80,
+        "minCount": 1,
+        "maxCount": 3
+      },
+      {
+        "type": "minecraft:spider",
+        "weight": 35,
+        "minCount": 1,
+        "maxCount": 3
+      }
+    ],
+    "creature": [
+      {
+        "type": "minecraft:chicken",
+        "weight": 8,
+        "minCount": 2,
+        "maxCount": 4
+      }
+    ],
     "ambient": [],
     "axolotls": [],
     "underground_water_creature": [],
@@ -41,10 +61,27 @@
     [],
     [],
     [],
+    [
+      "minecraft:ore_coal_upper",
+      "minecraft:ore_coal_lower",
+      "minecraft:ore_iron_upper",
+      "minecraft:ore_iron_middle",
+      "minecraft:ore_iron_small",
+      "minecraft:ore_gold",
+      "minecraft:ore_redstone",
+      "minecraft:ore_diamond",
+      "minecraft:ore_lapis",
+      "minecraft:ore_copper",
+      "minecraft:ore_dirt",
+      "minecraft:ore_gravel"
+    ],
     [],
     [],
-    [],
-    [],
+    [
+      "minecraft:trees_jungle",
+      "minecraft:patch_tall_grass",
+      "shatteredseals:sixfold_expanse_surface_patch"
+    ],
     []
   ]
 }

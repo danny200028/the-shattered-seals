@@ -1,1 +1,1 @@
-tellraw @s {"text":"Six Shattered Seals biome definitions are packaged but NOT distributed in the Overworld. Terrain/structure placement is NOT enabled.","color":"yellow"}
+tellraw @s {"text":"Six Shattered Seals chapter biomes are registered through TerraBlender for NEW Overworld chunks. Each chapter dungeon is configured to appear only in its matching region.","color":"green"}
