@@ -94,14 +94,36 @@ def ornament(name,primary,shadow,accent):
     dest.parent.mkdir(parents=True,exist_ok=True)
     dest.write_text(json.dumps(model,indent=2)+"\n")
 
+def entity_skin(name, primary, shadow, accent):
+    """Original complete mob UV atlas; vanilla mobs retain vanilla renderer
+    unless they carry the corresponding Shattered Seals boss tag."""
+    size = 128 if name in ("sixfold_guardian","hollow_king") else 64
+    canvas=[[(0,0,0,255) for _ in range(size)] for _ in range(size)]
+    for y in range(size):
+        for x in range(size):
+            stripe = ((x//4 + y//7) % 9 == 0)
+            grain = ((x*31+y*17+x*y*3) % 13)
+            color = accent if stripe and grain < 3 else shadow if (x+y)%19==0 else primary
+            shaded = tuple(max(0,min(255,c-(y*9//size)+(grain-6)*2)) for c in color)
+            canvas[y][x]=(*shaded,255)
+    # Distinctive glowing eye-bars and heraldry on the texture UV panels.
+    for x in range(size//8,size//8+size//8):
+        for y in range(size//8,size//8+size//10):
+            if y%3==0 or x%7==0:canvas[y][x]=(*accent,255)
+    for y in range(size//2,size//2+size//5):
+        for x in range(size//3,size//3+size//5):
+            if (x-y)%6 in (0,1):canvas[y][x]=(*shadow,255)
+    png(ASSETS/f"textures/entity/boss/{name}.png",canvas)
+
 def main():
     for name,(primary,shadow,accent,style) in PALETTES.items():
         painted(name,primary,shadow,accent,style)
+        entity_skin(name,primary,shadow,accent)
         out=ASSETS/f"models/item/boss_mask_{name}.json"
         out.parent.mkdir(parents=True,exist_ok=True)
         out.write_text(json.dumps(mask_model(name,style),indent=2)+"\n")
     ornament("sanctuary_keystone",(80,171,211),(22,44,66),(236,207,112))
     ornament("archivists_crown",(124,81,184),(35,24,63),(235,189,101))
-    print("Generated eight original 32px textures and six unique 3D boss-mask models")
+    print("Generated eight original 32px item textures, six full-entity skins and six 3D boss-mask models")
 
 if __name__=="__main__":main()

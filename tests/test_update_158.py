@@ -27,9 +27,11 @@ class Update158Tests(unittest.TestCase):
         self.assertEqual(set(sounds),{"music.boss","music.explore","music.sanctuary"})
         for name in ("boss","explore","sanctuary"):
             self.assertTrue((ROOT/f"src/main/resources/assets/shatteredseals/sounds/music/{name}.ogg").is_file())
+        self.assertIn("registerEntityRenderer(EntityType.RAVAGER", (ROOT/"src/main/java/com/shatteredseals/client/BossSkinRenderers.java").read_text())
         for name in ("smuggler_king","cinder_warden","hollow_knight",
                      "arcane_seer","sixfold_guardian","hollow_king"):
             self.assertTrue((ROOT/f"src/main/resources/assets/shatteredseals/textures/item/boss_mask_{name}.png").is_file())
+            self.assertTrue((ROOT/f"src/main/resources/assets/shatteredseals/textures/entity/boss/{name}.png").is_file())
             self.assertTrue((ROOT/f"src/main/resources/assets/shatteredseals/models/item/boss_mask_{name}.json").is_file())
     def test_sword_guard_pose_only(self):
         pose=(JAVA/"client/SwordGuardPoseTransform.java").read_text()
