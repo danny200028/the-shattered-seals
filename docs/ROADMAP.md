@@ -1,9 +1,9 @@
 # The Shattered Seals — LOCKED Final Release Roadmap
 
-> **Scope locked: 8 November 2026.**
+> **Scope originally locked: 8 November 2026; explicitly expanded by user approval on 9 November 2026 to include the Shattered Depths underground exploration system.**
 > **Current built release:** v1.0.55 (new features pending client playtest; v1.0.54 was player-tested) (Minecraft Java 1.21.1, NeoForge 21.1.238, Java 21, CurseForge).
 > **Final target:** v1.1.0, the complete, difficult, single-player Vanilla+ RPG.
-> **Implementation status:** v1.0.55 Living World features are implemented in the new development release and await player acceptance; v1.0.56 onward remain PLANNED.
+> **Implementation status:** v1.0.55 Living World is implemented and its shrine discoveries/loot/audio were player-tested; v1.0.56 onward, including the Shattered Depths, remain PLANNED.
 > This document is the canonical feature-freeze checklist. No new major features will be added
 > beyond this scope without explicit user approval. Bug fixes, compatibility, accessibility,
 > necessary technical implementation, and balance tuning remain permitted.
@@ -176,7 +176,7 @@ a redundant separate power system. Add no unconditional sanctuary buffs.
   safe upgrades and omit a standalone protection item.
 - Preserve vanilla anvils, direct book application and ranks I/II/III.
 
-## v1.0.58 — Final Endgame Encounter, Settings and Combat Polish
+## v1.0.58 — Shattered Depths, Final Endgame Encounter, Settings and Combat Polish
 
 ### 11. One secret endgame challenge
 
@@ -201,9 +201,71 @@ a redundant separate power system. Add no unconditional sanctuary buffs.
 - Ensure the Sanctuary, dungeon biomes, soundtrack cues (original or properly
   licensed only), quests and Codex feel coherent and do not spam chat.
 
+### 14. The Shattered Depths: optional underground RPG exploration (user-approved 9 November 2026)
+
+**Status: PLANNED, not implemented in v1.0.55.** Give the Overworld its own
+subterranean exploration layer, using vanilla cave/mining as the foundation.
+Create six distinct underground regions related to the six chapter biomes,
+without forcing players underground to clear the main story:
+
+| Surface chapter biome | Underground region | Distinct exploration |
+| --- | --- | --- |
+| Smugglers' Wilds | **Smugglers' Tunnels** | Abandoned contraband shafts, false walls, hidden stores |
+| Cinder Wastes | **Emberfault Chasms** | Basalt caves, magma vents, telegraphed heat hazards |
+| Hollow Moor | **Drowned Ossuary** | Flooded passages, crypt remains, skeletal ambushes |
+| Arcane Highlands | **Starshard Caverns** | Rare luminous geodes, crystal bridges, arcane anomalies |
+| Sixfold Expanse | **Rootbound Grottos** | Overgrown caves, strange roots, sixfold inscriptions |
+| Hollow King's Dominion | **Black Crown Depths** | Corrupted deepslate, catacombs and dangerous sentries |
+
+**Generation and discovery**
+- Integrate actual underground terrain/decoration features and cave-region
+  selection into NeoForge 1.21.1 Overworld generation; avoid simply recolouring
+  surface ground or placing a facade of blocks above ground.
+- Preserve vanilla caves, stone types, ores, strongholds, trial chambers and
+  mining access. Keep rare regions appropriately spaced and traversable;
+  do not sever crucial vanilla resources or existing dungeon structures.
+- Add natural underground ruins, buried catacombs, crystal chambers, small
+  encounter sites and especially rare **Hidden Vaults** with discernible
+  entrances or discoverable clues. Generate below ground and do not overwrite
+  existing terrain in previously explored chunks.
+- Introduce underground-exclusive creature encounters and a small set of
+  optional, mechanically distinct **elite/miniboss** fights, with readable
+  telegraphs and retreat paths. Main six campaign bosses remain unchanged.
+- Distinctive sound/particle/lighting atmosphere must be configurable and
+  performant with shaders and Xaero's maps, with no forced darkness, excessive
+  audio spam or unavoidable lethal traps.
+
+**Rewards, secrets and progression**
+- Provide balanced, bounded cave chest loot, rare **Starshard** and other
+  underground materials where justified, collectible lore fragments and
+  simple optional vault clue/puzzle interactions. New resources may serve
+  cosmetic recipes and existing forging/crafting costs, not a stronger
+  equipment tier or a replacement for normal mining.
+- Tie underground lore to the corresponding six chapter histories, with
+  J > Explore tracking distinct cave discoveries, vaults and collectibles.
+  Sanctuary Cartographer/Trophy Hall should reflect earned records once built.
+- Keep all underground content optional. No mandatory dungeon summons,
+  sigils, boss keys or level-60 progression may be gated behind mining;
+  never give free legendary weapons, unlimited XP or infinite resources.
+- Respect saves, single-player discovery flags, one-time rewards and NG+
+  rules; preserve existing resource, combat, enchantment and class balances.
+
+**Acceptance criteria before v1.0.59 feature freeze**
+- On fresh worlds, independently locate and enter all six underground regions,
+  with thematic structures and no broken chunk edges, water/lava floods or
+  untraversable generated rooms. Validate rare/ordinary generation rates.
+- Confirm underground ruins, catacombs, vaults, loot tables, secret mechanisms,
+  optional elite encounters and Codex counters each work and persist correctly.
+- Repeat generation in unexplored chunks of an upgraded save; confirm existing
+  explored chunks, vanilla cave/ore content and all six surface dungeons remain
+  intact. Test save/reload, shaders, multiplayer-safe data handling and FPS.
+- Add automated feature/structure/loot assertions and actual server GameTests
+  for underground structure placement and interactions. Finish with manual
+  survival and shader playtesting; green GitHub checks alone do not sign off.
+
 ## v1.0.59 — Feature Freeze, Balance and Release Candidate
 
-**No new major gameplay systems after v1.0.58.**
+**No new major gameplay systems after v1.0.58.** The user-approved Shattered Depths expansion must be completed and tested before the feature freeze.
 
 - Audit all **41** custom enchantment registry entries (36 shop additions
   and five older entries): real effects, tooltip correctness, conflicts and
@@ -213,7 +275,7 @@ a redundant separate power system. Add no unconditional sanctuary buffs.
 - Review level 1-60 progression, mastery economy, NG+ scaling, boss difficulty,
   bounties, Shattered Trials, XP purchase prices and loot drop fairness.
 - Ensure full campaign remains possible without farming bounties or trials.
-- Validate biome worldgen, Sanctuary persistence, relics, Boss Bestiary records,
+- Validate aboveground and underground worldgen, Sanctuary persistence, relics, Boss Bestiary records,
   secret challenge unlocking, fresh worlds, save updates and survival inventory.
 - Fix compatibility, performance, missing assets, crashes and exploits.
 
@@ -222,7 +284,7 @@ a redundant separate power system. Add no unconditional sanctuary buffs.
 - Export one reproducible CurseForge-importable package for Java 1.21.1/
   NeoForge with verified dependency pins, bundled mod textures and documentation.
 - Pass automated Java compile, asset/data/packaging checks and real server GameTests.
-- Perform full **client** acceptance on fresh and upgraded saves: biome exploration,
+- Perform full **client** acceptance on fresh and upgraded saves: surface/underground exploration,
   all six dungeons/bosses, all classes, Level 60/NG+, bounties, Shattered Trials,
   Sanctuary rooms/trophies, enchantments, all six legendary sword powers,
   secret encounter, map/mod/shader integration, save and reload.
@@ -236,6 +298,7 @@ a redundant separate power system. Add no unconditional sanctuary buffs.
 - [ ] RPG introduction and optional tutorial
 - [ ] Six-boss Codex Bestiary
 - [ ] Environmental secrets and dungeon atmosphere
+- [ ] Shattered Depths: six subterranean regions, underground ruins/catacombs, optional elite encounters, Hidden Vaults, loot, Codex discoveries and save-safe generation
 - [ ] Shattered Trials
 - [ ] Repeatable Adventurer's Bounty Board
 - [ ] The Warden's Sanctuary with all seven rooms
@@ -247,6 +310,6 @@ a redundant separate power system. Add no unconditional sanctuary buffs.
 - [ ] Comprehensive final balance and regression tests
 - [ ] Verified v1.1.0 CurseForge stable release
 
-These boxes remain unchecked until implemented and both automated and client playtests pass. Changing the major
-feature list requires explicit user approval; fixes and technical decisions
-that satisfy an existing item do not.
+These boxes remain unchecked until implemented and both automated and client playtests pass. The Shattered Depths
+is the user-approved scope exception dated 9 November 2026. Any further major additions
+still require explicit approval; fixes and technical choices that satisfy an existing item do not.
