@@ -8,8 +8,8 @@ class GuardGameTestChecks(unittest.TestCase):
         self.assertIn("@GameTestHolder(ShatteredSeals.MOD_ID)",java)
         self.assertIn('@GameTest(template = "smugglers_den"',java)
         self.assertIn("ClassicSwordGuard.isFacingAttack",java)
-    def test_count_gate_seventeen(self):
+    def test_count_gate_twenty_six(self):
         gate=(ROOT/"scripts/verify_gametest_results.py").read_text()
-        self.assertIn("MINIMUM_TESTS = 17",gate)
+        self.assertIn("MINIMUM_TESTS = 26",gate)
 if __name__=="__main__":
     unittest.main()

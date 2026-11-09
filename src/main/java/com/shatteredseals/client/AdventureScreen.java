@@ -407,7 +407,7 @@ public final class AdventureScreen extends Screen {
             line(graphics, SWORD_DESCRIPTIONS[i],
                 x + 12, y + 104 + i * 24, 0xFFAFC4D5);
         }
-        line(graphics, "Mastery is cosmetic. Dormant/Awakened/Ascended power remains unchanged.",
+        line(graphics, "Mastery is cosmetic. Power grows from Dormant to Awakened to Ascended.",
             x + 8, y + 240, 0xFF9BCDAD);
     }
 
