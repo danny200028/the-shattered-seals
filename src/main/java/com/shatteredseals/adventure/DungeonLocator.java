@@ -27,6 +27,9 @@ public final class DungeonLocator {
         event.getDispatcher().register(Commands.literal("shatteredseals")
             .then(Commands.literal("locate")
                 .executes(context -> locate(context.getSource().getPlayerOrException())))
+            .then(Commands.literal("enchantmessages")
+                .then(Commands.literal("on").executes(context -> setEnchantMessages(context.getSource().getPlayerOrException(), true)))
+                .then(Commands.literal("off").executes(context -> setEnchantMessages(context.getSource().getPlayerOrException(), false))))
             .then(Commands.literal("intro")
                 .executes(context -> com.shatteredseals.world.WorldDiscovery.showIntroduction(
                     context.getSource().getPlayerOrException())))
@@ -54,6 +57,13 @@ public final class DungeonLocator {
                 .then(Commands.literal("abandon")
                     .executes(context -> AdventureContracts.abandonBounty(
                         context.getSource().getPlayerOrException())))));
+    }
+
+    private static int setEnchantMessages(ServerPlayer player, boolean enabled) {
+        if (enabled) player.removeTag("ss_quiet_enchants");
+        else player.addTag("ss_quiet_enchants");
+        tell(player, "Custom enchantment proc messages " + (enabled ? "enabled" : "disabled") + ".", ChatFormatting.AQUA);
+        return 1;
     }
 
     private static int locate(ServerPlayer player) {

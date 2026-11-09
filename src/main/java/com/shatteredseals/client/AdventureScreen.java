@@ -285,12 +285,12 @@ public final class AdventureScreen extends Screen {
         if (data == null) {
             line(graphics, "Retrieving your adventure from the server...", x + 8, y + 58, 0xFFDDDDDD);
         } else {
-            line(graphics, "Level " + data.level() + "   Skill Points: " + data.points()
+            if (page != Page.ENCHANTS) line(graphics, "Level " + data.level() + "   Skill Points: " + data.points()
                 + "   NG+ Cycle: " + data.ngCycle() + "   Mastery Rank: " + data.masteryRank(),
                 x + 8, y + 53, 0xFFF0CD86);
             switch (page) {
                 case JOURNAL -> renderJournal(graphics, data, x, y);
-                case ARSENAL -> renderArsenal(graphics, x, y);
+                case ARSENAL -> renderArsenal(graphics, data, x, y);
                 case RELICS -> renderRelics(graphics, x, y);
                 case ENCHANTS -> renderEnchants(graphics, x, y, mouseX, mouseY);
                 case FORGE -> renderForge(graphics, x, y);
@@ -355,15 +355,15 @@ public final class AdventureScreen extends Screen {
         return -1;
     }
 
-    private void renderArsenal(GuiGraphics graphics, int x, int y) {
+    private void renderArsenal(GuiGraphics graphics, SkillSnapshot data, int x, int y) {
         line(graphics, "SIX LEGENDARY SWORDS | PASSIVES ON MELEE HITS", x + 8, y + 77, 0xFFE4AF76);
         for (int i = 0; i < WEAPONS.length; i++) {
-            line(graphics, WEAPONS[i] + "  |  " + SWORD_POWERS[i],
+            line(graphics, font.plainSubstrByWidth(WEAPONS[i] + "  |  Mastery " + com.shatteredseals.combat.SwordMastery.rank(data.swordMastery()[i]) + "/5 (" + data.swordMastery()[i] + " kills)  |  " + SWORD_POWERS[i], 392),
                 x + 8, y + 92 + i * 24, 0xFFE1CFAB);
             line(graphics, SWORD_DESCRIPTIONS[i],
                 x + 12, y + 104 + i * 24, 0xFFAFC4D5);
         }
-        line(graphics, "Effects grow from Dormant to Awakened to Ascended. Chance is unchanged.",
+        line(graphics, "Mastery is cosmetic. Dormant/Awakened/Ascended power remains unchanged.",
             x + 8, y + 240, 0xFF9BCDAD);
     }
 

@@ -1,3 +1,5 @@
+scoreboard players add @a ss_proc_cd 0
+execute as @a[scores={ss_proc_cd=1..}] run scoreboard players remove @s ss_proc_cd 1
 scoreboard players add #clock ss_clock 1
 execute if score #clock ss_clock matches 80.. run scoreboard players set #clock ss_clock 0
 scoreboard players add @a ss_path 0

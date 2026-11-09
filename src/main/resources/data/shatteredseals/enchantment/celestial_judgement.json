@@ -25,10 +25,19 @@
         "affected": "victim",
         "enchanted": "attacker",
         "effect": {
-          "type": "minecraft:damage_entity",
-          "damage_type": "minecraft:magic",
-          "min_damage": 1.25,
-          "max_damage": 2.75
+          "type": "minecraft:all_of",
+          "effects": [
+            {
+              "type": "minecraft:damage_entity",
+              "damage_type": "minecraft:magic",
+              "min_damage": 1.25,
+              "max_damage": 2.75
+            },
+            {
+              "type": "minecraft:run_function",
+              "function": "shatteredseals:enchantment_procs/celestial_judgement"
+            }
+          ]
         },
         "requirements": {
           "condition": "minecraft:random_chance",

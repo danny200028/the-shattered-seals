@@ -25,10 +25,19 @@
         "affected": "victim",
         "enchanted": "attacker",
         "effect": {
-          "type": "minecraft:damage_entity",
-          "damage_type": "minecraft:magic",
-          "min_damage": 0.7,
-          "max_damage": 1.7
+          "type": "minecraft:all_of",
+          "effects": [
+            {
+              "type": "minecraft:damage_entity",
+              "damage_type": "minecraft:magic",
+              "min_damage": 0.7,
+              "max_damage": 1.7
+            },
+            {
+              "type": "minecraft:run_function",
+              "function": "shatteredseals:enchantment_procs/thunderstrike"
+            }
+          ]
         },
         "requirements": {
           "condition": "minecraft:random_chance",

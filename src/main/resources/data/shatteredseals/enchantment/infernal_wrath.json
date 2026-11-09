@@ -25,12 +25,21 @@
         "affected": "victim",
         "enchanted": "attacker",
         "effect": {
-          "type": "minecraft:ignite",
-          "duration": {
-            "type": "minecraft:linear",
-            "base": 3,
-            "per_level_above_first": 2
-          }
+          "type": "minecraft:all_of",
+          "effects": [
+            {
+              "type": "minecraft:ignite",
+              "duration": {
+                "type": "minecraft:linear",
+                "base": 3,
+                "per_level_above_first": 2
+              }
+            },
+            {
+              "type": "minecraft:run_function",
+              "function": "shatteredseals:enchantment_procs/infernal_wrath"
+            }
+          ]
         },
         "requirements": {
           "condition": "minecraft:random_chance",
