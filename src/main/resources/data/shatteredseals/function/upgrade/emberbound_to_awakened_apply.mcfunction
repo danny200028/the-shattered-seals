@@ -1,7 +1,9 @@
 scoreboard players set @s ss_upok 1
+shatteredseals upgrade remember
 item replace entity @s weapon.mainhand with minecraft:air
 clear @s minecraft:blaze_rod 16
 clear @s minecraft:netherite_ingot 1
 function shatteredseals:gear/emberbound/awakened
+shatteredseals upgrade restore
 playsound minecraft:block.enchantment_table.use player @s ~ ~ ~ 0.9 1
 tellraw @s {"text":"Emberbound Blade upgraded to Awakened!","color":"green","italic":false}
