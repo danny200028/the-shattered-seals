@@ -2,6 +2,7 @@ package com.shatteredseals.adventure;
 
 import com.shatteredseals.ShatteredSeals;
 import com.shatteredseals.net.DungeonWaypoint;
+import com.mojang.brigadier.arguments.IntegerArgumentType;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.Commands;
 import net.minecraft.core.BlockPos;
@@ -31,7 +32,28 @@ public final class DungeonLocator {
                     context.getSource().getPlayerOrException())))
             .then(Commands.literal("audit")
                 .executes(context -> com.shatteredseals.diagnostics.RuntimeAudit.run(
-                    context.getSource().getPlayerOrException()))));
+                    context.getSource().getPlayerOrException())))
+            .then(Commands.literal("trial")
+                .then(Commands.literal("arm")
+                    .then(Commands.argument("mask", IntegerArgumentType.integer(1, 3))
+                        .executes(context -> AdventureContracts.armTrial(
+                            context.getSource().getPlayerOrException(),
+                            IntegerArgumentType.getInteger(context, "mask")))))
+                .then(Commands.literal("cancel")
+                    .executes(context -> AdventureContracts.cancelTrial(
+                        context.getSource().getPlayerOrException()))))
+            .then(Commands.literal("bounty")
+                .then(Commands.literal("accept")
+                    .then(Commands.argument("kind", IntegerArgumentType.integer(1, 3))
+                        .executes(context -> AdventureContracts.acceptBounty(
+                            context.getSource().getPlayerOrException(),
+                            IntegerArgumentType.getInteger(context, "kind")))))
+                .then(Commands.literal("claim")
+                    .executes(context -> AdventureContracts.claimBounty(
+                        context.getSource().getPlayerOrException())))
+                .then(Commands.literal("abandon")
+                    .executes(context -> AdventureContracts.abandonBounty(
+                        context.getSource().getPlayerOrException())))));
     }
 
     private static int locate(ServerPlayer player) {
