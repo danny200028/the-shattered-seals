@@ -394,3 +394,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+    from generate_final_world import main as generate_final_world
+    generate_final_world()
