@@ -5,3 +5,4 @@ tellraw @s {"text":"Additional Warden crafting materials claimed.","color":"aqua
 advancement grant @s only shatteredseals:progress/smuggler_king
 
 function shatteredseals:progression/boss_xp
+give @s shatteredseals:boss_mask_smuggler_king 1

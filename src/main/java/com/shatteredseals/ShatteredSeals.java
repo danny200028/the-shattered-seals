@@ -28,6 +28,18 @@ public final class ShatteredSeals {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MOD_ID);
     public static final DeferredItem<Item> SANCTUARY_KEYSTONE =
         ITEMS.registerSimpleItem("sanctuary_keystone", new Item.Properties().stacksTo(1));
+    public static final DeferredItem<Item> MASK_SMUGGLER_KING =
+        ITEMS.registerSimpleItem("boss_mask_smuggler_king", new Item.Properties().stacksTo(1));
+    public static final DeferredItem<Item> MASK_CINDER_WARDEN =
+        ITEMS.registerSimpleItem("boss_mask_cinder_warden", new Item.Properties().stacksTo(1));
+    public static final DeferredItem<Item> MASK_HOLLOW_KNIGHT =
+        ITEMS.registerSimpleItem("boss_mask_hollow_knight", new Item.Properties().stacksTo(1));
+    public static final DeferredItem<Item> MASK_ARCANE_SEER =
+        ITEMS.registerSimpleItem("boss_mask_arcane_seer", new Item.Properties().stacksTo(1));
+    public static final DeferredItem<Item> MASK_SIXFOLD_GUARDIAN =
+        ITEMS.registerSimpleItem("boss_mask_sixfold_guardian", new Item.Properties().stacksTo(1));
+    public static final DeferredItem<Item> MASK_HOLLOW_KING =
+        ITEMS.registerSimpleItem("boss_mask_hollow_king", new Item.Properties().stacksTo(1));
     public static final DeferredItem<Item> ARCHIVISTS_CROWN =
         ITEMS.registerSimpleItem("archivists_crown", new Item.Properties().stacksTo(1));
     private static final System.Logger LOGGER = System.getLogger("The Shattered Seals");

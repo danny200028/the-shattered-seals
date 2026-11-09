@@ -5,3 +5,4 @@ tellraw @s {"text":"Additional Warden crafting materials claimed.","color":"aqua
 advancement grant @s only shatteredseals:progress/arcane_seer
 
 function shatteredseals:progression/boss_xp
+give @s shatteredseals:boss_mask_arcane_seer 1

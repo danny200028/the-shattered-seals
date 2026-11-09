@@ -17,6 +17,7 @@ execute if score @s ss_ng matches 1..3 run effect give @e[tag=ss_sixfold_guardia
 execute if score @s ss_ng matches 4.. run effect give @e[tag=ss_sixfold_guardian,distance=..10,sort=nearest,limit=1] minecraft:resistance 99999 1 true
 tellraw @s {"text":"Sixfold Guardian has awakened. Prepare for three phases!","color":"yellow","bold":true}
 
+execute if score @s ss_spawnok matches 1 run item replace entity @e[tag=ss_sixfold_guardian,sort=nearest,limit=1,distance=..10] armor.head with shatteredseals:boss_mask_sixfold_guardian
 # Cinematic encounter cue: title remains readable and does not freeze the fight.
 execute if score @s ss_spawnok matches 1 run title @a[distance=..40] times 8 48 16
 execute if score @s ss_spawnok matches 1 run title @a[distance=..40] title {"text":"SIXFOLD GUARDIAN","color":"yellow","bold":true}
