@@ -15,7 +15,7 @@ public record SkillSnapshot(int level, int xp, int requiredXp, int points,
                             int kills, int activeClass, int masteryRank,
                             int[] branchRanks, int[] branchMasteries, int[] coreRanks, int[] cooldowns, int[] resources,
                             int ngCycle, int replayChapter, int masteryPoints, int[] masteryPerks,
-                            int[] bossWins, int puzzleStep, int sideQuestState) implements CustomPacketPayload {
+                            int[] bossWins, int puzzleStep, int sideQuestState, int discoveredBiomes, int discoveredLandmarks) implements CustomPacketPayload {
     public static final Type<SkillSnapshot> TYPE = new Type<>(
         ResourceLocation.fromNamespaceAndPath("shatteredseals", "skill_snapshot"));
     public static final StreamCodec<RegistryFriendlyByteBuf, SkillSnapshot> STREAM_CODEC = StreamCodec.of(
@@ -39,6 +39,8 @@ public record SkillSnapshot(int level, int xp, int requiredXp, int points,
             for (int i = 0; i < 6; i++) buf.writeVarInt(value.bossWins()[i]);
             buf.writeVarInt(value.puzzleStep());
             buf.writeVarInt(value.sideQuestState());
+            buf.writeVarInt(value.discoveredBiomes());
+            buf.writeVarInt(value.discoveredLandmarks());
         },
         buf -> {
             int level = buf.readVarInt();
@@ -68,7 +70,7 @@ public record SkillSnapshot(int level, int xp, int requiredXp, int points,
             return new SkillSnapshot(level, xp, requiredXp, points, kills,
                                      activeClass, masteryRank, ranks, masteries, coreRanks, cooldowns, resources,
                                      ngCycle, replayChapter, masteryPoints, masteryPerks, bossWins,
-                                     buf.readVarInt(), buf.readVarInt());
+                                     buf.readVarInt(), buf.readVarInt(), buf.readVarInt(), buf.readVarInt());
         });
 
     private static int read(Scoreboard scoreboard, ServerPlayer player, String objective) {
@@ -108,7 +110,9 @@ public record SkillSnapshot(int level, int xp, int requiredXp, int points,
                        read(board, player, "ss_vk_holl"), read(board, player, "ss_vk_arca"),
                        read(board, player, "ss_vk_six"), read(board, player, "ss_vk_king")},
             chapter == null ? 0 : read(board, player, chapter.puzzleScore()),
-            chapter == null ? 0 : read(board, player, chapter.sideScore()));
+            chapter == null ? 0 : read(board, player, chapter.sideScore()),
+            player.getPersistentData().getInt("SSBiomeDiscoveryMask"),
+            player.getPersistentData().getInt("SSLandmarkDiscoveryMask"));
     }
     @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
 }
