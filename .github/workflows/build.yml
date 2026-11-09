@@ -1,7 +1,7 @@
-name: Build The Shattered Seals 1.0.58
+name: Build The Shattered Seals 1.0.59
 on:
   push:
-    branches: [main, feature/sanctuary-chronicles-v1-0-58]
+    branches: [main, feature/animated-bosses-v1-0-59]
   workflow_dispatch:
 concurrency:
   group: shattered-seals-neoforge-main
@@ -56,7 +56,7 @@ jobs:
       - name: Upload CurseForge modpack
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.58-CurseForge-Modpack
+          name: Shattered-Seals-1.0.59-CurseForge-Modpack
           path: |
             build/distributions/*.zip
             build/distributions/*.sha256
@@ -68,7 +68,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.58-NeoForge-JAR
+          name: Shattered-Seals-1.0.59-NeoForge-JAR
           path: |
             build/libs/*.jar
             SHA256SUMS.txt
@@ -77,6 +77,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.58-Build-Log
+          name: Shattered-Seals-1.0.59-Build-Log
           path: compile-log.txt
           if-no-files-found: ignore

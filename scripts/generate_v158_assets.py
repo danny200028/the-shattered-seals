@@ -97,7 +97,7 @@ def ornament(name,primary,shadow,accent):
 def entity_skin(name, primary, shadow, accent):
     """Original complete mob UV atlas; vanilla mobs retain vanilla renderer
     unless they carry the corresponding Shattered Seals boss tag."""
-    size = 128 if name in ("sixfold_guardian","hollow_king") else 64
+    size = 128 # All new articulated body parts use the same 128 x 128 UV atlas
     canvas=[[(0,0,0,255) for _ in range(size)] for _ in range(size)]
     for y in range(size):
         for x in range(size):
@@ -106,6 +106,16 @@ def entity_skin(name, primary, shadow, accent):
             color = accent if stripe and grain < 3 else shadow if (x+y)%19==0 else primary
             shaded = tuple(max(0,min(255,c-(y*9//size)+(grain-6)*2)) for c in color)
             canvas[y][x]=(*shaded,255)
+    # Large readable chest insignia, face plates and scale seams. Rendering
+    # is now on genuine custom geometry, so all six use a full 128px atlas.
+    for y in range(40, 58):
+        for x in range(0, 24):
+            if x in (0,23) or y in (40,57) or (x-y)%7==0:
+                canvas[y][x]=(*accent,255)
+    for y in range(0, 40):
+        for x in range(0, 32):
+            if x in (2,29) or y in (3,35):
+                canvas[y][x]=(*shadow,255)
     # Distinctive glowing eye-bars and heraldry on the texture UV panels.
     for x in range(size//8,size//8+size//8):
         for y in range(size//8,size//8+size//10):

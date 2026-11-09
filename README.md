@@ -6,6 +6,20 @@ The world defaults to Hard difficulty, with high attack speed for an approximati
 
 A challenging single-player RPG modpack, featuring a six-chapter boss storyline, nine-room natural jigsaw fortresses, class skill trees, powerful relics, rarity-based loot, and New Game+ mastery and repeatable chapter quests.
 
+## v1.0.59: Six Animated Bosses
+
+The boss bodies are now original Minecraft-native articulated meshes, not
+vanilla creature body models in costumes. All six have bespoke geometry,
+original 128x128 texture atlases, animated idle/walking/attack/hurt/death poses,
+and tag-driven Phase II / III transformation poses. No added renderer dependency
+or GeckoLib requirement. The **underlying vanilla mob entity types and battle
+data are intentionally preserved**, so AI, attack damage, quest flags, NG+
+modifiers, existing saves, drops and 26 boss/world GameTests still behave
+as before. Ordinary vanilla mobs render with their original models.
+
+Read the v1.0.59 playtest checklist for the combined test of these six bosses
+and the previous v1.0.58 Sanctuary content. Back up your save.
+
 ## v1.0.58: Sanctuary & Legends (automated build and 26 GameTests passed)
 
 **Back up your existing world before installing this update.** v1.0.58 is
@@ -196,7 +210,7 @@ untested interactions, FPS, shaders or full dungeon replay as passed.
 
 1. Open [GitHub Actions](https://github.com/danny200028/the-shattered-seals/actions/workflows/build.yml) and choose the latest successful **Build The Shattered Seals** run.
 2. Download the artifact named **Shattered-Seals-1.0.57-CurseForge-Modpack**.
-3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.58-CurseForge.zip`.
+3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.59-CurseForge.zip`.
 4. Import the inner ZIP through the CurseForge Minecraft modpack importer. CurseForge resolves the pinned NeoForge map and shader dependencies; the custom Shattered Seals JAR lives in `overrides/mods`.
 5. Start Minecraft 1.21.1 with Java 21. Use **J** for the Adventurer's Codex, **K** for the skill tree and **L** to toggle the on-screen quest tracker.
 

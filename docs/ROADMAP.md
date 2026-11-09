@@ -1,7 +1,7 @@
 # The Shattered Seals — LOCKED Final Release Roadmap
 
 > **Scope originally locked: 8 November 2026; expanded on 9 November 2026 by explicit approval for Shattered Depths and the Sanctuary & Legends v1.0.58 update.**
-> **Current development release:** v1.0.58 Sanctuary & Legends candidate (Minecraft Java 1.21.1, NeoForge 21.1.238, Java 21, CurseForge).
+> **Current development release:** v1.0.59 Animated Bosses candidate (Minecraft Java 1.21.1, NeoForge 21.1.238, Java 21, CurseForge).
 > **Final target:** v1.1.0, the complete, difficult, single-player Vanilla+ RPG.
 > **Implementation status:** v1.0.56 manually tested; v1.0.57 passed automated verification. v1.0.58 implements the newly approved architectural, audio, boss visuals and Chronicle features. Latest branch passed build, package checks and 26/26 real NeoForge GameTests; player playtest remains required.
 > This document is the canonical feature-freeze checklist. No new major features will be added
@@ -19,6 +19,20 @@
 > enchantments before replacement and restore them onto the new sword without
 > changing material cost. An extra consumable protection item is therefore
 > unnecessary. Verify on real enchanted swords during manual acceptance.
+
+## v1.0.59 — Fully Animated Story Bosses
+
+User-approved expansion before combined playtest:
+- [x] Six independent articulated body geometries with 128x128 original
+  texture atlases; ordinary vanilla mobs retain their vanilla appearance.
+- [x] Native Minecraft animations for idle, walking, attacks, hurt, death,
+  phase II and III transformations, including quadruped gait and Seer levitation.
+- [x] Keep existing boss entity types, AI, health, hitboxes, loot tables,
+  minions, progression, NG+ and cinematic/sound cues intact.
+- [ ] Final CI Java 21 compilation, 26 real GameTests and CurseForge packaging.
+- [ ] Player's combined v1.0.58 + v1.0.59 visual and Survival acceptance.
+
+The final v1.1.0 release still depends on successful player acceptance.
 
 ## v1.0.58 — Sanctuary & Legends (approved 9 November 2026)
 

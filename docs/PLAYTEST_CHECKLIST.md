@@ -226,3 +226,24 @@ Observatory, Sixfold Temple and Hollow King's Fortress:
 - [ ] Check forest exploration and Sanctuary ambient tracks (disable ambience to stop automatic music)
 - [ ] Confirm first-person blocking sits higher, while retaining 40% frontal mitigation
 - [ ] Reload and retest world progress, trophies, Keystone placement and boss systems
+
+## v1.0.59 Animated Boss Model Acceptance (one combined boss test)
+
+**Back up your survival save first.** Run this alongside the outstanding
+v1.0.58 Sanctuary, music, cinematic, Chronicle and Keystone playtest.
+
+- [ ] Smuggler King: new tricorn/coat model, walking, cutlass strike, hurt/death, phase II/III, minion summoning, first-victory mask
+- [ ] Cinder Warden: new furnace-headed silhouette, walking, flame attack cues, phase transformations, loot
+- [ ] Hollow Knight: new plated armour silhouette, weighted attacks, hurt/death, minions and trophy
+- [ ] Arcane Seer: new hovering robe model, floating animation, spell casts and phase transitions
+- [ ] Sixfold Guardian: new antlered quadruped, four-leg gait, head-lunge, boss health, loot
+- [ ] Hollow King: new crown/spine beast silhouette, tail motion, final phase, minions and loot
+- [ ] All six continue to show original cinematic title, soundtrack, healthbar and phase telegraphs
+- [ ] Check ordinary Pillagers, Husks, Wither Skeletons, Evokers and Ravagers remain vanilla-looking
+- [ ] Check first-victory mask item, Sanctuary 3D trophy and old-save victory flags still work
+- [ ] Enable shaders, verify boss model UVs and frame-rate; disable shaders and compare
+- [ ] Reopen world and confirm progress, class skills and loot are preserved
+
+The GameTest server validates boss phases, drops and data but **cannot verify
+client-side visuals**. Actual model posing, weapons and UV appearance need your
+hands-on visual sign-off.
