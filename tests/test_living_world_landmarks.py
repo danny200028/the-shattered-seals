@@ -30,4 +30,17 @@ class LandmarkTests(unittest.TestCase):
         self.assertIn('ss_landmark_',java)
         self.assertIn('player.getPersistentData()',java)
         self.assertIn('ss_path',java)
+    def test_discovery_chimes_reach_discovering_player(self):
+        # ServerPlayer.playSound excludes the triggering player on the server.
+        # ServerLevel.playSound(null, ...) broadcasts to that player too.
+        import re
+        java=(ROOT/'src/main/java/com/shatteredseals/world/WorldDiscovery.java').read_text()
+        self.assertNotIn('player.playSound(',java)
+        pattern=(r'world\.playSound\(\s*null,\s*player\.blockPosition\(\),'
+                 r'\s*SoundEvents\.NOTE_BLOCK_CHIME\.value\(\),'
+                 r'\s*SoundSource\.PLAYERS,\s*0\.[0-9]+F,\s*[0-9.]+F\)')
+        self.assertEqual(len(re.findall(pattern,java)),2,
+                         "Both biome and Lost Shrine discoveries must broadcast their chime")
+        self.assertIn('SSBiomeDiscoveryMask',java)
+        self.assertIn('SSLandmarkDiscoveryMask',java)
 if __name__=='__main__':unittest.main()
