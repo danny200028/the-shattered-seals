@@ -28,7 +28,11 @@ class LivingWorldBiomes(unittest.TestCase):
             with self.subTest(biome=biome):
                 self.assertIn('"shatteredseals:'+biome+'"',GENERATOR)
                 source=json.loads((DATA/'worldgen/biome'/f'{biome}.json').read_text())
-                self.assertTrue(source['features'][6],biome+' missing vanilla underground ores')
+                self.assertIn('minecraft:ore_dirt',source['features'][6])
+                self.assertLess(source['features'][6].index('minecraft:ore_dirt'),
+                                source['features'][6].index('minecraft:ore_coal_upper'))
+                self.assertEqual(source['features'][9][-1],
+                                 'shatteredseals:'+biome+'_surface_patch')
                 self.assertIn('shatteredseals:'+biome+'_surface_patch',source['features'][9])
                 self.assertTrue(source['spawners']['monster'])
                 self.assertTrue((DATA/'worldgen/configured_feature'/f'{biome}_surface_patch.json').exists())
