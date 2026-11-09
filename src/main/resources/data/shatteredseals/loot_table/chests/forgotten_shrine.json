@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 2,
+      "entries": [
+        {"type":"minecraft:item","name":"minecraft:book","weight":8},
+        {"type":"minecraft:item","name":"minecraft:paper","weight":8},
+        {"type":"minecraft:item","name":"minecraft:candle","weight":6},
+        {"type":"minecraft:item","name":"minecraft:iron_nugget","weight":6},
+        {"type":"minecraft:item","name":"minecraft:compass","weight":2},
+        {"type":"minecraft:empty","weight":6}
+      ]
+    }
+  ],
+  "random_sequence": "shatteredseals:forgotten_shrine"
+}

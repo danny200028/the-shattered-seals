@@ -237,6 +237,59 @@ def structure_nbt(chapter: int, wall: str, floor: str, trim: str, mob: str, loot
     )
     return named(10, "", root)
 
+def landmark_nbt(chapter: int, wall: str, floor: str, trim: str,
+                 biome: str) -> bytes:
+    """Compact cosmetic ruin: one modest loot chest and a unique discovery marker.
+
+    No boss, no sigil, no skills/XP, and no mandatory progression gate.
+    """
+    blocks: dict[tuple[int, int, int], tuple[str, bytes | None]] = {}
+
+    def place(x: int, y: int, z: int, material: str,
+              extra: bytes | None = None) -> None:
+        blocks[(x, y, z)] = (material, extra)
+
+    for x in range(11):
+        for z in range(11):
+            if 1 <= x <= 9 and 1 <= z <= 9:
+                place(x, 0, z, floor if (x + z) % 4 else trim)
+    for x, z in ((1, 1), (9, 1), (1, 9), (9, 9)):
+        for y in range(1, 4):
+            place(x, y, z, wall)
+        place(x, 4, z, trim)
+    for x in range(3, 8):
+        for z in range(3, 8):
+            place(x, 0, z, trim if x in (3, 7) or z in (3, 7) else floor)
+    place(5, 1, 5, "minecraft:chiseled_stone_bricks")
+    place(5, 2, 5, "minecraft:lantern")
+    place(6, 1, 5, "minecraft:chest", compound(
+        nbt_str("id", "minecraft:chest"),
+        nbt_str("LootTable", "shatteredseals:chests/forgotten_shrine")))
+    for x, z in ((5, 1), (5, 9), (1, 5), (9, 5)):
+        place(x, 1, z, "minecraft:cracked_stone_bricks")
+    entities = [
+        template_entity("minecraft:marker", 5, 1, 5,
+                        entity_tags("ss_landmark", "ss_landmark_" + biome))
+    ]
+    names = list(dict.fromkeys(name for name, _ in blocks.values()))
+    indices = {name: i for i, name in enumerate(names)}
+    entries = []
+    for pos, (block, extra) in sorted(blocks.items()):
+        tags = [nbt_list("pos", 3, [struct.pack(">i", n) for n in pos]),
+                nbt_int("state", indices[block])]
+        if extra is not None:
+            tags.append(named(10, "nbt", extra))
+        entries.append(compound(*tags))
+    root = compound(
+        nbt_int("DataVersion", 3955),
+        nbt_list("size", 3, [struct.pack(">i", n) for n in (11, 6, 11)]),
+        nbt_list("palette", 10, [palette_block(name) for name in names]),
+        nbt_list("blocks", 10, entries),
+        nbt_list("entities", 10, entities),
+    )
+    return named(10, "", root)
+
+
 def write_json(path: Path, data: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(data, indent=2) + "\n")
@@ -289,7 +342,54 @@ def main() -> None:
         write_json(DATA / f"tags/worldgen/structure/{dungeon}.json", {
             "values": [f"shatteredseals:{dungeon}"],
         })
-    print(f"Generated {len(THEMES)} reproducible overworld dungeon structures.")
+    for chapter, (dungeon, biome, wall, floor, trim, mob, salt) in enumerate(THEMES, 1):
+        biome_id = biome.removeprefix("shatteredseals:")
+        landmark = biome_id + "_lost_shrine"
+        path = DATA / f"structure/{landmark}.nbt"
+        path.write_bytes(gzip.compress(
+            landmark_nbt(chapter, wall, floor, trim, biome_id),
+            compresslevel=9, mtime=0))
+        write_json(DATA / f"worldgen/template_pool/{landmark}.json", {
+            "fallback": "minecraft:empty",
+            "elements": [{
+                "weight": 1,
+                "element": {
+                    "element_type": "minecraft:single_pool_element",
+                    "location": f"shatteredseals:{landmark}",
+                    "processors": "minecraft:empty",
+                    "projection": "rigid"
+                }
+            }]
+        })
+        write_json(DATA / f"worldgen/structure/{landmark}.json", {
+            "type": "minecraft:jigsaw",
+            "biomes": biome,
+            "step": "surface_structures",
+            "terrain_adaptation": "beard_thin",
+            "spawn_overrides": {},
+            "start_pool": f"shatteredseals:{landmark}",
+            "size": 1,
+            "start_height": {"absolute": 0},
+            "project_start_to_heightmap": "WORLD_SURFACE_WG",
+            "max_distance_from_center": 80,
+            "use_expansion_hack": False
+        })
+        write_json(DATA / f"worldgen/structure_set/{landmark}.json", {
+            "structures": [{"structure": f"shatteredseals:{landmark}",
+                             "weight": 1}],
+            "placement": {
+                "type": "minecraft:random_spread",
+                "spacing": 28,
+                "separation": 9,
+                "salt": salt + 9067,
+                "spread_type": "linear"
+            }
+        })
+        write_json(DATA / f"tags/worldgen/structure/{landmark}.json", {
+            "values": [f"shatteredseals:{landmark}"]
+        })
+    print(f"Generated {len(THEMES)} dungeon structures and {len(THEMES)} hidden shrines.")
+
 
 
 if __name__ == "__main__":
