@@ -140,7 +140,8 @@ public final class AdventureContracts {
     @SubscribeEvent
     public static void onBossSpawn(EntityJoinLevelEvent event) {
         if (!(event.getEntity() instanceof Mob boss) || !(event.getLevel() instanceof ServerLevel level)
-                || !boss.getTags().contains("ss_boss") || boss.getTags().contains("ss_trial")) return;
+                || !boss.getTags().contains("ss_boss") || boss.getTags().contains("ss_trial")
+                || boss.getTags().contains("ss_watch_linked")) return;
         DungeonChapter target = null;
         for (DungeonChapter chapter : DungeonChapter.values()) {
             if (boss.getTags().contains("ss_" + chapter.boss.toLowerCase(java.util.Locale.ROOT).replace(' ', '_'))) {
@@ -192,7 +193,6 @@ public final class AdventureContracts {
             }
         }
         long time = clock(player);
-        if (time % 100L != 80L && time % 100L != 0L) return;
         for (Mob boss : player.serverLevel().getEntitiesOfClass(Mob.class,
                 new AABB(player.blockPosition()).inflate(32),
                 mob -> mob.isAlive() && mob.getTags().contains("ss_trial"))) {
@@ -201,19 +201,31 @@ public final class AdventureContracts {
             int mask = trial.getInt("SSTrialMask");
             int c = trial.getInt("SSTrialChapter");
             if (c < 1 || c > 6 || (mask & 1) == 0) continue;
-            if (time % 100L == 80L) {
+            long next = trial.getLong("SSTrialNextPulse");
+            if (next <= 0L) {
+                trial.putLong("SSTrialNextPulse", time + 100L);
+                trial.putBoolean("SSTrialWarned", false);
+                continue;
+            }
+            if (time >= next - 20L && !trial.getBoolean("SSTrialWarned")) {
+                trial.putBoolean("SSTrialWarned", true);
                 player.displayClientMessage(Component.literal("TRIAL WARNING: " + WARNINGS[c - 1])
                     .withStyle(ChatFormatting.RED), true);
                 player.serverLevel().sendParticles(net.minecraft.core.particles.ParticleTypes.ENCHANT,
                     boss.getX(), boss.getY() + 1, boss.getZ(), 24, 3, 1, 3, 0.04);
-            } else if (player.distanceToSqr(boss) <= 64.0) {
-                player.hurt(player.serverLevel().damageSources().magic(), 2.0F + c * 0.5F);
-                switch (c) {
-                    case 1, 4 -> player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 50, 0));
-                    case 2 -> player.setRemainingFireTicks(Math.max(player.getRemainingFireTicks(), 50));
-                    case 3, 6 -> player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 60, 0));
-                    case 5 -> player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 80, 0));
-                    default -> { }
+            }
+            if (time >= next) {
+                trial.putLong("SSTrialNextPulse", time + 100L);
+                trial.putBoolean("SSTrialWarned", false);
+                if (player.distanceToSqr(boss) <= 64.0) {
+                    player.hurt(player.serverLevel().damageSources().magic(), 2.0F + c * 0.5F);
+                    switch (c) {
+                        case 1, 4 -> player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 50, 0));
+                        case 2 -> player.setRemainingFireTicks(Math.max(player.getRemainingFireTicks(), 50));
+                        case 3, 6 -> player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 60, 0));
+                        case 5 -> player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 80, 0));
+                        default -> { }
+                    }
                 }
             }
         }
