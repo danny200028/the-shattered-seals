@@ -71,6 +71,30 @@ class FinalWorldTests(unittest.TestCase):
                          "minecraft:polished_blackstone_brick_stairs[facing=north]")
         self.assertEqual(blocks[(32,3,24)][0],"minecraft:air")
 
+    def test_three_storey_fortress_preserves_original_rooms(self):
+        import sys
+        sys.path.insert(0, str(ROOT / "scripts"))
+        from generate_final_world import towered_sanctuary
+        blocks = {(38, 1, 8): ("minecraft:enchanting_table", None),
+                  (72, 1, 40): ("minecraft:crying_obsidian", None),
+                  (40, 1, 24): ("minecraft:lodestone", None),
+                  (4, 2, 4): ("minecraft:polished_blackstone_wall", None)}
+        towered_sanctuary(blocks)
+        for pos, kind in (
+            ((38, 1, 8), "minecraft:enchanting_table"),
+            ((72, 1, 40), "minecraft:crying_obsidian"),
+            ((40, 1, 24), "minecraft:lodestone"),
+            ((4, 2, 4), "minecraft:polished_blackstone_wall"),
+            ((40, 11, 24), "minecraft:dark_oak_planks"),
+            ((40, 22, 24), "minecraft:dark_oak_planks"),
+        ):
+            self.assertEqual(blocks[pos][0],kind,pos)
+        self.assertIn("stairs",blocks[(12,2,18)][0])
+        self.assertIn("stairs",blocks[(69,12,18)][0])
+        self.assertEqual(blocks[(0,38,0)][0],"minecraft:deepslate_brick_wall")
+        self.assertTrue(all(0<=x<81 and 0<=y<42 and 0<=z<49
+                            for x,y,z in blocks))
+
     def test_secret_boss_debug_command_is_operator_only_and_preserves_safety(self):
         command=(JAVA/"adventure/SecretBossDebugCommand.java").read_text()
         source=(JAVA/"adventure/FinalAdventure.java").read_text()

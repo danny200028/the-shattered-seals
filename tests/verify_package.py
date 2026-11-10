@@ -21,6 +21,18 @@ class PackageTests(unittest.TestCase):
             names=archive.namelist()
             self.assertIn("manifest.json",names)
             self.assertIn("overrides/README_THE_SHATTERED_SEALS.txt",names)
+            self.assertIn("overrides/resourcepacks/The-Shattered-Seals-Ashen-Covenant.zip",names)
+            self.assertIn("overrides/config/iris.properties",names)
+            self.assertIn("overrides/SHATTERED_SEALS_CURSEFORGE_COVER.png",names)
+            from io import BytesIO
+            with ZipFile(BytesIO(archive.read(
+                "overrides/resourcepacks/The-Shattered-Seals-Ashen-Covenant.zip"))) as themed:
+                self.assertIsNone(themed.testzip())
+                self.assertEqual(json.loads(themed.read("pack.mcmeta"))["pack"]["pack_format"],34)
+                self.assertIn("assets/minecraft/textures/block/deepslate_bricks.png",
+                              themed.namelist())
+            self.assertIn("ComplementaryReimagined_r5.9.3.zip",
+                          archive.read("overrides/config/iris.properties").decode())
             # The public gameplay download must never bundle Windows scripts.
             unsafe_extensions = {".cmd", ".ps1", ".bat", ".exe", ".vbs", ".msi"}
             self.assertFalse([name for name in names
