@@ -1,7 +1,7 @@
 name: Build The Shattered Seals 1.0.61
 on:
   push:
-    branches: [main, fix/strip-windows-scripts-v1-0-61]
+    branches: [main, fix/final-release-blockers]
   workflow_dispatch:
 concurrency:
   group: shattered-seals-neoforge-main

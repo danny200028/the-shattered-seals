@@ -1,7 +1,7 @@
 name: Quick Development Test
 on:
   push:
-    branches: [main, fix/strip-windows-scripts-v1-0-61]
+    branches: [main, fix/final-release-blockers]
   pull_request:
     branches: [main]
   workflow_dispatch:

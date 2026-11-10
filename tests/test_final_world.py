@@ -45,6 +45,24 @@ class FinalWorldTests(unittest.TestCase):
             if needle=="SSTrial":continue
             self.assertIn(needle,source)
         self.assertNotIn("giveExperienceLevels(100",source)
+    def test_sanctuary_remodel_keeps_room_markers_and_functional_positions(self):
+        import sys
+        sys.path.insert(0,str(ROOT/"scripts"))
+        from generate_final_world import remodel_sanctuary
+        blocks={}
+        remodel_sanctuary(blocks)
+        # The redesign must keep the old structure footprint and avoid
+        # overwriting utility blocks on the floor, the Archive and markers.
+        self.assertTrue(all(0<=x<81 and 0<=y<20 and 0<=z<49
+                            for x,y,z in blocks))
+        for pos in ((40,1,24),(38,1,8),(4,1,40),(68,1,21),
+                    (36,1,40),(65,1,3),(72,1,40)):
+            self.assertNotIn(pos,blocks)
+        self.assertEqual(blocks[(40,7,20)][0],"minecraft:lantern")
+        self.assertEqual(blocks[(35,6,24)][0],
+                         "minecraft:polished_blackstone_brick_stairs[facing=north]")
+        self.assertEqual(blocks[(32,3,24)][0],"minecraft:air")
+
     def test_real_minecraft_structures_have_games(self):
         tests=(JAVA/"diagnostics/FinalWorldGameTests.java").read_text()
         self.assertEqual(tests.count("@GameTest("),10)
