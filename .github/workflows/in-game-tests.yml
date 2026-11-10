@@ -1,7 +1,7 @@
 name: Real Minecraft GameTests
 on:
   push:
-    branches: [main, feature/chronicle-rewards-v1-0-61]
+    branches: [main, fix/final-release-blockers]
   workflow_dispatch:
 concurrency:
   group: shattered-seals-real-minecraft-tests

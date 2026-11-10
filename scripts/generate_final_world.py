@@ -147,6 +147,95 @@ def decorate_sanctuary(blocks: dict, w: int, d: int) -> None:
     for x in (36, 44):
         set_block(blocks, x, 6, 1, "minecraft:sea_lantern")
 
+def remodel_sanctuary(blocks: dict) -> None:
+    """Grand interconnected interior with an open central nave and gallery.
+
+    Preserve all room markers, ground-level utility blocks, chest contents and
+    the 81x49x20 template bounds. This is only applied to NEW placements.
+    """
+    # Merge the foyer with its neighbouring halls using broad vaulted portals.
+    # The older five-block openings remain, but the central procession is wider.
+    for x in (32, 48):
+        for z in range(19, 30):
+            for y in range(1, 7):
+                set_block(blocks, x, y, z, "minecraft:air")
+        for z in (18, 30):
+            for y in range(1, 8):
+                set_block(blocks, x, y, z, "minecraft:polished_blackstone_bricks")
+        for z in range(20, 29):
+            set_block(blocks, x, 7, z, "minecraft:polished_blackstone_bricks")
+    for z in (16, 32):
+        for x in range(35, 46):
+            for y in range(1, 7):
+                set_block(blocks, x, y, z, "minecraft:air")
+        for x in (34, 46):
+            for y in range(1, 8):
+                set_block(blocks, x, y, z, "minecraft:polished_blackstone_bricks")
+        for x in range(36, 45):
+            set_block(blocks, x, 7, z, "minecraft:polished_blackstone_bricks")
+
+    # Carve shallow alcoves into the internal dividing walls, away from doors.
+    # They make the wings feel like one castle rather than fifteen boxes.
+    for x in (16, 32, 48, 64):
+        for z in (4, 12, 20, 28, 36, 44):
+            if x in (32, 48) and z in (20, 28):
+                continue
+            for dz in (-1, 0, 1):
+                for y in range(2, 5):
+                    set_block(blocks, x, y, z + dz, "minecraft:air")
+            for dz in (-2, 2):
+                for y in range(1, 6):
+                    set_block(blocks, x, y, z + dz, "minecraft:polished_deepslate")
+            set_block(blocks, x, 5, z, "minecraft:chiseled_stone_bricks")
+    for z in (16, 32):
+        for x in (4, 12, 20, 28, 52, 60, 68, 76):
+            for dx in (-1, 0, 1):
+                for y in range(2, 5):
+                    set_block(blocks, x + dx, y, z, "minecraft:air")
+            for dx in (-2, 2):
+                for y in range(1, 6):
+                    set_block(blocks, x + dx, y, z, "minecraft:polished_deepslate")
+            set_block(blocks, x, 5, z, "minecraft:chiseled_stone_bricks")
+
+    # Raised spectator gallery in the foyer, with a clear central aisle.
+    # No changes at y=1 near the lodestone at (40,1,24).
+    for z in range(19, 30):
+        for x in list(range(34, 37)) + list(range(44, 47)):
+            set_block(blocks, x, 6, z, "minecraft:dark_oak_planks")
+        for x in (37, 43):
+            set_block(blocks, x, 6, z, "minecraft:dark_oak_fence")
+    for z in (19, 29):
+        for x in range(37, 44):
+            set_block(blocks, x, 6, z, "minecraft:dark_oak_fence")
+    # Symmetrical staircases from the main floor up to the gallery.
+    for z in range(19, 25):
+        height = z - 18
+        for x in (35, 45):
+            set_block(blocks, x, height, z,
+                      "minecraft:polished_blackstone_brick_stairs[facing=north]")
+            for y in range(1, height):
+                set_block(blocks, x, y, z, "minecraft:polished_blackstone_bricks")
+    # Vaulted hall ribbing and chandelier over the central floor.
+    for z in (18, 24, 30):
+        for x in range(35, 46):
+            set_block(blocks, x, 8, z, "minecraft:polished_blackstone_bricks")
+        for x in (37, 43):
+            set_block(blocks, x, 7, z, "minecraft:chiseled_deepslate")
+    for x, z in ((40, 20), (40, 28)):
+        set_block(blocks, x, 8, z, "minecraft:chain")
+        set_block(blocks, x, 7, z, "minecraft:lantern")
+
+    # Distinctive hall accents, avoiding all functional floor-level blocks.
+    for x, z in ((8, 8), (24, 8), (40, 8), (56, 8),
+                 (8, 24), (24, 24), (56, 24), (72, 24),
+                 (8, 40), (24, 40), (40, 40), (72, 40)):
+        for y in range(5, 8):
+            for dx in (-4, 4):
+                set_block(blocks, x + dx, y, z - 6, "minecraft:polished_blackstone_bricks")
+        for dx in (-4, 4):
+            set_block(blocks, x + dx, 7, z - 6, "minecraft:sea_lantern")
+
+
 def sanctuary() -> None:
     # 5 x 3 connected rooms, each with a 15x15 usable interior. No auto
     # generated equipment, stored loot, resources, or free fast travel.
@@ -251,6 +340,7 @@ def sanctuary() -> None:
     entities.append(template_entity("minecraft:marker", 72, 1, 40,
         entity_tags("ss_secret_arena")))
     decorate_sanctuary(blocks, w, d)
+    remodel_sanctuary(blocks)
     save_structure("wardens_sanctuary", (w, h, d), blocks, entities)
 
 def depths_site(index: int, wall: str, floor: str, trim: str) -> None:
