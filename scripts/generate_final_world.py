@@ -236,6 +236,46 @@ def remodel_sanctuary(blocks: dict) -> None:
             set_block(blocks, x + dx, 7, z - 6, "minecraft:sea_lantern")
 
 
+def sculpt_sanctuary(blocks: dict) -> None:
+    """Break the uniform square interiors into varied vaulted polygonal chambers.
+
+    Retain functional floor blocks, room markers, all existing doorways, and
+    the central gallery. This only affects newly generated/placed templates.
+    """
+    protected = {2, 4, 7, 8, 9, 12, 13, 14}  # archive, storage, garden, arena, and central nave
+    for index in range(15):
+        if index in protected:
+            continue
+        cx, cz = 8 + index % 5 * 16, 8 + index // 5 * 16
+        for dx in range(-7, 8):
+            for dz in range(-7, 8):
+                ax, az = abs(dx), abs(dz)
+                # Chamfer the corners to produce a broad octagonal chamber.
+                if ax + az < 11 or ax < 3 or az < 3:
+                    continue
+                x, z = cx + dx, cz + dz
+                for y in range(2, 8):
+                    old = blocks.get((x, y, z), ("minecraft:air", None))[0]
+                    if old == "minecraft:air":
+                        set_block(blocks, x, y, z, "minecraft:polished_deepslate")
+                # Dark buttress capitals emphasize the non-rectangular walls.
+                if ax + az == 11:
+                    old = blocks.get((x, 8, z), ("minecraft:air", None))[0]
+                    if old == "minecraft:air":
+                        set_block(blocks, x, 8, z, "minecraft:chiseled_stone_bricks")
+    # Open a larger arched passage between the trophy hall and armoury.
+    # Leave floor, displays and room-centre markers untouched.
+    for z in range(5, 12):
+        for y in range(2, 7):
+            set_block(blocks, 16, y, z, "minecraft:air")
+    # Round the foyer-to-wing transitions with graduated high arch crowns.
+    for x in (32, 48):
+        for dz in range(-5, 6):
+            crown = 7 if abs(dz) <= 2 else 6 if abs(dz) <= 4 else 5
+            for y in range(2, crown):
+                set_block(blocks, x, y, 24 + dz, "minecraft:air")
+
+
 def sanctuary() -> None:
     # 5 x 3 connected rooms, each with a 15x15 usable interior. No auto
     # generated equipment, stored loot, resources, or free fast travel.
@@ -341,6 +381,7 @@ def sanctuary() -> None:
         entity_tags("ss_secret_arena")))
     decorate_sanctuary(blocks, w, d)
     remodel_sanctuary(blocks)
+    sculpt_sanctuary(blocks)
     save_structure("wardens_sanctuary", (w, h, d), blocks, entities)
 
 def depths_site(index: int, wall: str, floor: str, trim: str) -> None:

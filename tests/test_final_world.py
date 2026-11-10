@@ -71,6 +71,26 @@ class FinalWorldTests(unittest.TestCase):
                          "minecraft:polished_blackstone_brick_stairs[facing=north]")
         self.assertEqual(blocks[(32,3,24)][0],"minecraft:air")
 
+    def test_secret_boss_debug_command_is_operator_only_and_preserves_safety(self):
+        command=(JAVA/"adventure/SecretBossDebugCommand.java").read_text()
+        source=(JAVA/"adventure/FinalAdventure.java").read_text()
+        self.assertIn('source.hasPermission(2)',command)
+        self.assertIn('Commands.literal("unbound_warden")',command)
+        self.assertIn('summonSecret(player, false)',source)
+        self.assertIn('!debugBypassProgression && !secretUnlocked',source)
+        self.assertIn('ss_secret_arena',source)
+        self.assertIn('ss_secret_boss',source)
+
+    def test_sanctuary_has_nonrectangular_chambers(self):
+        import sys
+        sys.path.insert(0,str(ROOT/"scripts"))
+        from generate_final_world import sculpt_sanctuary
+        blocks={}
+        sculpt_sanctuary(blocks)
+        self.assertEqual(blocks[(3,3,2)][0],"minecraft:polished_deepslate")
+        self.assertNotIn((8,1,8),blocks)
+        self.assertEqual(blocks[(16,3,8)][0],"minecraft:air")
+
     def test_smuggler_melee_attack_is_cooldown_and_range_gated(self):
         heartbeat=(DATA/"function/boss/heartbeat.mcfunction").read_text()
         strike=(DATA/"function/boss/smuggler_king/melee_strike.mcfunction").read_text()

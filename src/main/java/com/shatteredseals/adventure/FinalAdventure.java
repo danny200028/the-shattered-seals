@@ -362,12 +362,17 @@ public final class FinalAdventure {
     }
 
     public static int summonSecret(ServerPlayer player) {
+        return summonSecret(player, false);
+    }
+
+    /** Operator-only test route: bypass progression, never bypass arena or safety checks. */
+    public static int summonSecret(ServerPlayer player, boolean debugBypassProgression) {
         if (player.serverLevel().getDifficulty() == Difficulty.PEACEFUL) {
             say(player, "The secret challenge requires hostile difficulty.", ChatFormatting.RED);
             return 0;
         }
         int bits = AdventureContracts.trialState(player)[2];
-        if (!secretUnlocked(bits, DungeonChapter.score(player, "ss_ng"))) {
+        if (!debugBypassProgression && !secretUnlocked(bits, DungeonChapter.score(player, "ss_ng"))) {
             say(player, "Earn all six trial medals during one NG+ cycle before this challenge.", ChatFormatting.YELLOW);
             return 0;
         }
