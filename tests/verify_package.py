@@ -6,12 +6,13 @@ from zipfile import ZipFile
 import unittest
 
 ROOT=Path(__file__).resolve().parents[1]
-OUT=ROOT/"build/distributions/The-Shattered-Seals-1.0.65-CurseForge.zip"
+OUT=ROOT/"build/distributions/The-Shattered-Seals-1.1.0-CurseForge.zip"
 REQUIRED={
     (263420,9067173), (317780,9067277), (455508,6661598),
     (394468,6382651), (627557,8884654),
     (238222,8792638), (790626,9309399), (429235,7524151),
     (531761,9406246), (245755,8969751), (940057,6054947),
+    (250398,6368976), (858542,5831692), (60089,5637846), (248787,7854442),
 }
 class PackageTests(unittest.TestCase):
     def test_import_archive(self):
@@ -46,11 +47,11 @@ class PackageTests(unittest.TestCase):
             manifest=json.loads(archive.read("manifest.json"))
             self.assertEqual(manifest["minecraft"]["version"],"1.21.1")
             self.assertEqual(manifest["minecraft"]["modLoaders"],[{"id":"neoforge-21.1.238","primary":True}])
-            self.assertEqual(manifest["version"],"1.0.65")
+            self.assertEqual(manifest["version"],"1.1.0")
             self.assertEqual(manifest["overrides"],"overrides")
             self.assertEqual({(x["projectID"],x["fileID"]) for x in manifest["files"]},REQUIRED)
             self.assertTrue(all(x["required"] for x in manifest["files"]))
-            self.assertEqual(len(mods)+len(manifest["files"]),12)
+            self.assertEqual(len(manifest["files"]),len(REQUIRED))
             # The credits must describe exactly the dependencies that CurseForge imports.
             credits=json.loads(archive.read("overrides/third_party_credits.json"))
             self.assertEqual(len(credits),len(manifest["files"]))

@@ -143,13 +143,13 @@ before checking existing-world compatibility.
       book must not be consumed or swap with the pickaxe.
 - [ ] Verify the vanilla anvil still applies and combines books as before.
 
-## v1.0.65: Rebuilt accessible Sanctuary and mob-free grounds
+## v1.1.0: Castle rebuild, Grand Stair and controls
 
 - [ ] In a NEW disposable test world, enter the Sanctuary and reach both
       the second and third floors using ONLY stairs, not fly/spectator.
 - [ ] Examine the three-wide stairs, head clearance, upper-floor landings,
-      multiple bridges, curved rooms, non-rectangular exterior and towers.
-- [ ] Check all 15 original ground-floor rooms, crafting, chests, Trophy
+      signed switchback, shaped rooms, gatehouse, vaulted keep and battlements.
+- [ ] Check all 15 rooms across the three floors, crafting, chests, Trophy
       Hall masks, holograms and the secret boss arena are still functional.
 - [ ] Wait through nighttime in unlit Sanctuary grounds, including outside
       the walls: no natural vanilla mobs should spawn within 12 blocks.

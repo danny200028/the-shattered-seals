@@ -13,27 +13,23 @@ The world defaults to Hard difficulty, with high attack speed for an approximati
 
 A challenging single-player RPG modpack, featuring a six-chapter boss storyline, nine-room natural jigsaw fortresses, class skill trees, powerful relics, rarity-based loot, and New Game+ mastery and repeatable chapter quests.
 
-## v1.0.65: Sanctuary rebuilt for playable access and clean grounds
+## v1.1.0: Warden's Sanctuary castle rebuild
 
-v1.0.65 failed the player's actual Sanctuary walkthrough. It had inaccessible
-upper floors, gaps in the exterior structure and overly boxy rooms.
-
-- **Walkable three-floor routes:** two three-wide staircases with carved
-  headroom, both landings, continuous upper-floor galleries and actual
-  third-level access. Graph-based regression tests reject disconnected paths.
-- **Non-boxy architecture:** chamfered outer footprint, shaped chambers on
-  ALL ground-floor wings, Gothic upper rooms, octagonal towers, roof terraces,
-  vaulted central keep and an enclosed glass-roof garden.
-- **Mob-free grounds:** ordinary vanilla automated spawning is blocked within
-  the Sanctuary and twelve blocks outside its 81x49 footprint. This includes
-  existing Sanctuaries with the original foyer marker. Pets, manual spawn
-  eggs and scripted bosses are intentionally unaffected.
-- **Foundation bug fixed:** naturally generated coal, iron, copper, gold,
-  diamond, emerald, redstone and lapis ores are accepted as stable terrain.
-  Real protected-block failures now show their X/Y/Z and block ID.
-- **Save safety:** old placed Sanctuaries and their chests are NEVER replaced
-  automatically. Use a *new test world* or a copied world with an empty area
-  for the revised structure. Do not /place over occupied builds.
+- Enter through a projecting gatehouse and take the three-wide Grand Stair.
+  The signed switchback landing leads to the third-floor keep.
+- Chamfered curtain walls, four battlement turrets, a vaulted keep and a glass
+  conservatory enclose the castle. Arched passages connect the rounded and
+  chamfered ground-floor rooms.
+- The 15 functional rooms span three floors. Seven ground-floor spaces
+  include the Trophy Hall, portal chamber, garden and secret arena. The
+  second floor has the armoury, enchanting workshop, war room, bulk storage
+  and brewing nook. Cartography, the Chronicle Archive and the bedroom are
+  in the third-floor keep.
+- The vanilla spawn ward still covers the Sanctuary and twelve blocks beyond
+  its footprint.
+- The revised blueprint is used for future Keystone placements. Existing
+  Sanctuaries keep their blocks, storage and trophies. To inspect the new
+  castle, use a fresh test world or a copied save with a separate, empty site.
 
 ## v1.0.65: The Ashen Covenant fortress and visual identity
 
@@ -237,18 +233,12 @@ require explicit user approval.
   the earlier early-stage render event, which should make the actual sword
   block pose visible. This still requires a user screenshot verification.
 
-## v1.0.57: ALL-FEATURES CONSOLIDATED PLAYTEST (development candidate)
+## Campaign and endgame
 
-**All remaining approved content is staged for one comprehensive acceptance
-session**. This combines the originally planned v1.0.57 and v1.0.58 features;
-a green build alone will not make it a stable v1.1.0 release.
-
-- **Warden's Sanctuary:** locate in newly generated plains/meadow/forest terrain
-  after the first Smuggler King victory via `/shatteredseals sanctuary locate`.
-  Seven display/strategy chambers, plus eight ordinary survival rooms and a
-  secret arena. Chests are empty, crafting consumes usual resources, portal is
-  decorative until you place valid vanilla/modded portals or waystones. Sanctuary
-  records and touched blocks are preserved.
+- **Warden's Sanctuary:** defeating the Smuggler King unlocks the one-time
+  Sanctuary Keystone. Use it in the Overworld at an unoccupied site and
+  confirm the placement at the same spot. The castle includes empty storage,
+  crafting stations, a garden and the Trophy Hall.
 - **Shattered Depths:** six chapter-themed optional underground ruin regions
   near Y -32, six rarer puzzle-gated Hidden Vaults, elite enemies with warned
   attacks and once-per-site lore rewards; cave-block seams in new chunks only.
@@ -279,18 +269,16 @@ a green build alone will not make it a stable v1.1.0 release.
 - **Save safety:** back up the primary world, and test worldgen in a fresh
   world or distant unvisited chunks. Existing generated terrain is never replaced.
 
-**Status:** implementation branch, pending static regression, Java compilation,
-real NeoForge GameTests, and the user's final combined playtest. Do not treat
-untested interactions, FPS, shaders or full dungeon replay as passed.
+## Install v1.1.0
 
+1. Download `The-Shattered-Seals-1.1.0-CurseForge.zip` from the [GitHub release](https://github.com/danny200028/the-shattered-seals/releases/tag/v1.1.0).
+2. Import the ZIP in CurseForge and launch the Minecraft 1.21.1 profile with Java 21. The profile uses NeoForge 21.1.238.
+3. If updating an existing save, back it up before opening it in the new profile.
 
-## Install the development pack
-
-1. Open [GitHub Actions](https://github.com/danny200028/the-shattered-seals/actions/workflows/build.yml) and choose the latest successful **Build The Shattered Seals** run.
-2. Download the artifact named **Shattered-Seals-1.0.65-Clean-CurseForge-Modpack** (script-free packaging).
-3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.65-CurseForge.zip`.
-4. Import the inner ZIP through the CurseForge Minecraft modpack importer. CurseForge resolves the pinned NeoForge map and shader dependencies; the custom Shattered Seals JAR lives in `overrides/mods`.
-5. Start Minecraft 1.21.1 with Java 21. Use **J** for the Adventurer's Codex, **K** for the skill tree and **L** to toggle the on-screen quest tracker.
+Open **Options → Controls → Key Binds** to search for controls with Controlling.
+Mouse Tweaks adds inventory shortcuts. AppleSkin shows food and saturation.
+If the pack fails to start, confirm the profile uses Java 21 and NeoForge,
+then run `/shatteredseals audit` once in-game to check the installed pack.
 
 The shaderpack is **referenced** as a CurseForge dependency rather than redistributing its proprietary files. If CurseForge does not install it into `shaderpacks`, manually install [Complementary Reimagined](https://www.curseforge.com/minecraft/shaders/complementary-reimagined) and select it in the Iris shader menu. The mod's **own RPG textures** are in the compiled JAR.
 

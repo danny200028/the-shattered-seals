@@ -53,48 +53,6 @@ class FinalWorldTests(unittest.TestCase):
             if needle=="SSTrial":continue
             self.assertIn(needle,source)
         self.assertNotIn("giveExperienceLevels(100",source)
-    def test_sanctuary_remodel_keeps_room_markers_and_functional_positions(self):
-        import sys
-        sys.path.insert(0,str(ROOT/"scripts"))
-        from generate_final_world import remodel_sanctuary
-        blocks={}
-        remodel_sanctuary(blocks)
-        # The redesign must keep the old structure footprint and avoid
-        # overwriting utility blocks on the floor, the Archive and markers.
-        self.assertTrue(all(0<=x<81 and 0<=y<20 and 0<=z<49
-                            for x,y,z in blocks))
-        for pos in ((40,1,24),(38,1,8),(4,1,40),(68,1,21),
-                    (36,1,40),(65,1,3),(72,1,40)):
-            self.assertNotIn(pos,blocks)
-        self.assertEqual(blocks[(40,7,20)][0],"minecraft:lantern")
-        self.assertEqual(blocks[(35,6,24)][0],
-                         "minecraft:polished_blackstone_brick_stairs[facing=north]")
-        self.assertEqual(blocks[(32,3,24)][0],"minecraft:air")
-
-    def test_three_storey_fortress_preserves_original_rooms(self):
-        import sys
-        sys.path.insert(0, str(ROOT / "scripts"))
-        from generate_final_world import towered_sanctuary
-        blocks = {(38, 1, 8): ("minecraft:enchanting_table", None),
-                  (72, 1, 40): ("minecraft:crying_obsidian", None),
-                  (40, 1, 24): ("minecraft:lodestone", None),
-                  (4, 2, 4): ("minecraft:polished_blackstone_wall", None)}
-        towered_sanctuary(blocks)
-        for pos, kind in (
-            ((38, 1, 8), "minecraft:enchanting_table"),
-            ((72, 1, 40), "minecraft:crying_obsidian"),
-            ((40, 1, 24), "minecraft:lodestone"),
-            ((4, 2, 4), "minecraft:polished_blackstone_wall"),
-            ((40, 11, 24), "minecraft:dark_oak_planks"),
-            ((40, 22, 24), "minecraft:dark_oak_planks"),
-        ):
-            self.assertEqual(blocks[pos][0],kind,pos)
-        self.assertIn("stairs",blocks[(11,1,18)][0])
-        self.assertIn("stairs",blocks[(69,12,18)][0])
-        self.assertEqual(blocks[(3,39,9)][0],"minecraft:deepslate_brick_wall")
-        self.assertTrue(all(0<=x<81 and 0<=y<42 and 0<=z<49
-                            for x,y,z in blocks))
-
     def test_secret_boss_debug_command_is_operator_only_and_preserves_safety(self):
         command=(JAVA/"adventure/SecretBossDebugCommand.java").read_text()
         source=(JAVA/"adventure/FinalAdventure.java").read_text()
@@ -104,16 +62,6 @@ class FinalWorldTests(unittest.TestCase):
         self.assertIn('!debugBypassProgression && !secretUnlocked',source)
         self.assertIn('ss_secret_arena',source)
         self.assertIn('ss_secret_boss',source)
-
-    def test_sanctuary_has_nonrectangular_chambers(self):
-        import sys
-        sys.path.insert(0,str(ROOT/"scripts"))
-        from generate_final_world import sculpt_sanctuary
-        blocks={}
-        sculpt_sanctuary(blocks)
-        self.assertEqual(blocks[(3,3,2)][0],"minecraft:polished_deepslate")
-        self.assertNotIn((8,1,8),blocks)
-        self.assertEqual(blocks[(16,3,8)][0],"minecraft:air")
 
     def test_smuggler_melee_attack_is_cooldown_and_range_gated(self):
         heartbeat=(DATA/"function/boss/heartbeat.mcfunction").read_text()

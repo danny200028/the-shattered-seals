@@ -12,7 +12,7 @@ from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "1.0.65"
+VERSION = "1.1.0"
 MC_VERSION = "1.21.1"
 LOADER = "neoforge-21.1.238"
 OUT_DIR = ROOT / "build/distributions"
@@ -31,10 +31,14 @@ DEPENDENCIES = (
     (429235, 7524151, "FerriteCore 7.0.3 (NeoForge 1.21.1)", "malte0811"),
     (531761, 9406246, "Balm 21.0.67 (NeoForge 1.21.1; Waystones library)", "BlayTheNinth"),
     (245755, 8969751, "Waystones 21.1.46 (NeoForge 1.21.1)", "BlayTheNinth"),
+    (250398, 6368976, "Controlling 19.0.5 (NeoForge 1.21.1; keybind search)", "Jaredlll08"),
+    (858542, 5831692, "Searchables 1.0.2 (NeoForge 1.21.1; Controlling library)", "Jaredlll08"),
+    (60089, 5637846, "Mouse Tweaks 2.26.1 (NeoForge 1.21.1; inventory shortcuts)", "YaLTeR"),
+    (248787, 7854442, "AppleSkin 3.0.9 (NeoForge 1.21.1; food and saturation display)", "squeek502"),
     (940057, 6054947, "TerraBlender 4.1.0.8 (NeoForge 1.21.1, chapter biomes)", "Glitchfiend"),
 )
 
-README = """THE SHATTERED SEALS v1.0.65
+README = """THE SHATTERED SEALS v1.1.0
 Minecraft Java 1.21.1 / NeoForge 21.1.238 / Java 21
 
 CURSEFORGE IMPORT:
@@ -79,13 +83,17 @@ CURSEFORGE IMPORT:
 13. v1.0.63: The Sanctuary Trophy Hall adds camera-facing hologram labels
     over earned boss mask displays, showing both boss and dungeon names.
     Existing Sanctuaries gain labels on approach; storage and items are untouched.
-14. v1.0.65: A three-storey Gothic Sanctuary with proper staircases and upper
-    bridges, tall watchtowers, a sealed-garden conservatory and six lore seals.
+14. v1.1.0: A three-storey castle with a signed Grand Stair, four battlement
+    turrets, a vaulted keep and a glass conservatory. The 15 functional rooms
+    span the ground floor, upper workshops and royal keep.
     Old placed Sanctuaries remain unchanged, including stored items.
 15. The optional original Ashen Covenant resource pack installs to resourcepacks.
     Activate it once in Options > Resource Packs. Complementary Reimagined r5.9.3
     is recommended by Iris. Select the shader manually if it is missing.
-14. J Codex includes optional rune hints and sword/relic ability descriptions;
+16. Controlling adds search to Options > Controls > Key Binds. Searchables
+    supplies its search library. Mouse Tweaks adds inventory shortcuts and
+    AppleSkin displays food and saturation information.
+17. J Codex includes optional rune hints and sword/relic ability descriptions;
    K Skill Tree now has detailed tooltips for skills and mastery perks.
 
 AUTOMATED TESTING:
@@ -120,13 +128,10 @@ No third-party JARs, shader ZIPs or texture-pack binaries are redistributed.
 """
 
 def select_jar() -> Path:
-    artifacts = sorted((ROOT / "build/libs").glob("the-shattered-seals-*.jar"))
-    mods = [jar for jar in artifacts if not any(
-        jar.name.endswith(suffix) for suffix in ("-sources.jar", "-javadoc.jar", "-dev.jar")
-    )]
-    if len(mods) != 1:
-        raise SystemExit(f"Expected one built mod JAR, found {[p.name for p in mods]}")
-    with ZipFile(mods[0]) as jar:
+    mod = ROOT / "build/libs" / f"the-shattered-seals-{VERSION}.jar"
+    if not mod.is_file():
+        raise SystemExit(f"Build the v{VERSION} mod before packaging: {mod.name}")
+    with ZipFile(mod) as jar:
         names = set(jar.namelist())
         if "META-INF/neoforge.mods.toml" not in names:
             raise SystemExit("The first-party JAR lacks NeoForge mod metadata")
@@ -173,7 +178,7 @@ def select_jar() -> Path:
         for new_structure in ("wardens_sanctuary", "smugglers_tunnels_ruin", "smugglers_tunnels_vault"):
             if f"data/shatteredseals/structure/{new_structure}.nbt" not in names:
                 raise SystemExit(f"First-party JAR missing generated final content: {new_structure}")
-    return mods[0]
+    return mod
 
 def main() -> None:
     mod = select_jar()
@@ -230,7 +235,7 @@ def main() -> None:
     (OUT_DIR / (OUTPUT.name + ".sha256")).write_text(
         f"{checksum}  {OUTPUT.name}\n"
     )
-    (OUT_DIR / "The-Shattered-Seals-1.0.65-CurseForge-Cover.png").write_bytes(cover_path.read_bytes())
+    (OUT_DIR / f"The-Shattered-Seals-{VERSION}-CurseForge-Cover.png").write_bytes(cover_path.read_bytes())
     print(f"CurseForge import archive: {OUTPUT} ({OUTPUT.stat().st_size} bytes)")
     print(f"SHA256: {checksum}")
     print(f"Pinned CurseForge third-party entries: {len(DEPENDENCIES)}")
