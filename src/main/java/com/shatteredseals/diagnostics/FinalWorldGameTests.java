@@ -41,7 +41,7 @@ public final class FinalWorldGameTests {
         }
         h.assertBlockPresent(Blocks.LODESTONE, new BlockPos(40, 2, 24));
         h.assertBlockPresent(Blocks.BOOKSHELF, new BlockPos(65, 2, 3));
-        h.assertBlockPresent(Blocks.DEEPSLATE_BRICKS, new BlockPos(0, 16, 8));
+        h.assertBlockPresent(Blocks.DEEPSLATE_BRICKS, new BlockPos(0, 16, 10));
         // The original glass roof opens into a taller three-storey greenhouse.
         h.assertBlockPresent(Blocks.GLASS, new BlockPos(55, 33, 40));
         h.assertBlockPresent(Blocks.DARK_OAK_PLANKS, new BlockPos(40, 12, 24));
