@@ -12,7 +12,7 @@ from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "1.0.62"
+VERSION = "1.0.63"
 MC_VERSION = "1.21.1"
 LOADER = "neoforge-21.1.238"
 OUT_DIR = ROOT / "build/distributions"
@@ -34,7 +34,7 @@ DEPENDENCIES = (
     (940057, 6054947, "TerraBlender 4.1.0.8 (NeoForge 1.21.1, chapter biomes)", "Glitchfiend"),
 )
 
-README = """THE SHATTERED SEALS v1.0.62
+README = """THE SHATTERED SEALS v1.0.63
 Minecraft Java 1.21.1 / NeoForge 21.1.238 / Java 21
 
 CURSEFORGE IMPORT:
@@ -76,7 +76,10 @@ CURSEFORGE IMPORT:
 12. v1.0.61: J > Bounty offers hunts, biome surveys and chapter boss contracts.
    Only one contract may be active, claiming grants limited vanilla XP and
    ordinary resources, and rewards have a 10-minute cooldown.
-13. J Codex includes optional rune hints and sword/relic ability descriptions;
+13. v1.0.63: The Sanctuary Trophy Hall adds camera-facing hologram labels
+    over earned boss mask displays, showing both boss and dungeon names.
+    Existing Sanctuaries gain labels on approach; storage and items are untouched.
+14. J Codex includes optional rune hints and sword/relic ability descriptions;
    K Skill Tree now has detailed tooltips for skills and mastery perks.
 
 AUTOMATED TESTING:

@@ -536,10 +536,44 @@ public final class FinalAdventure {
                             level.addFreshEntity(display);
                         }
                     }
+                    // Add the hologram only while the earned trophy display exists.
+                    // A nearby labelled display survives world reloads without duplication.
+                    if (!level.getEntitiesOfClass(Display.ItemDisplay.class,
+                            new AABB(cap).inflate(1.3), e -> e.getTags().contains(trophyTag)).isEmpty())
+                        ensureTrophyLabel(level, cap, i);
                 }
                 i++;
             }
         }
+    }
+
+    /**
+     * Add a persistent, camera-facing nameplate above each earned boss mask.
+     * It uses a separate tagged text display: no pedestals, chests, items or
+     * player decorations are modified. Also works for already-placed Sanctuaries.
+     */
+    private static void ensureTrophyLabel(ServerLevel level, BlockPos cap, int index) {
+        String labelTag = "ss_sanctuary_boss_label_" + index;
+        if (!level.getEntitiesOfClass(Display.TextDisplay.class,
+                new AABB(cap).inflate(3.0), display -> display.getTags().contains(labelTag)).isEmpty()) return;
+
+        Display.TextDisplay label = EntityType.TEXT_DISPLAY.create(level);
+        if (label == null) return;
+        DungeonChapter chapter = DungeonChapter.values()[index];
+        CompoundTag displayNbt = label.saveWithoutId(new CompoundTag());
+        displayNbt.putString("text", "{\"text\":\"" + chapter.boss
+            + "\",\"color\":\"gold\",\"bold\":true,\"extra\":[{\"text\":\"\\n"
+            + chapter.dungeon + "\",\"color\":\"gray\",\"bold\":false}]}");
+        displayNbt.putString("billboard", "center");
+        displayNbt.putString("alignment", "center");
+        displayNbt.putBoolean("shadow", true);
+        displayNbt.putBoolean("see_through", false);
+        displayNbt.putInt("background", 0x660A101B);
+        label.load(displayNbt);
+        label.setPos(cap.getX() + 0.5, cap.getY() + 2.15, cap.getZ() + 0.5);
+        label.setNoGravity(true);
+        label.addTag(labelTag);
+        level.addFreshEntity(label);
     }
 
     @SubscribeEvent

@@ -1,7 +1,7 @@
 # The Shattered Seals — LOCKED Final Release Roadmap
 
 > **Scope originally locked: 8 November 2026; expanded on 9 November 2026 by explicit approval for Shattered Depths and the Sanctuary & Legends v1.0.58 update.**
-> **Current development release:** v1.0.62 fixed enchantment book XP-point pricing (Minecraft Java 1.21.1, NeoForge 21.1.238, Java 21, CurseForge).
+> **Current development release:** v1.0.63 Sanctuary Trophy Hall hologram labels (Minecraft Java 1.21.1, NeoForge 21.1.238, Java 21, CurseForge).
 > **Final target:** v1.1.0, the complete, difficult, single-player Vanilla+ RPG.
 > **Implementation status:** v1.0.56 manually tested; v1.0.57 passed automated verification. v1.0.58 implements the newly approved architectural, audio, boss visuals and Chronicle features. Latest branch passed build, package checks and 26/26 real NeoForge GameTests; player playtest remains required.
 > This document is the canonical feature-freeze checklist. No new major features will be added
@@ -19,6 +19,15 @@
 > enchantments before replacement and restore them onto the new sword without
 > changing material cost. An extra consumable protection item is therefore
 > unnecessary. Verify on real enchanted swords during manual acceptance.
+
+## v1.0.63 — Trophy Hall Hologram Nameplates
+
+- [x] Add persistent floating text displays naming each earned boss and its
+  originating chapter dungeon above the six Trophy Hall masks.
+- [x] Retrofit labels automatically to existing Sanctuaries without changing
+  player-built blocks, loot or existing trophies; prevent duplicate labels.
+- [x] Include a dedicated static regression test and manual acceptance checklist.
+- [ ] Confirm CI compilation, gameplay tests and in-game visual readability.
 
 ## v1.0.62 — Fixed XP-Point Book Prices
 
