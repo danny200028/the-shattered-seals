@@ -89,7 +89,7 @@ public final class ChronicleRewards {
     private static ItemStack book(String title, String display, String... pages) {
         ItemStack book = new ItemStack(Items.WRITTEN_BOOK);
         List<Filterable<Component>> rendered = java.util.Arrays.stream(pages)
-            .map(text -> Filterable.passThrough(Component.literal(text.replace("\\n", "\n"))))
+            .map(text -> Filterable.<Component>passThrough(Component.literal(text.replace("\\n", "\n"))))
             .toList();
         book.set(DataComponents.WRITTEN_BOOK_CONTENT, new WrittenBookContent(
             Filterable.passThrough(title), "The Warden's Archive", 0, rendered, true));
