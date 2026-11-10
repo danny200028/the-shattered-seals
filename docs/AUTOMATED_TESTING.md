@@ -1,7 +1,9 @@
 # The Shattered Seals: Automated Testing on Windows
 
-This testing toolkit is bundled in the CurseForge import ZIP (no separate
-installer, Git, Python or development JDK required).
+The built-in /shatteredseals audit is part of the CurseForge modpack.
+The optional Windows report collector remains as source under tools/windows
+on GitHub; it is **not** bundled in the gameplay download. This keeps the
+download free of Windows launcher and PowerShell scripts.
 
 ## One-time installation
 
@@ -12,17 +14,13 @@ installer, Git, Python or development JDK required).
 3. Type **`/shatteredseals audit`** into chat. No cheats are required.
 4. Minecraft displays PASS / FAIL / WARN totals. A detailed, **read-only**
    audit is stored in `saves/<world>/shatteredseals-tests/latest.txt`.
-5. Close Minecraft. In CurseForge, choose **Open Folder** for the installed
-   profile. Double-click **`TEST_THE_SHATTERED_SEALS.cmd`**.
-6. Open `ShatteredSeals-TestReports` in the profile root. The collector
-   creates a text report and ZIP with the world audit, safe JAR-file
-   checks, dependency checks, and relevant excerpts from latest.log.
-7. Review the ZIP for personal information before uploading it to ChatGPT.
-   The collector does not connect to ChatGPT or upload automatically.
-
-If Windows warns about a locally downloaded script, inspect it first under
-`tools/ShatteredSeals-TestReport.ps1`. The launcher uses a PowerShell
-execution-policy override for this one process only and changes no policies.
+5. Open the world folder at
+   `saves/<world>/shatteredseals-tests/latest.txt` and inspect the results.
+6. If you need the optional Windows diagnostic collector, inspect its source
+   under `tools/windows/` in the GitHub repository and use it separately.
+   It is **never required** to install, play or test the CurseForge pack.
+7. Review any audit file for personal information before sharing it.
+   Nothing is transmitted automatically.
 
 ## What is actually tested?
 
@@ -53,7 +51,7 @@ These remain in [PLAYTEST_CHECKLIST.md](PLAYTEST_CHECKLIST.md).
   verifies static assets, gameplay functions, resource consistency and the Windows suite.
 * GitHub Actions compiles Java 21, generates structures and builds the CurseForge ZIP.
 * A separate **Real Minecraft GameTests** workflow launches a headless NeoForge
-  GameTest server with the six original dungeons plus the generated final-feature structures. Twenty-six real GameTests
+  GameTest server with the six original dungeons plus the generated final-feature structures. Twenty-seven real GameTests
   verify existing arenas and safeguards alongside actual generation and block
   placement for the Sanctuary, six underground ruins, a hidden vault and the
   new secret challenge/mastery gates. The test-count gate rejects fewer than 26.

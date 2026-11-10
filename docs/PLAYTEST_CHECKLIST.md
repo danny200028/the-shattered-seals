@@ -109,8 +109,8 @@ before checking existing-world compatibility.
 ## Automated testing (first run)
 - [ ] In a disposable Minecraft world, execute `/shatteredseals audit` without cheats.
 - [ ] Confirm the runtime audit reports zero FAIL entries; investigate WARN entries.
-- [ ] Close Minecraft; run `TEST_THE_SHATTERED_SEALS.cmd` from the CurseForge profile directory.
-- [ ] Check that `ShatteredSeals-TestReports` contains the runtime audit, installed-mod checks and ZIP.
+- [ ] Verify `saves/<world>/shatteredseals-tests/latest.txt` exists after `/shatteredseals audit`.
+- [ ] Confirm the clean CurseForge ZIP contains no Windows .cmd or PowerShell .ps1 scripts.
 - [ ] Confirm GitHub's Real Minecraft GameTests workflow passes all six GameTests.
 - [ ] Review report ZIP before sharing; relevant log extracts may contain personal paths or usernames.
 

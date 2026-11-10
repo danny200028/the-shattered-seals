@@ -1,7 +1,7 @@
 name: Build The Shattered Seals 1.0.61
 on:
   push:
-    branches: [main, feature/chronicle-rewards-v1-0-61]
+    branches: [main, fix/strip-windows-scripts-v1-0-61]
   workflow_dispatch:
 concurrency:
   group: shattered-seals-neoforge-main
@@ -56,7 +56,7 @@ jobs:
       - name: Upload CurseForge modpack
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.61-CurseForge-Modpack
+          name: Shattered-Seals-1.0.61-Clean-CurseForge-Modpack
           path: |
             build/distributions/*.zip
             build/distributions/*.sha256

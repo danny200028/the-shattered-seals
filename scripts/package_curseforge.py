@@ -81,9 +81,9 @@ CURSEFORGE IMPORT:
 
 AUTOMATED TESTING:
 - Inside a new test world, type /shatteredseals audit in chat (no cheats required).
-- Quit Minecraft and double-click TEST_THE_SHATTERED_SEALS.cmd in your
-  CurseForge instance folder (the same folder as mods and saves).
-- It creates ShatteredSeals-TestReports with a summary and ZIP to share.
+- Run /shatteredseals audit in your test world for built-in diagnostics.
+- The optional Windows report collector is kept in the public source repository,
+  but is NOT included in this gameplay ZIP to avoid shipping executable scripts.
 - The in-world audit checks live server registries, functions, loot,
   progression data and installed-mod presence WITHOUT changing progress.
 - Visual shaders, actual boss combat, terrain placement and save/reload still
@@ -190,15 +190,9 @@ def main() -> None:
         pack.writestr("manifest.json", json.dumps(manifest, indent=2) + "\n")
         pack.writestr(f"overrides/mods/{mod.name}", mod_bytes)
         pack.writestr("overrides/README_THE_SHATTERED_SEALS.txt", README)
-        # Double-clickable Windows report collector, installed into the profile root.
-        for source, target in (
-            ("tools/windows/TEST_THE_SHATTERED_SEALS.cmd", "overrides/TEST_THE_SHATTERED_SEALS.cmd"),
-            ("tools/windows/ShatteredSeals-TestReport.ps1", "overrides/tools/ShatteredSeals-TestReport.ps1"),
-        ):
-            path = ROOT / source
-            if not path.is_file():
-                raise SystemExit(f"Missing Windows testing tool: {source}")
-            pack.write(path, target)
+        # Security-conscious distribution: no .cmd/.ps1/.bat/.exe helpers.
+        # The optional Windows report collector stays in GitHub source only.
+        # CurseForge itself never needs a launcher script to import the mod.
         pack.writestr("overrides/third_party_credits.json",
                       json.dumps([{"projectID": project, "fileID": file,
                                    "name": label, "author": author}

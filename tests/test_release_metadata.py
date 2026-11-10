@@ -38,7 +38,8 @@ class ReleaseMetadataTests(unittest.TestCase):
         self.assertIn("AnimatedBossModel.class",packager)
         self.assertIn("BossSkinRenderers.class",packager)
         self.assertIn("Custom animated boss skin missing",packager)
-        self.assertIn("TEST_THE_SHATTERED_SEALS.cmd",packager)
+        self.assertNotIn('pack.write(path, target)',packager)
+        self.assertIn("Security-conscious distribution",packager)
         self.assertIn('loot_table/ritual_replay/{boss}.json',packager)
 
 if __name__ == "__main__":

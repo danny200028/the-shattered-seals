@@ -1,3 +1,10 @@
+> **Security packaging note (v1.0.61):** Chrome flagged an earlier download that contained
+> a Windows .cmd launcher calling PowerShell with an execution-policy bypass.
+> The CurseForge ZIP now excludes both Windows scripts entirely. The mod JAR,
+> manifest and pinned dependencies are otherwise unchanged. Chrome may still
+> flag unsigned mod archives, so do not override a dangerous-download warning
+> without independent verification.
+
 # The Shattered Seals ⚔️
 
 Minecraft Java **1.21.1** | **NeoForge 21.1.238** | **Java 21**
@@ -226,7 +233,7 @@ untested interactions, FPS, shaders or full dungeon replay as passed.
 ## Install the development pack
 
 1. Open [GitHub Actions](https://github.com/danny200028/the-shattered-seals/actions/workflows/build.yml) and choose the latest successful **Build The Shattered Seals** run.
-2. Download the artifact named **Shattered-Seals-1.0.57-CurseForge-Modpack**.
+2. Download the artifact named **Shattered-Seals-1.0.61-Clean-CurseForge-Modpack** (script-free packaging).
 3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.61-CurseForge.zip`.
 4. Import the inner ZIP through the CurseForge Minecraft modpack importer. CurseForge resolves the pinned NeoForge map and shader dependencies; the custom Shattered Seals JAR lives in `overrides/mods`.
 5. Start Minecraft 1.21.1 with Java 21. Use **J** for the Adventurer's Codex, **K** for the skill tree and **L** to toggle the on-screen quest tracker.
@@ -276,21 +283,20 @@ screenshot confirmation on the user's Minecraft client.
 
 ### Automated Minecraft testing suite
 
-- The new version includes an automated test collector in the CurseForge import.
+- The import ZIP no longer contains Windows command scripts or PowerShell files. The collector remains an optional, inspectable GitHub source tool.
 - In a **throwaway test world**, type `/shatteredseals audit` to run a read-only
   server-side diagnostic (no cheats required). It checks live dungeon
   registrations, chapter loot, boss functions, NG+ sigils and progression data.
-- Close Minecraft. Open the installed CurseForge profile folder (alongside
-  `mods` and `saves`) and double-click `TEST_THE_SHATTERED_SEALS.cmd`.
-  The Windows collector writes a summary and ZIP to `ShatteredSeals-TestReports`.
-- Review the report ZIP before sharing it; filtered logs may include usernames
-  or computer paths. Nothing is transmitted automatically.
+- Read the results directly in chat or in your world folder at
+  `saves/<world>/shatteredseals-tests/latest.txt`.
+- The separate optional Windows collector lives in `tools/windows/` on GitHub
+  for advanced troubleshooting only; it is not packaged into CurseForge imports.
 - GitHub's **Real Minecraft GameTests** workflow spins up a headless
   NeoForge server and runs **17 actual game tests**, covering six dungeon templates,
   NG+ sigil loot and all six bosses' phase transitions and minion cleanup.
 
-Read [the Windows testing guide](docs/AUTOMATED_TESTING.md) for exact steps.
-The collector cannot test visual shader quality, full boss AI or an entire
+Read [the testing guide](docs/AUTOMATED_TESTING.md) for the built-in audit steps.
+Automated tests cannot verify visual shaders, full boss AI or an entire
 character progression playthrough without a player.
 
 ### Release testing

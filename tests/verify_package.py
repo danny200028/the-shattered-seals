@@ -21,9 +21,13 @@ class PackageTests(unittest.TestCase):
             names=archive.namelist()
             self.assertIn("manifest.json",names)
             self.assertIn("overrides/README_THE_SHATTERED_SEALS.txt",names)
-            self.assertIn("overrides/TEST_THE_SHATTERED_SEALS.cmd",names)
-            self.assertIn("overrides/tools/ShatteredSeals-TestReport.ps1",names)
-            self.assertIn("shatteredseals audit",archive.read("overrides/tools/ShatteredSeals-TestReport.ps1").decode("utf-8"))
+            # The public gameplay download must never bundle Windows scripts.
+            unsafe_extensions = {".cmd", ".ps1", ".bat", ".exe", ".vbs", ".msi"}
+            self.assertFalse([name for name in names
+                              if Path(name).suffix.lower() in unsafe_extensions],
+                             "Executable or PowerShell script inside gameplay ZIP")
+            self.assertFalse([name for name in names if name.startswith("overrides/tools/")],
+                             "Optional Windows test collector must remain source-only")
             self.assertTrue(all(".." not in Path(name).parts and not name.startswith("/") for name in names))
             mods=[name for name in names if name.startswith("overrides/mods/") and name.endswith(".jar")]
             self.assertEqual(len(mods),1)
