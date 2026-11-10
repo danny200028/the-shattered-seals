@@ -47,7 +47,7 @@ class FinalWorldTests(unittest.TestCase):
         self.assertNotIn("giveExperienceLevels(100",source)
     def test_real_minecraft_structures_have_games(self):
         tests=(JAVA/"diagnostics/FinalWorldGameTests.java").read_text()
-        self.assertEqual(tests.count("@GameTest("),9)
+        self.assertEqual(tests.count("@GameTest("),10)
         self.assertIn("wardens_sanctuary",tests)
         self.assertIn("smugglers_tunnels_vault",tests)
         self.assertIn("All", (ROOT/"scripts/verify_gametest_results.py").read_text())

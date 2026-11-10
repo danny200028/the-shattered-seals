@@ -21,9 +21,11 @@ class Update158Tests(unittest.TestCase):
             self.assertIn(word,source)
     def test_reward_save_compatibility(self):
         source=(JAVA/"adventure/FinalAdventure.java").read_text()
-        for word in ("+ 250","giveExperiencePoints(30)","SSDepthsEliteMask",
+        for word in ("ChronicleRewards.eliteXp(player)","giveExperiencePoints(30)","SSDepthsEliteMask",
                      "SSChronicleComplete","SSSanctuaryKeystoneGranted"):
             self.assertIn(word,source)
+        rewards=(JAVA/"adventure/ChronicleRewards.java").read_text()
+        self.assertIn("return 250 + (wearingCrown(player) ? ELITE_BONUS_XP : 0)",rewards)
     def test_generated_original_assets(self):
         from json import loads
         sounds=loads((ROOT/"src/main/resources/assets/shatteredseals/sounds.json").read_text())
