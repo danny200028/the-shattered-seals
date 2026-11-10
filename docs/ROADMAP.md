@@ -1,7 +1,7 @@
 # The Shattered Seals — LOCKED Final Release Roadmap
 
 > **Scope originally locked: 8 November 2026; expanded on 9 November 2026 by explicit approval for Shattered Depths and the Sanctuary & Legends v1.0.58 update.**
-> **Current development release:** v1.0.65 stair access, roof/room redesign and vanilla mob ward (Minecraft Java 1.21.1, NeoForge 21.1.238, Java 21, CurseForge).
+> **Current development release:** v1.0.66 castle rebuild, Grand Stair and geometry validation (Minecraft Java 1.21.1, NeoForge 21.1.238, Java 21, CurseForge).
 > **Final target:** v1.1.0, the complete, difficult, single-player Vanilla+ RPG.
 > **Implementation status:** v1.0.56 manually tested; v1.0.57 passed automated verification. v1.0.58 implements the newly approved architectural, audio, boss visuals and Chronicle features. Latest branch passed build, package checks and 26/26 real NeoForge GameTests; player playtest remains required.
 > This document is the canonical feature-freeze checklist. No new major features will be added

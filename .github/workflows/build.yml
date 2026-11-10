@@ -1,10 +1,12 @@
-name: Build The Shattered Seals 1.0.65
+name: Build The Shattered Seals 1.0.66
 on:
   push:
     branches: [main, fix/final-release-blockers]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 concurrency:
-  group: shattered-seals-neoforge-main
+  group: shattered-seals-neoforge-${{ github.ref }}
   cancel-in-progress: true
 permissions:
   contents: read
@@ -57,7 +59,7 @@ jobs:
       - name: Upload CurseForge modpack
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.65-Clean-CurseForge-Modpack
+          name: Shattered-Seals-1.0.66-Clean-CurseForge-Modpack
           path: |
             build/distributions/*.zip
             build/distributions/*.sha256
@@ -70,7 +72,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.65-NeoForge-JAR
+          name: Shattered-Seals-1.0.66-NeoForge-JAR
           path: |
             build/libs/*.jar
             SHA256SUMS.txt
@@ -79,6 +81,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.65-Build-Log
+          name: Shattered-Seals-1.0.66-Build-Log
           path: compile-log.txt
           if-no-files-found: ignore

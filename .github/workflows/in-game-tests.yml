@@ -2,9 +2,11 @@ name: Real Minecraft GameTests
 on:
   push:
     branches: [main, fix/final-release-blockers]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 concurrency:
-  group: shattered-seals-real-minecraft-tests
+  group: shattered-seals-real-minecraft-tests-${{ github.ref }}
   cancel-in-progress: true
 permissions:
   contents: read

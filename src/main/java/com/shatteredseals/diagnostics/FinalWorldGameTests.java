@@ -10,9 +10,13 @@ import com.shatteredseals.combat.SwordMastery;
 import com.shatteredseals.world.SanctuaryPlacement;
 import com.shatteredseals.world.SanctuarySpawnWard;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.state.properties.Half;
+import net.minecraft.world.level.block.state.properties.StairsShape;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
@@ -41,22 +45,40 @@ public final class FinalWorldGameTests {
         }
         h.assertBlockPresent(Blocks.LODESTONE, new BlockPos(40, 2, 24));
         h.assertBlockPresent(Blocks.BOOKSHELF, new BlockPos(65, 2, 3));
-        h.assertBlockPresent(Blocks.DEEPSLATE_BRICKS, new BlockPos(0, 16, 10));
-        // The original glass roof opens into a taller three-storey greenhouse.
-        h.assertBlockPresent(Blocks.GLASS, new BlockPos(55, 33, 40));
-        h.assertBlockPresent(Blocks.DARK_OAK_PLANKS, new BlockPos(40, 12, 24));
-        h.assertBlockPresent(Blocks.DARK_OAK_PLANKS, new BlockPos(40, 23, 24));
-        h.assertBlockPresent(Blocks.DEEPSLATE_BRICK_WALL, new BlockPos(3, 40, 9));
-        h.assertBlockPresent(Blocks.POLISHED_BLACKSTONE_BRICK_STAIRS, new BlockPos(11, 2, 18));
-        h.assertBlockPresent(Blocks.POLISHED_BLACKSTONE_BRICK_STAIRS, new BlockPos(69, 13, 18));
-        h.assertBlockPresent(Blocks.DARK_OAK_PLANKS, new BlockPos(11, 12, 29));
-        h.assertBlockPresent(Blocks.POLISHED_DEEPSLATE, new BlockPos(69, 23, 29));
+        h.assertBlockPresent(Blocks.DEEPSLATE_BRICKS, new BlockPos(0, 14, 10));
+        h.assertBlockPresent(Blocks.GLASS, new BlockPos(55, 23, 40));
+        h.assertBlockPresent(Blocks.DEEPSLATE_TILES, new BlockPos(40, 40, 20));
+        h.assertBlockPresent(Blocks.DEEPSLATE_BRICK_WALL, new BlockPos(8, 34, 4));
+        assertStairFlight(h, 37, 0, 11, Direction.SOUTH);
+        assertStairFlight(h, 42, 11, 21, Direction.NORTH);
+        h.assertBlockPresent(Blocks.DARK_OAK_PLANKS, new BlockPos(38, 12, 22));
+        h.assertBlockPresent(Blocks.DARK_OAK_PLANKS, new BlockPos(43, 12, 22));
+        h.assertBlockPresent(Blocks.DEEPSLATE_TILES, new BlockPos(43, 23, 10));
         h.assertBlockPresent(Blocks.ENCHANTING_TABLE, new BlockPos(38, 2, 8));
         h.assertBlockPresent(Blocks.FURNACE, new BlockPos(4, 2, 40));
         h.assertBlockPresent(Blocks.CHEST, new BlockPos(68, 2, 21));
         h.assertBlockPresent(Blocks.BREWING_STAND, new BlockPos(36, 2, 40));
         h.succeed();
     }
+
+    private static void assertStairFlight(GameTestHelper h, int left, int floor, int startZ, Direction uphill) {
+        for (int x = left; x < left + 3; x++) {
+            for (int rise = 1; rise <= 11; rise++) {
+                BlockPos tread = new BlockPos(x, floor + rise + 1, startZ + (rise - 1) * uphill.getStepZ());
+                h.assertBlockPresent(Blocks.POLISHED_BLACKSTONE_BRICK_STAIRS, tread);
+                var state = h.getBlockState(tread);
+                if (state.getValue(StairBlock.FACING) != uphill
+                        || state.getValue(StairBlock.HALF) != Half.BOTTOM
+                        || state.getValue(StairBlock.SHAPE) != StairsShape.STRAIGHT) {
+                    h.fail("Wrong stair geometry at " + tread);
+                }
+                for (int clearance = 1; clearance <= 3; clearance++) {
+                    h.assertBlockPresent(Blocks.AIR, tread.above(clearance));
+                }
+            }
+        }
+    }
+
     @GameTest(template = "smugglers_den", timeoutTicks = 100)
     public static void readableChroniclesAndLegendaryCrown(GameTestHelper h) {
         for (int index = 0; index < 6; index++) {

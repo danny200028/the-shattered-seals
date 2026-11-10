@@ -12,7 +12,7 @@ from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "1.0.65"
+VERSION = "1.0.66"
 MC_VERSION = "1.21.1"
 LOADER = "neoforge-21.1.238"
 OUT_DIR = ROOT / "build/distributions"
@@ -34,7 +34,7 @@ DEPENDENCIES = (
     (940057, 6054947, "TerraBlender 4.1.0.8 (NeoForge 1.21.1, chapter biomes)", "Glitchfiend"),
 )
 
-README = """THE SHATTERED SEALS v1.0.65
+README = """THE SHATTERED SEALS v1.0.66
 Minecraft Java 1.21.1 / NeoForge 21.1.238 / Java 21
 
 CURSEFORGE IMPORT:
@@ -79,8 +79,8 @@ CURSEFORGE IMPORT:
 13. v1.0.63: The Sanctuary Trophy Hall adds camera-facing hologram labels
     over earned boss mask displays, showing both boss and dungeon names.
     Existing Sanctuaries gain labels on approach; storage and items are untouched.
-14. v1.0.65: A three-storey Gothic Sanctuary with proper staircases and upper
-    bridges, tall watchtowers, a sealed-garden conservatory and six lore seals.
+14. v1.0.66: A three-storey castle with a signed Grand Stair, four battlement
+    turrets, a vaulted keep and a glass conservatory.
     Old placed Sanctuaries remain unchanged, including stored items.
 15. The optional original Ashen Covenant resource pack installs to resourcepacks.
     Activate it once in Options > Resource Packs. Complementary Reimagined r5.9.3
@@ -230,7 +230,7 @@ def main() -> None:
     (OUT_DIR / (OUTPUT.name + ".sha256")).write_text(
         f"{checksum}  {OUTPUT.name}\n"
     )
-    (OUT_DIR / "The-Shattered-Seals-1.0.65-CurseForge-Cover.png").write_bytes(cover_path.read_bytes())
+    (OUT_DIR / "The-Shattered-Seals-1.0.66-CurseForge-Cover.png").write_bytes(cover_path.read_bytes())
     print(f"CurseForge import archive: {OUTPUT} ({OUTPUT.stat().st_size} bytes)")
     print(f"SHA256: {checksum}")
     print(f"Pinned CurseForge third-party entries: {len(DEPENDENCIES)}")
