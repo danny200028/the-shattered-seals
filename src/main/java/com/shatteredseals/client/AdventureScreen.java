@@ -48,7 +48,7 @@ public final class AdventureScreen extends Screen {
         "Invisibility and Night Vision, at a Weakness cost"
     };
     private static final String[] TIER_NAMES = {"Common", "Rare", "Legendary"};
-    private static final int[] TIER_PRICES = {10, 20, 30};
+    private static final int[] TIER_PRICES = {160, 550, 1395};
     // Exact native-enchantment registry order, grouped into purchasable book rarities.
     private static final String[][] ENCHANT_NAMES = {
         {"Keen Edge", "Stagger", "Lifebloom", "Stoneguard", "Fleetfoot", "Deep Miner",
@@ -185,7 +185,7 @@ public final class AdventureScreen extends Screen {
                 addRenderableWidget(tier);
             }
             addRenderableWidget(Button.builder(Component.literal(
-                "Buy random " + TIER_NAMES[enchantTier] + " book (" + TIER_PRICES[enchantTier] + " XP levels)"),
+                "Buy random " + TIER_NAMES[enchantTier] + " book (" + TIER_PRICES[enchantTier] + " XP points)"),
                 b -> perform("ss_ebook", enchantTier + 1))
                 .bounds(x + 8, y + 237, 391, 20).build());
         } else if (page == Page.TRIALS) {

@@ -17,11 +17,20 @@ class EnchantmentTests(unittest.TestCase):
             self.assertEqual(data["description"]["italic"],False)
             self.assertTrue((DATA/"function/enchantments"/("give_"+p.stem+".mcfunction")).exists())
     def test_books_and_prices(self):
-        for tier,price in (("common",10),("rare",20),("legendary",30)):
+        for tier,level,price in (("common",10,160),("rare",20,550),("legendary",30,1395)):
             text=(DATA/"function/enchantments"/("buy_"+tier+".mcfunction")).read_text()
-            self.assertIn("level="+str(price)+"..",text)
-            self.assertIn("xp add @s -"+str(price)+" levels",text)
+            self.assertIn("level="+str(level)+"..",text)
+            self.assertIn("unless entity @s[gamemode=creative] unless entity @s[level="+str(level)+"..]",text)
+            self.assertIn("execute unless entity @s[gamemode=creative] run xp add @s -"+str(price)+" points",text)
+            self.assertIn("Need "+str(price)+" XP points (equivalent to level "+str(level)+")",text)
+            self.assertNotIn("xp add @s -"+str(level)+" levels",text)
+            self.assertLess(text.index("run return run tellraw"),text.index("ss_ebook_roll run random"))
+            self.assertLess(text.index("ss_ebook_roll run random"),text.index("xp add @s -"+str(price)+" points"))
             self.assertEqual(text.count("function shatteredseals:enchantments/give_"),12)
+        gui=(ROOT/"src/main/java/com/shatteredseals/client/AdventureScreen.java").read_text()
+        self.assertIn("TIER_PRICES = {160, 550, 1395}",gui)
+        self.assertIn('XP points)', gui)
+        self.assertNotIn('XP levels)', gui)
         self.assertIn("scoreboard players enable @a ss_ebook",(DATA/"function/tick.mcfunction").read_text())
         self.assertIn("scoreboard objectives add ss_ebook trigger",(DATA/"function/load.mcfunction").read_text())
 if __name__=="__main__":unittest.main()
