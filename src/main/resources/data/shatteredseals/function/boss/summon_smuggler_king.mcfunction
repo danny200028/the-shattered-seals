@@ -1,5 +1,8 @@
 execute store success score @s ss_spawnok run summon minecraft:pillager ~ ~ ~ {Tags:["ss_boss","ss_smuggler_king"],CustomName:'{"text":"Smuggler King","color":"gold","bold":true}',CustomNameVisible:1b,PersistenceRequired:1b,Health:150.0f,DeathLootTable:"shatteredseals:boss/smuggler_king",attributes:[{id:"minecraft:generic.max_health",base:150.0d},{id:"minecraft:generic.attack_damage",base:9.0d},{id:"minecraft:generic.movement_speed",base:0.33d}]}
 execute unless score @s ss_spawnok matches 1 run return 0
+# Pillagers need a crossbow to perform their ordinary ranged attack.
+# Without a mainhand crossbow, special boss abilities work but vanilla AI never fires.
+execute as @e[tag=ss_smuggler_king,sort=nearest,limit=1,distance=..3] run item replace entity @s weapon.mainhand with minecraft:crossbow
 execute as @e[tag=ss_smuggler_king,sort=nearest,limit=1,distance=..3] run attribute @s minecraft:generic.max_health base set 150
 execute as @e[tag=ss_smuggler_king,sort=nearest,limit=1,distance=..3] run attribute @s minecraft:generic.attack_damage base set 9
 execute as @e[tag=ss_smuggler_king,sort=nearest,limit=1,distance=..3] run attribute @s minecraft:generic.movement_speed base set 0.33

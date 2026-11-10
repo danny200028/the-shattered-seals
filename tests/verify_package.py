@@ -56,10 +56,10 @@ class PackageTests(unittest.TestCase):
                 jar=jar_stream.read()
             recorded=archive.read("overrides/mod_sha256.txt").decode()
             self.assertEqual(
-                recorded, f"{hashlib.sha256(jar).hexdigest()}  {Path(mods[0]).name}\\n",
+                recorded, f"{hashlib.sha256(jar).hexdigest()}  {Path(mods[0]).name}\n",
                 "Embedded mod checksum or filename is incorrect")
             self.assertGreater(len(jar),100000)
         check=(OUT.parent/(OUT.name+".sha256")).read_text()
         self.assertEqual(
-            check, f"{hashlib.sha256(OUT.read_bytes()).hexdigest()}  {OUT.name}\\n",
+            check, f"{hashlib.sha256(OUT.read_bytes()).hexdigest()}  {OUT.name}\n",
             "Archive checksum or filename is incorrect")
