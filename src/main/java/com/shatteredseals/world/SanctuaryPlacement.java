@@ -52,7 +52,13 @@ public final class SanctuaryPlacement {
             || state.is(Blocks.CALCITE) || state.is(Blocks.TUFF)
             || state.is(Blocks.GRANITE) || state.is(Blocks.DIORITE)
             || state.is(Blocks.ANDESITE) || state.is(Blocks.DRIPSTONE_BLOCK)
-            || state.is(Blocks.BASALT) || state.is(Blocks.SMOOTH_BASALT);
+            || state.is(Blocks.BASALT) || state.is(Blocks.SMOOTH_BASALT)
+            // Natural ores under a hillside are NOT player construction.
+            // They are stable foundation support and must not block a Keystone.
+            || state.is(BlockTags.COAL_ORES) || state.is(BlockTags.IRON_ORES)
+            || state.is(BlockTags.COPPER_ORES) || state.is(BlockTags.GOLD_ORES)
+            || state.is(BlockTags.DIAMOND_ORES) || state.is(BlockTags.EMERALD_ORES)
+            || state.is(BlockTags.REDSTONE_ORES) || state.is(BlockTags.LAPIS_ORES);
     }
 
     private static boolean naturalSupport(BlockState state) {
@@ -113,7 +119,10 @@ public final class SanctuaryPlacement {
                 }
                 BlockState state = level.getBlockState(foot);
                 if (level.getBlockEntity(foot) != null || !canClear(state)) {
-                    notify(player, "A protected block lies beneath the Sanctuary foundation.",
+                    notify(player, "Protected foundation at X " + foot.getX()
+                        + " Y " + foot.getY() + " Z " + foot.getZ()
+                        + " (" + net.minecraft.core.registries.BuiltInRegistries.BLOCK.getKey(
+                            state.getBlock()) + "). Find another site, or check for natural structures.",
                         ChatFormatting.RED);
                     return false;
                 }
