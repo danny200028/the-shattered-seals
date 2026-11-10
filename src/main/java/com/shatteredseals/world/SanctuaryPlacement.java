@@ -1,6 +1,10 @@
 package com.shatteredseals.world;
 
 import com.shatteredseals.ShatteredSeals;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -8,21 +12,62 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 
 /**
- * A one-use, player-chosen Sanctuary template placement. Its entrance/foyer is
- * centred on the clicked ground block, and a limited foundation follows slopes.
- * Every block is checked before any changes are made; no chests, bases, other
- * non-replaceable constructions or unloaded chunks may be overwritten.
+ * A confirmed, one-use Sanctuary placement that LEVELS naturally generated
+ * hills, stone, dirt, vegetation and water. The player no longer needs an
+ * 81x49 flat clearing. All blocks in the full template volume and foundations
+ * are preflighted before anything is modified.
+ *
+ * Chests/block entities, obsidian, crafted masonry, player flooring and
+ * unbreakable blocks are rejected. Naturally-looking player constructions
+ * made of logs, leaves, dirt or stone cannot be distinguished from terrain,
+ * so a copied world and the explicit two-click warning are still important.
  */
 public final class SanctuaryPlacement {
-    private static final int MAX_FOUNDATION_DROP = 8;
+    private static final int MAX_FOUNDATION_DROP = 32;
+
+    /**
+     * May be levelled by Sanctuary placement; intentionally excludes crafted
+     * building materials, inventories, farms, machinery and bedrock.
+     * Used by server GameTests to guard against accidental policy changes.
+     */
+    public static boolean canClear(BlockState state) {
+        return state.isAir() || state.canBeReplaced()
+            || state.is(Blocks.WATER) || state.is(Blocks.LAVA)
+            || state.is(BlockTags.DIRT)
+            || state.is(BlockTags.BASE_STONE_OVERWORLD)
+            || state.is(BlockTags.LOGS) || state.is(BlockTags.LEAVES)
+            || state.is(BlockTags.SAND) || state.is(BlockTags.FLOWERS)
+            || state.is(Blocks.GRAVEL) || state.is(Blocks.CLAY)
+            || state.is(Blocks.MOSS_BLOCK) || state.is(Blocks.MUD)
+            || state.is(Blocks.SNOW_BLOCK) || state.is(Blocks.ICE)
+            || state.is(Blocks.PACKED_ICE) || state.is(Blocks.BLUE_ICE)
+            || state.is(Blocks.CALCITE) || state.is(Blocks.TUFF)
+            || state.is(Blocks.GRANITE) || state.is(Blocks.DIORITE)
+            || state.is(Blocks.ANDESITE) || state.is(Blocks.DRIPSTONE_BLOCK)
+            || state.is(Blocks.BASALT) || state.is(Blocks.SMOOTH_BASALT);
+    }
+
+    private static boolean naturalSupport(BlockState state) {
+        // Trees are vegetation, not a stable foundation. Continue through
+        // canopy/trunks to find soil/stone, filling gaps with stone bricks.
+        return !state.canBeReplaced() && state.getFluidState().isEmpty()
+            && !state.is(BlockTags.LOGS) && !state.is(BlockTags.LEAVES);
+    }
+
     public static boolean place(ServerPlayer player, BlockPos clicked, ItemStack stack) {
         ServerLevel level = player.serverLevel();
+        if (!level.dimension().equals(Level.OVERWORLD)) {
+            notify(player, "Place the Sanctuary in the Overworld.", ChatFormatting.YELLOW);
+            return false;
+        }
         if (player.getPersistentData().getBoolean("SSSanctuaryPlaced")) {
             notify(player, "Your one-time Sanctuary placement has already been used.", ChatFormatting.YELLOW);
             return false;
@@ -39,52 +84,64 @@ public final class SanctuaryPlacement {
             return false;
         }
         var blueprint = template.get();
-        int width = blueprint.getSize().getX(), length = blueprint.getSize().getZ();
+        int width = blueprint.getSize().getX();
+        int length = blueprint.getSize().getZ();
         int height = blueprint.getSize().getY();
         BlockPos origin = clicked.above().offset(-width / 2, 0, -length / 2);
-        if (origin.getY() - MAX_FOUNDATION_DROP <= level.getMinBuildHeight()
-                || origin.getY() + height >= level.getMaxBuildHeight()) {
-            notify(player, "Choose a ground level within the safe world height.", ChatFormatting.RED);
+        BlockPos farCorner = origin.offset(width - 1, 0, length - 1);
+        if (!level.getWorldBorder().isWithinBounds(origin)
+                || !level.getWorldBorder().isWithinBounds(farCorner)) {
+            notify(player, "The Sanctuary footprint crosses the world border.", ChatFormatting.YELLOW);
             return false;
         }
+        if (origin.getY() - MAX_FOUNDATION_DROP <= level.getMinBuildHeight()
+                || origin.getY() + height >= level.getMaxBuildHeight()) {
+            notify(player, "Choose terrain within the safe world height.", ChatFormatting.RED);
+            return false;
+        }
+        // Validate the ENTIRE footprint before the first terrain change.
+        // This includes high ground at all elevations, not just the floor.
+        List<BlockPos> toClear = new ArrayList<>();
         for (int x = 0; x < width; x++) for (int z = 0; z < length; z++) {
-            int drop = -1;
+            boolean supported = false;
             for (int depth = 1; depth <= MAX_FOUNDATION_DROP; depth++) {
                 BlockPos foot = origin.offset(x, -depth, z);
                 if (!level.hasChunkAt(foot)) {
-                    notify(player, "Move closer to the full 81 x 49 Sanctuary footprint before placing.", ChatFormatting.YELLOW);
+                    notify(player, "Move near the centre so every Sanctuary chunk is loaded.",
+                        ChatFormatting.YELLOW);
                     return false;
                 }
                 BlockState state = level.getBlockState(foot);
-                if (!state.canBeReplaced() && !state.getFluidState().isEmpty()) {
-                    notify(player, "Clear liquids beneath the future foundation first.", ChatFormatting.YELLOW);
+                if (level.getBlockEntity(foot) != null || !canClear(state)) {
+                    notify(player, "A protected block lies beneath the Sanctuary foundation.",
+                        ChatFormatting.RED);
                     return false;
                 }
-                if (!state.canBeReplaced()) { drop = depth; break; }
+                if (naturalSupport(state)) { supported = true; break; }
             }
-            if (drop == -1) {
-                notify(player, "The terrain drops more than 8 blocks. Choose a gentler site.", ChatFormatting.YELLOW);
+            if (!supported) {
+                notify(player, "Ground drops more than 32 blocks below the Sanctuary. Move off the cliff.",
+                    ChatFormatting.YELLOW);
                 return false;
             }
             for (int y = 0; y < height; y++) {
                 BlockPos pos = origin.offset(x, y, z);
                 if (!level.hasChunkAt(pos)) {
-                    notify(player, "The entire Sanctuary footprint must be in loaded chunks.", ChatFormatting.YELLOW);
+                    notify(player, "Move near the centre so every Sanctuary chunk is loaded.",
+                        ChatFormatting.YELLOW);
                     return false;
                 }
                 BlockState state = level.getBlockState(pos);
-                if (!state.canBeReplaced() && !(y == 0 && naturalSurface(state))) {
-                    notify(player, "Placement blocked by terrain or a structure. Choose a clear, flat site.", ChatFormatting.YELLOW);
+                if (level.getBlockEntity(pos) != null || !canClear(state)) {
+                    notify(player, "Protected construction at X " + pos.getX()
+                        + " Y " + pos.getY() + " Z " + pos.getZ()
+                        + ". Move the Keystone away from buildings or chests.",
+                        ChatFormatting.RED);
                     return false;
                 }
-                if (level.getBlockEntity(pos) != null || !state.getFluidState().isEmpty()) {
-                    notify(player, "Placement would overwrite a container or liquid. Site rejected.", ChatFormatting.RED);
-                    return false;
-                }
+                if (!state.isAir()) toClear.add(pos);
             }
         }
-        // Intentional two-click confirmation. The player sees the footprint's
-        // four corners before irreversible changes; a different site resets it.
         var data = player.getPersistentData();
         long tick = level.getGameTime();
         if (!data.contains("SSSanctuaryConfirmPos")
@@ -102,42 +159,49 @@ public final class SanctuaryPlacement {
                 }
             }
             notify(player, "Sanctuary preview: " + width + " x " + length
-                + " blocks, ground Y " + clicked.getY()
-                + ". Right-click this SAME block again within 10 seconds to confirm.",
+                + ", " + toClear.size() + " natural blocks will be CLEARED (hills, trees, water). "
+                + "Right-click the SAME block within 10 seconds to confirm. "
+                + "Back up any dirt/wood/stone builds in the footprint.",
                 ChatFormatting.AQUA);
             return false;
         }
-        data.remove("SSSanctuaryConfirmPos");
-        data.remove("SSSanctuaryConfirmTick");
+        // Clear natural hills and trees above the floors and beneath gables;
+        // template placement alone cannot remove vegetation in unoccupied
+        // roof-template voxels. Keep a rollback map for failed placement.
+        Map<BlockPos, BlockState> replaced = new HashMap<>();
+        for (BlockPos pos : toClear) {
+            replaced.put(pos, level.getBlockState(pos));
+            level.setBlock(pos, Blocks.AIR.defaultBlockState(), 2);
+        }
         if (!blueprint.placeInWorld(level, origin, origin,
                 new StructurePlaceSettings().setIgnoreEntities(false), level.random, 3)) {
-            notify(player, "Sanctuary placement failed. The Keystone was not consumed.", ChatFormatting.RED);
+            for (var entry : replaced.entrySet())
+                level.setBlock(entry.getKey(), entry.getValue(), 3);
+            notify(player, "Sanctuary placement failed; cleared terrain restored and Keystone retained.",
+                ChatFormatting.RED);
             return false;
         }
-        // Foundations only start after the blueprint was placed, to avoid
-        // leaving an orphaned stone platform on a rejected placement.
+        // Natural supporting terrain is never destroyed below the base; fill
+        // holes, water and vegetation down to the first stable solid block.
         for (int x = 0; x < width; x++) for (int z = 0; z < length; z++) {
             for (int depth = 1; depth <= MAX_FOUNDATION_DROP; depth++) {
                 BlockPos foot = origin.offset(x, -depth, z);
-                if (!level.getBlockState(foot).canBeReplaced()) break;
+                if (naturalSupport(level.getBlockState(foot))) break;
                 level.setBlock(foot, Blocks.STONE_BRICKS.defaultBlockState(), 3);
             }
         }
+        data.remove("SSSanctuaryConfirmPos");
+        data.remove("SSSanctuaryConfirmTick");
         data.putInt("SSSanctuaryX", clicked.getX());
         data.putInt("SSSanctuaryY", clicked.getY() + 1);
         data.putInt("SSSanctuaryZ", clicked.getZ());
         data.putBoolean("SSSanctuaryPlaced", true);
         if (!player.isCreative()) stack.shrink(1);
-        notify(player, "WARDEN'S SANCTUARY ESTABLISHED! Chronicle Archive and trophy halls are ready.", ChatFormatting.GOLD);
+        notify(player, "WARDEN'S SANCTUARY ESTABLISHED! The hillside was levelled safely.",
+            ChatFormatting.GOLD);
         return true;
     }
-    private static boolean naturalSurface(BlockState state) {
-        return state.is(Blocks.GRASS_BLOCK) || state.is(Blocks.DIRT)
-            || state.is(Blocks.COARSE_DIRT) || state.is(Blocks.PODZOL)
-            || state.is(Blocks.STONE) || state.is(Blocks.GRAVEL)
-            || state.is(Blocks.SAND) || state.is(Blocks.MOSS_BLOCK)
-            || state.is(Blocks.SNOW_BLOCK);
-    }
+
     private static void notify(ServerPlayer player, String message, ChatFormatting color) {
         player.sendSystemMessage(Component.literal(message).withStyle(color));
     }
