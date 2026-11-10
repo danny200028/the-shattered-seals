@@ -278,214 +278,263 @@ def sculpt_sanctuary(blocks: dict) -> None:
 
 
 def towered_sanctuary(blocks: dict) -> None:
-    """Build a three-storey fortress over the existing functional ground floor.
+    """A navigable three-level Gothic fortress, not stacked rectangular shells.
 
-    Floor 1 is unchanged, including all 15 rooms and their room/quest markers.
-    Floors 2 and 3 are connected by real staircases and bridges. The garden
-    remains open to the sky beneath a tall greenhouse; the secret boss arena
-    keeps its floor position and enough headroom. This runs only for NEW
-    Sanctuary template placements, never on existing saved player buildings.
+    Ground-level survival stations, fifteen markers, boss trophy locations,
+    chests and the secret boss arena stay exactly where the old blueprint put
+    them. Three-wide stairwells are carved AFTER every roof, wall and floor
+    so no late architectural pass can seal the routes. New placements only.
     """
-    w, d = 81, 49
+    width, length, height = 81, 49, 42
+    AIR = "minecraft:air"
+    DEEPSLATE = "minecraft:polished_deepslate"
+    BRICK = "minecraft:deepslate_bricks"
+    TIMBER = "minecraft:dark_oak_planks"
+    STAIR = "minecraft:polished_blackstone_brick_stairs[facing=north]"
+    # Remove the old disconnected 15-roof cluster completely.
+    for pos in [pos for pos in blocks if pos[1] >= 10]:
+        del blocks[pos]
 
-    # Retire the old repetitive 15-gabled roof. The new three-level silhouette
-    # needs one coherent roofline, not a row of individual room-shaped boxes.
-    for key in [key for key in blocks if key[1] >= 10]:
-        del blocks[key]
+    def atrium(x: int, z: int) -> bool:
+        return 36 <= x <= 44 and 19 <= z <= 29
 
-    garden = lambda x, z: 49 <= x <= 63 and 33 <= z <= 47
-    for x in range(49, 64):
-        for z in range(33, 48):
-            if blocks.get((x, 9, z), ("", None))[0] == "minecraft:glass":
-                set_block(blocks, x, 9, z, "minecraft:air")
-    atrium = lambda x, z: 36 <= x <= 44 and 20 <= z <= 28
-    # Ground storey tops out at Y9. These are real traversable upper floors.
+    def garden(x: int, z: int) -> bool:
+        return 49 <= x <= 63 and 33 <= z <= 47
+
+    def cut_corner(x: int, z: int) -> bool:
+        # Eight-block diagonal bevels give the building a genuinely polygonal
+        # foundation without touching any of the fifteen room centres.
+        dx, dz = min(x, 80 - x), min(z, 48 - z)
+        return dx + dz < 8
+
+    # The 5x3 old rectangle gets chamfered rather than being used unchanged.
+    # No survival workstation, trophy cap or chest sits in these corners.
+    for x in range(width):
+        for z in range(length):
+            if cut_corner(x, z):
+                for y in range(10):
+                    set_block(blocks, x, y, z, AIR)
+
+    # Sculpt ALL ground chambers as polygonal rooms, including former "square"
+    # protected rooms, but NEVER overwrite built furniture or existing stations.
+    # Cardinal corridors remain wide so the fortress is traversable.
+    for index in range(15):
+        cx, cz = 8 + (index % 5) * 16, 8 + (index // 5) * 16
+        for dx in range(-7, 8):
+            for dz in range(-7, 8):
+                ax, az = abs(dx), abs(dz)
+                if ax + az < 10 or min(ax, az) < 3:
+                    continue
+                x, z = cx + dx, cz + dz
+                for y in range(2, 8):
+                    old = blocks.get((x, y, z), (AIR, None))[0]
+                    if old == AIR:
+                        set_block(blocks, x, y, z, DEEPSLATE)
+
+    # Open the cathedral atrium through the original ground-floor ceiling,
+    # preserving the floor lodestone and the existing 6-block-high gallery.
+    for x in range(36, 45):
+        for z in range(19, 30):
+            set_block(blocks, x, 9, z, AIR)
+
+    # Continuous second-storey FLOOR, smaller open-plan third-storey keep,
+    # and connected third-level side galleries. The roof has NO unsupported
+    # giant 81x49 sheet and the garden remains open to a glass canopy.
+    def third_deck(x: int, z: int) -> bool:
+        return ((15 <= x <= 65 and 3 <= z <= 34)
+                or (4 <= x <= 15 and 14 <= z <= 34)
+                or (65 <= x <= 77 and 14 <= z <= 34)
+                or (6 <= x <= 12 and 34 <= z <= 42)
+                or (69 <= x <= 75 and 34 <= z <= 42)
+                or (6 <= x <= 12 and 6 <= z <= 14)
+                or (69 <= x <= 75 and 6 <= z <= 14))
+
     for x in range(1, 80):
         for z in range(1, 48):
-            if not garden(x, z) and not atrium(x, z):
-                set_block(blocks, x, 11, z, "minecraft:dark_oak_planks")
-            # The third floor is a smaller keep, not another full-width box.
-            if (16 <= x <= 64 and 1 <= z <= 32) or (
-                1 <= x <= 15 or 65 <= x <= 79
-            ):
-                if not garden(x, z) and not atrium(x, z):
-                    set_block(blocks, x, 22, z, "minecraft:polished_deepslate")
+            if cut_corner(x, z) or garden(x, z):
+                continue
+            if not atrium(x, z):
+                set_block(blocks, x, 11, z, TIMBER)
+            if third_deck(x, z) and not atrium(x, z):
+                set_block(blocks, x, 22, z, DEEPSLATE)
 
-    # A full-length vaulted upper arcade connects the second-storey rooms.
-    # Existing ground-floor halls and utilities remain at their old locations.
-    for y0, y1 in ((12, 21), (23, 30)):
+    # A chamfered outer shell and wing setbacks replace the flat perimeter.
+    # Every window has a solid sill and arch; no arbitrary wall holes.
+    for x in range(81):
         for z in range(49):
-            for x in (0, 80):
-                if y0 <= 21 or (z <= 32 or x in (0, 80)):
-                    for y in range(y0, y1):
-                        set_block(blocks, x, y, z, "minecraft:deepslate_bricks")
-        for x in range(81):
-            for z in (0, 48):
-                if y0 <= 21 or (16 <= x <= 64):
-                    for y in range(y0, y1):
-                        set_block(blocks, x, y, z, "minecraft:deepslate_bricks")
-
-    # Second-floor columns separate rooms but each arch is seven blocks wide.
-    for x in (16, 32, 48, 64):
-        for z in range(1, 48):
-            if garden(x, z):
-                continue
+            edge = x in (0, 80) or z in (0, 48)
             for y in range(12, 21):
-                set_block(blocks, x, y, z, "minecraft:polished_deepslate")
-        for zc in (8, 24, 40):
-            if garden(x, zc):
-                continue
-            for z in range(zc - 3, zc + 4):
-                for y in range(12, 18):
-                    set_block(blocks, x, y, z, "minecraft:air")
-            for z in (zc - 4, zc + 4):
-                for y in range(12, 19):
-                    set_block(blocks, x, y, z, "minecraft:chiseled_deepslate")
-            for z in range(zc - 2, zc + 3):
-                set_block(blocks, x, 18, z, "minecraft:polished_blackstone_bricks")
+                if edge and not cut_corner(x, z):
+                    set_block(blocks, x, y, z, BRICK)
+            if third_deck(x, z) and (x in (15, 65) or z in (3, 34)):
+                for y in range(23, 30):
+                    set_block(blocks, x, y, z, BRICK)
 
-    for z in (16, 32):
-        for x in range(1, 80):
-            if garden(x, z):
-                continue
-            for y in range(12, 21):
-                set_block(blocks, x, y, z, "minecraft:polished_deepslate")
-        for xc in (8, 24, 40, 56, 72):
-            for x in range(xc - 3, xc + 4):
-                for y in range(12, 18):
-                    set_block(blocks, x, y, z, "minecraft:air")
-            for x in (xc - 4, xc + 4):
-                for y in range(12, 19):
-                    set_block(blocks, x, y, z, "minecraft:chiseled_deepslate")
+    # Upper rooms use arc-shaped stone ribs and unequal wing chambers rather
+    # than 15 identical squares. The north/south/east/west approaches stay open.
+    chambers = ((8, 8, "arch"), (24, 8, "round"), (40, 8, "arch"),
+                (56, 8, "round"), (72, 8, "arch"),
+                (8, 24, "round"), (24, 24, "arch"),
+                (56, 24, "round"), (72, 24, "arch"),
+                (8, 40, "arch"), (24, 40, "round"), (40, 40, "arch"),
+                (72, 40, "round"))
+    for cx, cz, shape in chambers:
+        for dx in range(-7, 8):
+            for dz in range(-7, 8):
+                x, z = cx + dx, cz + dz
+                if not (1 <= x <= 79 and 1 <= z <= 47) or garden(x, z):
+                    continue
+                ax, az = abs(dx), abs(dz)
+                ring = (10 <= ax + az <= 12 if shape == "arch"
+                        else 37 <= dx * dx + dz * dz <= 64)
+                if ring and min(ax, az) >= 3:
+                    for y in range(13, 19):
+                        set_block(blocks, x, y, z, DEEPSLATE)
+                    set_block(blocks, x, 19, z, "minecraft:chiseled_deepslate")
 
-    # The original central hall is now a genuine multi-level atrium. Three-wide
-    # bridges and timber balconies preserve navigation through its upper levels.
-    for y in (11, 22):
+    # A two-deck, full-width cross-bridge in the open central nave.
+    for level_y in (11, 22):
         for z in range(23, 26):
-            for x in range(34, 47):
-                set_block(blocks, x, y, z, "minecraft:dark_oak_planks")
-        for x in (34, 46):
-            for z in range(20, 29):
-                set_block(blocks, x, y + 1, z, "minecraft:dark_oak_fence")
+            for x in range(33, 48):
+                set_block(blocks, x, level_y, z, TIMBER)
         for z in (22, 26):
             for x in range(35, 46):
-                set_block(blocks, x, y + 1, z, "minecraft:dark_oak_fence")
+                set_block(blocks, x, level_y + 1, z, "minecraft:dark_oak_fence")
+        for x in (34, 46):
+            for z in range(20, 23):
+                set_block(blocks, x, level_y + 1, z, "minecraft:dark_oak_fence")
+            for z in range(26, 29):
+                set_block(blocks, x, level_y + 1, z, "minecraft:dark_oak_fence")
 
-    # Wide, practical stair flights, with clear three-block headroom on every
-    # tread; the second staircase connects the upper gallery to the roof keep.
-    for x, z0, y0, count in ((12, 18, 2, 10), (69, 18, 12, 10)):
-        for step in range(count):
-            z, y = z0 + step, y0 + step
-            set_block(blocks, x, y, z,
-                      "minecraft:polished_blackstone_brick_stairs[facing=south]")
-            for clear_y in range(y + 1, min(y + 5, 31)):
-                set_block(blocks, x, clear_y, z, "minecraft:air")
-        # A lit landing at each transition is visible from the main corridor.
-        set_block(blocks, x + 1, y0 + count - 1, z0 + count - 1,
-                  "minecraft:sea_lantern")
+    # The top floor is a smaller central keep plus accessible roof terraces.
+    # Door openings are carved after its perimeter, including at x=65 where
+    # the east staircase lands and connects into the keep.
+    for x in (15, 65):
+        for z in (8, 24):
+            for dz in range(-4, 5):
+                for y in range(23, 29):
+                    set_block(blocks, x, y, z + dz, AIR)
+    for z in (3, 34):
+        for x in (24, 40, 56):
+            for dx in range(-4, 5):
+                for y in range(23, 29):
+                    set_block(blocks, x + dx, y, z, AIR)
 
-    # Shape the third storey into a central keep, corner watchtowers, and the
-    # two lore wings. There is no third-storey roof over the greenhouse.
-    for x in (32, 48):
-        for z in range(1, 33):
-            for y in range(23, 30):
-                set_block(blocks, x, y, z, "minecraft:deepslate_bricks")
-        for z in range(20, 29):
-            for y in range(23, 28):
-                set_block(blocks, x, y, z, "minecraft:air")
-    for z in (1, 32):
-        for x in range(16, 65):
-            for y in range(23, 30):
-                set_block(blocks, x, y, z, "minecraft:deepslate_bricks")
+    # Chapter motifs in second-floor alcoves: smuggler, cinder, hollow,
+    # arcane, sixfold, and the black crown. Decorative, no free loot.
+    seals = ("minecraft:gilded_blackstone", "minecraft:magma_block",
+             "minecraft:mossy_stone_bricks", "minecraft:prismarine_bricks",
+             "minecraft:chiseled_tuff_bricks", "minecraft:crying_obsidian")
+    for index, accent in enumerate(seals):
+        cx = (8, 24, 40, 56, 72, 40)[index]
+        cz = (7, 7, 7, 7, 7, 39)[index]
+        set_block(blocks, cx, 19, cz, accent)
+        for offset in (-1, 1):
+            set_block(blocks, cx + offset, 19, cz, "minecraft:sea_lantern")
 
-    # Upper halls reference six chapters via restrained inlaid seal emblems:
-    # soot, ember, bone, star, moss, and the last black crown.
-    seals = (
-        "minecraft:gilded_blackstone", "minecraft:magma_block",
-        "minecraft:mossy_stone_bricks", "minecraft:prismarine_bricks",
-        "minecraft:chiseled_tuff_bricks", "minecraft:crying_obsidian",
-    )
-    for i, material in enumerate(seals):
-        x = 8 + (i % 3) * 24
-        z = 7 if i < 3 else 39
-        set_block(blocks, x, 13, z, material)
-        for yy in (12, 14, 15):
-            set_block(blocks, x - 1, yy, z, "minecraft:polished_blackstone_bricks")
-            set_block(blocks, x + 1, yy, z, "minecraft:polished_blackstone_bricks")
-        set_block(blocks, x, 16, z, "minecraft:sea_lantern")
-
-    # Differently shaped second-floor rooms, with octagonal buttresses away
-    # from arch openings. Avoid player-accessible floor or stair positions.
-    for cx, cz in ((8, 8), (24, 8), (56, 8), (72, 8),
-                   (8, 40), (24, 40), (72, 40)):
-        for dx in range(-6, 7):
-            for dz in range(-6, 7):
-                if abs(dx) + abs(dz) < 10 or abs(dx) < 3 or abs(dz) < 3:
+    # Complete opaque roof across the upper keep before the steep Gothic
+    # pitched roof. Side roofs slope onto smaller wings; roof-terrace tiles
+    # and glass conservatory intentionally have clear sky.
+    for x in range(24, 57):
+        for z in range(7, 34):
+            if not atrium(x, z):
+                set_block(blocks, x, 30, z, "minecraft:deepslate_tiles")
+            ridge = max(0, 8 - abs(x - 40) // 2)
+            roof_y = 31 + ridge
+            set_block(blocks, x, roof_y, z, "minecraft:deepslate_tiles")
+        for y in range(31, 39):
+            if y <= 31 + max(0, 8 - abs(x - 40) // 2):
+                for z in (7, 33):
+                    set_block(blocks, x, y, z, BRICK)
+    for x0, x1, z0, z1 in ((1, 20, 2, 16), (61, 80, 2, 16),
+                           (1, 20, 33, 48), (64, 80, 33, 48)):
+        for x in range(x0, x1):
+            for z in range(z0, z1):
+                if garden(x, z) or cut_corner(x, z):
                     continue
-                for y in range(13, 18):
-                    if blocks.get((cx + dx, y, cz + dz), ("minecraft:air", None))[0] == "minecraft:air":
-                        set_block(blocks, cx + dx, y, cz + dz, "minecraft:polished_deepslate")
+                y = 29 + max(0, 5 - abs(z - (z0 + z1)//2))
+                set_block(blocks, x, y, z, "minecraft:deepslate_tiles")
 
-    # Gothic lancet windows and vertical ribs; they break up the straight
-    # exterior walls while the individual gables and flying buttresses break
-    # up the long roofline.
-    for x in range(7, 80, 8):
-        for z in (0, 48):
-            if z == 0 and 36 <= x <= 44:
-                continue
-            for y in (14, 15, 16, 24, 25):
-                set_block(blocks, x, y, z, "minecraft:blue_stained_glass_pane")
-            for y in (13, 17, 23, 26):
-                set_block(blocks, x, y, z, "minecraft:chiseled_stone_bricks")
-    for z in range(7, 48, 8):
-        for x in (0, 80):
-            for y in (14, 15, 16, 24, 25):
-                set_block(blocks, x, y, z, "minecraft:purple_stained_glass_pane")
-    for x in range(0, 81, 8):
-        for z in (0, 48):
-            for y in range(11, 28):
-                if y % 8 < 6 and (x, z) != (0, 0):
-                    set_block(blocks, x, y, z, "minecraft:polished_blackstone_bricks")
+    # Octagonal corner towers extend from the upper keep to the battlements.
+    # The towers are inset from the chamfered ground corners so their walls
+    # connect to the real structure, not to the discarded bounding square.
+    for cx, cz in ((8, 8), (72, 8), (8, 40), (72, 40)):
+        for dx in range(-5, 6):
+            for dz in range(-5, 6):
+                x, z = cx + dx, cz + dz
+                radius = max(abs(dx), abs(dz)) + min(abs(dx), abs(dz)) // 2
+                if radius > 5 or cut_corner(x, z):
+                    continue
+                if radius >= 4:
+                    for y in range(24, 39):
+                        set_block(blocks, x, y, z, BRICK)
+                    if (x + z) % 2 == 0:
+                        set_block(blocks, x, 39, z, "minecraft:deepslate_brick_wall")
+                else:
+                    set_block(blocks, x, 30, z, "minecraft:polished_blackstone")
+        # Upper tower doors join the adjacent roof-terrace approaches.
+        zdoor = cz + (5 if cz <= 24 else -5)
+        for dx in range(-1, 2):
+            for y in range(23, 27):
+                set_block(blocks, cx + dx, y, zdoor, AIR)
 
-    # A tall asymmetric outline: four battlement towers, a central spire,
-    # high east and west gables, and real glass above the working garden.
-    for tx in (0, 74):
-        for tz in (0, 42):
-            for x in range(tx, tx + 7):
-                for z in range(tz, tz + 7):
-                    boundary = x in (tx, tx + 6) or z in (tz, tz + 6)
-                    for y in range(29, 38):
-                        if boundary:
-                            set_block(blocks, x, y, z, "minecraft:deepslate_bricks")
-                    set_block(blocks, x, 36, z, "minecraft:polished_blackstone")
-                    if boundary and (x + z) % 2 == 0:
-                        set_block(blocks, x, 38, z, "minecraft:deepslate_brick_wall")
-    for xc in (24, 40, 56):
-        for x in range(xc - 7, xc + 8):
-            for z in range(1, 33):
-                roof_y = 31 + (7 - abs(x - xc))
-                if roof_y < 39:
-                    set_block(blocks, x, roof_y, z, "minecraft:deepslate_tiles")
-        for z in (1, 32):
-            set_block(blocks, xc, 39, z, "minecraft:sea_lantern")
+    # Tall glass conservatory above the existing tilled garden, not a hole
+    # into an accidental deleted second-floor section.
     for x in range(49, 64):
         for z in range(33, 48):
-            rise = min(z - 33, 47 - z, 6)
-            set_block(blocks, x, 21 + rise, z, "minecraft:glass")
+            roof_y = 26 + min(z - 33, 47 - z, 6)
+            set_block(blocks, x, roof_y, z, "minecraft:glass")
     for x in (49, 63):
         for z in (33, 47):
-            for y in range(12, 28):
+            for y in range(12, 27):
                 set_block(blocks, x, y, z, "minecraft:dark_oak_log")
-    # Tall circular-feel rose window above the front entrance.
-    for x in range(37, 44):
-        for y in range(23, 30):
-            if abs(x - 40) + abs(y - 26) <= 4:
-                set_block(blocks, x, y, 0,
-                          "minecraft:purple_stained_glass_pane" if (x + y) % 2
-                          else "minecraft:blue_stained_glass_pane")
-    for x in (38, 42):
-        for y in range(20, 32):
-            set_block(blocks, x, y, 1, "minecraft:polished_blackstone_bricks")
+
+    # Decorative lancet windows stay in sealed exterior bays.
+    for x in range(8, 79, 8):
+        if x in (40,):
+            continue
+        for z in (0, 48):
+            if cut_corner(x, z):
+                continue
+            for y in (14, 15, 16):
+                set_block(blocks, x, y, z, "minecraft:blue_stained_glass_pane")
+            set_block(blocks, x, 17, z, "minecraft:chiseled_stone_bricks")
+    for z in range(8, 48, 8):
+        for x in (0, 80):
+            if cut_corner(x, z):
+                continue
+            for y in (14, 15, 16):
+                set_block(blocks, x, y, z, "minecraft:purple_stained_glass_pane")
+
+    # FINAL OPERATION: two three-wide, uninterrupted stair flights. No later
+    # roof or wall generator may put blocks back in their headroom. Using the
+    # stair's NORTH facing means the low half faces the ascending approach
+    # (positive Z); step zero sits directly on the source floor.
+    for xc, floor_y in ((11, 0), (69, 11)):
+        for step in range(11):
+            z = 18 + step
+            y = floor_y + 1 + step
+            for x in range(xc - 1, xc + 2):
+                set_block(blocks, x, y, z, STAIR)
+                for clear_y in range(y + 1, min(42, y + 5)):
+                    set_block(blocks, x, clear_y, z, AIR)
+        # Top landing and lower approach remain solid and horizontally open;
+        # carved headroom removes both otherwise-blocking upper floor slabs.
+        for x in range(xc - 1, xc + 2):
+            set_block(blocks, x, floor_y, 17, TIMBER if floor_y else "minecraft:polished_deepslate")
+            # Earlier octagonal wall passes would otherwise seal the approach.
+            for clear_y in range(floor_y + 1, floor_y + 5):
+                set_block(blocks, x, clear_y, 17, AIR)
+            set_block(blocks, x, floor_y + 11, 29,
+                      TIMBER if floor_y == 0 else DEEPSLATE)
+            for y in range(floor_y + 12, min(42, floor_y + 15)):
+                set_block(blocks, x, y, 29, AIR)
+
+    # Keep the entrance and boss room safe. All extant functional ground
+    # blocks are unchanged, apart from deliberately chamfered empty corners.
+    assert all(0 <= x < width and 0 <= y < height and 0 <= z < length
+               for x, y, z in blocks)
+
 
 def sanctuary() -> None:
     # 5 x 3 connected rooms, each with a 15x15 usable interior. No auto

@@ -143,6 +143,24 @@ before checking existing-world compatibility.
       book must not be consumed or swap with the pickaxe.
 - [ ] Verify the vanilla anvil still applies and combines books as before.
 
+## v1.0.65: Rebuilt accessible Sanctuary and mob-free grounds
+
+- [ ] In a NEW disposable test world, enter the Sanctuary and reach both
+      the second and third floors using ONLY stairs, not fly/spectator.
+- [ ] Examine the three-wide stairs, head clearance, upper-floor landings,
+      multiple bridges, curved rooms, non-rectangular exterior and towers.
+- [ ] Check all 15 original ground-floor rooms, crafting, chests, Trophy
+      Hall masks, holograms and the secret boss arena are still functional.
+- [ ] Wait through nighttime in unlit Sanctuary grounds, including outside
+      the walls: no natural vanilla mobs should spawn within 12 blocks.
+- [ ] Verify player spawned mobs, existing named pets and intended boss
+      summons are still permitted.
+- [ ] Visit an existing Sanctuary and confirm its storage/building is NOT
+      rewritten, while the spawn ward activates automatically.
+- [ ] Try a new site with natural underground ore: no incorrect protected
+      foundation warning.
+- [ ] Save and reopen; check floors/rooms/trophies/chests remain unchanged.
+
 ## v1.0.64: Three-floor Sanctuary and themed visuals
 
 - [ ] Place a **new** Sanctuary in a copied world and traverse all three

@@ -24,7 +24,7 @@ import terrablender.api.SurfaceRuleManager;
 @Mod(ShatteredSeals.MOD_ID)
 public final class ShatteredSeals {
     public static final String MOD_ID = "shatteredseals";
-    public static final String VERSION = "1.0.64";
+    public static final String VERSION = "1.0.65";
     public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(Registries.SOUND_EVENT, MOD_ID);
     public static final DeferredHolder<SoundEvent, SoundEvent> BOSS_THEME = SOUNDS.register("music.boss",
         () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "music.boss")));

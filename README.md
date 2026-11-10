@@ -13,7 +13,29 @@ The world defaults to Hard difficulty, with high attack speed for an approximati
 
 A challenging single-player RPG modpack, featuring a six-chapter boss storyline, nine-room natural jigsaw fortresses, class skill trees, powerful relics, rarity-based loot, and New Game+ mastery and repeatable chapter quests.
 
-## v1.0.64: The Ashen Covenant fortress and visual identity
+## v1.0.65: Sanctuary rebuilt for playable access and clean grounds
+
+v1.0.65 failed the player's actual Sanctuary walkthrough. It had inaccessible
+upper floors, gaps in the exterior structure and overly boxy rooms.
+
+- **Walkable three-floor routes:** two three-wide staircases with carved
+  headroom, both landings, continuous upper-floor galleries and actual
+  third-level access. Graph-based regression tests reject disconnected paths.
+- **Non-boxy architecture:** chamfered outer footprint, shaped chambers on
+  ALL ground-floor wings, Gothic upper rooms, octagonal towers, roof terraces,
+  vaulted central keep and an enclosed glass-roof garden.
+- **Mob-free grounds:** ordinary vanilla automated spawning is blocked within
+  the Sanctuary and twelve blocks outside its 81x49 footprint. This includes
+  existing Sanctuaries with the original foyer marker. Pets, manual spawn
+  eggs and scripted bosses are intentionally unaffected.
+- **Foundation bug fixed:** naturally generated coal, iron, copper, gold,
+  diamond, emerald, redstone and lapis ores are accepted as stable terrain.
+  Real protected-block failures now show their X/Y/Z and block ID.
+- **Save safety:** old placed Sanctuaries and their chests are NEVER replaced
+  automatically. Use a *new test world* or a copied world with an empty area
+  for the revised structure. Do not /place over occupied builds.
+
+## v1.0.65: The Ashen Covenant fortress and visual identity
 
 - **Three storeys:** connected Gothic Sanctuary with climbable staircases,
   vaulted library rooms, raised bridges, central atrium, a roof keep,
@@ -265,8 +287,8 @@ untested interactions, FPS, shaders or full dungeon replay as passed.
 ## Install the development pack
 
 1. Open [GitHub Actions](https://github.com/danny200028/the-shattered-seals/actions/workflows/build.yml) and choose the latest successful **Build The Shattered Seals** run.
-2. Download the artifact named **Shattered-Seals-1.0.64-Clean-CurseForge-Modpack** (script-free packaging).
-3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.64-CurseForge.zip`.
+2. Download the artifact named **Shattered-Seals-1.0.65-Clean-CurseForge-Modpack** (script-free packaging).
+3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.65-CurseForge.zip`.
 4. Import the inner ZIP through the CurseForge Minecraft modpack importer. CurseForge resolves the pinned NeoForge map and shader dependencies; the custom Shattered Seals JAR lives in `overrides/mods`.
 5. Start Minecraft 1.21.1 with Java 21. Use **J** for the Adventurer's Codex, **K** for the skill tree and **L** to toggle the on-screen quest tracker.
 
