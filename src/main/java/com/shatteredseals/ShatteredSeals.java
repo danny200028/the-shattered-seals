@@ -6,6 +6,13 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import terrablender.api.Regions;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import java.util.Map;
+import java.util.List;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -25,6 +32,19 @@ public final class ShatteredSeals {
         () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "music.sanctuary")));
     public static final DeferredHolder<SoundEvent, SoundEvent> EXPLORE_THEME = SOUNDS.register("music.explore",
         () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "music.explore")));
+    public static final DeferredRegister<ArmorMaterial> ARMOR_MATERIALS =
+        DeferredRegister.create(Registries.ARMOR_MATERIAL, MOD_ID);
+    // Four armour points, three toughness and a little knockback resistance,
+    // rendered as a translucent gold-and-amethyst open crown rather than a helmet.
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> ARCHIVIST_MATERIAL =
+        ARMOR_MATERIALS.register("archivist", () -> new ArmorMaterial(
+            Map.of(ArmorItem.Type.HELMET, 4, ArmorItem.Type.CHESTPLATE, 0,
+                ArmorItem.Type.LEGGINGS, 0, ArmorItem.Type.BOOTS, 0,
+                ArmorItem.Type.BODY, 0),
+            24, SoundEvents.ARMOR_EQUIP_GOLD,
+            () -> Ingredient.of(Items.GOLD_INGOT),
+            List.of(new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(MOD_ID, "archivists_crown"))),
+            3.0F, 0.1F));
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MOD_ID);
     public static final DeferredItem<Item> SANCTUARY_KEYSTONE =
         ITEMS.registerSimpleItem("sanctuary_keystone", new Item.Properties().stacksTo(1));
@@ -40,11 +60,14 @@ public final class ShatteredSeals {
         ITEMS.registerSimpleItem("boss_mask_sixfold_guardian", new Item.Properties().stacksTo(1));
     public static final DeferredItem<Item> MASK_HOLLOW_KING =
         ITEMS.registerSimpleItem("boss_mask_hollow_king", new Item.Properties().stacksTo(1));
-    public static final DeferredItem<Item> ARCHIVISTS_CROWN =
-        ITEMS.registerSimpleItem("archivists_crown", new Item.Properties().stacksTo(1));
+    public static final DeferredItem<ArmorItem> ARCHIVISTS_CROWN =
+        ITEMS.register("archivists_crown", () -> new ArmorItem(
+            ARCHIVIST_MATERIAL, ArmorItem.Type.HELMET,
+            new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(37)).fireResistant()));
     private static final System.Logger LOGGER = System.getLogger("The Shattered Seals");
 
     public ShatteredSeals(IEventBus modBus) {
+        ARMOR_MATERIALS.register(modBus);
         ITEMS.register(modBus);
         SOUNDS.register(modBus);
         modBus.addListener(this::commonSetup);

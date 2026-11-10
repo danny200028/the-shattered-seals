@@ -125,6 +125,33 @@ def entity_skin(name, primary, shadow, accent):
             if (x-y)%6 in (0,1):canvas[y][x]=(*shadow,255)
     png(ASSETS/f"textures/entity/boss/{name}.png",canvas)
 
+def crown_armor_texture():
+    """Transparent 64x32 classic armour layer. Only the head band and pointed
+    circlet UVs are coloured, leaving the wearer's face visible in third person.
+    The high points are violet gemstones, the rim is aged gold."""
+    grid=[[(0,0,0,0) for _ in range(64)] for _ in range(32)]
+    gold=(218,174,67,255)
+    dark=(97,59,32,255)
+    shine=(246,222,129,255)
+    amethyst=(159,95,225,255)
+    # Humanoid head uses six 8x8 faces: upper row = top/bottom,
+    # lower row = left/front/right/back. No torso/arms are covered.
+    for x in range(32):
+        for y in range(8,16):
+            if y in (12,13,14):
+                grid[y][x]=shine if y==12 else gold if x%3 else dark
+            if y in (9,10,11) and x%8 in (1,6):
+                grid[y][x]=amethyst if y==9 else gold
+            if y==8 and x%8 in (0,7):
+                grid[y][x]=shine
+    # Thin gold border over the hairline/top, with transparent centre.
+    for x in range(8,16):
+        for z in range(0,8):
+            if x in (8,15) or z in (0,7):
+                grid[z][x]=shine
+    png(ASSETS/"textures/models/armor/archivists_crown_layer_1.png",grid)
+
+
 def main():
     for name,(primary,shadow,accent,style) in PALETTES.items():
         painted(name,primary,shadow,accent,style)
@@ -134,6 +161,7 @@ def main():
         out.write_text(json.dumps(mask_model(name,style),indent=2)+"\n")
     ornament("sanctuary_keystone",(80,171,211),(22,44,66),(236,207,112))
     ornament("archivists_crown",(124,81,184),(35,24,63),(235,189,101))
+    crown_armor_texture()
     print("Generated eight original 32px item textures, six full-entity skins and six 3D boss-mask models")
 
 if __name__=="__main__":main()

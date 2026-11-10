@@ -74,12 +74,20 @@ public final class FinalAdventure {
         {0, 1, 2}, {2, 0, 1}, {1, 2, 0}, {1, 0, 2}, {0, 2, 1}, {2, 1, 0}
     };
     private static final String[] RUNES = {"Sun", "Tide", "Ash"};
+
+    /** The real fixed order of the three vault runes, revealed by the book. */
+    public static String vaultHint(int index) {
+        if (index < 0 || index >= VAULT_ORDERS.length) return "Unknown";
+        int[] order = VAULT_ORDERS[index];
+        return RUNES[order[0]] + " > " + RUNES[order[1]] + " > " + RUNES[order[2]];
+    }
     private static final int[] REWARD_HEALTH = {38, 45, 55, 62, 68, 85};
     public static final String[] SETTINGS = {"hud", "ambience", "enchantments", "flavour"};
     public static final String[] SETTING_KEYS = {"SSShowCombatHud", "SSShowAmbientEffects", "SSShowEnchantments", "SSShowFlavourText"};
     public static final String[] COPY_KEYS = {
         "SSDepthsSitesMask", "SSDepthsVaultsMask", "SSDepthsEliteMask",
         "SSSecretWon", "SSSanctuaryVisited", "SSChronicleComplete",
+        ChronicleRewards.EPILOGUE_GRANT_KEY,
         "SSSanctuaryKeystoneGranted", "SSSanctuaryPlaced",
         "SSSanctuaryX", "SSSanctuaryY", "SSSanctuaryZ",
         "SSBiomeDiscoveryMask", "SSLandmarkDiscoveryMask", "SSIntroSeen",
@@ -236,7 +244,13 @@ public final class FinalAdventure {
             say(player, "CHRONICLE ARCHIVE: " + Integer.bitCount(mask) + "/6 recovered.", ChatFormatting.GOLD);
             for (int i = 0; i < 6; i++)
                 if ((mask & (1 << i)) != 0) say(player, REGIONS[i] + ": " + LORE[i], ChatFormatting.AQUA);
-            if (mask == 63) say(player, "All six histories restored. The Archivist's Crown is yours.", ChatFormatting.LIGHT_PURPLE);
+            if (mask == 63) {
+                say(player, "SEVENTH LEAF UNLOCKED: Sun, Tide and Ash formed one covenant. "
+                    + "The Hollow King sought to erase its memory.", ChatFormatting.LIGHT_PURPLE);
+                say(player, "Archivist's Crown: +4 armour, +3 toughness, +100 elite RPG XP. "
+                    + "Wear it to sense unopened vaults within 48 blocks.", ChatFormatting.AQUA);
+                ChronicleRewards.ensureEpilogue(player);
+            }
         } else if (room.getTags().contains("ss_sanctuary_armoury")) {
             int[] kills = com.shatteredseals.combat.SwordMastery.snapshot(player);
             int total = 0;
@@ -406,6 +420,7 @@ public final class FinalAdventure {
                 || !player.serverLevel().dimension().equals(Level.OVERWORLD)) return;
         ServerLevel world = player.serverLevel();
         CompoundTag award = player.getPersistentData();
+        ChronicleRewards.tick(player, world);
         if ((award.getInt("SSDepthsEliteMask") & 63) == 63
                 && !award.getBoolean("SSChronicleComplete")) {
             award.putBoolean("SSChronicleComplete", true);
@@ -547,15 +562,13 @@ public final class FinalAdventure {
             if (playerData.getBoolean(clear)) return;
             playerData.putBoolean(clear, true);
             playerData.putInt("SSDepthsEliteMask", playerData.getInt("SSDepthsEliteMask") | (1 << index));
-            ItemStack lore = new ItemStack(Items.PAPER);
-            lore.set(DataComponents.CUSTOM_NAME,
-                Component.literal("Buried Chronicle: " + REGIONS[index]).withStyle(ChatFormatting.AQUA));
-            give(player, lore);
+            give(player, ChronicleRewards.chronicleBook(index));
             player.giveExperiencePoints(30);
+            int earned = ChronicleRewards.eliteXp(player);
             if (DungeonChapter.score(player, "ss_level") < 60)
-                DungeonChapter.setScore(player, "ss_xp", DungeonChapter.score(player, "ss_xp") + 250);
+                DungeonChapter.setScore(player, "ss_xp", DungeonChapter.score(player, "ss_xp") + earned);
             else if (DungeonChapter.score(player, "ss_ng") > 0)
-                DungeonChapter.setScore(player, "ss_mxp", DungeonChapter.score(player, "ss_mxp") + 250);
+                DungeonChapter.setScore(player, "ss_mxp", DungeonChapter.score(player, "ss_mxp") + earned);
             if ((playerData.getInt("SSDepthsEliteMask") & 63) == 63
                     && !playerData.getBoolean("SSChronicleComplete")) {
                 playerData.putBoolean("SSChronicleComplete", true);
@@ -563,10 +576,11 @@ public final class FinalAdventure {
                 crown.set(DataComponents.CUSTOM_NAME,
                     Component.literal("Archivist's Crown | Six Buried Chronicles").withStyle(ChatFormatting.LIGHT_PURPLE));
                 give(player, crown);
-                say(player, "CHRONICLE ARCHIVE COMPLETE! The Archivist's Crown has been awarded.", ChatFormatting.GOLD);
+                ChronicleRewards.ensureEpilogue(player);
+                say(player, "CHRONICLE ARCHIVE COMPLETE! The wearable Archivist's Crown has been awarded.", ChatFormatting.GOLD);
             }
-            say(player, "Underground elite defeated! +30 vanilla XP, +250 RPG XP and one Buried Chronicle.",
-                ChatFormatting.GOLD);
+            say(player, "Underground elite defeated! +30 vanilla XP, +" + earned
+                + " RPG XP and one readable Buried Chronicle.", ChatFormatting.GOLD);
         }
         if (defeated.getTags().contains("ss_secret_boss")
                 && mob.hasUUID("SSSecretOwner") && mob.getUUID("SSSecretOwner").equals(player.getUUID())) {
