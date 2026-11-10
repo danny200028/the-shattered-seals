@@ -1,4 +1,4 @@
-name: Build The Shattered Seals 1.0.66
+name: Build The Shattered Seals 1.1.0
 on:
   push:
     branches: [main, fix/final-release-blockers]
@@ -52,6 +52,13 @@ jobs:
         run: |
           set -o pipefail
           gradle --no-daemon build --stacktrace 2>&1 | tee compile-log.txt
+      - name: Verify Minecraft GameTests for release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        shell: bash
+        run: |
+          set -o pipefail
+          gradle --no-daemon runGameTestServer --stacktrace 2>&1 | tee real-minecraft-test-log.txt
+          python3 scripts/verify_gametest_results.py real-minecraft-test-log.txt
       - name: Package CurseForge import ZIP
         run: python3 scripts/package_curseforge.py
       - name: Validate packaged modpack
@@ -59,7 +66,7 @@ jobs:
       - name: Upload CurseForge modpack
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.66-Clean-CurseForge-Modpack
+          name: Shattered-Seals-1.1.0-Clean-CurseForge-Modpack
           path: |
             build/distributions/*.zip
             build/distributions/*.sha256
@@ -72,7 +79,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.66-NeoForge-JAR
+          name: Shattered-Seals-1.1.0-NeoForge-JAR
           path: |
             build/libs/*.jar
             SHA256SUMS.txt
@@ -81,6 +88,45 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.66-Build-Log
+          name: Shattered-Seals-1.1.0-Build-Log
           path: compile-log.txt
           if-no-files-found: ignore
+  release:
+    name: Publish v1.1.0
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: Shattered-Seals-1.1.0-Clean-CurseForge-Modpack
+          path: release/pack
+      - uses: actions/download-artifact@v4
+        with:
+          name: Shattered-Seals-1.1.0-NeoForge-JAR
+          path: release/mod
+      - name: Publish verified release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -Fxq "version = '1.1.0'" build.gradle || exit 0
+          if gh release view v1.1.0 >/dev/null 2>&1; then
+            exit 0
+          fi
+          (cd release/pack && sha256sum -c The-Shattered-Seals-1.1.0-CurseForge.zip.sha256)
+          (cd release/mod && sha256sum -c SHA256SUMS.txt)
+          gh release create v1.1.0 \
+            release/pack/The-Shattered-Seals-1.1.0-CurseForge.zip \
+            release/pack/The-Shattered-Seals-1.1.0-CurseForge.zip.sha256 \
+            release/pack/The-Shattered-Seals-1.1.0-CurseForge-Cover.png \
+            release/mod/build/libs/the-shattered-seals-1.1.0.jar \
+            release/mod/SHA256SUMS.txt \
+            --target "$GITHUB_SHA" --title "The Shattered Seals v1.1.0" \
+            --notes-file docs/RELEASE_1.1.0.md --latest

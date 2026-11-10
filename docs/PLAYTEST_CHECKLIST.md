@@ -143,7 +143,7 @@ before checking existing-world compatibility.
       book must not be consumed or swap with the pickaxe.
 - [ ] Verify the vanilla anvil still applies and combines books as before.
 
-## v1.0.66: Castle rebuild and Grand Stair
+## v1.1.0: Castle rebuild, Grand Stair and controls
 
 - [ ] In a NEW disposable test world, enter the Sanctuary and reach both
       the second and third floors using ONLY stairs, not fly/spectator.
