@@ -143,6 +143,19 @@ before checking existing-world compatibility.
       book must not be consumed or swap with the pickaxe.
 - [ ] Verify the vanilla anvil still applies and combines books as before.
 
+## v1.0.63: Sanctuary Trophy Hall holograms
+
+- [ ] In a Sanctuary with all six boss trophies earned, each floating label shows
+      the correct **boss name** and **origin dungeon** above the corresponding mask.
+- [ ] Labels face the viewer, remain readable with shaders and do not overlap
+      neighbouring pedestals or block movement.
+- [ ] An unearned boss pedestal has no trophy hologram; earning its mask causes
+      the label to appear when visiting the hall.
+- [ ] Revisit an existing v1.0.62 Sanctuary: the labels appear automatically,
+      without placing a new Sanctuary or altering your saved chests/blocks.
+- [ ] Reload the world and revisit the hall repeatedly: no duplicate labels,
+      stolen items, modified player builds, or extra trophy rewards.
+
 ## v1.0.62: Fixed enchantment book XP-point prices
 - [ ] In Survival, check the Codex Books button displays 160 / 550 / 1,395 XP points for Common / Rare / Legendary.
 - [ ] At precisely level 10, 20 and 30, purchase a book of the matching rarity and verify no XP remains from an empty bar.
