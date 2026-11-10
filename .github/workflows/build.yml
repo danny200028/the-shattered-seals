@@ -1,4 +1,4 @@
-name: Build The Shattered Seals 1.0.63
+name: Build The Shattered Seals 1.0.64
 on:
   push:
     branches: [main, fix/final-release-blockers]
@@ -39,6 +39,7 @@ jobs:
         run: |
           python3 scripts/generate_dungeons.py
           python3 scripts/generate_v158_assets.py
+          python3 scripts/generate_visual_identity.py
           python3 scripts/generate_soundtrack.py
       - name: RPG regression tests
         run: python3 -m unittest discover -s tests -p 'test_*.py' -v
@@ -56,10 +57,11 @@ jobs:
       - name: Upload CurseForge modpack
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.63-Clean-CurseForge-Modpack
+          name: Shattered-Seals-1.0.64-Clean-CurseForge-Modpack
           path: |
             build/distributions/*.zip
             build/distributions/*.sha256
+            build/distributions/*Cover.png
           if-no-files-found: error
       - name: Record output hashes
         if: success()
@@ -68,7 +70,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.63-NeoForge-JAR
+          name: Shattered-Seals-1.0.64-NeoForge-JAR
           path: |
             build/libs/*.jar
             SHA256SUMS.txt
@@ -77,6 +79,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: Shattered-Seals-1.0.63-Build-Log
+          name: Shattered-Seals-1.0.64-Build-Log
           path: compile-log.txt
           if-no-files-found: ignore

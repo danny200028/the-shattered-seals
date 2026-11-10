@@ -276,11 +276,222 @@ def sculpt_sanctuary(blocks: dict) -> None:
                 set_block(blocks, x, y, 24 + dz, "minecraft:air")
 
 
+
+def towered_sanctuary(blocks: dict) -> None:
+    """Build a three-storey fortress over the existing functional ground floor.
+
+    Floor 1 is unchanged, including all 15 rooms and their room/quest markers.
+    Floors 2 and 3 are connected by real staircases and bridges. The garden
+    remains open to the sky beneath a tall greenhouse; the secret boss arena
+    keeps its floor position and enough headroom. This runs only for NEW
+    Sanctuary template placements, never on existing saved player buildings.
+    """
+    w, d = 81, 49
+
+    # Retire the old repetitive 15-gabled roof. The new three-level silhouette
+    # needs one coherent roofline, not a row of individual room-shaped boxes.
+    for key in [key for key in blocks if key[1] >= 10]:
+        del blocks[key]
+
+    garden = lambda x, z: 49 <= x <= 63 and 33 <= z <= 47
+    for x in range(49, 64):
+        for z in range(33, 48):
+            if blocks.get((x, 9, z), ("", None))[0] == "minecraft:glass":
+                set_block(blocks, x, 9, z, "minecraft:air")
+    atrium = lambda x, z: 36 <= x <= 44 and 20 <= z <= 28
+    # Ground storey tops out at Y9. These are real traversable upper floors.
+    for x in range(1, 80):
+        for z in range(1, 48):
+            if not garden(x, z) and not atrium(x, z):
+                set_block(blocks, x, 11, z, "minecraft:dark_oak_planks")
+            # The third floor is a smaller keep, not another full-width box.
+            if (16 <= x <= 64 and 1 <= z <= 32) or (
+                1 <= x <= 15 or 65 <= x <= 79
+            ):
+                if not garden(x, z) and not atrium(x, z):
+                    set_block(blocks, x, 22, z, "minecraft:polished_deepslate")
+
+    # A full-length vaulted upper arcade connects the second-storey rooms.
+    # Existing ground-floor halls and utilities remain at their old locations.
+    for y0, y1 in ((12, 21), (23, 30)):
+        for z in range(49):
+            for x in (0, 80):
+                if y0 <= 21 or (z <= 32 or x in (0, 80)):
+                    for y in range(y0, y1):
+                        set_block(blocks, x, y, z, "minecraft:deepslate_bricks")
+        for x in range(81):
+            for z in (0, 48):
+                if y0 <= 21 or (16 <= x <= 64):
+                    for y in range(y0, y1):
+                        set_block(blocks, x, y, z, "minecraft:deepslate_bricks")
+
+    # Second-floor columns separate rooms but each arch is seven blocks wide.
+    for x in (16, 32, 48, 64):
+        for z in range(1, 48):
+            if garden(x, z):
+                continue
+            for y in range(12, 21):
+                set_block(blocks, x, y, z, "minecraft:polished_deepslate")
+        for zc in (8, 24, 40):
+            if garden(x, zc):
+                continue
+            for z in range(zc - 3, zc + 4):
+                for y in range(12, 18):
+                    set_block(blocks, x, y, z, "minecraft:air")
+            for z in (zc - 4, zc + 4):
+                for y in range(12, 19):
+                    set_block(blocks, x, y, z, "minecraft:chiseled_deepslate")
+            for z in range(zc - 2, zc + 3):
+                set_block(blocks, x, 18, z, "minecraft:polished_blackstone_bricks")
+
+    for z in (16, 32):
+        for x in range(1, 80):
+            if garden(x, z):
+                continue
+            for y in range(12, 21):
+                set_block(blocks, x, y, z, "minecraft:polished_deepslate")
+        for xc in (8, 24, 40, 56, 72):
+            for x in range(xc - 3, xc + 4):
+                for y in range(12, 18):
+                    set_block(blocks, x, y, z, "minecraft:air")
+            for x in (xc - 4, xc + 4):
+                for y in range(12, 19):
+                    set_block(blocks, x, y, z, "minecraft:chiseled_deepslate")
+
+    # The original central hall is now a genuine multi-level atrium. Three-wide
+    # bridges and timber balconies preserve navigation through its upper levels.
+    for y in (11, 22):
+        for z in range(23, 26):
+            for x in range(34, 47):
+                set_block(blocks, x, y, z, "minecraft:dark_oak_planks")
+        for x in (34, 46):
+            for z in range(20, 29):
+                set_block(blocks, x, y + 1, z, "minecraft:dark_oak_fence")
+        for z in (22, 26):
+            for x in range(35, 46):
+                set_block(blocks, x, y + 1, z, "minecraft:dark_oak_fence")
+
+    # Wide, practical stair flights, with clear three-block headroom on every
+    # tread; the second staircase connects the upper gallery to the roof keep.
+    for x, z0, y0, count in ((12, 18, 2, 10), (69, 18, 12, 10)):
+        for step in range(count):
+            z, y = z0 + step, y0 + step
+            set_block(blocks, x, y, z,
+                      "minecraft:polished_blackstone_brick_stairs[facing=south]")
+            for clear_y in range(y + 1, min(y + 5, 31)):
+                set_block(blocks, x, clear_y, z, "minecraft:air")
+        # A lit landing at each transition is visible from the main corridor.
+        set_block(blocks, x + 1, y0 + count - 1, z0 + count - 1,
+                  "minecraft:sea_lantern")
+
+    # Shape the third storey into a central keep, corner watchtowers, and the
+    # two lore wings. There is no third-storey roof over the greenhouse.
+    for x in (32, 48):
+        for z in range(1, 33):
+            for y in range(23, 30):
+                set_block(blocks, x, y, z, "minecraft:deepslate_bricks")
+        for z in range(20, 29):
+            for y in range(23, 28):
+                set_block(blocks, x, y, z, "minecraft:air")
+    for z in (1, 32):
+        for x in range(16, 65):
+            for y in range(23, 30):
+                set_block(blocks, x, y, z, "minecraft:deepslate_bricks")
+
+    # Upper halls reference six chapters via restrained inlaid seal emblems:
+    # soot, ember, bone, star, moss, and the last black crown.
+    seals = (
+        "minecraft:gilded_blackstone", "minecraft:magma_block",
+        "minecraft:mossy_stone_bricks", "minecraft:prismarine_bricks",
+        "minecraft:chiseled_tuff_bricks", "minecraft:crying_obsidian",
+    )
+    for i, material in enumerate(seals):
+        x = 8 + (i % 3) * 24
+        z = 7 if i < 3 else 39
+        set_block(blocks, x, 13, z, material)
+        for yy in (12, 14, 15):
+            set_block(blocks, x - 1, yy, z, "minecraft:polished_blackstone_bricks")
+            set_block(blocks, x + 1, yy, z, "minecraft:polished_blackstone_bricks")
+        set_block(blocks, x, 16, z, "minecraft:sea_lantern")
+
+    # Differently shaped second-floor rooms, with octagonal buttresses away
+    # from arch openings. Avoid player-accessible floor or stair positions.
+    for cx, cz in ((8, 8), (24, 8), (56, 8), (72, 8),
+                   (8, 40), (24, 40), (72, 40)):
+        for dx in range(-6, 7):
+            for dz in range(-6, 7):
+                if abs(dx) + abs(dz) < 10 or abs(dx) < 3 or abs(dz) < 3:
+                    continue
+                for y in range(13, 18):
+                    if blocks.get((cx + dx, y, cz + dz), ("minecraft:air", None))[0] == "minecraft:air":
+                        set_block(blocks, cx + dx, y, cz + dz, "minecraft:polished_deepslate")
+
+    # Gothic lancet windows and vertical ribs; they break up the straight
+    # exterior walls while the individual gables and flying buttresses break
+    # up the long roofline.
+    for x in range(7, 80, 8):
+        for z in (0, 48):
+            if z == 0 and 36 <= x <= 44:
+                continue
+            for y in (14, 15, 16, 24, 25):
+                set_block(blocks, x, y, z, "minecraft:blue_stained_glass_pane")
+            for y in (13, 17, 23, 26):
+                set_block(blocks, x, y, z, "minecraft:chiseled_stone_bricks")
+    for z in range(7, 48, 8):
+        for x in (0, 80):
+            for y in (14, 15, 16, 24, 25):
+                set_block(blocks, x, y, z, "minecraft:purple_stained_glass_pane")
+    for x in range(0, 81, 8):
+        for z in (0, 48):
+            for y in range(11, 28):
+                if y % 8 < 6 and (x, z) != (0, 0):
+                    set_block(blocks, x, y, z, "minecraft:polished_blackstone_bricks")
+
+    # A tall asymmetric outline: four battlement towers, a central spire,
+    # high east and west gables, and real glass above the working garden.
+    for tx in (0, 74):
+        for tz in (0, 42):
+            for x in range(tx, tx + 7):
+                for z in range(tz, tz + 7):
+                    boundary = x in (tx, tx + 6) or z in (tz, tz + 6)
+                    for y in range(29, 38):
+                        if boundary:
+                            set_block(blocks, x, y, z, "minecraft:deepslate_bricks")
+                    set_block(blocks, x, 36, z, "minecraft:polished_blackstone")
+                    if boundary and (x + z) % 2 == 0:
+                        set_block(blocks, x, 38, z, "minecraft:deepslate_brick_wall")
+    for xc in (24, 40, 56):
+        for x in range(xc - 7, xc + 8):
+            for z in range(1, 33):
+                roof_y = 31 + (7 - abs(x - xc))
+                if roof_y < 39:
+                    set_block(blocks, x, roof_y, z, "minecraft:deepslate_tiles")
+        for z in (1, 32):
+            set_block(blocks, xc, 39, z, "minecraft:sea_lantern")
+    for x in range(49, 64):
+        for z in range(33, 48):
+            rise = min(z - 33, 47 - z, 6)
+            set_block(blocks, x, 21 + rise, z, "minecraft:glass")
+    for x in (49, 63):
+        for z in (33, 47):
+            for y in range(12, 28):
+                set_block(blocks, x, y, z, "minecraft:dark_oak_log")
+    # Tall circular-feel rose window above the front entrance.
+    for x in range(37, 44):
+        for y in range(23, 30):
+            if abs(x - 40) + abs(y - 26) <= 4:
+                set_block(blocks, x, y, 0,
+                          "minecraft:purple_stained_glass_pane" if (x + y) % 2
+                          else "minecraft:blue_stained_glass_pane")
+    for x in (38, 42):
+        for y in range(20, 32):
+            set_block(blocks, x, y, 1, "minecraft:polished_blackstone_bricks")
+
 def sanctuary() -> None:
     # 5 x 3 connected rooms, each with a 15x15 usable interior. No auto
     # generated equipment, stored loot, resources, or free fast travel.
     blocks, entities = {}, []
-    w, d, h = 81, 49, 20
+    w, d, h = 81, 49, 42
     for x in range(w):
         for z in range(d):
             for y in range(10):
@@ -382,6 +593,7 @@ def sanctuary() -> None:
     decorate_sanctuary(blocks, w, d)
     remodel_sanctuary(blocks)
     sculpt_sanctuary(blocks)
+    towered_sanctuary(blocks)
     save_structure("wardens_sanctuary", (w, h, d), blocks, entities)
 
 def depths_site(index: int, wall: str, floor: str, trim: str) -> None:

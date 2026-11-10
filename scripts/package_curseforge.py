@@ -12,7 +12,7 @@ from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "1.0.63"
+VERSION = "1.0.64"
 MC_VERSION = "1.21.1"
 LOADER = "neoforge-21.1.238"
 OUT_DIR = ROOT / "build/distributions"
@@ -34,7 +34,7 @@ DEPENDENCIES = (
     (940057, 6054947, "TerraBlender 4.1.0.8 (NeoForge 1.21.1, chapter biomes)", "Glitchfiend"),
 )
 
-README = """THE SHATTERED SEALS v1.0.63
+README = """THE SHATTERED SEALS v1.0.64
 Minecraft Java 1.21.1 / NeoForge 21.1.238 / Java 21
 
 CURSEFORGE IMPORT:
@@ -79,6 +79,12 @@ CURSEFORGE IMPORT:
 13. v1.0.63: The Sanctuary Trophy Hall adds camera-facing hologram labels
     over earned boss mask displays, showing both boss and dungeon names.
     Existing Sanctuaries gain labels on approach; storage and items are untouched.
+14. v1.0.64: A three-storey Gothic Sanctuary with proper staircases and upper
+    bridges, tall watchtowers, a sealed-garden conservatory and six lore seals.
+    Old placed Sanctuaries remain unchanged, including stored items.
+15. The optional original Ashen Covenant resource pack installs to resourcepacks.
+    Activate it once in Options > Resource Packs. Complementary Reimagined r5.9.3
+    is recommended by Iris. Select the shader manually if it is missing.
 14. J Codex includes optional rune hints and sword/relic ability descriptions;
    K Skill Tree now has detailed tooltips for skills and mastery perks.
 
@@ -189,9 +195,26 @@ def main() -> None:
     }
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     mod_bytes = mod.read_bytes()
+    brand = ROOT / "build/brand"
+    resource_pack = brand / "The-Shattered-Seals-Ashen-Covenant.zip"
+    cover_path = brand / "curseforge_thumbnail.png"
+    if not resource_pack.is_file() or not cover_path.is_file():
+        raise SystemExit("Brand art missing: run generate_visual_identity.py before packaging")
     with ZipFile(OUTPUT, "w", compression=ZIP_DEFLATED, compresslevel=9) as pack:
         pack.writestr("manifest.json", json.dumps(manifest, indent=2) + "\n")
         pack.writestr(f"overrides/mods/{mod.name}", mod_bytes)
+        pack.writestr("overrides/resourcepacks/The-Shattered-Seals-Ashen-Covenant.zip",
+                      resource_pack.read_bytes())
+        pack.writestr("overrides/config/iris.properties",
+                      "shaderPack=ComplementaryReimagined_r5.9.3.zip\n"
+                      "enableShaders=true\n")
+        pack.writestr("overrides/SHATTERED_SEALS_CURSEFORGE_COVER.png", cover_path.read_bytes())
+        pack.writestr("overrides/BRANDING_SETUP.txt",
+                      "Enable Ashen Covenant in Options > Resource Packs.\n"
+                      "Choose Complementary Reimagined r5.9.3 in Iris Shader Packs.\n"
+                      "The bundled cover PNG is for CurseForge project publishing;\n"
+                      "upload it separately using your CurseForge project dashboard.\n"
+                      "Existing Sanctuary buildings never get overwritten.\n")
         pack.writestr("overrides/README_THE_SHATTERED_SEALS.txt", README)
         # Security-conscious distribution: no .cmd/.ps1/.bat/.exe helpers.
         # The optional Windows report collector stays in GitHub source only.
@@ -207,6 +230,7 @@ def main() -> None:
     (OUT_DIR / (OUTPUT.name + ".sha256")).write_text(
         f"{checksum}  {OUTPUT.name}\n"
     )
+    (OUT_DIR / "The-Shattered-Seals-1.0.64-CurseForge-Cover.png").write_bytes(cover_path.read_bytes())
     print(f"CurseForge import archive: {OUTPUT} ({OUTPUT.stat().st_size} bytes)")
     print(f"SHA256: {checksum}")
     print(f"Pinned CurseForge third-party entries: {len(DEPENDENCIES)}")

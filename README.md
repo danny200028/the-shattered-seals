@@ -13,6 +13,25 @@ The world defaults to Hard difficulty, with high attack speed for an approximati
 
 A challenging single-player RPG modpack, featuring a six-chapter boss storyline, nine-room natural jigsaw fortresses, class skill trees, powerful relics, rarity-based loot, and New Game+ mastery and repeatable chapter quests.
 
+## v1.0.64: The Ashen Covenant fortress and visual identity
+
+- **Three storeys:** connected Gothic Sanctuary with climbable staircases,
+  vaulted library rooms, raised bridges, central atrium, a roof keep,
+  four battlement towers and a tall glass-roofed garden.
+- **Original visual design:** the Ashen Covenant 16x stone-and-dark-timber
+  resource pack is included as an optional ZIP; enable in Resource Packs.
+  These block textures affect the whole world while enabled.
+- **Shaders:** Complementary Reimagined r5.9.3 remains pinned by CurseForge,
+  with Iris configuration preselecting it when present.
+- **Branded menu and world-load screen:** original art in the first-party JAR,
+  and a separate square PNG included for CurseForge listing publication.
+- **World safety:** no existing Sanctuary, chest, player decoration, Crown,
+  Trophy Hall hologram, or secret arena is automatically overwritten.
+  The larger new template appears only with a *new* Keystone placement or
+  a manual /place template command in an expendable test world.
+- **Important:** the CurseForge listing cover does not change automatically:
+  upload its PNG using your project's CurseForge publisher dashboard.
+
 ## v1.0.63: Trophy Hall hologram labels
 
 Each earned boss mask in the Warden's Sanctuary Trophy Hall receives a floating,
@@ -246,8 +265,8 @@ untested interactions, FPS, shaders or full dungeon replay as passed.
 ## Install the development pack
 
 1. Open [GitHub Actions](https://github.com/danny200028/the-shattered-seals/actions/workflows/build.yml) and choose the latest successful **Build The Shattered Seals** run.
-2. Download the artifact named **Shattered-Seals-1.0.63-Clean-CurseForge-Modpack** (script-free packaging).
-3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.63-CurseForge.zip`.
+2. Download the artifact named **Shattered-Seals-1.0.64-Clean-CurseForge-Modpack** (script-free packaging).
+3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.64-CurseForge.zip`.
 4. Import the inner ZIP through the CurseForge Minecraft modpack importer. CurseForge resolves the pinned NeoForge map and shader dependencies; the custom Shattered Seals JAR lives in `overrides/mods`.
 5. Start Minecraft 1.21.1 with Java 21. Use **J** for the Adventurer's Codex, **K** for the skill tree and **L** to toggle the on-screen quest tracker.
 
