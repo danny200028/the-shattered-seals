@@ -13,6 +13,10 @@ The world defaults to Hard difficulty, with high attack speed for an approximati
 
 A challenging single-player RPG modpack, featuring a six-chapter boss storyline, nine-room natural jigsaw fortresses, class skill trees, powerful relics, rarity-based loot, and New Game+ mastery and repeatable chapter quests.
 
+## v1.0.62: Fixed XP-point prices for enchantment books
+
+Codex **J > Books** now charges a fixed **160 / 550 / 1,395 actual XP points** for Common / Rare / Legendary books. Those values are the XP needed to reach vanilla levels 10 / 20 / 30 from zero, rather than subtracting that many levels from your current level. Failed Survival purchases give no book and consume no XP; Creative mode bypasses the purchase cost. Anvils and inventory book application retain their existing behaviour without a second custom purchase charge.
+
 ## v1.0.61: The Living Chronicle and Archivist's Crown
 
 - **Six readable original written books** replace the old named paper trophies. Read three pages of region history, vault secrets and the true rune order. Right-click a named paper from v1.0.60 to upgrade it to the readable book without repeating a fight.
@@ -233,8 +237,8 @@ untested interactions, FPS, shaders or full dungeon replay as passed.
 ## Install the development pack
 
 1. Open [GitHub Actions](https://github.com/danny200028/the-shattered-seals/actions/workflows/build.yml) and choose the latest successful **Build The Shattered Seals** run.
-2. Download the artifact named **Shattered-Seals-1.0.61-Clean-CurseForge-Modpack** (script-free packaging).
-3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.61-CurseForge.zip`.
+2. Download the artifact named **Shattered-Seals-1.0.62-Clean-CurseForge-Modpack** (script-free packaging).
+3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.62-CurseForge.zip`.
 4. Import the inner ZIP through the CurseForge Minecraft modpack importer. CurseForge resolves the pinned NeoForge map and shader dependencies; the custom Shattered Seals JAR lives in `overrides/mods`.
 5. Start Minecraft 1.21.1 with Java 21. Use **J** for the Adventurer's Codex, **K** for the skill tree and **L** to toggle the on-screen quest tracker.
 

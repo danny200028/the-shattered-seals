@@ -12,7 +12,7 @@ from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "1.0.61"
+VERSION = "1.0.62"
 MC_VERSION = "1.21.1"
 LOADER = "neoforge-21.1.238"
 OUT_DIR = ROOT / "build/distributions"
@@ -34,7 +34,7 @@ DEPENDENCIES = (
     (940057, 6054947, "TerraBlender 4.1.0.8 (NeoForge 1.21.1, chapter biomes)", "Glitchfiend"),
 )
 
-README = """THE SHATTERED SEALS v1.0.61
+README = """THE SHATTERED SEALS v1.0.62
 Minecraft Java 1.21.1 / NeoForge 21.1.238 / Java 21
 
 CURSEFORGE IMPORT:
@@ -54,7 +54,7 @@ CURSEFORGE IMPORT:
    dependency references. The pack deliberately does not add duplicate
    quest, dungeon, enchantment or skill-tree mods.
 7. The J Codex Enchants page sells Common / Rare / Legendary books for
-   10 / 20 / 30 vanilla XP levels. 36 new enchantments each have levels I-III.
+   160 / 550 / 1395 fixed XP points (equivalent to vanilla levels 10 / 20 / 30\n   from zero). Creative is free. 36 new enchantments each have levels I-III.
    Combine matching rank books in an anvil, use an anvil to enchant gear,
    or left-click the book onto compatible survival-inventory equipment.
 8. All six legendary swords have a rare passive on successful melee hits,

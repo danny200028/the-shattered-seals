@@ -1,7 +1,7 @@
-# Server-authoritative level purchase. A failed purchase consumes nothing.
-execute unless entity @s[level=30..] run return run tellraw @s {"text":"Need 30 vanilla XP levels for a legendary book.","color":"red"}
+# Server-authoritative fixed XP-point purchase. A failed purchase consumes nothing; Creative is free.
+execute unless entity @s[gamemode=creative] unless entity @s[level=30..] run return run tellraw @s {"text":"Need 1395 XP points (equivalent to level 30) for a legendary book.","color":"red"}
 execute store result score @s ss_ebook_roll run random value 1..12
-xp add @s -30 levels
+execute unless entity @s[gamemode=creative] run xp add @s -1395 points
 execute if score @s ss_ebook_roll matches 1 run function shatteredseals:enchantments/give_soul_reaper
 execute if score @s ss_ebook_roll matches 2 run function shatteredseals:enchantments/give_infernal_wrath
 execute if score @s ss_ebook_roll matches 3 run function shatteredseals:enchantments/give_celestial_judgement

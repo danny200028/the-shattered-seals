@@ -143,9 +143,20 @@ before checking existing-world compatibility.
       book must not be consumed or swap with the pickaxe.
 - [ ] Verify the vanilla anvil still applies and combines books as before.
 
+## v1.0.62: Fixed enchantment book XP-point prices
+- [ ] In Survival, check the Codex Books button displays 160 / 550 / 1,395 XP points for Common / Rare / Legendary.
+- [ ] At precisely level 10, 20 and 30, purchase a book of the matching rarity and verify no XP remains from an empty bar.
+- [ ] With partial progress toward the next level, verify only the stated number of XP points is deducted.
+- [ ] Try each purchase just below its corresponding level; ensure no book or XP is lost.
+- [ ] Check Creative mode bypasses the book shop XP price.
+- [ ] Confirm anvil and inventory book application still work and do not charge the book purchase price a second time.
+
 ## Expanded RPG systems (v1.0.53)
 - [ ] Open J > Enchants. Read all 36 custom books in the three rarity tabs.
-- [ ] Buy a common book with 10 vanilla XP levels, rare with 20, legendary with 30.
+- [ ] Buy Common / Rare / Legendary books at 160 / 550 / 1,395 **XP points** (equivalent to vanilla levels 10 / 20 / 30 from zero).
+- [ ] Buy books again at higher starting levels: ensure the XP point cost stays fixed, not a deduction of 10/20/30 displayed levels.
+- [ ] Creative book purchases consume zero XP; unaffordable Survival purchases consume zero XP and give no book.
+- [ ] Apply previously bought books by direct inventory drag or anvil; no second custom purchase charge.
 - [ ] Attempt an unaffordable purchase; verify no XP is consumed.
 - [ ] Apply a book through an anvil, then combine matching level I books into II,
       and matching level II books into III, without exceeding maximum level III.
