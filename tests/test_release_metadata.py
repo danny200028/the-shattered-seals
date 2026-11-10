@@ -12,7 +12,7 @@ class ReleaseMetadataTests(unittest.TestCase):
             "src/main/resources/META-INF/neoforge.mods.toml":f'version="{VERSION}"',
             "src/main/java/com/shatteredseals/ShatteredSeals.java":f'VERSION = "{VERSION}"',
             "scripts/package_curseforge.py":f'VERSION = "{VERSION}"',
-            ".github/workflows/build.yml":f"Shattered-Seals-{VERSION}-CurseForge-Modpack",
+            ".github/workflows/build.yml":f"Shattered-Seals-{VERSION}-Clean-CurseForge-Modpack",
             "tests/verify_package.py":f'The-Shattered-Seals-{VERSION}-CurseForge.zip',
             "README.md":f"The-Shattered-Seals-{VERSION}-CurseForge.zip",
             "docs/PLAYTEST_CHECKLIST.md":VERSION

@@ -33,10 +33,11 @@ class AutomatedTestingSuite(unittest.TestCase):
         self.assertNotIn('Set-ExecutionPolicy',ps)
         self.assertNotIn('Copy-Item -Destination $world',ps)
 
-    def test_curseforge_package_bundles_collector(self):
+    def test_curseforge_package_excludes_windows_scripts(self):
         packager=(ROOT/"scripts/package_curseforge.py").read_text()
-        self.assertIn('overrides/TEST_THE_SHATTERED_SEALS.cmd',packager)
-        self.assertIn('overrides/tools/ShatteredSeals-TestReport.ps1',packager)
+        self.assertNotIn('overrides/TEST_THE_SHATTERED_SEALS.cmd',packager)
+        self.assertNotIn('overrides/tools/ShatteredSeals-TestReport.ps1',packager)
+        self.assertNotIn('pack.write(path, target)',packager)
         self.assertIn('RuntimeAudit.class',packager)
 
 if __name__=="__main__":
