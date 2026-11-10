@@ -463,7 +463,7 @@ def towered_sanctuary(blocks: dict) -> None:
     for xc in (24, 40, 56):
         for x in range(xc - 7, xc + 8):
             for z in range(1, 33):
-                roof_y = 31 + min(7, abs(x - xc) // 2)
+                roof_y = 31 + (7 - abs(x - xc))
                 if roof_y < 39:
                     set_block(blocks, x, roof_y, z, "minecraft:deepslate_tiles")
         for z in (1, 32):
