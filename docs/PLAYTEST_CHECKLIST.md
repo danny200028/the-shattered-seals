@@ -143,6 +143,25 @@ before checking existing-world compatibility.
       book must not be consumed or swap with the pickaxe.
 - [ ] Verify the vanilla anvil still applies and combines books as before.
 
+## v1.0.64: Three-floor Sanctuary and themed visuals
+
+- [ ] Place a **new** Sanctuary in a copied world and traverse all three
+      floors by stairs, without fly or spectator mode.
+- [ ] Check upper bridges, door arches, exterior towers and high greenhouse,
+      including boss secret arena and fifteen original ground-floor rooms.
+- [ ] Visit a pre-existing Sanctuary and verify no retroactive modification
+      to its chest inventories, blocks, markers or trophy displays.
+- [ ] Enable the Ashen Covenant pack, and confirm textures, disabled pack,
+      resource pack compatibility and shader appearance.
+- [ ] Verify new main-menu branding and world-loading art at GUI scales 2/3.
+      Singleplayer, Multiplayer, Settings and Quit must work normally.
+- [ ] Confirm Complementary Reimagined r5.9.3 loads via Iris, and FPS remains
+      acceptable with shaders on/off.
+- [ ] Inspect square cover PNG and use the publisher dashboard to set the
+      CurseForge project thumbnail separately.
+- [ ] Save/reload and verify access to all three floors, storage persistence,
+      and unchanged boss, Crown, hologram and secret-arena systems.
+
 ## v1.0.63: Sanctuary Trophy Hall holograms
 
 - [ ] In a Sanctuary with all six boss trophies earned, each floating label shows

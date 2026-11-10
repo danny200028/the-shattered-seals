@@ -33,6 +33,7 @@ jobs:
         run: |
           python3 scripts/generate_dungeons.py
           python3 scripts/generate_v158_assets.py
+          python3 scripts/generate_visual_identity.py
           python3 scripts/generate_soundtrack.py
       - name: Launch real NeoForge GameTestServer and validate world behavior
         shell: bash
