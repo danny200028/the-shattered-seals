@@ -89,9 +89,9 @@ class FinalWorldTests(unittest.TestCase):
             ((40, 22, 24), "minecraft:dark_oak_planks"),
         ):
             self.assertEqual(blocks[pos][0],kind,pos)
-        self.assertIn("stairs",blocks[(12,2,18)][0])
+        self.assertIn("stairs",blocks[(11,1,18)][0])
         self.assertIn("stairs",blocks[(69,12,18)][0])
-        self.assertEqual(blocks[(0,38,0)][0],"minecraft:deepslate_brick_wall")
+        self.assertEqual(blocks[(3,39,9)][0],"minecraft:deepslate_brick_wall")
         self.assertTrue(all(0<=x<81 and 0<=y<42 and 0<=z<49
                             for x,y,z in blocks))
 

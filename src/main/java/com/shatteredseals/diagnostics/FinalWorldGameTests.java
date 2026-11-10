@@ -8,6 +8,7 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Items;
 import com.shatteredseals.combat.SwordMastery;
 import com.shatteredseals.world.SanctuaryPlacement;
+import com.shatteredseals.world.SanctuarySpawnWard;
 import net.minecraft.core.BlockPos;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
@@ -28,6 +29,10 @@ public final class FinalWorldGameTests {
                 || !SanctuaryPlacement.canClear(Blocks.OAK_LOG.defaultBlockState())
                 || !SanctuaryPlacement.canClear(Blocks.OAK_LEAVES.defaultBlockState())
                 || !SanctuaryPlacement.canClear(Blocks.WATER.defaultBlockState())
+                || !SanctuaryPlacement.canClear(Blocks.IRON_ORE.defaultBlockState())
+                || !SanctuaryPlacement.canClear(Blocks.DEEPSLATE_COAL_ORE.defaultBlockState())
+                || !SanctuarySpawnWard.insideWard(new BlockPos(40, 1, 24), new BlockPos(92, 1, 60))
+                || SanctuarySpawnWard.insideWard(new BlockPos(40, 1, 24), new BlockPos(93, 1, 60))
                 || SanctuaryPlacement.canClear(Blocks.CHEST.defaultBlockState())
                 || SanctuaryPlacement.canClear(Blocks.STONE_BRICKS.defaultBlockState())
                 || SanctuaryPlacement.canClear(Blocks.BEDROCK.defaultBlockState())) {
@@ -36,12 +41,16 @@ public final class FinalWorldGameTests {
         }
         h.assertBlockPresent(Blocks.LODESTONE, new BlockPos(40, 2, 24));
         h.assertBlockPresent(Blocks.BOOKSHELF, new BlockPos(65, 2, 3));
-        h.assertBlockPresent(Blocks.DEEPSLATE_BRICKS, new BlockPos(0, 16, 0));
+        h.assertBlockPresent(Blocks.DEEPSLATE_BRICKS, new BlockPos(0, 16, 8));
         // The original glass roof opens into a taller three-storey greenhouse.
-        h.assertBlockPresent(Blocks.GLASS, new BlockPos(55, 28, 40));
+        h.assertBlockPresent(Blocks.GLASS, new BlockPos(55, 33, 40));
         h.assertBlockPresent(Blocks.DARK_OAK_PLANKS, new BlockPos(40, 12, 24));
         h.assertBlockPresent(Blocks.DARK_OAK_PLANKS, new BlockPos(40, 23, 24));
-        h.assertBlockPresent(Blocks.DEEPSLATE_BRICK_WALL, new BlockPos(0, 39, 0));
+        h.assertBlockPresent(Blocks.DEEPSLATE_BRICK_WALL, new BlockPos(3, 40, 9));
+        h.assertBlockPresent(Blocks.POLISHED_BLACKSTONE_BRICK_STAIRS, new BlockPos(11, 2, 18));
+        h.assertBlockPresent(Blocks.POLISHED_BLACKSTONE_BRICK_STAIRS, new BlockPos(69, 13, 18));
+        h.assertBlockPresent(Blocks.DARK_OAK_PLANKS, new BlockPos(11, 12, 29));
+        h.assertBlockPresent(Blocks.POLISHED_DEEPSLATE, new BlockPos(69, 23, 29));
         h.assertBlockPresent(Blocks.ENCHANTING_TABLE, new BlockPos(38, 2, 8));
         h.assertBlockPresent(Blocks.FURNACE, new BlockPos(4, 2, 40));
         h.assertBlockPresent(Blocks.CHEST, new BlockPos(68, 2, 21));
