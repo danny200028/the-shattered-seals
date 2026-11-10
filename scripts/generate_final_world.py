@@ -294,6 +294,10 @@ def towered_sanctuary(blocks: dict) -> None:
         del blocks[key]
 
     garden = lambda x, z: 49 <= x <= 63 and 33 <= z <= 47
+    for x in range(49, 64):
+        for z in range(33, 48):
+            if blocks.get((x, 9, z), ("", None))[0] == "minecraft:glass":
+                set_block(blocks, x, 9, z, "minecraft:air")
     atrium = lambda x, z: 36 <= x <= 44 and 20 <= z <= 28
     # Ground storey tops out at Y9. These are real traversable upper floors.
     for x in range(1, 80):
@@ -369,18 +373,13 @@ def towered_sanctuary(blocks: dict) -> None:
 
     # Wide, practical stair flights, with clear three-block headroom on every
     # tread; the second staircase connects the upper gallery to the roof keep.
-    for x, z0, y0, count in ((12, 18, 2, 10), (69, 18, 13, 9)):
+    for x, z0, y0, count in ((12, 18, 2, 10), (69, 18, 12, 10)):
         for step in range(count):
             z, y = z0 + step, y0 + step
             set_block(blocks, x, y, z,
                       "minecraft:polished_blackstone_brick_stairs[facing=south]")
             for clear_y in range(y + 1, min(y + 5, 31)):
                 set_block(blocks, x, clear_y, z, "minecraft:air")
-            if y >= 11:
-                # Re-open the stair well through the first upper slab.
-                set_block(blocks, x, 11, z, "minecraft:air")
-            if y >= 22:
-                set_block(blocks, x, 22, z, "minecraft:air")
         # A lit landing at each transition is visible from the main corridor.
         set_block(blocks, x + 1, y0 + count - 1, z0 + count - 1,
                   "minecraft:sea_lantern")
@@ -445,7 +444,7 @@ def towered_sanctuary(blocks: dict) -> None:
     for x in range(0, 81, 8):
         for z in (0, 48):
             for y in range(11, 28):
-                if y % 8 < 6:
+                if y % 8 < 6 and (x, z) != (0, 0):
                     set_block(blocks, x, y, z, "minecraft:polished_blackstone_bricks")
 
     # A tall asymmetric outline: four battlement towers, a central spire,
