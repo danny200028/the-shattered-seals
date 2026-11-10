@@ -261,3 +261,19 @@ Use a disposable world or copied save before attempting this irreversible terrai
 - [ ] Inspect the interior, four battlement towers and glasshouse roof after hillside clearing
 - [ ] Confirm one-time placement, saved coordinates and Survival item consumption survive save/reload
 - [ ] Combined animated bosses, Chronicle Archive, music and old-world progress remain unaffected
+
+
+## v1.0.61 Chronicle and Archivist's Crown acceptance
+
+Use a backed-up world. Both original elite rewards and existing old saves need testing.
+
+- [ ] Defeat a new underground elite in Survival, receive a **readable written book** instead of paper; read all three pages and check region history and the correct rune order.
+- [ ] Right-click a previously collected named Buried Chronicle paper in the main hand; it is replaced with its readable written book, without another elite fight or extra XP.
+- [ ] Complete all six distinct Chronicle regions: the original one-time Crown drops, the **Seventh Leaf** epilogue book is also awarded once, and the Archive chiseled-deepslate marker displays the epilogue.
+- [ ] Reopen an old 6/6 save: previous Crown remains in inventory; Seventh Leaf is granted once, with no duplicate Crown on reload.
+- [ ] Wear the Crown in the helmet slot; confirm its original gold-and-purple texture, **4 armour / 3 toughness** and knockback resistance. Unequip to check normal defence returns.
+- [ ] Wear Crown, defeat a *new* region elite: 30 vanilla XP and **350 RPG/mastery XP**. Unequip and defeat an uncompleted region elite: 30 vanilla XP and **250 RPG/mastery XP**.
+- [ ] Revisit a previously completed site and verify no repeat XP, books or crown.
+- [ ] Wear Crown within 48 blocks of an unopened, loaded underground hidden vault: actionbar gives X/Y/Z every 10 seconds, plus nearby purple enchantment particles.
+- [ ] Unequip Crown, or open the vault: nearby resonance stops.
+- [ ] Save/reload, check old Chronicle book pages, Crown equip effects and trophy progress persist.

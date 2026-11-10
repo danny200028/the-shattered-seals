@@ -6,6 +6,17 @@ The world defaults to Hard difficulty, with high attack speed for an approximati
 
 A challenging single-player RPG modpack, featuring a six-chapter boss storyline, nine-room natural jigsaw fortresses, class skill trees, powerful relics, rarity-based loot, and New Game+ mastery and repeatable chapter quests.
 
+## v1.0.61: The Living Chronicle and Archivist's Crown
+
+- **Six readable original written books** replace the old named paper trophies. Read three pages of region history, vault secrets and the true rune order. Right-click a named paper from v1.0.60 to upgrade it to the readable book without repeating a fight.
+- **Seventh Leaf epilogue** is a readable bonus volume automatically granted once when the six Chronicle regions are complete, even on an old save with previously completed progress. The Sanctuary Chronicle Archive now reads the extra epilogue in chat on 6/6.
+- **Archivist's Crown is now a real wearable legendary helmet**, using the existing item registry ID and saved item. It provides four armour points, three armour toughness, slight knockback resistance and a specially textured gold-and-amethyst open circlet.
+- **Crown XP:** while worn, each new site-specific depths elite first victory gives +350 total RPG XP (250 original + 100 bonus), or mastery XP after level 60 in NG+, rather than the original 250. The bonus never triggers twice for the same site.
+- **Crown vault sight:** while worn, checks every ten seconds for unopened marked vaults within 48 blocks and gives an actionbar X/Y/Z resonance hint plus enchantment particles. It does not auto-open vaults or spoil progression.
+- **Save safety:** preserves all existing six Chronicle bits, old Crown items, one-time rewards, class progress, boss abilities and terrain placement improvements.
+
+Note: Crown resonance only works while the relevant underground vault marker is loaded and within 48 blocks. Back up your save and test a copied world first.
+
 ## v1.0.60: Sanctuary terrain placement fix
 
 The Warden's Sanctuary Keystone can now **level ordinary terrain** across its full 81 × 49 footprint: dirt, stone, hills, logs, foliage, plants and water. It clears obstructing natural blocks through the roof height and builds stone-brick foundations down to stable ground (up to 32 blocks). You **no longer need an entirely flat and empty clearing**. Place on the Overworld, right-click once for a preview and clear-count, then click the SAME block again within ten seconds to confirm.
@@ -216,7 +227,7 @@ untested interactions, FPS, shaders or full dungeon replay as passed.
 
 1. Open [GitHub Actions](https://github.com/danny200028/the-shattered-seals/actions/workflows/build.yml) and choose the latest successful **Build The Shattered Seals** run.
 2. Download the artifact named **Shattered-Seals-1.0.57-CurseForge-Modpack**.
-3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.60-CurseForge.zip`.
+3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.61-CurseForge.zip`.
 4. Import the inner ZIP through the CurseForge Minecraft modpack importer. CurseForge resolves the pinned NeoForge map and shader dependencies; the custom Shattered Seals JAR lives in `overrides/mods`.
 5. Start Minecraft 1.21.1 with Java 21. Use **J** for the Adventurer's Codex, **K** for the skill tree and **L** to toggle the on-screen quest tracker.
 

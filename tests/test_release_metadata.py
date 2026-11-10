@@ -3,7 +3,7 @@ from pathlib import Path
 import unittest
 
 ROOT=Path(__file__).resolve().parents[1]
-VERSION="1.0.60"
+VERSION="1.0.61"
 
 class ReleaseMetadataTests(unittest.TestCase):
     def test_release_version_consistency(self):
@@ -33,6 +33,8 @@ class ReleaseMetadataTests(unittest.TestCase):
         self.assertIn("TrialsBountiesGameTests.class",packager)
         self.assertIn("FinalWorldGameTests.class",packager)
         self.assertIn("FinalAdventure.class",packager)
+        self.assertIn("ChronicleRewards.class",packager)
+        self.assertIn("Missing wearable Archivist Crown armor model texture",packager)
         self.assertIn("AnimatedBossModel.class",packager)
         self.assertIn("BossSkinRenderers.class",packager)
         self.assertIn("Custom animated boss skin missing",packager)

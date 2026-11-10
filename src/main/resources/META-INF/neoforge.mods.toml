@@ -6,7 +6,7 @@ showAsDataPack=false
 
 [[mods]]
 modId="shatteredseals"
-version="1.0.60"
+version="1.0.61"
 displayName="The Shattered Seals"
 authors="The Shattered Seals Project"
 description="Dark-fantasy RPG campaign with skill trees and persistent multiclass progression."

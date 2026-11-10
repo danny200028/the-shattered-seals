@@ -1,7 +1,7 @@
 name: Quick Development Test
 on:
   push:
-    branches: [main, fix/sanctuary-terrain-placement-v1-0-60]
+    branches: [main, feature/chronicle-rewards-v1-0-61]
   pull_request:
     branches: [main]
   workflow_dispatch:

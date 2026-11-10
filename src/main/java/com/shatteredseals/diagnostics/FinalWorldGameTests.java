@@ -2,6 +2,10 @@ package com.shatteredseals.diagnostics;
 
 import com.shatteredseals.ShatteredSeals;
 import com.shatteredseals.adventure.FinalAdventure;
+import com.shatteredseals.adventure.ChronicleRewards;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.Items;
 import com.shatteredseals.combat.SwordMastery;
 import com.shatteredseals.world.SanctuaryPlacement;
 import net.minecraft.core.BlockPos;
@@ -40,6 +44,35 @@ public final class FinalWorldGameTests {
         h.assertBlockPresent(Blocks.BREWING_STAND, new BlockPos(36, 2, 40));
         h.succeed();
     }
+    @GameTest(template = "smugglers_den", timeoutTicks = 100)
+    public static void readableChroniclesAndLegendaryCrown(GameTestHelper h) {
+        for (int index = 0; index < 6; index++) {
+            var book = ChronicleRewards.chronicleBook(index);
+            var pages = book.get(DataComponents.WRITTEN_BOOK_CONTENT);
+            if (!book.is(Items.WRITTEN_BOOK) || pages == null || pages.pages().size() != 3
+                    || !pages.title().raw().equals("Buried Chronicle " + (index + 1))) {
+                h.fail("Chronicle " + index + " is not a three-page readable signed book");
+                return;
+            }
+        }
+        var epilogue = ChronicleRewards.epilogueBook();
+        if (!epilogue.is(Items.WRITTEN_BOOK)
+                || epilogue.get(DataComponents.WRITTEN_BOOK_CONTENT) == null
+                || epilogue.get(DataComponents.WRITTEN_BOOK_CONTENT).pages().size() != 3) {
+            h.fail("Chronicle epilogue is missing its three original story pages");
+            return;
+        }
+        if (!(ShatteredSeals.ARCHIVISTS_CROWN.get() instanceof ArmorItem crown)
+                || crown.getType() != ArmorItem.Type.HELMET
+                || crown.getDefense() != 4
+                || crown.getToughness() != 3.0F
+                || ChronicleRewards.ELITE_BONUS_XP != 100) {
+            h.fail("Archivist's Crown is not functional legendary head armour");
+            return;
+        }
+        h.succeed();
+    }
+
     @GameTest(template = "smugglers_tunnels_ruin", timeoutTicks = 150)
     public static void smugglersTunnels(GameTestHelper h) { checkRuin(h); }
     @GameTest(template = "emberfault_chasms_ruin", timeoutTicks = 150)

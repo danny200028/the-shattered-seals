@@ -1,7 +1,7 @@
 # The Shattered Seals — LOCKED Final Release Roadmap
 
 > **Scope originally locked: 8 November 2026; expanded on 9 November 2026 by explicit approval for Shattered Depths and the Sanctuary & Legends v1.0.58 update.**
-> **Current development release:** v1.0.60 Sanctuary terrain-placement hotfix candidate (Minecraft Java 1.21.1, NeoForge 21.1.238, Java 21, CurseForge).
+> **Current development release:** v1.0.61 Chronicle rewards candidate (Minecraft Java 1.21.1, NeoForge 21.1.238, Java 21, CurseForge).
 > **Final target:** v1.1.0, the complete, difficult, single-player Vanilla+ RPG.
 > **Implementation status:** v1.0.56 manually tested; v1.0.57 passed automated verification. v1.0.58 implements the newly approved architectural, audio, boss visuals and Chronicle features. Latest branch passed build, package checks and 26/26 real NeoForge GameTests; player playtest remains required.
 > This document is the canonical feature-freeze checklist. No new major features will be added
@@ -19,6 +19,21 @@
 > enchantments before replacement and restore them onto the new sword without
 > changing material cost. An extra consumable protection item is therefore
 > unnecessary. Verify on real enchanted swords during manual acceptance.
+
+## v1.0.61 — The Living Chronicle and Archivist's Crown
+
+- [x] Replace one-time Chronicle paper reward with unique, signed, readable
+  books for all six regions with original lore and the rune puzzle clue.
+- [x] Automatically award readable Seventh Leaf epilogue to players whose
+  six Chronicle records are complete, including old saves.
+- [x] Convert older named paper trophies on right-click without re-awarding XP.
+- [x] Make the original registered Crown a wearable custom-textured helmet:
+  +4 armour, +3 toughness, 0.1 knockback resistance.
+- [x] Crown grants +100 RPG/mastery XP on first-time region elite kills and
+  senses nearby unopened vault markers within 48 blocks every 10 seconds.
+- [ ] Confirm CI NeoForge compilation and 27 real GameTests.
+- [ ] Player manually verifies texture, gear behaviour, book UI, vault
+  compass hints and old-save compatibility.
 
 ## v1.0.60 — Sanctuary terrain placement hotfix
 
