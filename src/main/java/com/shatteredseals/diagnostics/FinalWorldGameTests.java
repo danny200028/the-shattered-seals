@@ -62,8 +62,8 @@ public final class FinalWorldGameTests {
             h.fail("Chronicle epilogue is missing its three original story pages");
             return;
         }
-        if (!(ShatteredSeals.ARCHIVISTS_CROWN.get() instanceof ArmorItem crown)
-                || crown.getType() != ArmorItem.Type.HELMET
+        ArmorItem crown = ShatteredSeals.ARCHIVISTS_CROWN.get();
+        if (crown.getType() != ArmorItem.Type.HELMET
                 || crown.getDefense() != 4
                 || crown.getToughness() != 3.0F
                 || ChronicleRewards.ELITE_BONUS_XP != 100) {
