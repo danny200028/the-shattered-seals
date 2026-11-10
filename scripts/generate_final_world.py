@@ -448,8 +448,7 @@ def decorate_caves(index: int, biome: str, feature_block: str) -> None:
 
 def main() -> None:
     sanctuary()
-    register_structure("wardens_sanctuary", ["minecraft:plains", "minecraft:meadow",
-        "minecraft:forest", "minecraft:birch_forest"], 40, 80323091)
+    # Keystone-only: do not register the Sanctuary for natural generation.
     for index, (dungeon, biome, wall, floor, trim, mob, salt) in enumerate(THEMES):
         region, feature_block, cave_wall, accent, guardian = REGIONS[index]
         depths_site(index, cave_wall, floor, accent)
@@ -457,7 +456,7 @@ def main() -> None:
         register_structure(region + "_ruin", biome, 38, salt + 7100, -32)
         register_structure(region + "_vault", biome, 78, salt + 9100, -34)
         decorate_caves(index, biome.split(":")[1], feature_block)
-    print("Generated one 15-room Warden Sanctuary, six underground ruins and six hidden vaults.")
+    print("Generated Keystone-only Warden Sanctuary, six underground ruins and six hidden vaults.")
 
 if __name__ == "__main__":
     main()

@@ -11,13 +11,21 @@ REGIONS=("smugglers_tunnels","emberfault_chasms","drowned_ossuary",
 class FinalWorldTests(unittest.TestCase):
     def test_generator_and_worldgen_registries(self):
         ast.parse((ROOT/"scripts/generate_final_world.py").read_text())
-        for name in ("wardens_sanctuary",)+tuple(n+"_ruin" for n in REGIONS)+tuple(n+"_vault" for n in REGIONS):
+        for name in tuple(n+"_ruin" for n in REGIONS)+tuple(n+"_vault" for n in REGIONS):
             with self.subTest(name=name):
                 self.assertTrue((DATA/f"structure/{name}.nbt").is_file(),name)
                 for folder in ("template_pool","structure","structure_set"):
                     file=DATA/f"worldgen/{folder}/{name}.json"
                     self.assertTrue(file.is_file(),name+":"+folder)
                     json.loads(file.read_text())
+    def test_sanctuary_is_keystone_only(self):
+        generator=(ROOT/"scripts/generate_final_world.py").read_text()
+        self.assertIn('sanctuary()',generator)
+        self.assertNotIn('register_structure("wardens_sanctuary"',generator)
+        self.assertTrue((DATA/"structure/wardens_sanctuary.nbt").is_file())
+        for folder in ("template_pool","structure","structure_set"):
+            self.assertFalse((DATA/f"worldgen/{folder}/wardens_sanctuary.json").exists())
+
     def test_regions_ore_and_vanilla_biome_preservation(self):
         from runpy import run_path
         # Generator outputs are materialised by the CI generation step first.
