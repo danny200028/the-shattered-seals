@@ -1,6 +1,7 @@
 # Called when any boss is summoned. Objectives may exist already if #minecraft:load ran.
 scoreboard objectives add ss_bt dummy
 scoreboard objectives add ss_hp dummy
+scoreboard objectives add ss_melee dummy
 bossbar add shatteredseals:smuggler_king {"text":"Smuggler King","color":"gold","bold":true}
 bossbar set shatteredseals:smuggler_king max 150
 bossbar set shatteredseals:smuggler_king color purple

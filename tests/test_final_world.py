@@ -63,6 +63,19 @@ class FinalWorldTests(unittest.TestCase):
                          "minecraft:polished_blackstone_brick_stairs[facing=north]")
         self.assertEqual(blocks[(32,3,24)][0],"minecraft:air")
 
+    def test_smuggler_melee_attack_is_cooldown_and_range_gated(self):
+        heartbeat=(DATA/"function/boss/heartbeat.mcfunction").read_text()
+        strike=(DATA/"function/boss/smuggler_king/melee_strike.mcfunction").read_text()
+        spawn=(DATA/"function/boss/summon_smuggler_king.mcfunction").read_text()
+        self.assertIn("ss_melee=30..",heartbeat)
+        self.assertIn("distance=..2.6",heartbeat)
+        self.assertIn("ss_melee 0",strike)
+        self.assertIn("minecraft:mob_attack by @s",strike)
+        self.assertIn("minecraft:iron_sword",strike)
+        self.assertIn("weapon.mainhand with minecraft:crossbow",spawn)
+        self.assertIn("weapon.mainhand with minecraft:crossbow",heartbeat)
+        self.assertIn("gamemode=!spectator",strike)
+
     def test_real_minecraft_structures_have_games(self):
         tests=(JAVA/"diagnostics/FinalWorldGameTests.java").read_text()
         self.assertEqual(tests.count("@GameTest("),10)

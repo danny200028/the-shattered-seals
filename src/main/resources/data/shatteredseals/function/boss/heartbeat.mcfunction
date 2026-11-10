@@ -1,5 +1,10 @@
 # This loop starts after summon and remains active while any boss exists.
 execute as @e[tag=ss_boss] run scoreboard players add @s ss_bt 1
+# A short sword combo supplements the Smuggler King's normal crossbow AI.
+# The attack is distance-gated, cooldown-limited and never hits spectators.
+execute as @e[tag=ss_smuggler_king] run scoreboard players add @s ss_melee 1
+execute as @e[tag=ss_smuggler_king,scores={ss_melee=30..}] at @s if entity @p[distance=..2.6,gamemode=!creative,gamemode=!spectator] run function shatteredseals:boss/smuggler_king/melee_strike
+execute as @e[tag=ss_smuggler_king,scores={ss_melee=8}] run item replace entity @s weapon.mainhand with minecraft:crossbow
 execute as @e[tag=ss_boss] store result score @s ss_hp run data get entity @s Health 1
 execute as @e[tag=ss_smuggler_king,tag=!ss_phase2] at @s if score @s ss_hp matches ..75 run function shatteredseals:boss/smuggler_king/phase_two
 execute as @e[tag=ss_smuggler_king,tag=!ss_phase3] at @s if score @s ss_hp matches ..50 run function shatteredseals:boss/smuggler_king/phase_three
