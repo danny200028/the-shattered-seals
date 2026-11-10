@@ -6,6 +6,12 @@ The world defaults to Hard difficulty, with high attack speed for an approximati
 
 A challenging single-player RPG modpack, featuring a six-chapter boss storyline, nine-room natural jigsaw fortresses, class skill trees, powerful relics, rarity-based loot, and New Game+ mastery and repeatable chapter quests.
 
+## v1.0.60: Sanctuary terrain placement fix
+
+The Warden's Sanctuary Keystone can now **level ordinary terrain** across its full 81 × 49 footprint: dirt, stone, hills, logs, foliage, plants and water. It clears obstructing natural blocks through the roof height and builds stone-brick foundations down to stable ground (up to 32 blocks). You **no longer need an entirely flat and empty clearing**. Place on the Overworld, right-click once for a preview and clear-count, then click the SAME block again within ten seconds to confirm.
+
+**Safety:** Chests, block entities, crafted stone bricks, machinery, farmland and other recognisable construction blocks are rejected. Dirt, natural stone and logs are indistinguishable from blocks players place, so these **can still be destroyed**. Always back up your world and test the Keystone in a copy before confirming. A sharp drop over 32 blocks is still rejected.
+
 ## v1.0.59: Six Animated Bosses
 
 The boss bodies are now original Minecraft-native articulated meshes, not
@@ -210,7 +216,7 @@ untested interactions, FPS, shaders or full dungeon replay as passed.
 
 1. Open [GitHub Actions](https://github.com/danny200028/the-shattered-seals/actions/workflows/build.yml) and choose the latest successful **Build The Shattered Seals** run.
 2. Download the artifact named **Shattered-Seals-1.0.57-CurseForge-Modpack**.
-3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.59-CurseForge.zip`.
+3. Extract that artifact ZIP **once**, exposing `The-Shattered-Seals-1.0.60-CurseForge.zip`.
 4. Import the inner ZIP through the CurseForge Minecraft modpack importer. CurseForge resolves the pinned NeoForge map and shader dependencies; the custom Shattered Seals JAR lives in `overrides/mods`.
 5. Start Minecraft 1.21.1 with Java 21. Use **J** for the Adventurer's Codex, **K** for the skill tree and **L** to toggle the on-screen quest tracker.
 

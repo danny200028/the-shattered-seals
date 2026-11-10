@@ -12,7 +12,7 @@ from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "1.0.59"
+VERSION = "1.0.60"
 MC_VERSION = "1.21.1"
 LOADER = "neoforge-21.1.238"
 OUT_DIR = ROOT / "build/distributions"
@@ -34,7 +34,7 @@ DEPENDENCIES = (
     (940057, 6054947, "TerraBlender 4.1.0.8 (NeoForge 1.21.1, chapter biomes)", "Glitchfiend"),
 )
 
-README = """THE SHATTERED SEALS v1.0.59
+README = """THE SHATTERED SEALS v1.0.60
 Minecraft Java 1.21.1 / NeoForge 21.1.238 / Java 21
 
 CURSEFORGE IMPORT:
@@ -59,7 +59,7 @@ CURSEFORGE IMPORT:
    or left-click the book onto compatible survival-inventory equipment.
 8. All six legendary swords have a rare passive on successful melee hits,
    with independent cooldowns and stronger effects at higher sword tiers.
-9. v1.0.59: Sword passive cooldowns display chat messages on activation
+9. v1.0.60: Sword passive cooldowns display chat messages on activation
    and ready-again. Book hover tooltips track the actual enchantment rank
    after anvil combining. Survival inventory accepts enchant application
    in either click direction. Creative inventory requires an anvil.
@@ -70,10 +70,10 @@ CURSEFORGE IMPORT:
    and six lost shrines. New players see a short skippable RPG prologue.
    Replay the intro using /shatteredseals intro, without resetting progress.
    New biome generation ONLY appears in fresh/unexplored world chunks.
-11. v1.0.59: J > Trials unlocks after level 60, a Hollow King victory and active NG+ chapter.
+11. v1.0.60: J > Trials unlocks after level 60, a Hollow King victory and active NG+ chapter.
    Optional Hazard Pulse and Scarcity modifiers enhance the six boss fights;
    dual modifiers require NG+ cycle 3. One trial medal per chapter per cycle.
-12. v1.0.59: J > Bounty offers hunts, biome surveys and chapter boss contracts.
+12. v1.0.60: J > Bounty offers hunts, biome surveys and chapter boss contracts.
    Only one contract may be active, claiming grants limited vanilla XP and
    ordinary resources, and rewards have a 10-minute cooldown.
 13. J Codex includes optional rune hints and sword/relic ability descriptions;

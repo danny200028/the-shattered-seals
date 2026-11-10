@@ -3,6 +3,7 @@ package com.shatteredseals.diagnostics;
 import com.shatteredseals.ShatteredSeals;
 import com.shatteredseals.adventure.FinalAdventure;
 import com.shatteredseals.combat.SwordMastery;
+import com.shatteredseals.world.SanctuaryPlacement;
 import net.minecraft.core.BlockPos;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
@@ -16,6 +17,19 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 public final class FinalWorldGameTests {
     @GameTest(template = "wardens_sanctuary", timeoutTicks = 400)
     public static void sanctuaryRoomsPlaced(GameTestHelper h) {
+        // Prove naturally generated hill / woodland material may be replaced,
+        // but chests, crafted building stone and unbreakable blocks are protected.
+        if (!SanctuaryPlacement.canClear(Blocks.GRASS_BLOCK.defaultBlockState())
+                || !SanctuaryPlacement.canClear(Blocks.STONE.defaultBlockState())
+                || !SanctuaryPlacement.canClear(Blocks.OAK_LOG.defaultBlockState())
+                || !SanctuaryPlacement.canClear(Blocks.OAK_LEAVES.defaultBlockState())
+                || !SanctuaryPlacement.canClear(Blocks.WATER.defaultBlockState())
+                || SanctuaryPlacement.canClear(Blocks.CHEST.defaultBlockState())
+                || SanctuaryPlacement.canClear(Blocks.STONE_BRICKS.defaultBlockState())
+                || SanctuaryPlacement.canClear(Blocks.BEDROCK.defaultBlockState())) {
+            h.fail("Natural terrain clearing rules or protected construction checks failed");
+            return;
+        }
         h.assertBlockPresent(Blocks.LODESTONE, new BlockPos(40, 2, 24));
         h.assertBlockPresent(Blocks.BOOKSHELF, new BlockPos(65, 2, 3));
         h.assertBlockPresent(Blocks.DEEPSLATE_BRICKS, new BlockPos(0, 16, 0));

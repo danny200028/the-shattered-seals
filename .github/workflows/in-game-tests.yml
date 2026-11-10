@@ -1,7 +1,7 @@
 name: Real Minecraft GameTests
 on:
   push:
-    branches: [main, feature/animated-bosses-v1-0-59]
+    branches: [main, fix/sanctuary-terrain-placement-v1-0-60]
   workflow_dispatch:
 concurrency:
   group: shattered-seals-real-minecraft-tests

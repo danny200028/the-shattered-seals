@@ -1,7 +1,7 @@
 name: Quick Development Test
 on:
   push:
-    branches: [main, feature/animated-bosses-v1-0-59]
+    branches: [main, fix/sanctuary-terrain-placement-v1-0-60]
   pull_request:
     branches: [main]
   workflow_dispatch:

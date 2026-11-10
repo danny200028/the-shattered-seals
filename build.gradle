@@ -3,7 +3,7 @@ plugins {
     id 'net.neoforged.moddev' version '2.0.148'
 }
 
-version = '1.0.59'
+version = '1.0.60'
 group = 'com.shatteredseals'
 base { archivesName = 'the-shattered-seals' }
 

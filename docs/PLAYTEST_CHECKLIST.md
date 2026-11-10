@@ -247,3 +247,17 @@ v1.0.58 Sanctuary, music, cinematic, Chronicle and Keystone playtest.
 The GameTest server validates boss phases, drops and data but **cannot verify
 client-side visuals**. Actual model posing, weapons and UV appearance need your
 hands-on visual sign-off.
+
+## v1.0.60: Sanctuary terrain-levelled placement hotfix
+
+Use a disposable world or copied save before attempting this irreversible terrain change.
+
+- [ ] Unlock Keystone, find a wooded hillside with non-flat natural dirt/stone and trees
+- [ ] First right-click previews the 81x49 footprint and explicitly lists natural blocks to clear
+- [ ] Second right-click the same ground block within 10s: terrain/trees inside footprint are cleared, structure is level, stone foundations bridge moderate slopes
+- [ ] Verify cliff/unsupported cave placements over 32 blocks deep fail safely with item retained
+- [ ] Place a chest or stone-brick block within footprint, click the Keystone: placement fails and blocks remain intact
+- [ ] Replaceable natural logs/leaves and user-placed dirt/stone ARE treated as terrain; back up wooden/stone builds before trying
+- [ ] Inspect the interior, four battlement towers and glasshouse roof after hillside clearing
+- [ ] Confirm one-time placement, saved coordinates and Survival item consumption survive save/reload
+- [ ] Combined animated bosses, Chronicle Archive, music and old-world progress remain unaffected
