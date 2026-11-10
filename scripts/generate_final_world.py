@@ -24,12 +24,25 @@ REGIONS = [
     ("rootbound_grottos", "minecraft:moss_block", "minecraft:tuff_bricks", "minecraft:mangrove_roots", "minecraft:husk"),
     ("black_crown_depths", "minecraft:deepslate_tiles", "minecraft:polished_blackstone_bricks", "minecraft:crying_obsidian", "minecraft:wither_skeleton"),
 ]
-ROOMS = [
-    "trophy_hall", "armoury", "enchanters_workshop", "cartographers_room", "treasure_vault",
-    "portal_chamber", "war_room", "foyer", "bedroom", "bulk_storage",
-    "smelting_room", "crafting_workshop", "brewing_nook", "garden_and_farm", "secret_arena",
-]
-
+# Room centres in template coordinates (x, floor y, z). The foyer and Trophy
+# Hall retain their original anchors for the ward and boss trophy displays.
+ROOMS = {
+    "trophy_hall": (8, 0, 8),
+    "armoury": (24, 11, 8),
+    "enchanters_workshop": (40, 11, 8),
+    "cartographers_room": (24, 22, 16),
+    "treasure_vault": (56, 22, 16),
+    "portal_chamber": (8, 0, 24),
+    "war_room": (24, 11, 24),
+    "foyer": (40, 0, 24),
+    "bedroom": (40, 22, 24),
+    "bulk_storage": (72, 11, 24),
+    "smelting_room": (8, 0, 40),
+    "crafting_workshop": (24, 0, 40),
+    "brewing_nook": (40, 11, 40),
+    "garden_and_farm": (56, 0, 35),
+    "secret_arena": (72, 0, 40),
+}
 def block_palette(name: str) -> bytes:
     if "[" not in name:
         return palette_block(name)
@@ -120,8 +133,8 @@ def guard_opening(blocks, opening, deck, floor):
                     set_block(blocks, nx, floor + 1, nz, FENCE)
 
 
-def stair_sign(blocks, x, y, z, destination, rotation):
-    messages = [json.dumps({"text": line}) for line in ("Grand Stair", destination, "", "")]
+def sanctuary_sign(blocks, x, y, z, text, rotation):
+    messages = [json.dumps({"text": line}) for line in (text + ("",) * (4 - len(text)))]
     lines = nbt_list("messages", 8, [nbt_string(line) for line in messages])
     set_block(blocks, x, y, z, f"minecraft:dark_oak_sign[rotation={rotation},waterlogged=false]",
               compound(nbt_str("id", "minecraft:sign"), nbt_compound("front_text", lines),
@@ -210,6 +223,14 @@ def sanctuary_architecture(blocks):
         for z in (8, 24, 40):
             set_block(blocks, x, 21, z, "minecraft:sea_lantern")
 
+    # Transverse walls give the upper workshops and storage their own rooms.
+    for z, start, end in ((16, 16, 48), (32, 32, 48), (16, 64, 79), (32, 64, 79)):
+        for x in range(start + 1, end):
+            offset = min(abs(x - cx) for cx in (24, 40, 72))
+            for y in range(12, 22):
+                if offset > 3 or y > 19 - offset:
+                    set_block(blocks, x, y, z, BRICK)
+
     # The third-floor keep has its own closed perimeter and a joined stepped vault.
     def roof(x):
         return 39 - min(9, abs(x - 40) // 2)
@@ -224,6 +245,20 @@ def sanctuary_architecture(blocks):
         elif z in (8, 16, 24):
             set_block(blocks, x, roof(x) - 2, z,
                       "minecraft:sea_lantern" if x % 8 == 0 else TRIM)
+
+    # The map room and archive flank a central gallery. Private quarters sit
+    # behind an arched screen at the rear of the gallery.
+    for x in (32, 48):
+        for z in range(5, 32):
+            offset = abs(z - 16)
+            for y in range(23, roof(x)):
+                if offset > 3 or y > 30 - offset:
+                    set_block(blocks, x, y, z, BRICK)
+    for x in range(33, 48):
+        offset = abs(x - 40)
+        for y in range(23, roof(x)):
+            if offset > 3 or y > 30 - offset:
+                set_block(blocks, x, y, 20, TRIM)
 
     # Corner turrets rise out of the shoulder roof. Their interiors open down
     # into the gallery and their walls meet a solid cap under the battlements.
@@ -247,21 +282,22 @@ def sanctuary_architecture(blocks):
     second_shaft = staircase(blocks, range(42, 45), 11, 21, -1)
     guard_opening(blocks, first_shaft | garden, lower - lower_edge, 11)
     guard_opening(blocks, second_shaft, keep - keep_edge, 22)
-    stair_sign(blocks, 36, 1, 10, "Second Floor", 0)
-    stair_sign(blocks, 45, 12, 22, "Third Floor", 8)
+    sanctuary_sign(blocks, 36, 1, 10, ("Grand Stair", "Second Floor", "Armoury / Forge", "War Room"), 0)
+    sanctuary_sign(blocks, 45, 12, 22, ("Grand Stair", "Third Floor", "Royal Keep"), 8)
+    sanctuary_sign(blocks, 45, 23, 10, ("Royal Keep", "Maps: West", "Archive: East", "Quarters: South"), 0)
 
 
 def archive_furnishings(blocks):
-    # Shelving stops on either side of the west and south arches.
-    for x, rows in ((65, (3, 4, 5, 11, 12, 13)), (79, range(7, 14))):
+    # Shelving flanks the west entrance and leaves the middle aisle clear.
+    for x, rows in ((49, (11, 12, 13, 19, 20, 21)), (63, range(15, 22))):
         for z in rows:
-            for y in range(1, 5):
+            for y in range(23, 27):
                 set_block(blocks, x, y, z, "minecraft:bookshelf")
-    for x in (*range(66, 70), *range(75, 79)):
-        for y in range(1, 4):
-            set_block(blocks, x, y, 15, "minecraft:chiseled_bookshelf")
-    for x, z in ((67, 3), (71, 3), (75, 3), (67, 13), (71, 13), (75, 13)):
-        set_block(blocks, x, 1, z, "minecraft:lectern")
+    for x in (*range(50, 54), *range(59, 63)):
+        for y in range(23, 26):
+            set_block(blocks, x, y, 23, "minecraft:chiseled_bookshelf")
+    for x, z in ((51, 11), (55, 11), (59, 11), (51, 21), (55, 21), (59, 21)):
+        set_block(blocks, x, 23, z, "minecraft:lectern")
 
 
 def sanctuary() -> None:
@@ -270,14 +306,13 @@ def sanctuary() -> None:
     blocks, entities = {}, []
     w, d, h = 81, 49, 42
     sanctuary_architecture(blocks)
-    for i, room in enumerate(ROOMS):
-        cx, cz = 8 + (i % 5) * 16, 8 + (i // 5) * 16
+    for room, (cx, floor, cz) in ROOMS.items():
         room_tags = ["ss_sanctuary_room", "ss_sanctuary_" + room]
         if room == "treasure_vault":
             room_tags.append("ss_sanctuary_chronicle_archive")
-        entities.append(template_entity("minecraft:marker", cx, 1, cz,
+        entities.append(template_entity("minecraft:marker", cx, floor + 1, cz,
             entity_tags(*room_tags)))
-        set_block(blocks, cx, 0, cz, "minecraft:chiseled_deepslate")
+        set_block(blocks, cx, floor, cz, "minecraft:chiseled_deepslate")
     # Trophy Hall: six empty stone stands; the boss's real dropped trophy can be displayed.
     for cx in (4, 8, 12):
         for cz in (4, 12):
@@ -286,15 +321,16 @@ def sanctuary() -> None:
     # Armoury: armour stands are intentionally empty, for the player's gear.
     for cx in (20, 24, 28):
         for cz in (4, 12):
-            entities.append(template_entity("minecraft:armor_stand", cx, 1, cz,
+            entities.append(template_entity("minecraft:armor_stand", cx, 12, cz,
                 named(1, "NoGravity", b"\x01"), named(1, "PersistenceRequired", b"\x01")))
     # Enchanting and cartography: normal Minecraft costs and recipes.
     for x, kind in ((38, "minecraft:enchanting_table"), (42, "minecraft:grindstone"),
-                    (36, "minecraft:anvil"), (44, "minecraft:lectern"),
-                    (54, "minecraft:cartography_table"), (58, "minecraft:lectern")):
-        set_block(blocks, x, 1, 8, kind)
-    for x, z in ((68, 5), (72, 5), (76, 5), (68, 11), (72, 11), (76, 11)):
-        filled_chest(blocks, x, 1, z)
+                    (36, "minecraft:anvil"), (44, "minecraft:lectern")):
+        set_block(blocks, x, 12, 8, kind)
+    set_block(blocks, 22, 23, 16, "minecraft:cartography_table")
+    set_block(blocks, 26, 23, 16, "minecraft:lectern")
+    for x, z in ((52, 13), (56, 13), (60, 13), (52, 19), (56, 19), (60, 19)):
+        filled_chest(blocks, x, 23, z)
     # Portal chamber: decorative inert gate, no free teleport or portal activation.
     for z in (21, 27):
         for y in range(1, 5):
@@ -303,17 +339,17 @@ def sanctuary() -> None:
         set_block(blocks, 3, 5, z, "minecraft:polished_blackstone")
     # War Room: maps, books and a physical table.
     for x in range(20, 29):
-        for z in range(22, 27):
-            set_block(blocks, x, 1, z, "minecraft:dark_oak_planks")
-    set_block(blocks, 24, 2, 24, "minecraft:lectern")
+        for z in range(26, 30):
+            set_block(blocks, x, 12, z, "minecraft:dark_oak_planks")
+    set_block(blocks, 24, 13, 27, "minecraft:lectern")
     # Foyer respawn lodestone, not an automatic world spawn override.
     set_block(blocks, 40, 1, 24, "minecraft:lodestone")
     # Bedroom, storage and utilities.
-    set_block(blocks, 53, 1, 24, "minecraft:red_bed[facing=south,part=foot,occupied=false]")
-    set_block(blocks, 53, 1, 25, "minecraft:red_bed[facing=south,part=head,occupied=false]")
+    set_block(blocks, 37, 23, 24, "minecraft:red_bed[facing=south,part=foot,occupied=false]")
+    set_block(blocks, 37, 23, 25, "minecraft:red_bed[facing=south,part=head,occupied=false]")
     for x in (68, 72, 76):
-        for z in (21, 24, 27):
-            filled_chest(blocks, x, 1, z)
+        for z in (21, 25, 27):
+            filled_chest(blocks, x, 12, z)
     for x, kind in ((4, "minecraft:furnace"), (7, "minecraft:blast_furnace"),
                     (10, "minecraft:smoker"), (13, "minecraft:furnace")):
         set_block(blocks, x, 1, 40, kind)
@@ -321,8 +357,8 @@ def sanctuary() -> None:
                     (26, "minecraft:smithing_table"), (29, "minecraft:stonecutter")):
         set_block(blocks, x, 1, 40, kind)
     for x in (36, 40, 44):
-        set_block(blocks, x, 1, 40, "minecraft:brewing_stand")
-    set_block(blocks, 40, 1, 36, "minecraft:cauldron")
+        set_block(blocks, x, 12, 42, "minecraft:brewing_stand")
+    set_block(blocks, 40, 12, 36, "minecraft:cauldron")
     # Garden with water and tilled crop rows; seedlings are supplied by player.
     for x in range(52, 61):
         for z in range(37, 44):

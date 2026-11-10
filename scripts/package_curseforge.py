@@ -80,7 +80,8 @@ CURSEFORGE IMPORT:
     over earned boss mask displays, showing both boss and dungeon names.
     Existing Sanctuaries gain labels on approach; storage and items are untouched.
 14. v1.0.66: A three-storey castle with a signed Grand Stair, four battlement
-    turrets, a vaulted keep and a glass conservatory.
+    turrets, a vaulted keep and a glass conservatory. The 15 functional rooms
+    span the ground floor, upper workshops and royal keep.
     Old placed Sanctuaries remain unchanged, including stored items.
 15. The optional original Ashen Covenant resource pack installs to resourcepacks.
     Activate it once in Options > Resource Packs. Complementary Reimagined r5.9.3

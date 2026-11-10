@@ -97,17 +97,20 @@ class SanctuaryNavigationTests(TestCase):
         for z in range(11):
             self.assertEqual(self.at(39, 2, z), AIR, (39, 2, z))
         reachable = self.reachable(entrance)
-        for index, name in enumerate(world.ROOMS):
-            x, z = 8 + index % 5 * 16, 8 + index // 5 * 16
-            self.assertIn(world.entity_tags("ss_sanctuary_room", "ss_sanctuary_" + name)
-                          if name != "treasure_vault" else
-                          world.entity_tags("ss_sanctuary_room", "ss_sanctuary_treasure_vault",
-                                            "ss_sanctuary_chronicle_archive"), self.entities[index])
-            self.assertTrue(any((x + dx, 0, z + dz) in reachable
-                                for dx in range(-5, 6) for dz in range(-5, 6)), name)
+        counts = {0: 0, 11: 0, 22: 0}
+        for index, (name, (x, floor, z)) in enumerate(world.ROOMS.items()):
+            tags = ["ss_sanctuary_room", "ss_sanctuary_" + name]
+            if name == "treasure_vault":
+                tags.append("ss_sanctuary_chronicle_archive")
+            marker = world.template_entity("minecraft:marker", x, floor + 1, z, world.entity_tags(*tags))
+            self.assertEqual(self.entities[index], marker, name)
+            self.assertTrue(any((x + dx, floor, z + dz) in reachable
+                                for dx in range(-2, 3) for dz in range(-2, 3)), name)
+            counts[floor] += 1
+        self.assertEqual(counts, {0: 7, 11: 5, 22: 3})
         for target in ((38, 11, 22), (43, 11, 22), (43, 22, 10),
                        (8, 11, 24), (72, 11, 24), (25, 22, 16), (55, 22, 16)):
-            self.assertIn(target, reachable)
+            self.assertTrue(target in reachable, target)
         self.assertIn(entrance, self.reachable((43, 22, 10)))
 
     def test_closed_exterior_decks_partitions_and_roofs(self):
@@ -174,11 +177,11 @@ class SanctuaryNavigationTests(TestCase):
         self.assertEqual(len(self.entities), 22)
         self.assertIn(world.entity_tags("ss_secret_arena"), self.entities[-1])
         for pos, kind in (
-            ((40, 1, 24), "lodestone"), ((38, 1, 8), "enchanting_table"),
-            ((68, 1, 21), "chest"), ((4, 1, 40), "furnace"),
-            ((36, 1, 40), "brewing_stand"), ((72, 0, 40), "crying_obsidian"),
-            ((4, 2, 4), "polished_blackstone_wall"), ((65, 1, 3), "bookshelf"),
-            ((53, 0, 37), "farmland"), ((66, 1, 15), "chiseled_bookshelf"),
+            ((40, 1, 24), "lodestone"), ((38, 12, 8), "enchanting_table"),
+            ((68, 12, 21), "chest"), ((4, 1, 40), "furnace"),
+            ((36, 12, 42), "brewing_stand"), ((72, 0, 40), "crying_obsidian"),
+            ((4, 2, 4), "polished_blackstone_wall"), ((49, 23, 11), "bookshelf"),
+            ((53, 0, 37), "farmland"), ((22, 23, 16), "cartography_table"), ((50, 23, 23), "chiseled_bookshelf"),
         ):
             self.assertEqual(self.at(*pos), f"minecraft:{kind}", pos)
         self.assertEqual(sum(kind == "minecraft:chest" for kind, _ in self.blocks.values()), 15)

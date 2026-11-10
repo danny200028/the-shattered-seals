@@ -149,7 +149,7 @@ before checking existing-world compatibility.
       the second and third floors using ONLY stairs, not fly/spectator.
 - [ ] Examine the three-wide stairs, head clearance, upper-floor landings,
       signed switchback, shaped rooms, gatehouse, vaulted keep and battlements.
-- [ ] Check all 15 original ground-floor rooms, crafting, chests, Trophy
+- [ ] Check all 15 rooms across the three floors, crafting, chests, Trophy
       Hall masks, holograms and the secret boss arena are still functional.
 - [ ] Wait through nighttime in unlit Sanctuary grounds, including outside
       the walls: no natural vanilla mobs should spawn within 12 blocks.

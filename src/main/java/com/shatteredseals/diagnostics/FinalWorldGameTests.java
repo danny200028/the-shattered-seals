@@ -44,7 +44,7 @@ public final class FinalWorldGameTests {
             return;
         }
         h.assertBlockPresent(Blocks.LODESTONE, new BlockPos(40, 2, 24));
-        h.assertBlockPresent(Blocks.BOOKSHELF, new BlockPos(65, 2, 3));
+        h.assertBlockPresent(Blocks.BOOKSHELF, new BlockPos(49, 24, 11));
         h.assertBlockPresent(Blocks.DEEPSLATE_BRICKS, new BlockPos(0, 14, 10));
         h.assertBlockPresent(Blocks.GLASS, new BlockPos(55, 23, 40));
         h.assertBlockPresent(Blocks.DEEPSLATE_TILES, new BlockPos(40, 40, 20));
@@ -54,10 +54,12 @@ public final class FinalWorldGameTests {
         h.assertBlockPresent(Blocks.DARK_OAK_PLANKS, new BlockPos(38, 12, 22));
         h.assertBlockPresent(Blocks.DARK_OAK_PLANKS, new BlockPos(43, 12, 22));
         h.assertBlockPresent(Blocks.DEEPSLATE_TILES, new BlockPos(43, 23, 10));
-        h.assertBlockPresent(Blocks.ENCHANTING_TABLE, new BlockPos(38, 2, 8));
+        h.assertBlockPresent(Blocks.ENCHANTING_TABLE, new BlockPos(38, 13, 8));
         h.assertBlockPresent(Blocks.FURNACE, new BlockPos(4, 2, 40));
-        h.assertBlockPresent(Blocks.CHEST, new BlockPos(68, 2, 21));
-        h.assertBlockPresent(Blocks.BREWING_STAND, new BlockPos(36, 2, 40));
+        h.assertBlockPresent(Blocks.CARTOGRAPHY_TABLE, new BlockPos(22, 24, 16));
+        h.assertBlockPresent(Blocks.RED_BED, new BlockPos(37, 24, 24));
+        h.assertBlockPresent(Blocks.CHEST, new BlockPos(68, 13, 21));
+        h.assertBlockPresent(Blocks.BREWING_STAND, new BlockPos(36, 13, 42));
         h.succeed();
     }
 

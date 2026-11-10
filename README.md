@@ -20,9 +20,13 @@ A challenging single-player RPG modpack, featuring a six-chapter boss storyline,
 - Chamfered curtain walls, four battlement turrets, a vaulted keep and a glass
   conservatory enclose the castle. Arched passages connect the rounded and
   chamfered ground-floor rooms.
-- All 15 functional rooms remain, including the Trophy Hall, Chronicle Archive
-  and secret arena. The vanilla spawn ward still covers the Sanctuary and
-  twelve blocks beyond its footprint.
+- The 15 functional rooms span three floors. Seven ground-floor spaces
+  include the Trophy Hall, portal chamber, garden and secret arena. The
+  second floor has the armoury, enchanting workshop, war room, bulk storage
+  and brewing nook. Cartography, the Chronicle Archive and the bedroom are
+  in the third-floor keep.
+- The vanilla spawn ward still covers the Sanctuary and twelve blocks beyond
+  its footprint.
 - The revised blueprint is used for future Keystone placements. Existing
   Sanctuaries keep their blocks, storage and trophies. To inspect the new
   castle, use a fresh test world or a copied save with a separate, empty site.
