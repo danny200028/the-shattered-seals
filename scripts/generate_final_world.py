@@ -522,6 +522,9 @@ def towered_sanctuary(blocks: dict) -> None:
         # carved headroom removes both otherwise-blocking upper floor slabs.
         for x in range(xc - 1, xc + 2):
             set_block(blocks, x, floor_y, 17, TIMBER if floor_y else "minecraft:polished_deepslate")
+            # Earlier octagonal wall passes would otherwise seal the approach.
+            for clear_y in range(floor_y + 1, floor_y + 5):
+                set_block(blocks, x, clear_y, 17, AIR)
             set_block(blocks, x, floor_y + 11, 29,
                       TIMBER if floor_y == 0 else DEEPSLATE)
             for y in range(floor_y + 12, min(42, floor_y + 15)):
