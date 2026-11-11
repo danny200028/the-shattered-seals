@@ -42,10 +42,11 @@ execute if score #clock ss_clock matches 0 as @a if items entity @s weapon.mainh
 execute if score #clock ss_clock matches 0 as @a if items entity @s weapon.mainhand minecraft:netherite_sword[minecraft:custom_data~{ss_weapon:"kings_bane"}] run effect give @s minecraft:haste 5 0 true
 scoreboard players enable @a ss_upgrade
 scoreboard players enable @a ss_status
-scoreboard players add @a ss_rank 0
-execute if score #clock ss_clock matches 0 as @a[scores={ss_kills=10..}] run scoreboard players set @s ss_rank 1
-execute if score #clock ss_clock matches 0 as @a[scores={ss_kills=40..}] run scoreboard players set @s ss_rank 2
-execute if score #clock ss_clock matches 0 as @a[scores={ss_kills=100..}] run scoreboard players set @s ss_rank 3
+# Recalculate the kill mastery tier from dungeon kills only, including after migration.
+execute if score #clock ss_clock matches 0 run scoreboard players set @a ss_rank 0
+execute if score #clock ss_clock matches 0 as @a[scores={ss_dkills=10..}] run scoreboard players set @s ss_rank 1
+execute if score #clock ss_clock matches 0 as @a[scores={ss_dkills=40..}] run scoreboard players set @s ss_rank 2
+execute if score #clock ss_clock matches 0 as @a[scores={ss_dkills=100..}] run scoreboard players set @s ss_rank 3
 execute as @a[scores={ss_upgrade=1..}] run function shatteredseals:upgrade/attempt
 scoreboard players set @a[scores={ss_upgrade=1..}] ss_upgrade 0
 execute as @a[scores={ss_status=1..}] run function shatteredseals:skills/status

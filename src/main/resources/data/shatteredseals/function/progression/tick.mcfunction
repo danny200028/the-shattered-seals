@@ -1,5 +1,7 @@
 execute as @a unless score @s ss_level matches 1.. run function shatteredseals:progression/init
 execute as @a[scores={ss_level=1..}] unless score @s ss_points_v130 matches 1.. run function shatteredseals:progression/migrate_points
+# Existing save migration: reset legacy mixed kill milestones/XP without touching earned skills.
+execute as @a unless score @s ss_dkill_migrated matches 1.. run function shatteredseals:progression/migrate_dungeon_kills
 scoreboard players enable @a ss_buy
 scoreboard players enable @a ss_respec
 execute as @a run function shatteredseals:progression/kill_xp

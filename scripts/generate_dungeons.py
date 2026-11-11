@@ -183,7 +183,8 @@ def structure_nbt(chapter: int, wall: str, floor: str, trim: str, mob: str, loot
     # the route into the arena so the main path never becomes impassable.
     for x, z in ((7, 7), (35, 7), (7, 21),
                  (35, 21), (7, 35), (35, 35)):
-        monster = nbt_compound("entity", nbt_str("id", mob))
+        monster = nbt_compound("entity", nbt_str("id", mob),
+                               entity_tags("ss_dungeon_enemy", f"ss_chapter_{chapter}"))
         spawner = compound(nbt_str("id", "minecraft:mob_spawner"),
                            nbt_compound("SpawnData", monster))
         place(x, 1, z, "minecraft:spawner", spawner)
