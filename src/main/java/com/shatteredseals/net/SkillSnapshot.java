@@ -13,7 +13,7 @@ import net.minecraft.world.scores.Scoreboard;
 
 /** Server-owned state; client cannot use this packet to change skill points. */
 public record SkillSnapshot(int level, int xp, int requiredXp, int points,
-                            int kills, int activeClass, int masteryRank,
+                            int kills, int hostileKills, int activeClass, int masteryRank,
                             int[] branchRanks, int[] branchMasteries, int[] coreRanks, int[] cooldowns, int[] resources,
                             int ngCycle, int replayChapter, int masteryPoints, int[] masteryPerks,
                             int[] bossWins, int puzzleStep, int sideQuestState, int discoveredBiomes, int discoveredLandmarks,
@@ -27,6 +27,7 @@ public record SkillSnapshot(int level, int xp, int requiredXp, int points,
             buf.writeVarInt(value.requiredXp());
             buf.writeVarInt(value.points());
             buf.writeVarInt(value.kills());
+            buf.writeVarInt(value.hostileKills());
             buf.writeVarInt(value.activeClass());
             buf.writeVarInt(value.masteryRank());
             for (int i = 0; i < 12; i++) buf.writeVarInt(value.branchRanks()[i]);
@@ -55,6 +56,7 @@ public record SkillSnapshot(int level, int xp, int requiredXp, int points,
             int requiredXp = buf.readVarInt();
             int points = buf.readVarInt();
             int kills = buf.readVarInt();
+            int hostileKills = buf.readVarInt();
             int activeClass = buf.readVarInt();
             int masteryRank = buf.readVarInt();
             int[] ranks = new int[12];
@@ -88,7 +90,7 @@ public record SkillSnapshot(int level, int xp, int requiredXp, int points,
             for (int i = 0; i < 5; i++) finalWorld[i] = buf.readVarInt();
             int[] options = new int[4];
             for (int i = 0; i < 4; i++) options[i] = buf.readVarInt();
-            return new SkillSnapshot(level, xp, requiredXp, points, kills,
+            return new SkillSnapshot(level, xp, requiredXp, points, kills, hostileKills,
                                      activeClass, masteryRank, ranks, masteries, coreRanks, cooldowns, resources,
                                      ngCycle, replayChapter, masteryPoints, masteryPerks, bossWins,
                                      puzzleStep, sideState, biomes, landmarks, trials, bounties, swordMastery, finalWorld, options);
@@ -115,7 +117,7 @@ public record SkillSnapshot(int level, int xp, int requiredXp, int points,
         return new SkillSnapshot(
             read(board, player, "ss_level"), read(board, player, "ss_xp"),
             read(board, player, "ss_need"), read(board, player, "ss_points"),
-            read(board, player, "ss_dkills"), read(board, player, "ss_path"),
+            read(board, player, "ss_dkills"), read(board, player, "ss_hkills"), read(board, player, "ss_path"),
             read(board, player, "ss_master"), ranks, masteries,
             new int[] {read(board, player, "ss_t_van"), read(board, player, "ss_t_ward"),
                        read(board, player, "ss_t_path"), read(board, player, "ss_t_arc")},

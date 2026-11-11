@@ -45,5 +45,24 @@ public final class HostileMobProgressGameTests {
         helper.succeed();
     }
 
+    @GameTest(template = "smugglers_den", timeoutTicks = 80)
+    public static void onlyTaggedHostileEncountersQualifyForMilestones(GameTestHelper helper) {
+        var world = helper.getLevel();
+        Mob zombie = EntityType.ZOMBIE.create(world);
+        Mob cow = EntityType.COW.create(world);
+        if (zombie == null || cow == null) {
+            helper.fail("Could not create mobs for milestone test");
+            return;
+        }
+        zombie.addTag("ss_dungeon_enemy");
+        cow.addTag("ss_dungeon_enemy");
+        if (!DungeonKillProgress.isEligibleDungeonEnemy(zombie)
+                || DungeonKillProgress.isEligibleDungeonEnemy(cow)) {
+            helper.fail("Only hostile dungeon encounters should qualify for milestones");
+            return;
+        }
+        helper.succeed();
+    }
+
     private HostileMobProgressGameTests() {}
 }

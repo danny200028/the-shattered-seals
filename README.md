@@ -33,13 +33,15 @@ A challenging single-player RPG modpack, featuring a six-chapter boss storyline,
 
 Pillagers from the dungeon's six spawners must spawn with crossbows for their vanilla ranged AI to work. New templates now give them crossbows explicitly. Previously generated Smugglers' Den chunks are also repaired server-side when their unarmed pillagers enter the world, without changing spawner blocks, player-built structures or loot.
 
-## Hostile mob kill progression (existing-world compatible)
+## Hostile kill XP, dungeon-only skill milestones (save-compatible)
 
-- **Hostile monsters defeated by a player anywhere** (Overworld, Nether, End, story dungeons) award RPG skill XP and contribute to 10/40/100 kill milestones and the 100-kill Mastery requirement. Zombies, skeletons, creepers, pillagers, and custom dungeon enemies all count.
-- **Passive animals** such as cows, sheep, chickens and pigs do **not** award Shattered Seals character kill XP or mastery progress. Regular vanilla drops and experience are not changed.
-- The historic internal scoreboard `ss_dkills` remains in use for save compatibility. Previously earned eligible dungeon kills remain recorded: **no reset or migration** is triggered by this upgrade. Future eligible hostile kills simply increase the existing counter.
-- The original *legacy vanilla mob-kills* migration is still needed only for old worlds upgrading directly from versions predating dungeon-only progression, because that historical statistic combined passive and hostile kills. Character levels, earned points, purchased skills, story, inventories and structures remain intact.
-- Class passive kill bonuses, skill tree labels and all 12 Mastery gates now use the broader hostile-kill total. The **Reveal Next Dungeon locator remains unchanged**.
+- **Hostile mobs killed by you anywhere** (Overworld, Nether, End and dungeons) award **5 Shattered Seals character XP** per kill, or the equivalent mastery XP after level 60 in NG+. Monsters outside story dungeons do **not** progress kill milestones.
+- **Only hostile dungeon enemies**, including properly tagged bosses, minibosses, elites and their minions, advance the 10/40/100 dungeon-kill milestones and the **100 dungeon-kill requirement** for purchasing a branch Mastery. Old dungeon spawners are recognised by their structure location.
+- **Passive animals** such as cows, sheep, chickens and pigs count for neither RPG XP nor milestones. Normal vanilla XP and drops remain unchanged.
+- A new `ss_hkills` score counts every player-defeated hostile for XP. The existing `ss_dkills` score is used only for dungeon milestones. The K Skill Tree and chat menus distinguish both.
+- Existing worlds retain all skills, purchased masteries, character levels, unspent XP, and previously recorded milestone counts. On first launch of this updated version, the new hostile kill counter is seeded with the old total **and marked as already rewarded**, preventing XP duplication.
+- **Important historical limitation:** an earlier short-lived build counted all hostiles in `ss_dkills`. Because the game did not store which old kills occurred in dungeons, those old mixed milestones cannot be perfectly separated. They are preserved rather than unexpectedly reset. **From this update onward, open-world hostile kills never advance milestones.**
+- The **Reveal Next Dungeon** locator is unchanged.
 
 ## Skill-buff stacking and smooth passive refresh
 

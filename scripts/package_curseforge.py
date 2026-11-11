@@ -118,10 +118,11 @@ AUTOMATED TESTING:
 - Visual shaders, actual boss combat, terrain placement and save/reload still
   need human verification. The report marks these NOT_TESTED.
 
-RPG KILL XP: Any hostile mob defeated by the player (inside or outside a
-story dungeon) now awards Shattered Seals progression XP and counts towards
-10/40/100 mastery milestones. Animals never count. Existing dungeon kill scores
-are preserved on upgrade; the new build does not reset progress.
+RPG KILL XP: Any hostile mob defeated by the player anywhere awards
+Shattered Seals progression XP, but ONLY hostile dungeon enemies advance the
+10/40/100 kill milestones and 100-kill Mastery requirement. Animals never count.
+Existing levels, XP and saved milestones are preserved on upgrade. The new
+hostile XP counter is safely initialized once, without duplicating rewards.
 
 FIRST PLAY:
 - K opens the native 4-class skill tree.

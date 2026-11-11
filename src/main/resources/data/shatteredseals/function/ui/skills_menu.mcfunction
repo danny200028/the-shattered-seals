@@ -1,13 +1,14 @@
 tellraw @s [{"text":"━━━━━━━━  SKILL PATHS  ━━━━━━━━","color":"gold","italic":false}]
 tellraw @s [{"text":"Class: ","color":"gray","italic":false},{"score":{"name":"@s","objective":"ss_path"}},{"text":"  |  Mastery: ","color":"gray","italic":false},{"score":{"name":"@s","objective":"ss_rank"}}]
-tellraw @s [{"text":"Hostile kills: ","color":"gray","italic":false},{"score":{"name":"@s","objective":"ss_dkills"}}]
+tellraw @s [{"text":"Dungeon kills: ","color":"gray","italic":false},{"score":{"name":"@s","objective":"ss_dkills"}}]
+tellraw @s [{"text":"Hostile kills (XP only): ","color":"aqua","italic":false},{"score":{"name":"@s","objective":"ss_hkills"}}]
 tellraw @s [{"text":"Switch active class instantly (all upgrades are kept):","color":"yellow","italic":false}]
 tellraw @s [{"text":"[1] Vanguard  ","color":"green","italic":false,"clickEvent":{"action":"run_command","value":"/trigger ss_switch set 1"},"hoverEvent":{"action":"show_text","contents":{"text":"Strength"}}},{"text":" • Strength","color":"gray","italic":false}]
 tellraw @s [{"text":"[2] Warden  ","color":"green","italic":false,"clickEvent":{"action":"run_command","value":"/trigger ss_switch set 2"},"hoverEvent":{"action":"show_text","contents":{"text":"Resistance"}}},{"text":" • Resistance","color":"gray","italic":false}]
 tellraw @s [{"text":"[3] Pathfinder  ","color":"green","italic":false,"clickEvent":{"action":"run_command","value":"/trigger ss_switch set 3"},"hoverEvent":{"action":"show_text","contents":{"text":"Speed"}}},{"text":" • Speed","color":"gray","italic":false}]
 tellraw @s [{"text":"[4] Arcanist  ","color":"green","italic":false,"clickEvent":{"action":"run_command","value":"/trigger ss_switch set 4"},"hoverEvent":{"action":"show_text","contents":{"text":"Night Vision"}}},{"text":" • Night Vision","color":"gray","italic":false}]
 tellraw @s [{"text":"[CAST CLASS ABILITY]","color":"aqua","italic":false,"clickEvent":{"action":"run_command","value":"/trigger ss_cast set 1"},"hoverEvent":{"action":"show_text","contents":{"text":"Uses your current class ability and cooldown"}}}]
-tellraw @s [{"text":"Mastery thresholds: 10 / 40 / 100 hostile kills","color":"gray","italic":false}]
+tellraw @s [{"text":"Mastery thresholds: 10 / 40 / 100 dungeon kills","color":"gray","italic":false}]
 tellraw @s [{"text":"[SKILLS]","color":"aqua","italic":false,"clickEvent":{"action":"run_command","value":"/trigger ss_menu set 1"}},{"text":"  [ARSENAL]","color":"yellow","italic":false,"clickEvent":{"action":"run_command","value":"/trigger ss_menu set 2"}},{"text":"  [FORGE]","color":"light_purple","italic":false,"clickEvent":{"action":"run_command","value":"/trigger ss_menu set 3"}}]
 
 function shatteredseals:progression/status

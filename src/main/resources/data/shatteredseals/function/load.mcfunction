@@ -6,9 +6,13 @@ scoreboard objectives add ss_path dummy
 scoreboard objectives add ss_cd dummy
 # Legacy vanilla statistic preserved for existing saves, but no longer grants RPG rewards.
 scoreboard objectives add ss_kills minecraft.custom:minecraft.mob_kills
-# RPG progress from player-defeated hostile mobs everywhere (no passive animals).
+# Only hostile kills in dungeons count for Mastery milestones.
 # Keep historic ss_dkills objective for existing-world milestone compatibility.
 scoreboard objectives add ss_dkills dummy
+# Separate total hostile kills used for RPG character XP from dungeon milestones.
+scoreboard objectives add ss_hkills dummy
+scoreboard objectives add ss_hprev dummy
+scoreboard objectives add ss_hkill_migrated dummy
 # Per-player save migration flag; set to 1 after legacy mixed kills/XP are cleared.
 scoreboard objectives add ss_dkill_migrated dummy
 scoreboard objectives add ss_choose trigger

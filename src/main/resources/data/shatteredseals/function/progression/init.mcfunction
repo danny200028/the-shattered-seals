@@ -9,8 +9,11 @@ scoreboard players set @s ss_t_van 0
 scoreboard players set @s ss_t_ward 0
 scoreboard players set @s ss_t_path 0
 scoreboard players set @s ss_t_arc 0
-# Fresh characters track only hostile kills, anywhere, with the existing save-compatible score.
+# Separate XP from all hostile kills and milestones from dungeon kills only.
 scoreboard players set @s ss_dkills 0
+scoreboard players set @s ss_hkills 0
+scoreboard players set @s ss_hprev 0
+scoreboard players set @s ss_hkill_migrated 1
 scoreboard players set @s ss_kprev 0
 scoreboard players set @s ss_dkill_migrated 1
 function shatteredseals:progression/recalculate

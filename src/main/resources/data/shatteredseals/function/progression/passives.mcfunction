@@ -24,7 +24,7 @@ execute if score @s ss_path matches 3 if score @s ss_t_path matches 4.. run scor
 execute if score @s ss_path matches 4 if score @s ss_t_arc matches 1.. run scoreboard players add @s ss_fx_night 1
 execute if score @s ss_path matches 4 if score @s ss_t_arc matches 4.. run scoreboard players add @s ss_fx_haste 1
 
-# Hostile-mob kill milestones work anywhere and stack with core/branch ranks.
+# Dungeon enemy milestones stack with core/branch ranks; overworld hostiles only grant XP.
 execute if score @s ss_path matches 1 if score @s ss_dkills matches 10..39 run scoreboard players add @s ss_fx_str 1
 execute if score @s ss_path matches 1 if score @s ss_dkills matches 40.. run scoreboard players add @s ss_fx_str 2
 execute if score @s ss_path matches 2 if score @s ss_dkills matches 10..39 run scoreboard players add @s ss_fx_res 1
