@@ -15,18 +15,23 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.GrindstoneEvent;
 
 /**
- * Recover Shattered Seals enchantments at their actual saved level, one at a
- * time, using an enchanted piece of equipment and one ordinary book.
+ * Genuine in-game grindstone enchant extraction for Minecraft 1.21.1.
  *
- * The normal one-item grindstone recipe remains unchanged when no plain book
- * is supplied. Unlike the vanilla destructive disenchant, extraction transfers
- * a single enchantment from the original gear to the output enchanted book.
- * Returning the modified gear through OnTakeItem ensures that neither normal
- * clicks nor shift-clicks can duplicate the enchantment.
+ * Vanilla grindstone INPUT slots do NOT accept ordinary books. The earlier
+ * tool + blank book recipe therefore could not actually be entered in-game,
+ * despite its directly constructed event tests passing.
  *
- * The output slot itself holds the recovered book. No delayed item drops or
- * inventory insertion are needed, so a full inventory cannot silently destroy
- * books. Extraction awards no grindstone XP to prevent repeated XP farming.
+ * New workflow: place exactly ONE custom-enchanted item in EITHER input slot;
+ * leave the other slot EMPTY. The output becomes a single genuine enchanted
+ * book at the original enchantment level, with zero XP. Taking it consumes
+ * exactly that one enchantment from the tool while leaving the tool in its
+ * input slot, including its damage, name, and any other enchantments.
+ * Repeat until all custom enchants have been extracted.
+ *
+ * This method uses only items which vanilla lets into a grindstone. No item
+ * dropping, player-inventory insertion, or hidden currency is needed. Normal
+ * vanilla grindstone behavior is retained for items with no custom enchants
+ * and for two-item repair operations.
  */
 @EventBusSubscriber(modid = ShatteredSeals.MOD_ID)
 public final class GrindstoneEnchantmentRecovery {
@@ -34,14 +39,13 @@ public final class GrindstoneEnchantmentRecovery {
                              int level) {}
 
     /**
-     * Both slots must be present: one plain book (can be a stack) and one
-     * singly stacked enchanted item. No normal grindstone operation is
-     * changed unless the explicit extraction recipe is present.
+     * Input validation mirrors what the vanilla grindstone UI permits: one
+     * piece of enchanted gear, and nothing at all in the other input slot.
      */
     public static Extraction select(ItemStack top, ItemStack bottom) {
-        if (top.is(Items.BOOK)) return find(bottom, false);
-        if (bottom.is(Items.BOOK)) return find(top, true);
-        return null;
+        if (top.isEmpty()) return find(bottom, false);
+        if (bottom.isEmpty()) return find(top, true);
+        return null; // Never intercept two-item vanilla repair combinations.
     }
 
     private static Extraction find(ItemStack gear, boolean gearOnTop) {
@@ -57,8 +61,7 @@ public final class GrindstoneEnchantmentRecovery {
             if (key == null || !ShatteredSeals.MOD_ID.equals(key.location().getNamespace())
                     || entry.getIntValue() <= 0) continue;
             String id = key.location().toString();
-            // The same item always offers the same first enchant until it is
-            // actually removed, even if the registry iteration order changes.
+            // Stable extraction order, independent of registry iteration order.
             if (firstId == null || id.compareTo(firstId) < 0) {
                 firstId = id;
                 selected = entry.getKey();
@@ -80,18 +83,12 @@ public final class GrindstoneEnchantmentRecovery {
         return copy;
     }
 
-    private static ItemStack consumeOneBook(ItemStack books) {
-        ItemStack remaining = books.copy();
-        remaining.shrink(1);
-        return remaining.isEmpty() ? ItemStack.EMPTY : remaining;
-    }
-
     @SubscribeEvent
     public static void onInputChange(GrindstoneEvent.OnPlaceItem event) {
         Extraction extraction = select(event.getTopItem(), event.getBottomItem());
         if (extraction == null) return;
         event.setOutput(extractedBook(extraction));
-        // The enchantment is transferred, not destroyed for vanilla XP.
+        // The enchantment is recovered rather than destroyed, so no vanilla XP.
         event.setXp(0);
     }
 
@@ -100,22 +97,16 @@ public final class GrindstoneEnchantmentRecovery {
         Extraction extraction = select(event.getTopItem(), event.getBottomItem());
         if (extraction == null) return;
 
-        ItemStack tool = extraction.gearOnTop()
+        ItemStack original = extraction.gearOnTop()
             ? event.getTopItem() : event.getBottomItem();
-        ItemStack books = extraction.gearOnTop()
-            ? event.getBottomItem() : event.getTopItem();
-
-        ItemStack changedTool = remainingGear(tool, extraction);
-        ItemStack booksLeft = consumeOneBook(books);
+        ItemStack updated = remainingGear(original, extraction);
         if (extraction.gearOnTop()) {
-            event.setNewTopItem(changedTool);
-            event.setNewBottomItem(booksLeft);
+            event.setNewTopItem(updated);
+            event.setNewBottomItem(ItemStack.EMPTY);
         } else {
-            event.setNewTopItem(booksLeft);
-            event.setNewBottomItem(changedTool);
+            event.setNewTopItem(ItemStack.EMPTY);
+            event.setNewBottomItem(updated);
         }
-        // OnTake only runs for a collected output. A failed shift-click never
-        // consumes either input. No custom player inventory manipulation.
         event.setXp(0);
     }
 
