@@ -183,8 +183,14 @@ def structure_nbt(chapter: int, wall: str, floor: str, trim: str, mob: str, loot
     # the route into the arena so the main path never becomes impassable.
     for x, z in ((7, 7), (35, 7), (7, 21),
                  (35, 21), (7, 35), (35, 35)):
+        # Explicit equipment is necessary: spawner entity NBT can bypass
+        # vanilla Pillager finalizeSpawn(), which normally equips a crossbow.
+        # Keep the server-side legacy-world repair for already-placed spawners.
+        weapon = [nbt_compound("", nbt_str("id", "minecraft:crossbow"),
+                              nbt_int("count", 1)), nbt_compound("")] if chapter == 1 else []
+        extra = (nbt_list("HandItems", 10, weapon),) if weapon else ()
         monster = nbt_compound("entity", nbt_str("id", mob),
-                               entity_tags("ss_dungeon_enemy", f"ss_chapter_{chapter}"))
+                               entity_tags("ss_dungeon_enemy", f"ss_chapter_{chapter}"), *extra)
         spawner = compound(nbt_str("id", "minecraft:mob_spawner"),
                            nbt_compound("SpawnData", monster))
         place(x, 1, z, "minecraft:spawner", spawner)
