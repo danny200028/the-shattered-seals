@@ -100,13 +100,15 @@ CURSEFORGE IMPORT:
     AppleSkin displays food and saturation information.
 17. J Codex includes optional rune hints and sword/relic ability descriptions;
    K Skill Tree now has detailed tooltips for skills and mastery perks.
-18. GRINDSTONE ENCHANTMENT RECOVERY: Put one custom-enchanted item and
-    ordinary books in the two grindstone slots. The output is one enchanted
-    book carrying a Shattered Seals enchantment at its saved level (I-III).
-    Taking the book removes only that enchantment from the original gear;
-    the gear remains in the input. Repeat for more enchantments. One blank
-    book is consumed per extraction, without giving grindstone XP. Without
-    a blank book, vanilla disenchanting stays unchanged. No world reset needed.
+18. GRINDSTONE ENCHANTMENT RECOVERY FIX: Put one custom-enchanted
+    item in either grindstone input slot; LEAVE THE OTHER SLOT EMPTY.
+    Minecraft does not accept ordinary books in its grindstone input slots.
+    The output is a genuine enchanted book holding ONE custom enchant at its
+    original level (I-III). Take it to remove that enchant from the gear,
+    which stays in the input slot. Repeat for remaining custom enchants.
+    No plain books are needed, no extraction XP is given. Items with no
+    custom enchantments and normal two-item repair follow vanilla behavior.
+    No world reset or item migration required.
 
 AUTOMATED TESTING:
 - Inside a new test world, type /shatteredseals audit in chat (no cheats required).
