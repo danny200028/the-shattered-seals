@@ -15,11 +15,13 @@ A challenging single-player RPG modpack, featuring a six-chapter boss storyline,
 
 ## Recover custom enchantments with a grindstone (save-safe)
 
-- Place **one enchanted weapon, tool or armour item** in either grindstone input slot and at least **one ordinary book** in the other. Take the enchanted book from the grindstone output.
-- The book contains **one Shattered Seals enchantment at its actual saved rank (I, II or III)**; the equipment remains in the input slot with that particular enchantment removed. Repeat with more normal books to extract other custom enchantments. If a stack of blank books is present, exactly one is consumed per extraction. The tool's durability, item name, vanilla enchantments and remaining custom enchantments are preserved.
-- This uses the existing grindstone UI, with no special commands and no inventory drops. If inventory space is unavailable, leave the book in the output until room is made. Shift-clicking still follows vanilla slot capacity checks; enchantments are removed only when a book is actually taken.
-- Extraction transfers enchantments instead of destroying them and awards **no grindstone XP**, preventing XP farming. Grinding an enchanted item **without a blank book** preserves normal vanilla disenchanting (including its usual XP) and will not recover custom books.
-- The ordinary Codex book tooltip, anvil combination and drag-on-equipment features all work on the recovered books. Existing worlds and items need no conversion or migration.
+**Fixed extraction recipe for NeoForge 1.21.1:** The previous release asked for a blank book in the second slot, but Minecraft's grindstone rejects plain books. That recipe could not work, even though direct event tests passed.
+
+- Put **one enchanted weapon, tool or armour item** in **either** grindstone input slot. **Leave the other slot empty.** No ordinary book is required or consumed.
+- The grindstone output is a **genuine enchanted book** holding one Shattered Seals enchantment at its original level (I, II or III). Taking it **removes only that enchantment from the item**, leaving the item in its original input slot, with its durability, name and other enchantments preserved. Repeat to extract any remaining custom enchantments.
+- An item with multiple custom enchants gives **one recovered book per output click**. There's no bonus XP for extraction, no output duplication, no item drops, and no player inventory manipulation. A full inventory prevents shift-click pickup rather than losing the book.
+- **Two-item grindstone repairs are unchanged.** An item with no Shattered Seals enchantments uses normal vanilla disenchanting and XP rules. Existing worlds, items, custom Codex books and gear do not need conversion.
+- The new GameTests use an **actual GrindstoneMenu** to test whether vanilla accepts the input and gives the recovered book. The older tests had missed the invalid plain-book slot restriction.
 
 ## Equipped enchantment stacking and dual-wield melee
 
