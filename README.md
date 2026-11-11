@@ -59,6 +59,13 @@ Pillagers from the dungeon's six spawners must spawn with crossbows for their va
   Sanctuaries keep their blocks, storage and trophies. To inspect the new
   castle, use a fresh test world or a copied save with a separate, empty site.
 
+## Ashen Covenant rune colours (existing worlds supported)
+
+- Rune puzzle materials are now legible even when the original game would show patinated copper as teal: **Sun = orange-gold chiseled copper**, **Tide = blue prismarine**, **Ash = dark polished blackstone**. Each has its own hand-drawn 16x texture motif.
+- The Sixfold Temple's ordinary oxidized-copper trim is **warm burnished copper** in the optional Ashen Covenant resource pack, with a few patina flecks instead of an overall blue-green colour. Copper cannot be mistaken for Tide.
+- The journal's optional **Reveal rune hint** now displays the actual block-name-to-symbol mapping without modifying any solution, rune location, quest, world block or existing dungeon.
+- To apply to an existing CurseForge install, **replace the older** `The-Shattered-Seals-Ashen-Covenant.zip` in `resourcepacks` with the new ZIP from the latest pack. Keep the pack enabled and press F3+T to reload resources. You do **not** need to rebuild dungeons or restart the story. Other resource packs placed above it can override those textures.
+
 ## v1.0.65: The Ashen Covenant fortress and visual identity
 
 - **Three storeys:** connected Gothic Sanctuary with climbable staircases,
