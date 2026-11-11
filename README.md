@@ -13,6 +13,14 @@ The world defaults to Hard difficulty, with high attack speed for an approximati
 
 A challenging single-player RPG modpack, featuring a six-chapter boss storyline, nine-room natural jigsaw fortresses, class skill trees, powerful relics, rarity-based loot, and New Game+ mastery and repeatable chapter quests.
 
+## Equipped enchantment stacking and dual-wield melee
+
+- **Four armour-slot enchantments now stack** across the worn set: Guardian Angel (adds Absorption levels), Phoenix Skin (refreshes Fire Resistance I; two or four pieces provide extra Absorption I/II), Lifebloom and Immortal Spirit (add all pieces' maximum-health bonuses). The results share the existing class/NG+ passive aggregator and its cap of effect level V.
+- **Dual wield swords or axes** to add compatible offhand enchantments to the attack made with your main-hand weapon. Matching ranks combine to effective rank V, rather than triggering the same proc twice. For example, Soul Edge I + Soul Edge I delivers the equivalent damage of Soul Edge II; IV/V are obtainable as combined equipment power without creating higher-level books.
+- Offensive damage enchants retain their vanilla main-hand damage; only the **incremental offhand bonus** is added. Proc enchantments resolve once per successful strike with their original solo proc chances, scaling slightly when copies exist on both weapons. Soul Collector grants bonus vanilla XP for hostile melee kills only, not passive animals.
+- Two swords or two axes, or a sword plus an axe all qualify. Shields and ordinary utility offhand items provide no enchantment combat bonus. Bow, harvesting and mining enchantments keep their original uses rather than becoming melee bonuses.
+- Existing enchanted gear is used unchanged. Merely equipping the pieces activates stacking; no item migration, rerolling or new books are needed.
+
 ## Dungeon-only kill milestones and existing-world migration
 
 - **Only hostile enemies killed in Shattered Seals dungeons or marked boss, miniboss, elite and boss-minion encounters** count toward character kill-XP and mastery kill milestones. Animals and ordinary open-world mobs do not contribute to those systems; normal vanilla loot and experience remain unchanged.

@@ -108,6 +108,11 @@ scoreboard objectives add ss_fx_jump dummy
 scoreboard objectives add ss_fx_fire dummy
 scoreboard objectives add ss_fx_night dummy
 
+# Stacked enchantment ranks from actually equipped armour.
+scoreboard objectives add ss_ench_abs dummy
+scoreboard objectives add ss_ench_fire dummy
+scoreboard objectives add ss_ench_firepieces dummy
+
 # 1.0.25 XP bar percentage (0-10 segments)
 scoreboard objectives add ss_hudfill dummy
 scoreboard objectives add ss_hudtmp dummy

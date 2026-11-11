@@ -19,18 +19,5 @@
   "slots": [
     "armor"
   ],
-  "effects": {
-    "minecraft:attributes": [
-      {
-        "id": "shatteredseals:immortal_spirit",
-        "attribute": "minecraft:generic.max_health",
-        "amount": {
-          "type": "minecraft:linear",
-          "base": 2,
-          "per_level_above_first": 1.5
-        },
-        "operation": "add_value"
-      }
-    ]
-  }
+  "effects": {}
 }

@@ -12,7 +12,12 @@ class EnchantmentTests(unittest.TestCase):
             p=DATA/'enchantment'/(give.stem.removeprefix('give_')+'.json')
             data=json.loads(p.read_text())
             self.assertEqual(data["max_level"],3,p.name)
-            self.assertTrue(data["effects"],p.name)
+            # These enchants resolve combined equipment effects on the server.
+            java_driven = {"guardian_angel", "phoenix_skin", "lifebloom",
+                           "immortal_spirit", "vampiric_edge", "soul_reaper",
+                           "dragons_fury", "frostbite", "infernal_wrath",
+                           "celestial_judgement", "thunderstrike", "soul_collector"}
+            self.assertTrue(data["effects"] or p.stem in java_driven,p.name)
             self.assertTrue(data["supported_items"],p.name)
             self.assertEqual(data["description"]["italic"],False)
             self.assertTrue((DATA/"function/enchantments"/("give_"+p.stem+".mcfunction")).exists())
