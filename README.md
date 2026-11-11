@@ -13,6 +13,14 @@ The world defaults to Hard difficulty, with high attack speed for an approximati
 
 A challenging single-player RPG modpack, featuring a six-chapter boss storyline, nine-room natural jigsaw fortresses, class skill trees, powerful relics, rarity-based loot, and New Game+ mastery and repeatable chapter quests.
 
+## Recover custom enchantments with a grindstone (save-safe)
+
+- Place **one enchanted weapon, tool or armour item** in either grindstone input slot and at least **one ordinary book** in the other. Take the enchanted book from the grindstone output.
+- The book contains **one Shattered Seals enchantment at its actual saved rank (I, II or III)**; the equipment remains in the input slot with that particular enchantment removed. Repeat with more normal books to extract other custom enchantments. If a stack of blank books is present, exactly one is consumed per extraction. The tool's durability, item name, vanilla enchantments and remaining custom enchantments are preserved.
+- This uses the existing grindstone UI, with no special commands and no inventory drops. If inventory space is unavailable, leave the book in the output until room is made. Shift-clicking still follows vanilla slot capacity checks; enchantments are removed only when a book is actually taken.
+- Extraction transfers enchantments instead of destroying them and awards **no grindstone XP**, preventing XP farming. Grinding an enchanted item **without a blank book** preserves normal vanilla disenchanting (including its usual XP) and will not recover custom books.
+- The ordinary Codex book tooltip, anvil combination and drag-on-equipment features all work on the recovered books. Existing worlds and items need no conversion or migration.
+
 ## Equipped enchantment stacking and dual-wield melee
 
 - **Four armour-slot enchantments now stack** across the worn set: Guardian Angel (adds Absorption levels), Phoenix Skin (refreshes Fire Resistance I; two or four pieces provide extra Absorption I/II), Lifebloom and Immortal Spirit (add all pieces' maximum-health bonuses). The results share the existing class/NG+ passive aggregator and its cap of effect level V.
