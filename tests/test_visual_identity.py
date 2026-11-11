@@ -44,7 +44,7 @@ class VisualIdentityTests(unittest.TestCase):
                 location=f"assets/minecraft/textures/block/{key}.png"
                 self.assertIn(location,z.namelist())
                 data=z.read(location)
-                self.assertEqual(data[:8],b"\\x89PNG\\r\\n\\x1a\\n")
+                self.assertEqual(data[:8],b"\x89PNG\r\n\x1a\n")
                 self.assertEqual(struct.unpack(">II",data[16:24]),(16,16))
             def avg_rgb(name):
                 import zlib
