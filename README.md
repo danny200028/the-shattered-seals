@@ -13,6 +13,10 @@ The world defaults to Hard difficulty, with high attack speed for an approximati
 
 A challenging single-player RPG modpack, featuring a six-chapter boss storyline, nine-room natural jigsaw fortresses, class skill trees, powerful relics, rarity-based loot, and New Game+ mastery and repeatable chapter quests.
 
+## Smugglers' Den pillager crossbow repair (existing worlds safe)
+
+Pillagers from the dungeon's six spawners must spawn with crossbows for their vanilla ranged AI to work. New templates now give them crossbows explicitly. Previously generated Smugglers' Den chunks are also repaired server-side when their unarmed pillagers enter the world, without changing spawner blocks, player-built structures or loot.
+
 ## Dungeon-only kill milestones and existing-world migration
 
 - **Only hostile enemies killed in Shattered Seals dungeons or marked boss, miniboss, elite and boss-minion encounters** count toward character kill-XP and mastery kill milestones. Animals and ordinary open-world mobs do not contribute to those systems; normal vanilla loot and experience remain unchanged.
