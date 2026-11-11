@@ -31,7 +31,7 @@ class PassiveEffectTests(unittest.TestCase):
 
     def test_class_and_kill_contributions_do_not_double_apply(self):
         for cls, effect in ((1, "strength"), (2, "resistance"), (3, "speed")):
-            self.assertRegex(PASS, rf"ss_path matches {cls} if score @s ss_kills matches 40\\.\\. run scoreboard players add")
+            self.assertRegex(PASS, rf"ss_path matches {cls} if score @s ss_kills matches 40\.\. run scoreboard players add")
             self.assertNotRegex(TICK, rf"ss_path={cls},ss_kills=.*minecraft:{effect}")
         for cls in range(1, 5):
             for line in PASS.splitlines():
