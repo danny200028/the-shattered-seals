@@ -64,7 +64,9 @@ class ReleaseTests(unittest.TestCase):
     def test_ng_mastery_perk_shop(self):
         tick=source("progression/tick")
         self.assertIn("scoreboard players enable @a ss_mperk",tick)
-        self.assertIn("shatteredseals:mastery/passives",tick)
+        # The universal NG+ perks are now aggregated inside the shared passive resolver.
+        self.assertIn("shatteredseals:progression/passives",tick)
+        self.assertIn("shatteredseals:mastery/passives",source("progression/passives"))
         shop=source("mastery/shop")
         refund=source("progression/reset_apply")
         for perk in ("guard","haste","fury"):
@@ -76,7 +78,8 @@ class ReleaseTests(unittest.TestCase):
                 self.assertIn(f"scoreboard players operation @s ss_mpoints += @s {objective}",refund)
                 self.assertIn(f"scoreboard players set @s {objective} 0",refund)
                 self.assertIn(f"ss_mp_{perk} matches ..4",shop)
-        self.assertEqual(source("mastery/passives").count("effect give @s"),15)
+        self.assertEqual(source("mastery/passives").count("effect give @s"),0)
+        self.assertEqual(source("mastery/passives").count("scoreboard players operation"),3)
 
     def test_ng_mastery_objective_init_and_buff_uptime(self):
         load=source("load")
@@ -89,9 +92,10 @@ class ReleaseTests(unittest.TestCase):
             self.assertIn(f"scoreboard players set @s {name} 0",init)
             self.assertIn(f"scoreboard players add @a {name} 0",tick)
             effect={"guard":"resistance","haste":"haste","fury":"strength"}[perk]
-            for rank in range(1,6):
-                self.assertIn(f"scoreboard players",tick)
-                self.assertIn(f"ss_mp_{perk} matches {rank} run effect give @s minecraft:{effect} 6 ",passives)
+            effect_score={"guard":"ss_fx_res","haste":"ss_fx_haste","fury":"ss_fx_str"}[perk]
+            self.assertIn(f"{name} matches 1.. run scoreboard players operation @s {effect_score} += @s {name}",passives)
+            self.assertIn(f"{effect_score} matches 5.. run effect give @s minecraft:{effect} 16 4 true",source("progression/passives"))
+        self.assertIn("execute if score #clock ss_clock matches 0 as @a run function shatteredseals:progression/passives",tick)
 
     def test_reset_requires_prior_server_confirmation(self):
         reset=source("progression/reset")
