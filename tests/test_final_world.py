@@ -40,10 +40,20 @@ class FinalWorldTests(unittest.TestCase):
         for id in ("celestial_judgement","dragons_fury","frostbite","infernal_wrath",
                    "soul_reaper","stormcaller","thunderstrike","vampiric_edge"):
             enchant=json.loads((DATA/f"enchantment/{id}.json").read_text())
-            proc=[p for p in enchant["effects"]["minecraft:post_attack"] if p.get("requirements",{}).get("condition")=="minecraft:random_chance"]
-            self.assertEqual(len(proc),1,id)
-            self.assertEqual(proc[0]["effect"]["type"],"minecraft:all_of")
-            self.assertEqual(proc[0]["effect"]["effects"][1]["type"],"minecraft:run_function")
+            # Stormcaller remains a bow-native proc. Sword/axe procs are
+            # resolved exactly once server-side across both wielded items.
+            if id == "stormcaller":
+                proc=[p for p in enchant["effects"]["minecraft:post_attack"]
+                      if p.get("requirements",{}).get("condition")=="minecraft:random_chance"]
+                self.assertEqual(len(proc),1,id)
+                self.assertEqual(proc[0]["effect"]["type"],"minecraft:all_of")
+                self.assertEqual(proc[0]["effect"]["effects"][1]["type"],"minecraft:run_function")
+            else:
+                self.assertEqual(enchant["effects"],{},id)
+                source=(JAVA/"enchantments/EquipmentEnchantStacks.java").read_text()
+                self.assertIn('"'+id+'"',source)
+                self.assertIn('activate(p, "'+id+'"',source)
+                self.assertIn("p.getRandom().nextFloat() < procChance",source)
             self.assertTrue((DATA/f"function/enchantment_procs/{id}.mcfunction").is_file())
     def test_all_features_are_server_authoritative(self):
         source=(JAVA/"adventure/FinalAdventure.java").read_text()

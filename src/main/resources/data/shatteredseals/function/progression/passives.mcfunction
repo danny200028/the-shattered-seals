@@ -51,6 +51,15 @@ execute if score @s ss_path matches 4 if score @s ss_b43 matches 3.. run scorebo
 # NG+ perk levels add to skill bonuses, instead of competing with them via effect give.
 execute if score @s ss_ng matches 1.. run function shatteredseals:mastery/passives
 
+# Armour enchantments share the class/NG+ potion effect aggregator.
+# Guardian Angel I + Guardian Angel I gives Absorption II, capped at V.
+scoreboard players operation @s ss_fx_abs += @s ss_ench_abs
+scoreboard players operation @s ss_fx_fire += @s ss_ench_fire
+# Fire Resistance has no meaningful amplifier past I. Extra Phoenix Skin
+# pieces add a modest absorption shield, making duplicate enchantments useful.
+execute if score @s ss_ench_firepieces matches 2..3 run scoreboard players add @s ss_fx_abs 1
+execute if score @s ss_ench_firepieces matches 4.. run scoreboard players add @s ss_fx_abs 2
+
 # One potion application per effect prevents weaker sources overwriting a stacked level.
 execute if score @s ss_fx_str matches 1 run effect give @s minecraft:strength 16 0 true
 execute if score @s ss_fx_str matches 2 run effect give @s minecraft:strength 16 1 true
