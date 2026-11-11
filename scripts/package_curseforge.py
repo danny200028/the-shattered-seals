@@ -88,8 +88,13 @@ CURSEFORGE IMPORT:
     span the ground floor, upper workshops and royal keep.
     Old placed Sanctuaries remain unchanged, including stored items.
 15. The optional original Ashen Covenant resource pack installs to resourcepacks.
-    Activate it once in Options > Resource Packs. Complementary Reimagined r5.9.3
-    is recommended by Iris. Select the shader manually if it is missing.
+    Activate it once in Options > Resource Packs. Rune colours are now explicit:
+    SUN = orange chiseled copper, TIDE = blue prismarine, ASH = blackstone.
+    Even oxidized copper reads as warm bronze rather than blue-green, so the
+    puzzle clues remain consistent. Replace an older Ashen Covenant ZIP when
+    updating; F3+T reloads textures without changing existing dungeon blocks.
+    Complementary Reimagined r5.9.3 is recommended by Iris. Select the shader
+    manually if it is missing.
 16. Controlling adds search to Options > Controls > Key Binds. Searchables
     supplies its search library. Mouse Tweaks adds inventory shortcuts and
     AppleSkin displays food and saturation information.
