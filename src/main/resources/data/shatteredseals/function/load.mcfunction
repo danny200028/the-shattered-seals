@@ -92,6 +92,17 @@ scoreboard objectives add ss_hudon dummy
 scoreboard objectives add ss_hudinit dummy
 scoreboard objectives add ss_hudclock dummy
 
+# Aggregated passive effect levels (skill cores + branch talents + kill milestones + NG+).
+scoreboard objectives add ss_fx_str dummy
+scoreboard objectives add ss_fx_res dummy
+scoreboard objectives add ss_fx_spd dummy
+scoreboard objectives add ss_fx_haste dummy
+scoreboard objectives add ss_fx_abs dummy
+scoreboard objectives add ss_fx_reg dummy
+scoreboard objectives add ss_fx_jump dummy
+scoreboard objectives add ss_fx_fire dummy
+scoreboard objectives add ss_fx_night dummy
+
 # 1.0.25 XP bar percentage (0-10 segments)
 scoreboard objectives add ss_hudfill dummy
 scoreboard objectives add ss_hudtmp dummy

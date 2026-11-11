@@ -15,24 +15,17 @@ execute as @a[tag=!ss_welcome] run function shatteredseals:welcome
 execute as @a[scores={ss_cd=1..}] run scoreboard players remove @s ss_cd 1
 execute as @a[scores={ss_choose=1,ss_path=0}] run scoreboard players set @s ss_path 1
 execute as @a[scores={ss_choose=1,ss_path=1}] run tellraw @s {"text":"You have chosen Vanguard.","color":"gold","bold":false}
-execute if score #clock ss_clock matches 0 as @a[scores={ss_path=1,ss_kills=10..}] run effect give @s minecraft:strength 5 0 true
-execute if score #clock ss_clock matches 0 as @a[scores={ss_path=1,ss_kills=40..}] run effect give @s minecraft:strength 5 1 true
 execute as @a[scores={ss_cast=1,ss_cd=0,ss_path=1}] at @s run function shatteredseals:skills/cast_vanguard
 execute as @a[scores={ss_choose=2,ss_path=0}] run scoreboard players set @s ss_path 2
 execute as @a[scores={ss_choose=2,ss_path=2}] run tellraw @s {"text":"You have chosen Warden.","color":"gold","bold":false}
-execute if score #clock ss_clock matches 0 as @a[scores={ss_path=2,ss_kills=10..}] run effect give @s minecraft:resistance 5 0 true
-execute if score #clock ss_clock matches 0 as @a[scores={ss_path=2,ss_kills=40..}] run effect give @s minecraft:resistance 5 1 true
 execute as @a[scores={ss_cast=1,ss_cd=0,ss_path=2}] at @s run function shatteredseals:skills/cast_warden
 execute as @a[scores={ss_choose=3,ss_path=0}] run scoreboard players set @s ss_path 3
 execute as @a[scores={ss_choose=3,ss_path=3}] run tellraw @s {"text":"You have chosen Pathfinder.","color":"gold","bold":false}
-execute if score #clock ss_clock matches 0 as @a[scores={ss_path=3,ss_kills=10..}] run effect give @s minecraft:speed 5 0 true
-execute if score #clock ss_clock matches 0 as @a[scores={ss_path=3,ss_kills=40..}] run effect give @s minecraft:speed 5 1 true
 execute as @a[scores={ss_cast=1,ss_cd=0,ss_path=3}] at @s run function shatteredseals:skills/cast_pathfinder
 execute as @a[scores={ss_choose=4,ss_path=0}] run scoreboard players set @s ss_path 4
 execute as @a[scores={ss_choose=4,ss_path=4}] run tellraw @s {"text":"You have chosen Arcanist.","color":"gold","bold":false}
-execute if score #clock ss_clock matches 0 as @a[scores={ss_path=4,ss_kills=10..}] run effect give @s minecraft:night_vision 5 0 true
-execute if score #clock ss_clock matches 0 as @a[scores={ss_path=4,ss_kills=40..}] run effect give @s minecraft:night_vision 5 1 true
 execute as @a[scores={ss_cast=1,ss_cd=0,ss_path=4}] at @s run function shatteredseals:skills/cast_arcanist
+# Class milestone buffs are now aggregated with core/branch/NG+ skill bonuses.
 execute as @a[scores={ss_choose=1..}] run scoreboard players set @s ss_choose 0
 execute as @a[scores={ss_cast=1..}] run scoreboard players set @s ss_cast 0
 execute if score #clock ss_clock matches 0 as @a if items entity @s weapon.mainhand minecraft:diamond_sword[minecraft:custom_data~{ss_weapon:"emberbound"}] run effect give @s minecraft:fire_resistance 5 0 true

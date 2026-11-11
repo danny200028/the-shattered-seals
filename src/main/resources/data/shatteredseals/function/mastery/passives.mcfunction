@@ -1,16 +1,5 @@
-# Server refresh occurs every 80 ticks (four seconds). Apply six-second buffs to prevent gaps.
-execute if score @s ss_mp_guard matches 1 run effect give @s minecraft:resistance 6 0 true
-execute if score @s ss_mp_guard matches 2 run effect give @s minecraft:resistance 6 1 true
-execute if score @s ss_mp_guard matches 3 run effect give @s minecraft:resistance 6 2 true
-execute if score @s ss_mp_guard matches 4 run effect give @s minecraft:resistance 6 3 true
-execute if score @s ss_mp_guard matches 5 run effect give @s minecraft:resistance 6 4 true
-execute if score @s ss_mp_haste matches 1 run effect give @s minecraft:haste 6 0 true
-execute if score @s ss_mp_haste matches 2 run effect give @s minecraft:haste 6 1 true
-execute if score @s ss_mp_haste matches 3 run effect give @s minecraft:haste 6 2 true
-execute if score @s ss_mp_haste matches 4 run effect give @s minecraft:haste 6 3 true
-execute if score @s ss_mp_haste matches 5 run effect give @s minecraft:haste 6 4 true
-execute if score @s ss_mp_fury matches 1 run effect give @s minecraft:strength 6 0 true
-execute if score @s ss_mp_fury matches 2 run effect give @s minecraft:strength 6 1 true
-execute if score @s ss_mp_fury matches 3 run effect give @s minecraft:strength 6 2 true
-execute if score @s ss_mp_fury matches 4 run effect give @s minecraft:strength 6 3 true
-execute if score @s ss_mp_fury matches 5 run effect give @s minecraft:strength 6 4 true
+# Runs only after progression/passives resets all effect contribution scores.
+# New Game+ perk rank contributes its full number of levels (1 through 5).
+execute if score @s ss_mp_guard matches 1.. run scoreboard players operation @s ss_fx_res += @s ss_mp_guard
+execute if score @s ss_mp_haste matches 1.. run scoreboard players operation @s ss_fx_haste += @s ss_mp_haste
+execute if score @s ss_mp_fury matches 1.. run scoreboard players operation @s ss_fx_str += @s ss_mp_fury
