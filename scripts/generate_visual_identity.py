@@ -192,6 +192,73 @@ def block_texture(key: str, seed: int) -> bytes:
     return png_bytes(p)
 
 
+def rune_block_texture(key: str, seed: int) -> bytes:
+    """Clear Sun / Tide / Ash puzzle colours that survive dark RPG shaders.
+
+    Minecraft normally renders oxidized copper blue-green. The optional Ashen
+    Covenant pack intentionally makes copper amber so that it cannot be
+    mistaken for the Tide rune. This changes pixels only, never block IDs,
+    puzzle solutions or world saves.
+    """
+    palette = {
+        "chiseled_copper": (180, 95, 47),
+        "chiseled_copper_top": (183, 100, 52),
+        "oxidized_copper": (156, 86, 48),
+        "prismarine": (43, 113, 164),
+        "polished_blackstone": (43, 43, 53),
+    }
+    base = palette[key]
+    rng = random.Random(seed)
+    p = []
+    for y in range(16):
+        row = []
+        for x in range(16):
+            variation = rng.randint(-13, 13)
+            mortar = -15 if x in (0, 15) or y in (0, 15) else 0
+            color = tuple(max(0, min(255, c + variation + mortar)) for c in base)
+            row.append((*color, 255))
+        p.append(row)
+
+    if key in ("chiseled_copper", "chiseled_copper_top"):
+        # Bright amber sun within a forged copper border.
+        border, shadow, gold = (116, 55, 32), (140, 68, 35), (244, 183, 78)
+        for i in range(2, 14):
+            px(p, i, 2, border)
+            px(p, i, 13, border)
+            px(p, 2, i, border)
+            px(p, 13, i, border)
+        circle(p, 8, 8, 3, gold)
+        rect(p, 7, 7, 10, 10, (235, 151, 54))
+        for x0, y0, x1, y1 in (
+            (8,3,8,4), (8,12,8,13), (3,8,4,8), (12,8,13,8),
+            (4,4,5,5), (11,11,12,12), (4,11,5,10), (11,4,12,5)
+        ):
+            line(p, x0,y0,x1,y1, gold)
+    elif key == "oxidized_copper":
+        # Warm burnished copper, lightly patinated but never cyan overall.
+        for i in range(15):
+            px(p, i, (i*7+4)%16, (104, 119, 99))
+        line(p, 2, 3, 13, 3, (210, 118, 59))
+        line(p, 2, 12, 13, 12, (116, 61, 39))
+    elif key == "prismarine":
+        # Three clean, wave-shaped bands read as Tide even in dark chambers.
+        for y in (5, 9, 13):
+            for x in range(2, 14):
+                yy = y + (1 if (x//3)%2 else 0)
+                px(p, x, yy, (118, 210, 236))
+        line(p, 2, 2, 13, 2, (27, 67, 108))
+    elif key == "polished_blackstone":
+        # Ash is charcoal, edged with cold grey and subtle ember specks.
+        for i in range(2, 14):
+            px(p, i, 2, (75, 72, 77))
+            px(p, i, 13, (22, 23, 31))
+        line(p, 5, 11, 8, 5, (147, 133, 135))
+        line(p, 8, 5, 10, 10, (147, 133, 135))
+        px(p, 6, 11, (183, 94, 58))
+        px(p, 10, 11, (183, 94, 58))
+    return png_bytes(p)
+
+
 def main():
     ASSETS.mkdir(parents=True, exist_ok=True)
     OUT.mkdir(parents=True, exist_ok=True)
@@ -233,6 +300,16 @@ def main():
         )):
             pack.writestr(f"assets/minecraft/textures/block/{key}.png",
                           block_texture(key,601+i))
+        # Distinct clue colours, not simply a realistic oxidized copper patina.
+        # Chiseled copper = SUN (orange-gold), prismarine = TIDE (blue),
+        # polished blackstone = ASH (charcoal). Existing world blocks reload
+        # these pixels immediately after enabling the updated resource pack.
+        for i,key in enumerate((
+            "chiseled_copper", "chiseled_copper_top", "oxidized_copper",
+            "prismarine", "polished_blackstone"
+        )):
+            pack.writestr(f"assets/minecraft/textures/block/{key}.png",
+                          rune_block_texture(key,713+i))
     print(f"Original branded assets: {ASSETS}; pack: {RESOURCE_PACK}; CurseForge thumbnail: {OUT/'curseforge_thumbnail.png'}")
 
 
