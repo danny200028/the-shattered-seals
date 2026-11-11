@@ -21,6 +21,10 @@ A challenging single-player RPG modpack, featuring a six-chapter boss storyline,
 - Two swords or two axes, or a sword plus an axe all qualify. Shields and ordinary utility offhand items provide no enchantment combat bonus. Bow, harvesting and mining enchantments keep their original uses rather than becoming melee bonuses.
 - Existing enchanted gear is used unchanged. Merely equipping the pieces activates stacking; no item migration, rerolling or new books are needed.
 
+## Smugglers' Den pillager crossbow repair (existing worlds safe)
+
+Pillagers from the dungeon's six spawners must spawn with crossbows for their vanilla ranged AI to work. New templates now give them crossbows explicitly. Previously generated Smugglers' Den chunks are also repaired server-side when their unarmed pillagers enter the world, without changing spawner blocks, player-built structures or loot.
+
 ## Dungeon-only kill milestones and existing-world migration
 
 - **Only hostile enemies killed in Shattered Seals dungeons or marked boss, miniboss, elite and boss-minion encounters** count toward character kill-XP and mastery kill milestones. Animals and ordinary open-world mobs do not contribute to those systems; normal vanilla loot and experience remain unchanged.

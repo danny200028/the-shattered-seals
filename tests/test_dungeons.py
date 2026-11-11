@@ -62,6 +62,20 @@ class DungeonTests(unittest.TestCase):
                     ritual=(DATA/f"function/ritual/use_{boss}.mcfunction").read_text()
                     self.assertIn(f"unless score @s {previous} matches 1.. run return",ritual)
 
+    def test_smugglers_spawner_pillagers_have_crossbows_and_legacy_repair(self):
+        # New structure NBT is regenerated as part of the standard workflow.
+        old = DUNGEON_SOURCE.structure_nbt(
+            1, DUNGEON_SOURCE.THEMES[0][2], DUNGEON_SOURCE.THEMES[0][3],
+            DUNGEON_SOURCE.THEMES[0][4], DUNGEON_SOURCE.THEMES[0][5],
+            "shatteredseals:chests/smugglers_den")
+        self.assertEqual(old.count(b"HandItems"), 6)
+        self.assertEqual(old.count(b"minecraft:crossbow"), 6)
+        java = (ROOT / "src/main/java/com/shatteredseals/progression/DungeonKillProgress.java").read_text()
+        for name in ("EntityJoinLevelEvent", "getMainHandItem().isEmpty()",
+                     "Items.CROSSBOW", 'ss_chapter_1', '"smugglers_den"',
+                     "mob.setItemSlot(EquipmentSlot.MAINHAND"):
+            self.assertIn(name, java)
+
     def test_bosses_require_the_matching_arena_and_consume_sigils_after_spawn(self):
         functions = DATA / "function"
         for chapter, (dungeon, boss, _) in enumerate(DUNGEONS, 1):

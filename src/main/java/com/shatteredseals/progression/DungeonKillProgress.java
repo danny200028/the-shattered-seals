@@ -8,6 +8,11 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -22,6 +27,28 @@ import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 public final class DungeonKillProgress {
     private static final TagKey<Structure> DUNGEONS = TagKey.create(Registries.STRUCTURE,
         ResourceLocation.fromNamespaceAndPath(ShatteredSeals.MOD_ID, "dungeon_kill_locations"));
+
+    /**
+     * Existing 1.21.1 dungeon spawners saved entity NBT without a weapon.
+     * Those pillagers skip normal crossbow equipment setup and cannot fire.
+     * Repair only unarmed Smugglers' Den pillagers, never player equipment
+     * or ordinary village patrols, including on legacy chunk/entity load.
+     */
+    @SubscribeEvent
+    public static void onSmugglersDenPillagerSpawn(EntityJoinLevelEvent event) {
+        if (!(event.getLevel() instanceof ServerLevel level) || !(event.getEntity() instanceof Mob mob)
+                || mob.getType() != EntityType.PILLAGER || !mob.getMainHandItem().isEmpty()
+                || mob.getTags().contains("ss_boss")) return;
+        if (mob.getTags().contains("ss_chapter_1")
+                || isInDungeon(level, mob.blockPosition(), "smugglers_den")) {
+            mob.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.CROSSBOW));
+        }
+    }
+
+    private static boolean isInDungeon(ServerLevel level, net.minecraft.core.BlockPos pos, String structure) {
+        return level.structureManager().getStructureWithPieceAt(pos, TagKey.create(
+            Registries.STRUCTURE, ResourceLocation.fromNamespaceAndPath(ShatteredSeals.MOD_ID, structure))).isValid();
+    }
 
     @SubscribeEvent
     public static void onDungeonEnemyDeath(LivingDeathEvent event) {
