@@ -13,6 +13,9 @@ class CodexExpansionTests(unittest.TestCase):
         self.assertIn('Rune order:',S)
         self.assertIn('chapter.runeAt(0)',S)
         self.assertIn('showRuneHint',S)
+        self.assertIn('Sun=orange chiseled copper',S)
+        self.assertIn('Tide=blue prismarine',S)
+        self.assertIn('Ash=blackstone',S)
         self.assertIn('case RELICS -> renderRelics',S)
         self.assertIn('Warden\'s Pulse',S)
     def test_sword_passive_summary(self):
