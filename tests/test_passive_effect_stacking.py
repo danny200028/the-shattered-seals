@@ -29,7 +29,7 @@ class PassiveEffectTests(unittest.TestCase):
         self.assertIn("execute if score @s ss_ng matches 1.. run function shatteredseals:mastery/passives", PASS)
         self.assertNotIn("run function shatteredseals:mastery/passives", PTICK)
 
-    def test_class_and_kill_contributions_do_not_double_apply(self):
+    def test_class_and_dungeon_milestone_contributions_do_not_double_apply(self):
         for cls, effect in ((1, "strength"), (2, "resistance"), (3, "speed")):
             self.assertRegex(PASS, rf"ss_path matches {cls} if score @s ss_dkills matches 40\.\. run scoreboard players add")
             self.assertNotRegex(TICK, rf"ss_path={cls},ss_dkills=.*minecraft:{effect}")

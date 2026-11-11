@@ -20,12 +20,15 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 
 /**
- * Hostile mobs killed by players anywhere count toward RPG kill XP and milestones.
- * The original ss_dkills objective name remains unchanged to preserve existing saves.
+ * Hostile mobs killed by players anywhere give character XP; only dungeon enemies earn milestones.
+ * Keep the original ss_dkills milestone score unchanged for existing worlds.
  * Passive animals never count. Dungeon crossbow repair is unrelated.
  */
 @EventBusSubscriber(modid = ShatteredSeals.MOD_ID)
 public final class DungeonKillProgress {
+    private static final TagKey<Structure> DUNGEONS = TagKey.create(Registries.STRUCTURE,
+        ResourceLocation.fromNamespaceAndPath(ShatteredSeals.MOD_ID, "dungeon_kill_locations"));
+
     /**
      * Existing 1.21.1 dungeon spawners saved entity NBT without a weapon.
      * Those pillagers skip normal crossbow equipment setup and cannot fire.
@@ -53,12 +56,8 @@ public final class DungeonKillProgress {
         if (!(event.getEntity() instanceof Mob victim)
                 || !(event.getSource().getEntity() instanceof ServerPlayer player)
                 || !isEligibleHostileMob(victim)) return;
-        var board = player.getScoreboard();
-        var objective = board.getObjective("ss_dkills");
-        if (objective == null) return;
-        int previous = DungeonChapter.score(player, "ss_dkills");
-        if (previous >= 0 && previous < Integer.MAX_VALUE)
-            board.getOrCreatePlayerScore(player, objective).set(previous + 1);
+        increment(player, "ss_hkills"); // Any hostile mob grants character XP.
+        if (isEligibleDungeonEnemy(victim)) increment(player, "ss_dkills"); // Milestones only.
     }
 
     /** Hostile Minecraft monsters in any biome/dimension, including dungeon mobs. */
@@ -66,6 +65,29 @@ public final class DungeonKillProgress {
         // Enemy is the vanilla hostile-mob category, not passive farm animals.
         // The killer must also be a ServerPlayer, checked by the death handler.
         return victim instanceof Enemy;
+    }
+
+    /** Dungeon enemies include tagged encounters and old dungeon spawner hostiles. */
+    public static boolean isEligibleDungeonEnemy(Mob victim) {
+        if (!isEligibleHostileMob(victim)) return false;
+        if (victim.getTags().contains("ss_dungeon_enemy")
+                || victim.getTags().contains("ss_boss")
+                || victim.getTags().contains("ss_minion")
+                || victim.getTags().contains("ss_miniboss")
+                || victim.getTags().contains("ss_depths_guardian")
+                || victim.getTags().contains("ss_secret_boss")
+                || victim.getTags().stream().anyMatch(tag -> tag.startsWith("ss_elite_"))) return true;
+        if (!(victim.level() instanceof ServerLevel level)) return false;
+        return level.structureManager().getStructureWithPieceAt(victim.blockPosition(), DUNGEONS).isValid();
+    }
+
+    private static void increment(ServerPlayer player, String name) {
+        var board = player.getScoreboard();
+        var objective = board.getObjective(name);
+        if (objective == null) return;
+        int previous = DungeonChapter.score(player, name);
+        if (previous >= 0 && previous < Integer.MAX_VALUE)
+            board.getOrCreatePlayerScore(player, objective).set(previous + 1);
     }
 
     private DungeonKillProgress() {}

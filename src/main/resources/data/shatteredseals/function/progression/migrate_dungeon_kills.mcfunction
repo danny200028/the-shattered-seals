@@ -9,4 +9,4 @@ scoreboard players set @s ss_dkills 0
 scoreboard players set @s ss_kprev 0
 scoreboard players set @s ss_rank 0
 scoreboard players set @s ss_dkill_migrated 1
-execute if score @s ss_kills matches 1.. run tellraw @s {"text":"Shattered Seals migration: old mixed animal/hostile milestones and unspent RPG XP reset. Levels, skills, items, and story preserved. Only hostile mobs count, anywhere.","color":"green"}
+execute if score @s ss_kills matches 1.. run tellraw @s {"text":"Shattered Seals migration: old mixed animal/hostile milestones and unspent RPG XP reset. Levels, skills, items, and story preserved. All hostile mobs grant skill XP; dungeon enemies alone advance milestones.","color":"green"}
