@@ -382,7 +382,7 @@ public final class AdventureScreen extends Screen {
         // optional hint maps each symbol to its actual interactable block.
         // Normal journal mode still shows the boss instructions.
         if (showRuneHint) {
-            line(graphics, "Sun = ORANGE chiseled copper | Tide = BLUE prismarine | Ash = BLACKSTONE",
+            line(graphics, "Sun=orange chiseled copper  Tide=blue prismarine  Ash=blackstone",
                 x + 8, y + 207, 0xFFF5CE9B);
         } else {
             line(graphics, "3. Use the sigil on the obsidian pad and defeat " + chapter.boss + ".", x + 8, y + 207, 0xFFC6CBDF);
