@@ -9,7 +9,10 @@ scoreboard players set @s ss_t_van 0
 scoreboard players set @s ss_t_ward 0
 scoreboard players set @s ss_t_path 0
 scoreboard players set @s ss_t_arc 0
-scoreboard players operation @s ss_kprev = @s ss_kills
+# Fresh characters track only dungeon kills; no legacy migration is necessary.
+scoreboard players set @s ss_dkills 0
+scoreboard players set @s ss_kprev 0
+scoreboard players set @s ss_dkill_migrated 1
 function shatteredseals:progression/recalculate
 scoreboard players set @s ss_b11 0
 scoreboard players set @s ss_a11 0

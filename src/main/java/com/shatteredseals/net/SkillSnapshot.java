@@ -115,7 +115,7 @@ public record SkillSnapshot(int level, int xp, int requiredXp, int points,
         return new SkillSnapshot(
             read(board, player, "ss_level"), read(board, player, "ss_xp"),
             read(board, player, "ss_need"), read(board, player, "ss_points"),
-            read(board, player, "ss_kills"), read(board, player, "ss_path"),
+            read(board, player, "ss_dkills"), read(board, player, "ss_path"),
             read(board, player, "ss_master"), ranks, masteries,
             new int[] {read(board, player, "ss_t_van"), read(board, player, "ss_t_ward"),
                        read(board, player, "ss_t_path"), read(board, player, "ss_t_arc")},

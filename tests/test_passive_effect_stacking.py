@@ -31,8 +31,8 @@ class PassiveEffectTests(unittest.TestCase):
 
     def test_class_and_kill_contributions_do_not_double_apply(self):
         for cls, effect in ((1, "strength"), (2, "resistance"), (3, "speed")):
-            self.assertRegex(PASS, rf"ss_path matches {cls} if score @s ss_kills matches 40\.\. run scoreboard players add")
-            self.assertNotRegex(TICK, rf"ss_path={cls},ss_kills=.*minecraft:{effect}")
+            self.assertRegex(PASS, rf"ss_path matches {cls} if score @s ss_dkills matches 40\.\. run scoreboard players add")
+            self.assertNotRegex(TICK, rf"ss_path={cls},ss_dkills=.*minecraft:{effect}")
         for cls in range(1, 5):
             for line in PASS.splitlines():
                 if "ss_b" in line and f"ss_path matches {cls}" in line:
@@ -44,7 +44,7 @@ class PassiveEffectTests(unittest.TestCase):
         self.assertIn("effect give @s minecraft:night_vision 30 0 true", PASS)
         self.assertNotRegex(TICK, r"effect give @s minecraft:night_vision 5")
         self.assertNotRegex(PASS, r"effect give @s minecraft:night_vision (?:1[0-4]|[0-9]) ")
-        self.assertIn("ss_path matches 4 if score @s ss_kills matches 10.. run scoreboard players set @s ss_fx_night 1", PASS)
+        self.assertIn("ss_path matches 4 if score @s ss_dkills matches 10.. run scoreboard players set @s ss_fx_night 1", PASS)
 
     def test_maximum_effect_level_is_five(self):
         for effect, objective in (("haste", "ss_fx_haste"), ("strength", "ss_fx_str"),

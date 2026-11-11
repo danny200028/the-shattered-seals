@@ -13,6 +13,14 @@ The world defaults to Hard difficulty, with high attack speed for an approximati
 
 A challenging single-player RPG modpack, featuring a six-chapter boss storyline, nine-room natural jigsaw fortresses, class skill trees, powerful relics, rarity-based loot, and New Game+ mastery and repeatable chapter quests.
 
+## Dungeon-only kill milestones and existing-world migration
+
+- **Only hostile enemies killed in Shattered Seals dungeons or marked boss, miniboss, elite and boss-minion encounters** count toward character kill-XP and mastery kill milestones. Animals and ordinary open-world mobs do not contribute to those systems; normal vanilla loot and experience remain unchanged.
+- In generated dungeons, spawned enemies carry the `ss_dungeon_enemy` tag. A structure check also credits enemies killed inside already-generated story dungeons in existing saves, without rebuilding the dungeon or resetting the locator.
+- The displayed kill count, 10/40/100 skill milestones and 100-kill branch-mastery gate use the new `ss_dkills` counter.
+- **First login on an existing world:** legacy `ss_kills` mixed animal/vanilla/dungeon data cannot identify old animals, so the mod automatically starts the new dungeon kill counter at 0 and clears unspent `ss_xp` and `ss_mxp` if the player has past mob kills. The old statistic remains unused. Existing **character levels, skill points, purchased talents, masteries, quests, dungeon progress, items and builds stay intact**. Previous level gains cannot be retroactively attributed to animals, so they are deliberately preserved.
+- A saved `ss_dkill_migrated` flag guarantees this correction runs **once per player**. New worlds begin with a clean dungeon kill count and are not migrated.
+
 ## Skill-buff stacking and smooth passive refresh
 
 - Passives from active-class cores, rank-3 talents and mob-kill milestones now **add levels together**. Two separately-earned Haste I bonuses become Haste II. NG+ perk ranks also contribute to the same totals (maximum level V).

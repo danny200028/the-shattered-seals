@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "shatteredseals:smugglers_den",
+    "shatteredseals:cinder_citadel",
+    "shatteredseals:hollow_crypt",
+    "shatteredseals:arcane_observatory",
+    "shatteredseals:sixfold_temple",
+    "shatteredseals:hollow_kings_fortress"
+  ]
+}

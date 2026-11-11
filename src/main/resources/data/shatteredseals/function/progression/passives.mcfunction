@@ -25,14 +25,14 @@ execute if score @s ss_path matches 4 if score @s ss_t_arc matches 1.. run score
 execute if score @s ss_path matches 4 if score @s ss_t_arc matches 4.. run scoreboard players add @s ss_fx_haste 1
 
 # Mob-kill milestones are separate earned skill bonuses, so they stack with core/branch ranks.
-execute if score @s ss_path matches 1 if score @s ss_kills matches 10..39 run scoreboard players add @s ss_fx_str 1
-execute if score @s ss_path matches 1 if score @s ss_kills matches 40.. run scoreboard players add @s ss_fx_str 2
-execute if score @s ss_path matches 2 if score @s ss_kills matches 10..39 run scoreboard players add @s ss_fx_res 1
-execute if score @s ss_path matches 2 if score @s ss_kills matches 40.. run scoreboard players add @s ss_fx_res 2
-execute if score @s ss_path matches 3 if score @s ss_kills matches 10..39 run scoreboard players add @s ss_fx_spd 1
-execute if score @s ss_path matches 3 if score @s ss_kills matches 40.. run scoreboard players add @s ss_fx_spd 2
+execute if score @s ss_path matches 1 if score @s ss_dkills matches 10..39 run scoreboard players add @s ss_fx_str 1
+execute if score @s ss_path matches 1 if score @s ss_dkills matches 40.. run scoreboard players add @s ss_fx_str 2
+execute if score @s ss_path matches 2 if score @s ss_dkills matches 10..39 run scoreboard players add @s ss_fx_res 1
+execute if score @s ss_path matches 2 if score @s ss_dkills matches 40.. run scoreboard players add @s ss_fx_res 2
+execute if score @s ss_path matches 3 if score @s ss_dkills matches 10..39 run scoreboard players add @s ss_fx_spd 1
+execute if score @s ss_path matches 3 if score @s ss_dkills matches 40.. run scoreboard players add @s ss_fx_spd 2
 # Night Vision has no useful higher amplifier: keep it I with an extended duration.
-execute if score @s ss_path matches 4 if score @s ss_kills matches 10.. run scoreboard players set @s ss_fx_night 1
+execute if score @s ss_path matches 4 if score @s ss_dkills matches 10.. run scoreboard players set @s ss_fx_night 1
 
 # Branch rank 3 grants a distinct level-I bonus; rank 5 opens its mastery purchase.
 execute if score @s ss_path matches 1 if score @s ss_b11 matches 3.. run scoreboard players add @s ss_fx_str 1
