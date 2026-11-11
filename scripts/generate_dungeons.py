@@ -186,8 +186,8 @@ def structure_nbt(chapter: int, wall: str, floor: str, trim: str, mob: str, loot
         # Explicit equipment is necessary: spawner entity NBT can bypass
         # vanilla Pillager finalizeSpawn(), which normally equips a crossbow.
         # Keep the server-side legacy-world repair for already-placed spawners.
-        weapon = [nbt_compound("", nbt_str("id", "minecraft:crossbow"),
-                              nbt_int("count", 1)), nbt_compound("")] if chapter == 1 else []
+        weapon = [compound(nbt_str("id", "minecraft:crossbow"),
+                           nbt_int("count", 1)), compound()] if chapter == 1 else []
         extra = (nbt_list("HandItems", 10, weapon),) if weapon else ()
         monster = nbt_compound("entity", nbt_str("id", mob),
                                entity_tags("ss_dungeon_enemy", f"ss_chapter_{chapter}"), *extra)
