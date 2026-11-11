@@ -13,6 +13,14 @@ The world defaults to Hard difficulty, with high attack speed for an approximati
 
 A challenging single-player RPG modpack, featuring a six-chapter boss storyline, nine-room natural jigsaw fortresses, class skill trees, powerful relics, rarity-based loot, and New Game+ mastery and repeatable chapter quests.
 
+## Skill-buff stacking and smooth passive refresh
+
+- Passives from active-class cores, rank-3 talents and mob-kill milestones now **add levels together**. Two separately-earned Haste I bonuses become Haste II. NG+ perk ranks also contribute to the same totals (maximum level V).
+- Class-specific effects stop being refreshed after switching classes; existing potion durations may finish naturally. The NG+ perk shop still works across classes.
+- All continuously granted passive effects last 16 seconds and refresh at least every 4 seconds. **Night Vision lasts 30 seconds**, staying comfortably above the visual flicker threshold before its next refresh.
+- Instant combat-ability buffs still obey their normal durations and cooldowns; these changes do not turn them into permanent effects.
+- Level 5 in a talent branch opens the ability to buy its Mastery (character level 50, 100 kills, 8 more skill points). Core skill ranks 4-5 retain their tier-II bonus.
+
 ## v1.1.0: Warden's Sanctuary castle rebuild
 
 - Enter through a projecting gatehouse and take the three-wide Grand Stair.

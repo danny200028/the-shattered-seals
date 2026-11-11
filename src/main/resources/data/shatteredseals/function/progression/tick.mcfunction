@@ -18,11 +18,10 @@ execute as @a[scores={ss_ascend=1..}] run function shatteredseals:talents/master
 scoreboard players set @a[scores={ss_branch=1..}] ss_branch 0
 scoreboard players set @a[scores={ss_ascend=1..}] ss_ascend 0
 
-# NG+ mastery perk shop and 1-second passive refresh
+# NG+ mastery perk shop; passive levels are combined with class skills by progression/passives
 scoreboard players enable @a ss_mperk
 execute as @a[scores={ss_mperk=1..}] run function shatteredseals:mastery/shop
 scoreboard players set @a[scores={ss_mperk=1..}] ss_mperk 0
-execute if score #clock ss_clock matches 0 as @a[scores={ss_ng=1..}] run function shatteredseals:mastery/passives
 
 # Chapter journal, dungeon locator and NG+ activation
 scoreboard players enable @a ss_story
