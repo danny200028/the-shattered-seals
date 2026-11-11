@@ -378,7 +378,15 @@ public final class AdventureScreen extends Screen {
             line(graphics, data.puzzleStep() >= 3 ? "2. Arena ward opened. Take the sigil from the chest."
                  : "2. Ask the keeper and attune the runes (" + data.puzzleStep() + "/3).", x + 8, y + 195, 0xFFC6CBDF);
         }
-        line(graphics, "3. Use the sigil on the obsidian pad and defeat " + chapter.boss + ".", x + 8, y + 207, 0xFFC6CBDF);
+        // The original keeper clue describes symbols, not item names. The
+        // optional hint maps each symbol to its actual interactable block.
+        // Normal journal mode still shows the boss instructions.
+        if (showRuneHint) {
+            line(graphics, "Sun = ORANGE chiseled copper | Tide = BLUE prismarine | Ash = BLACKSTONE",
+                x + 8, y + 207, 0xFFF5CE9B);
+        } else {
+            line(graphics, "3. Use the sigil on the obsidian pad and defeat " + chapter.boss + ".", x + 8, y + 207, 0xFFC6CBDF);
+        }
         String side = switch (data.sideQuestState()) {
             case 1 -> "Defeat " + chapter.miniboss;
             case 2 -> "Return to the keeper for your reward";
