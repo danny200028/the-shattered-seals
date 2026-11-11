@@ -121,7 +121,7 @@ public final class SkillTreeScreen extends Screen {
             mastery.active = ready && !mastered && rank >= 5 && data.level() >= 50
                              && data.kills() >= 100 && data.points() >= 8;
             mastery.setTooltip(Tooltip.create(Component.literal(
-                MASTERY_HELP[selectedClass][branch] + " Unlock: level 50, 100 dungeon kills, branch 5/5, 8 SP.")));
+                MASTERY_HELP[selectedClass][branch] + " Unlock: level 50, 100 hostile kills, branch 5/5, 8 SP.")));
             addRenderableWidget(mastery);
         }
         int coreRank = ready ? data.coreRanks()[selectedClass] : 0;
@@ -186,7 +186,7 @@ public final class SkillTreeScreen extends Screen {
                 "Level " + data.level() + "   XP " + data.xp() + "/" + data.requiredXp()
                 + "   Skill Points " + data.points(), x, y+31, 0xFFE9CF93);
             graphics.drawString(font,
-                "Dungeon kills " + data.kills() + "  |  NG+ Mastery " + data.masteryRank()
+                "Hostile kills " + data.kills() + "  |  NG+ Mastery " + data.masteryRank()
                 + "  |  Active: " + (data.activeClass() > 0 && data.activeClass() <= 4
                      ? CLASSES[data.activeClass()-1] : "Unselected"),
                 x, y+44, 0xFFBBC3D6);
@@ -204,7 +204,7 @@ public final class SkillTreeScreen extends Screen {
                     x+3, by+27, 0xFFB3BCCA);
             }
         }
-        graphics.drawString(font, "Masteries: Level 50 | 100 dungeon kills | Rank 5/5 | 8 SP",
+        graphics.drawString(font, "Masteries: Level 50 | 100 hostile kills | Rank 5/5 | 8 SP",
             x, y+202, 0xFFAAB2C2);
     }
 

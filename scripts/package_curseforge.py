@@ -118,6 +118,11 @@ AUTOMATED TESTING:
 - Visual shaders, actual boss combat, terrain placement and save/reload still
   need human verification. The report marks these NOT_TESTED.
 
+RPG KILL XP: Any hostile mob defeated by the player (inside or outside a
+story dungeon) now awards Shattered Seals progression XP and counts towards
+10/40/100 mastery milestones. Animals never count. Existing dungeon kill scores
+are preserved on upgrade; the new build does not reset progress.
+
 FIRST PLAY:
 - K opens the native 4-class skill tree.
 - J opens the native Adventurer's Codex: journal, relics, forge and NG+ mastery.
