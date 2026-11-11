@@ -9,7 +9,7 @@ scoreboard players set @s ss_t_van 0
 scoreboard players set @s ss_t_ward 0
 scoreboard players set @s ss_t_path 0
 scoreboard players set @s ss_t_arc 0
-# Fresh characters track only dungeon kills; no legacy migration is necessary.
+# Fresh characters track only hostile kills, anywhere, with the existing save-compatible score.
 scoreboard players set @s ss_dkills 0
 scoreboard players set @s ss_kprev 0
 scoreboard players set @s ss_dkill_migrated 1

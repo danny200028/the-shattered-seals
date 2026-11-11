@@ -42,7 +42,7 @@ execute if score #clock ss_clock matches 0 as @a if items entity @s weapon.mainh
 execute if score #clock ss_clock matches 0 as @a if items entity @s weapon.mainhand minecraft:netherite_sword[minecraft:custom_data~{ss_weapon:"kings_bane"}] run effect give @s minecraft:haste 5 0 true
 scoreboard players enable @a ss_upgrade
 scoreboard players enable @a ss_status
-# Recalculate the kill mastery tier from dungeon kills only, including after migration.
+# Recalculate mastery tier from all player-defeated hostile mobs, including after migration.
 execute if score #clock ss_clock matches 0 run scoreboard players set @a ss_rank 0
 execute if score #clock ss_clock matches 0 as @a[scores={ss_dkills=10..}] run scoreboard players set @s ss_rank 1
 execute if score #clock ss_clock matches 0 as @a[scores={ss_dkills=40..}] run scoreboard players set @s ss_rank 2
