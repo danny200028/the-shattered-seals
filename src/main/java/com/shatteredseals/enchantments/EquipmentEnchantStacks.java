@@ -1,7 +1,9 @@
 package com.shatteredseals.enchantments;
 
 import com.shatteredseals.ShatteredSeals;
-import java.util.Locale;
+import com.shatteredseals.adventure.DungeonChapter;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -14,7 +16,6 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
-import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
@@ -150,11 +151,6 @@ public final class EquipmentEnchantStacks {
         return Math.min(0.32f, base + (first > 0 && second > 0 ? Math.min(3, second) * 0.02f : 0.0f));
     }
 
-    private static boolean proc(ServerPlayer p, String id, float base) {
-        int m = main(p, id), o = off(p, id);
-        return total(p, id) > 0 && p.getRandom().nextFloat() < procChance(base, m, o);
-    }
-
     /**
      * Only a direct player melee strike qualifies. Secondary magic damage has
      * no player attacker and can't recursively create new enchantment procs.
@@ -172,10 +168,6 @@ public final class EquipmentEnchantStacks {
         double stagger = offhandContribution(staggerMain, staggerOff, 0.35, 0.2);
         if (stagger > 0 && target.isAlive())
             target.knockback(stagger, player.getX() - target.getX(), player.getZ() - target.getZ());
-        if (!dual && !player.getOffhandItem().isEmpty()) {
-            // For a shield/torch in offhand, never trigger a weapon-only enchant
-            // from that second item. Mainhand enchantments still function.
-        }
         trigger(player, target, dual);
     }
 
@@ -188,35 +180,53 @@ public final class EquipmentEnchantStacks {
         return effective(m, o) > 0 && p.getRandom().nextFloat() < procChance(base, m, o);
     }
 
+    private static void notice(ServerPlayer p, String name, ChatFormatting colour) {
+        if (p.getTags().contains("ss_quiet_enchants") || DungeonChapter.score(p, "ss_proc_cd") > 0) return;
+        p.sendSystemMessage(Component.literal("✦ " + name + " activated!").withStyle(colour));
+        score(p, "ss_proc_cd", 40);
+    }
+
     private static void trigger(ServerPlayer p, Mob mob, boolean dual) {
         int v = level(p, "vampiric_edge", dual);
-        if (v > 0 && activate(p, "vampiric_edge", 0.13f, dual))
+        if (v > 0 && activate(p, "vampiric_edge", 0.13f, dual)) {
             buff(p, MobEffects.REGENERATION, 2 + v - 1, v >= 4 ? 1 : 0);
+            notice(p, "Vampiric Edge", ChatFormatting.AQUA);
+        }
 
         int soul = level(p, "soul_reaper", dual);
-        if (soul > 0 && activate(p, "soul_reaper", 0.13f, dual))
+        if (soul > 0 && activate(p, "soul_reaper", 0.13f, dual)) {
             buff(p, MobEffects.REGENERATION, 3 + (int) Math.ceil((soul - 1) * 1.5), soul >= 4 ? 1 : 0);
+            notice(p, "Soul Reaper", ChatFormatting.GOLD);
+        }
 
         int fury = level(p, "dragons_fury", dual);
-        if (fury > 0 && mob.isAlive() && activate(p, "dragons_fury", 0.16f, dual))
+        if (fury > 0 && mob.isAlive() && activate(p, "dragons_fury", 0.16f, dual)) {
             mob.setRemainingFireTicks(Math.max(mob.getRemainingFireTicks(), (4 + 2 * (fury - 1)) * 20));
+            notice(p, "Dragon's Fury", ChatFormatting.GOLD);
+        }
 
         int frost = level(p, "frostbite", dual);
-        if (frost > 0 && activate(p, "frostbite", 0.16f, dual))
+        if (frost > 0 && activate(p, "frostbite", 0.16f, dual)) {
             weaken(mob, MobEffects.MOVEMENT_SLOWDOWN, 2 + frost - 1, frost >= 4 ? 1 : 0);
+            notice(p, "Frostbite", ChatFormatting.AQUA);
+        }
 
         int infernal = level(p, "infernal_wrath", dual);
-        if (infernal > 0 && mob.isAlive() && activate(p, "infernal_wrath", 0.16f, dual))
+        if (infernal > 0 && mob.isAlive() && activate(p, "infernal_wrath", 0.16f, dual)) {
             mob.setRemainingFireTicks(Math.max(mob.getRemainingFireTicks(), (3 + 2 * (infernal - 1)) * 20));
+            notice(p, "Infernal Wrath", ChatFormatting.GOLD);
+        }
 
-        if (activate(p, "celestial_judgement", 0.10f, dual) && mob.isAlive())
+        if (activate(p, "celestial_judgement", 0.10f, dual) && mob.isAlive()) {
             mob.hurt(p.serverLevel().damageSources().magic(), 1.25f + p.getRandom().nextFloat() * 1.5f);
+            notice(p, "Celestial Judgement", ChatFormatting.GOLD);
+        }
 
-        if (activate(p, "thunderstrike", 0.10f, dual) && mob.isAlive())
+        if (activate(p, "thunderstrike", 0.10f, dual) && mob.isAlive()) {
             mob.hurt(p.serverLevel().damageSources().magic(), 0.7f + p.getRandom().nextFloat());
+            notice(p, "Thunderstrike", ChatFormatting.AQUA);
+        }
 
-        // The original enchantment's player-facing proc chatter is intentionally
-        // suppressed here to avoid chat spam on rapid classic 1.8-style hits.
     }
 
     /** Soul Collector grants extra VANILLA experience only for hostile kills. */
