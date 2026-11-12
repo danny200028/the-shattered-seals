@@ -412,11 +412,18 @@ public final class AdventureScreen extends Screen {
         for (int i = 0; i < WEAPONS.length; i++) {
             line(graphics, font.plainSubstrByWidth(WEAPONS[i] + "  |  Mastery " + com.shatteredseals.combat.SwordMastery.rank(data.swordMastery()[i]) + "/5 (" + data.swordMastery()[i] + " kills)  |  " + SWORD_POWERS[i], 392),
                 x + 8, y + 92 + i * 24, 0xFFE1CFAB);
-            line(graphics, SWORD_DESCRIPTIONS[i],
-                x + 12, y + 104 + i * 24, 0xFFAFC4D5);
+            boolean mastered = com.shatteredseals.combat.SwordMastery.hasCosmetics(data.swordMastery()[i]);
+            String detail = mastered
+                ? "TITLE: " + com.shatteredseals.combat.SwordMastery.title(i)
+                    + "  |  Unique aura + finisher  |  " + SWORD_DESCRIPTIONS[i]
+                : SWORD_DESCRIPTIONS[i];
+            line(graphics, font.plainSubstrByWidth(detail, 392),
+                x + 12, y + 104 + i * 24, mastered ? 0xFFFFD797 : 0xFFAFC4D5);
         }
         line(graphics, "Mastery is cosmetic. Power grows from Dormant to Awakened to Ascended.",
             x + 8, y + 240, 0xFF9BCDAD);
+        line(graphics, "Rank 5: exclusive title, aura and kill finisher. No stat bonuses.",
+            x + 8, y + 253, 0xFF9BCDAD);
     }
 
     private void renderRelics(GuiGraphics graphics, int x, int y) {

@@ -32,11 +32,12 @@ public final class CombatHudOverlay {
         Minecraft mc = Minecraft.getInstance();
         if (mc.player == null || mc.options.hideGui || mc.screen != null) return;
         SkillSnapshot snapshot = ClientSkillState.current();
-        if (snapshot == null || snapshot.options()[0] == 0) return;
+        if (snapshot == null) return;
+        GuiGraphics g = event.getGuiGraphics();
+        renderSwordTitle(g, mc, snapshot);
+        if (snapshot.options()[0] == 0) return;
         int classIndex = snapshot.activeClass() - 1;
         if (classIndex < 0 || classIndex >= ABILITIES.length) return;
-
-        GuiGraphics g = event.getGuiGraphics();
         CombatHudLayout.Positions layout = CombatHudLayout.measure(g.guiWidth(), g.guiHeight());
         int accent = ACCENTS[classIndex];
         int resource = Math.max(0, Math.min(100, snapshot.resources()[classIndex]));
@@ -48,6 +49,21 @@ public final class CombatHudOverlay {
         for (int i = 0; i < 4; i++) {
             drawAbility(g, mc, layout, classIndex, i, snapshot.cooldowns()[i], resource, accent);
         }
+    }
+
+    /** Worn title appears only when holding its mastered legendary sword. */
+    private static void renderSwordTitle(GuiGraphics g, Minecraft mc, SkillSnapshot snapshot) {
+        int index = com.shatteredseals.combat.SwordMastery.swordIndex(mc.player.getMainHandItem());
+        if (index < 0 || index >= snapshot.swordMastery().length
+                || !com.shatteredseals.combat.SwordMastery.hasCosmetics(snapshot.swordMastery()[index])) return;
+
+        String caption = "[ " + com.shatteredseals.combat.SwordMastery.title(index) + " ]";
+        int[] colors = {0xFFFFA758, 0xFFFFD979, 0xFF73D8EB, 0xFFB8D6FF, 0xFF7DC9DB, 0xFFC79BFF};
+        int center = g.guiWidth() / 2;
+        int y = g.guiHeight() - 86; // Above the vanilla actionbar and skill resource panel.
+        int halfWidth = mc.font.width(caption) / 2 + 7;
+        g.fill(center - halfWidth, y - 3, center + halfWidth, y + 12, 0xB5212436);
+        g.drawCenteredString(mc.font, caption, center, y, colors[index]);
     }
 
     private static void drawStatus(GuiGraphics g, Minecraft mc, CombatHudLayout.Positions p,
