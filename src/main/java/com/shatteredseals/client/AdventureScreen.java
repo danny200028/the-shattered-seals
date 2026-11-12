@@ -420,8 +420,10 @@ public final class AdventureScreen extends Screen {
             line(graphics, font.plainSubstrByWidth(detail, 392),
                 x + 12, y + 104 + i * 24, mastered ? 0xFFFFD797 : 0xFFAFC4D5);
         }
-        line(graphics, "Rank 5: exclusive title, sword aura and animated kill finisher. No stat bonuses.",
+        line(graphics, "Mastery is cosmetic. Power grows from Dormant to Awakened to Ascended.",
             x + 8, y + 240, 0xFF9BCDAD);
+        line(graphics, "Rank 5: exclusive title, aura and kill finisher. No stat bonuses.",
+            x + 8, y + 253, 0xFF9BCDAD);
     }
 
     private void renderRelics(GuiGraphics graphics, int x, int y) {
