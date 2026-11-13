@@ -213,6 +213,7 @@ difficulty hard
 # v1.0.53: tiered Codex enchantment shop
 scoreboard objectives add ss_ebook trigger
 scoreboard objectives add ss_ebook_roll dummy
+scoreboard objectives add ss_ebook_rank dummy
 
 # v1.0.57 proc message rate-limit
 scoreboard objectives add ss_proc_cd dummy

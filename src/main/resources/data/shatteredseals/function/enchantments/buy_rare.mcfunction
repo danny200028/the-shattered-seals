@@ -1,6 +1,8 @@
 # Server-authoritative fixed XP-point purchase. A failed purchase consumes nothing; Creative is free.
 execute unless entity @s[gamemode=creative] unless entity @s[level=20..] run return run tellraw @s {"text":"Need 550 XP points (equivalent to level 20) for a rare book.","color":"red"}
 execute store result score @s ss_ebook_roll run random value 1..12
+# Independent weighted book-level roll: I 65%, II 25%, III 10%.
+execute store result score @s ss_ebook_rank run random value 1..100
 execute unless entity @s[gamemode=creative] run xp add @s -550 points
 execute if score @s ss_ebook_roll matches 1 run function shatteredseals:enchantments/give_vampiric_edge
 execute if score @s ss_ebook_roll matches 2 run function shatteredseals:enchantments/give_frostbite
@@ -14,3 +16,5 @@ execute if score @s ss_ebook_roll matches 9 run function shatteredseals:enchantm
 execute if score @s ss_ebook_roll matches 10 run function shatteredseals:enchantments/give_hunters_precision
 execute if score @s ss_ebook_roll matches 11 run function shatteredseals:enchantments/give_second_wind
 execute if score @s ss_ebook_roll matches 12 run function shatteredseals:enchantments/give_magnetic_harvest
+# Clear purchase-only rank so direct give functions still default to Level I.
+scoreboard players reset @s ss_ebook_rank

@@ -68,7 +68,8 @@ public final class CodexBookTooltips {
             String text = line.getString();
             return ((text.startsWith("COMMON |") || text.startsWith("RARE |")
                     || text.startsWith("LEGENDARY |")) && text.contains(" | Level "))
-                    || text.startsWith("Combine matching books in an anvil to reach");
+                    || text.startsWith("Combine matching books in an anvil to reach")
+                    || text.startsWith("Maximum enchantment level reached.");
         });
 
         int position = Math.min(1, lines.size());
