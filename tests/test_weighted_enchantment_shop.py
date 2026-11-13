@@ -59,7 +59,7 @@ class WeightedEnchantBookTests(unittest.TestCase):
                     self.assertIn(f"Level {roman} / III", book_lines[0])
                     self.assertIn(f" {roman} (", receipt_lines[0])
                 # With no active purchase rank, the original direct give behavior is Level I.
-                self.assertIn("execute unless score @s ss_ebook_rank matches 66..100 run give", lines[0])
+                self.assertIn("execute unless score @s ss_ebook_rank matches 66..100 run give", lines[1])
 
     def test_dynamic_tooltip_removes_stale_rank_and_anvil_lore(self):
         text = (ROOT / "src/main/java/com/shatteredseals/client/CodexBookTooltips.java").read_text()
