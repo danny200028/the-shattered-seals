@@ -38,6 +38,9 @@ public final class SkillNetworking {
             (payload, context) -> ClientSkillState.accept(payload));
         registrar.playToClient(DungeonWaypoint.TYPE, DungeonWaypoint.STREAM_CODEC,
             (payload, context) -> XaeroWaypoints.accept(payload));
+        registrar.playToClient(TableEnchantPreview.TYPE, TableEnchantPreview.STREAM_CODEC,
+            (payload, context) -> context.enqueueWork(() ->
+                com.shatteredseals.client.EnchantmentPreviewOverlay.accept(payload)));
     }
     private SkillNetworking() {}
 }
