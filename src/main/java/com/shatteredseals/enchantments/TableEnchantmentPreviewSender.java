@@ -52,21 +52,9 @@ public final class TableEnchantmentPreviewSender {
 
         int[] costs = menu.costs.clone();
         String[] names = new String[3];
-        var tag = player.registryAccess()
-            .registryOrThrow(Registries.ENCHANTMENT).getTag(EnchantmentTags.IN_ENCHANTING_TABLE);
         for (int slot = 0; slot < 3; slot++) {
-            if (item.isEmpty() || costs[slot] <= 0 || tag.isEmpty()) {
-                names[slot] = "";
-                continue;
-            }
-            // Vanilla uses enchantmentSeed + slot, and removes one randomly for books.
-            RandomSource random = RandomSource.create(menu.getEnchantmentSeed() + slot);
-            HolderSet.Named<Enchantment> eligible = tag.get();
-            List<EnchantmentInstance> chosen = EnchantmentHelper.selectEnchantment(
-                random, item, costs[slot], eligible.stream());
-            if (item.is(Items.BOOK) && chosen.size() > 1) {
-                chosen.remove(random.nextInt(chosen.size()));
-            }
+            List<EnchantmentInstance> chosen = selectVanillaEnchantments(
+                player.registryAccess(), item, menu.getEnchantmentSeed(), slot, costs[slot]);
             names[slot] = chosen.stream()
                 .map(entry -> Enchantment.getFullname(entry.enchantment, entry.level).getString())
                 .collect(Collectors.joining("\n"));
@@ -76,6 +64,30 @@ public final class TableEnchantmentPreviewSender {
         PacketDistributor.sendToPlayer(player,
             new TableEnchantPreview(menu.containerId, Item.getId(item.getItem()),
                 menu.getEnchantmentSeed(), costs, names));
+    }
+
+    /**
+     * Mirrors the real vanilla EnchantmentMenu.getEnchantmentList algorithm.
+     * Returns every enchantment, including any extras beyond the tooltip clue.
+     * Exposed to Minecraft GameTests so we can verify MULTI-enchant rolls exist.
+     */
+    public static List<EnchantmentInstance> selectVanillaEnchantments(
+            net.minecraft.core.RegistryAccess registryAccess,
+            ItemStack item, int enchantmentSeed, int slot, int cost) {
+        if (item.isEmpty() || cost <= 0 || slot < 0 || slot > 2) return List.of();
+        var tag = registryAccess.registryOrThrow(Registries.ENCHANTMENT)
+            .getTag(EnchantmentTags.IN_ENCHANTING_TABLE);
+        if (tag.isEmpty()) return List.of();
+
+        RandomSource random = RandomSource.create(enchantmentSeed + slot);
+        HolderSet.Named<Enchantment> eligible = tag.get();
+        List<EnchantmentInstance> chosen = EnchantmentHelper.selectEnchantment(
+            random, item, cost, eligible.stream());
+        // Vanilla discards one extra enchant for BOOKS, not for equipment.
+        if (item.is(Items.BOOK) && chosen.size() > 1) {
+            chosen.remove(random.nextInt(chosen.size()));
+        }
+        return chosen;
     }
 
     private TableEnchantmentPreviewSender() {}
