@@ -59,7 +59,7 @@ public final class BowMendingInfinityGameTests {
             .registryOrThrow(Registries.ENCHANTMENT);
         var sharpness = registry.getHolderOrThrow(Enchantments.SHARPNESS);
         var smite = registry.getHolderOrThrow(Enchantments.SMITE);
-        var fortune = registry.getHolderOrThrow(Enchantments.BLOCK_FORTUNE);
+        var fortune = registry.getHolderOrThrow(Enchantments.FORTUNE);
         var silkTouch = registry.getHolderOrThrow(Enchantments.SILK_TOUCH);
         if (Enchantment.areCompatible(sharpness, smite)
                 || Enchantment.areCompatible(fortune, silkTouch)) {
