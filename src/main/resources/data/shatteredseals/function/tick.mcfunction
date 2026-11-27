@@ -137,3 +137,5 @@ execute if score #clock ss_clock matches 0 as @a run attribute @s minecraft:gene
 # v1.0.53: no-cheats vanilla-XP enchantment book merchant
 scoreboard players enable @a ss_ebook
 execute as @a[scores={ss_ebook=1..}] run function shatteredseals:enchantments/shop
+# Native server handler securely consumes only a genuine duplicate, not the sole book.
+scoreboard players enable @a ss_ebook_recycle
