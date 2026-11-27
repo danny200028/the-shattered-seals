@@ -187,7 +187,7 @@ public final class AdventureScreen extends Screen {
                 addRenderableWidget(tier);
             }
             addRenderableWidget(Button.builder(Component.literal(
-                "Buy " + TIER_NAMES[enchantTier] + " (" + TIER_PRICES[enchantTier] + " XP)"),
+                "Buy " + TIER_NAMES[enchantTier] + " (" + TIER_PRICES[enchantTier] + " XP points)"),
                 b -> { recycleArmed = false; perform("ss_ebook", enchantTier + 1); })
                 .bounds(x + 8, y + 241, 191, 18).build());
             addRenderableWidget(Button.builder(Component.literal(
@@ -465,7 +465,8 @@ public final class AdventureScreen extends Screen {
                 graphics.renderTooltip(font, Component.literal(
                     ENCHANT_NAMES[enchantTier][i] + ": " + ENCHANT_HELP[enchantTier][i]), mouseX, mouseY);
         }
-        line(graphics, "Hold a spare matching book (same enchant + level); keeps one copy.",
+        line(graphics, font.plainSubstrByWidth(
+            "Book I + Book I = II; II + II = III. Recycle: same enchant + level.", 390),
             x + 8, y + 229, 0xFF9BCDAD);
     }
 
