@@ -1,4 +1,4 @@
-"""Duplicate Codex book salvage only refunds after a server-validated exact duplicate."""
+"""Recycle any genuine single custom Codex book, without requiring a duplicate."""
 import re
 import unittest
 from pathlib import Path
@@ -37,26 +37,29 @@ class DuplicateCodexBookTests(unittest.TestCase):
             "player.getMainHandItem()", "held.shrink(1)", "player.giveExperiencePoints(refund)",
             "DataComponents.STORED_ENCHANTMENTS", "stored.size() != 1",
             "getNamespace().equals(ShatteredSeals.MOD_ID)",
-            "entry.getIntValue() > 3", "requested.equals(identify(candidate))",
-            "copies >= 2", "player.isCreative()", "player.isSpectator()",
-            "if (!hasDuplicate(player.getInventory(), key)) return Result.NO_DUPLICATE",
+            "entry.getIntValue() > 3", "player.isCreative()", "player.isSpectator()",
         ):
             with self.subTest(fragment=fragment): self.assertIn(fragment, JAVA)
-        self.assertLess(JAVA.index("copies >= 2"), JAVA.index("held.shrink(1)"))
+        self.assertNotIn("hasDuplicate", JAVA)
+        self.assertNotIn("NO_DUPLICATE", JAVA)
+        self.assertLess(JAVA.index("if (key == null) return Result.INVALID_BOOK"),
+                        JAVA.index("held.shrink(1)"))
         self.assertLess(JAVA.index("held.shrink(1)"), JAVA.index("player.giveExperiencePoints(refund)"))
 
     def test_codex_uses_confirmation_and_server_trigger(self):
         self.assertIn("recycleArmed", GUI)
         self.assertIn('perform("ss_ebook_recycle", 1)', GUI)
         self.assertIn("CONFIRM: Recycle held book", GUI)
-        self.assertIn("same enchant + level", GUI)
+        self.assertIn("Recycle held book (50% XP)", GUI)
+        self.assertIn("Recycle any custom book", GUI)
         self.assertIn("scoreboard objectives add ss_ebook_recycle trigger", LOAD)
         self.assertIn("scoreboard players enable @a ss_ebook_recycle", TICK)
 
     def test_real_game_tests_cover_repeat_and_mismatched_levels(self):
         for fragment in ("@GameTestHolder(ShatteredSeals.MOD_ID)",
-                         "duplicateCommonRefundsAndKeepsSecondBook",
-                         "uniqueAndWrongRankNeverConsumeBooks",
+                         "singleCommonBookRefundsAndCannotRecycleTwice",
+                         "singleLegendaryBookRecyclesWhileEnchantedGearRemains",
+                         "rareBooksAndDifferentLevelsAreIndependent",
                          "vanillaBooksAndNonBookItemsNeverRecycle",
                          "helper.succeed()", "player.totalExperience - beforeXp"):
             with self.subTest(fragment=fragment): self.assertIn(fragment, GAMETEST)
