@@ -191,7 +191,7 @@ public final class AdventureScreen extends Screen {
                 b -> { recycleArmed = false; perform("ss_ebook", enchantTier + 1); })
                 .bounds(x + 8, y + 241, 191, 18).build());
             addRenderableWidget(Button.builder(Component.literal(
-                recycleArmed ? "CONFIRM: Recycle held book" : "Recycle duplicate (50% XP)"),
+                recycleArmed ? "CONFIRM: Recycle held book" : "Recycle held book (50% XP)"),
                 b -> {
                     if (!recycleArmed) {
                         recycleArmed = true;
@@ -466,7 +466,7 @@ public final class AdventureScreen extends Screen {
                     ENCHANT_NAMES[enchantTier][i] + ": " + ENCHANT_HELP[enchantTier][i]), mouseX, mouseY);
         }
         line(graphics, font.plainSubstrByWidth(
-            "Book I + Book I = II; II + II = III. Recycle: same enchant + level.", 390),
+            "Book I + Book I = II; II + II = III. Recycle any custom book.", 390),
             x + 8, y + 229, 0xFF9BCDAD);
     }
 

@@ -1,13 +1,11 @@
 package com.shatteredseals.enchantments;
 
 import com.shatteredseals.ShatteredSeals;
-import java.util.Map;
 import java.util.Set;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
@@ -16,12 +14,12 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 /**
- * Server-only Codex duplicate recycling. The client may REQUEST a recycle
+ * Server-only Codex book recycling. The client may REQUEST a recycle
  * with /trigger ss_ebook_recycle set 1 but never specifies XP or the target.
  *
- * A single-enchantment custom Codex book may be recycled only when another
- * identical enchantment AND level remains in the player inventory. The
- * original survivor and all unrelated books remain untouched.
+ * Any single-enchantment custom Codex book of level I-III can be recycled,
+ * even if the player's only other copy was already applied to equipment.
+ * Only ONE book in the main hand is consumed. Gear is never modified.
  */
 @EventBusSubscriber(modid = ShatteredSeals.MOD_ID)
 public final class DuplicateBookRecycling {
@@ -45,7 +43,7 @@ public final class DuplicateBookRecycling {
     public static final int LEGENDARY_REFUND = 698;   // 1395 XP purchase
 
     public record BookKey(String enchantment, int level) {}
-    public enum Result { RECYCLED, INVALID_BOOK, NO_DUPLICATE, NOT_ALLOWED }
+    public enum Result { RECYCLED, INVALID_BOOK, NOT_ALLOWED }
 
     public static int refundFor(String id) {
         if (COMMON.contains(id)) return COMMON_REFUND;
@@ -69,31 +67,17 @@ public final class DuplicateBookRecycling {
         return refundFor(id) == 0 ? null : new BookKey(id, entry.getIntValue());
     }
 
-    /** Includes both hands and the hotbar; another matching book must remain. */
-    public static boolean hasDuplicate(Inventory inventory, BookKey requested) {
-        int copies = 0;
-        for (int i = 0; i < inventory.getContainerSize(); i++) {
-            ItemStack candidate = inventory.getItem(i);
-            if (requested.equals(identify(candidate))) {
-                copies += candidate.getCount();
-                if (copies >= 2) return true;
-            }
-        }
-        return false;
-    }
-
     /**
-     * Validates BEFORE shrinking or awarding points. No book is lost when
-     * validation fails, and a single copy is never recycled.
+     * Validate the actual single stored enchantment and tier before paying.
+     * No duplicate, equipped item or inventory search is required.
      */
     public static Result recycle(ServerPlayer player) {
         if (player.isCreative() || player.isSpectator()) return Result.NOT_ALLOWED;
         ItemStack held = player.getMainHandItem();
         BookKey key = identify(held);
         if (key == null) return Result.INVALID_BOOK;
-        if (!hasDuplicate(player.getInventory(), key)) return Result.NO_DUPLICATE;
         int refund = refundFor(key.enchantment());
-        // Nothing is paid out until the exact spare copy is proven present.
+        // Spend one real book before awarding its tier's XP refund.
         held.shrink(1);
         player.getInventory().setChanged();
         player.giveExperiencePoints(refund);
@@ -116,14 +100,11 @@ public final class DuplicateBookRecycling {
         Result result = recycle(player);
         Component feedback = switch (result) {
             case RECYCLED -> Component.literal(
-                "Duplicate recycled! +" + refundFor(key.enchantment())
-                + " XP points. Your matching book was kept.").withStyle(ChatFormatting.GREEN);
+                "Book recycled! +" + refundFor(key.enchantment())
+                + " XP points. Your other gear and books were untouched.").withStyle(ChatFormatting.GREEN);
             case INVALID_BOOK -> Component.literal(
                 "Hold a single-enchantment custom Codex book in your main hand.")
                 .withStyle(ChatFormatting.RED);
-            case NO_DUPLICATE -> Component.literal(
-                "No identical spare book found. Keep this one or find another of the same level.")
-                .withStyle(ChatFormatting.YELLOW);
             case NOT_ALLOWED -> Component.literal(
                 "Book recycling is available in Survival only.")
                 .withStyle(ChatFormatting.RED);
