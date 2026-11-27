@@ -118,6 +118,7 @@ public final class AdventureScreen extends Screen {
     private boolean requestedInitial;
     private int refreshTicks;
     private int enchantTier;
+    private boolean recycleArmed;
     private boolean showRuneHint;
 
     public AdventureScreen() {
@@ -138,6 +139,7 @@ public final class AdventureScreen extends Screen {
             final Page destination = pages[i];
             Button tab = Button.builder(Component.literal(names[i]), b -> {
                 page = destination;
+                recycleArmed = false;
                 rebuildWidgets();
             }).bounds(x + 4 + i * 40, y + 16, 39, 21).build();
             tab.active = page != destination;
@@ -179,15 +181,27 @@ public final class AdventureScreen extends Screen {
             for (int i = 0; i < 3; i++) {
                 final int chosen = i;
                 Button tier = Button.builder(Component.literal(TIER_NAMES[i]),
-                    b -> { enchantTier = chosen; rebuildWidgets(); })
+                    b -> { enchantTier = chosen; recycleArmed = false; rebuildWidgets(); })
                     .bounds(x + 8 + i * 130, y + 78, 123, 20).build();
                 tier.active = enchantTier != i;
                 addRenderableWidget(tier);
             }
             addRenderableWidget(Button.builder(Component.literal(
-                "Buy random " + TIER_NAMES[enchantTier] + " book (" + TIER_PRICES[enchantTier] + " XP points)"),
-                b -> perform("ss_ebook", enchantTier + 1))
-                .bounds(x + 8, y + 237, 391, 20).build());
+                "Buy " + TIER_NAMES[enchantTier] + " (" + TIER_PRICES[enchantTier] + " XP)"),
+                b -> { recycleArmed = false; perform("ss_ebook", enchantTier + 1); })
+                .bounds(x + 8, y + 241, 191, 18).build());
+            addRenderableWidget(Button.builder(Component.literal(
+                recycleArmed ? "CONFIRM: Recycle held book" : "Recycle duplicate (50% XP)"),
+                b -> {
+                    if (!recycleArmed) {
+                        recycleArmed = true;
+                        rebuildWidgets();
+                    } else {
+                        recycleArmed = false;
+                        perform("ss_ebook_recycle", 1);
+                        rebuildWidgets();
+                    }
+                }).bounds(x + 206, y + 241, 193, 18).build());
         } else if (page == Page.TRIALS) {
             boolean unlocked = state != null && state.level() >= 60
                 && state.bossWins()[5] > 0 && state.ngCycle() >= 1
@@ -443,7 +457,7 @@ public final class AdventureScreen extends Screen {
             int column = i / 6;
             int row = i % 6;
             int px = x + 8 + column * 196;
-            int py = y + 105 + row * 21;
+            int py = y + 101 + row * 21;
             line(graphics, ENCHANT_NAMES[enchantTier][i] + "  I-III", px, py, 0xFFE5DBB6);
             line(graphics, font.plainSubstrByWidth(ENCHANT_HELP[enchantTier][i], 185),
                  px + 2, py + 10, 0xFFAFC4D5);
@@ -451,8 +465,8 @@ public final class AdventureScreen extends Screen {
                 graphics.renderTooltip(font, Component.literal(
                     ENCHANT_NAMES[enchantTier][i] + ": " + ENCHANT_HELP[enchantTier][i]), mouseX, mouseY);
         }
-        line(graphics, "Book I + Book I = II; Book II + Book II = III. Apply in an anvil.",
-            x + 8, y + 230, 0xFF9BCDAD);
+        line(graphics, "Hold a spare matching book (same enchant + level); keeps one copy.",
+            x + 8, y + 229, 0xFF9BCDAD);
     }
 
     private void renderBestiary(GuiGraphics graphics, SkillSnapshot data, int x, int y) {

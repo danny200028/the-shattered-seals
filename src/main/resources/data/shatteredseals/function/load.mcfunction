@@ -214,6 +214,8 @@ difficulty hard
 scoreboard objectives add ss_ebook trigger
 scoreboard objectives add ss_ebook_roll dummy
 scoreboard objectives add ss_ebook_rank dummy
+# Per-player, survival-only duplicate book recycling (server validates inventory).
+scoreboard objectives add ss_ebook_recycle trigger
 
 # v1.0.57 proc message rate-limit
 scoreboard objectives add ss_proc_cd dummy
